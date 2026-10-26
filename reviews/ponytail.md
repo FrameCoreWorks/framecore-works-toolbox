@@ -120,9 +120,17 @@ support (Unknown which minimum; not checked). `git` for the codebase map.
   warning: "Plugin 'ponytail' has unrecognized key in plugin.json: 'types'
   (stripped - the SDK ignores unknown top-level fields)". `types` only
   declares the band mod's state types, and the mod runs only in Claude Code,
-  so chat and Cowork lose nothing. Whether claude.ai installed the pinned
-  plugin commit (version 5.3.2) is still Unknown: the sync screen shows the
-  marketplace commit, not the plugin version.
+  so chat and Cowork lose nothing.
+- claude.ai install of the plugin by the owner, 2026-10-26: PASS. It reached
+  a Claude Code cloud session as `ponytail@synced`, version 5.3.2, loaded.
+  The synced copy matches the pinned commit except that claude.ai rewrites
+  the YAML `description` of all 6 `SKILL.md` files from a folded block to a
+  quoted string (same text; checked in detail for 2 of 6). Hooks ran in that
+  session: `~/.claude/.ponytail-active`, `.ponytail-statusline-nudged`,
+  `ponytail-statusline.sh` and `~/.config/ponytail/band/` were created.
+  Whether claude.ai honors the `sha` pin is still Unknown: upstream `main`
+  was at the pinned commit (09c434a) when it synced, so a pinned and an
+  unpinned install look the same. Re-check when upstream moves.
 
 ## Risks
 
