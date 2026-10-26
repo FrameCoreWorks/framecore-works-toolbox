@@ -14,218 +14,154 @@ SHA = "0123456789abcdef0123456789abcdef01234567"
 OTHER_SHA = "fedcba9876543210fedcba9876543210fedcba98"
 
 
-def claude_entry(name="demo", sha=SHA, **source):
+def entry(name="demo", sha=SHA, **source):
     src = {"source": "github", "repo": "acme/demo", "sha": sha}
     src.update(source)
     return {"name": name, "source": src, "description": "Demo"}
 
 
-def codex_entry(name="demo", sha=SHA):
-    src = {"source": "url", "url": "https://github.com/acme/demo.git"}
-    if sha:
-        src["sha"] = sha
-    return {
-        "name": name,
-        "source": src,
-        "policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"},
-        "category": "Productivity",
-    }
-
-
-def review_text(name="demo", sha=SHA, status="active", codex_pin="sha",
-                eligibility="upstream ships .claude-plugin/plugin.json", kind="plugin"):
+def review_text(name="demo", sha=SHA, status="active", kind="plugin",
+                eligibility="upstream ships .claude-plugin/plugin.json"):
     return (
         f"# Review: {name}\n\n## Entry\n\n- Name: {name}\n- Status: {status}\n- Kind: {kind}\n"
-        f"- Eligibility: {eligibility}\n- Commit: {sha}\n- Codex-Pin: {codex_pin}\n"
+        f"- Eligibility: {eligibility}\n- Commit: {sha}\n"
     )
 
 
 class CheckMarketplaceTest(unittest.TestCase):
     def setUp(self):
         self.root = Path(tempfile.mkdtemp())
-        for d in (".claude-plugin", ".agents/plugins", "reviews", "docs"):
+        for d in (".claude-plugin", "reviews", "docs"):
             (self.root / d).mkdir(parents=True)
-        self.write_manifests([], [])
+        self.write_manifest([])
 
     def tearDown(self):
         shutil.rmtree(self.root)
 
-    def write_manifests(self, claude_plugins, codex_plugins):
-        claude = {"name": "toolbox", "owner": {"name": "X"}, "plugins": claude_plugins}
-        codex = {"name": "toolbox", "interface": {"displayName": "Toolbox"}, "plugins": codex_plugins}
-        (self.root / ".claude-plugin/marketplace.json").write_text(json.dumps(claude))
-        (self.root / ".agents/plugins/marketplace.json").write_text(json.dumps(codex))
+    def write_manifest(self, plugins):
+        data = {"name": "toolbox", "owner": {"name": "X"}, "plugins": plugins}
+        (self.root / ".claude-plugin/marketplace.json").write_text(json.dumps(data))
 
     def write_entry_files(self, name="demo", sha=SHA, **review_kwargs):
         (self.root / f"reviews/{name}.md").write_text(review_text(name, sha, **review_kwargs))
         (self.root / f"docs/{name}.md").write_text(f"Pinned commit: {sha}\n")
 
+    def write_wrapper(self, name="demo", sha=SHA):
+        plugin = self.root / "plugins" / name
+        (plugin / ".claude-plugin").mkdir(parents=True)
+        (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": name}))
+        (plugin / "UPSTREAM.md").write_text(f"Upstream acme/demo at {sha}\n")
+        return plugin
+
     def errors(self):
         return check_marketplace.check(self.root)
+
+    def assert_error(self, text):
+        errs = self.errors()
+        self.assertTrue(any(text in e for e in errs), errs)
 
     def test_empty_toolbox_passes(self):
         self.assertEqual(self.errors(), [])
 
     def test_valid_entry_passes(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
+        self.write_manifest([entry()])
         self.write_entry_files()
         self.assertEqual(self.errors(), [])
 
     def test_git_subdir_source_passes(self):
-        entry = claude_entry()
-        entry["source"] = {"source": "git-subdir", "url": "https://github.com/acme/demo.git",
-                           "path": "plugins/demo", "sha": SHA}
-        self.write_manifests([entry], [codex_entry()])
+        e = entry()
+        e["source"] = {"source": "git-subdir", "url": "https://github.com/acme/demo.git",
+                       "path": "plugins/demo", "sha": SHA}
+        self.write_manifest([e])
         self.write_entry_files()
         self.assertEqual(self.errors(), [])
 
     def test_branch_only_source_fails(self):
-        entry = claude_entry()
-        del entry["source"]["sha"]
-        entry["source"]["ref"] = "main"
-        self.write_manifests([entry], [codex_entry()])
+        e = entry()
+        del e["source"]["sha"]
+        e["source"]["ref"] = "main"
+        self.write_manifest([e])
         self.write_entry_files()
-        self.assertTrue(any("40-character" in e for e in self.errors()))
+        self.assert_error("40-character")
 
     def test_short_sha_fails(self):
-        self.write_manifests([claude_entry(sha="0123456")], [codex_entry()])
+        self.write_manifest([entry(sha="0123456")])
         self.write_entry_files()
-        self.assertTrue(any("40-character" in e for e in self.errors()))
+        self.assert_error("40-character")
 
-    def test_relative_path_source_fails(self):
-        entry = claude_entry()
-        entry["source"] = "./plugins/demo"
-        self.write_manifests([entry], [codex_entry()])
+    def test_unknown_source_type_fails(self):
+        e = entry()
+        e["source"] = {"source": "npm", "package": "demo"}
+        self.write_manifest([e])
         self.write_entry_files()
-        self.assertTrue(any("source" in e for e in self.errors()))
+        self.assert_error("github, url or git-subdir")
 
     def test_missing_review_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
+        self.write_manifest([entry()])
         (self.root / "docs/demo.md").write_text(f"{SHA}\n")
-        self.assertTrue(any("reviews/demo.md" in e for e in self.errors()))
+        self.assert_error("reviews/demo.md")
 
     def test_review_with_other_commit_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
+        self.write_manifest([entry()])
         self.write_entry_files(sha=OTHER_SHA)
-        self.assertTrue(any("Commit" in e for e in self.errors()))
+        self.assert_error("Commit")
 
     def test_review_without_eligibility_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
+        self.write_manifest([entry()])
         self.write_entry_files(eligibility="")
-        self.assertTrue(any("Eligibility" in e for e in self.errors()))
+        self.assert_error("Eligibility")
 
-    def write_wrapper(self, name="demo", sha=SHA, codex=True):
-        plugin = self.root / "plugins" / name
-        (plugin / ".claude-plugin").mkdir(parents=True)
-        (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": name}))
-        if codex:
-            (plugin / ".codex-plugin").mkdir()
-            (plugin / ".codex-plugin/plugin.json").write_text(json.dumps({"name": name}))
-        (plugin / "UPSTREAM.md").write_text(f"Upstream acme/demo at {sha}\n")
+    def test_missing_docs_fails(self):
+        self.write_manifest([entry()])
+        (self.root / "reviews/demo.md").write_text(review_text())
+        self.assert_error("docs/demo.md")
 
-    def adapted_manifests(self, name="demo"):
-        claude = {"name": name, "source": f"./plugins/{name}", "description": "Demo"}
-        codex = codex_entry(name)
-        codex["source"] = {"source": "local", "path": f"./plugins/{name}"}
-        self.write_manifests([claude], [codex])
+    def test_removed_review_still_in_manifest_fails(self):
+        self.write_manifest([entry()])
+        self.write_entry_files(status="removed")
+        self.assert_error("removed")
+
+    def test_duplicate_names_fail(self):
+        self.write_manifest([entry(), entry()])
+        self.write_entry_files()
+        self.assert_error("Duplicate")
 
     def test_adapted_wrapper_passes(self):
         self.write_wrapper()
-        self.adapted_manifests()
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
         self.write_entry_files(kind="adapted")
         self.assertEqual(self.errors(), [])
 
     def test_local_source_needs_adapted_kind(self):
         self.write_wrapper()
-        self.adapted_manifests()
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
         self.write_entry_files()
-        self.assertTrue(any("adapted" in e for e in self.errors()))
+        self.assert_error("adapted")
 
     def test_wrapper_must_name_reviewed_commit(self):
         self.write_wrapper(sha=OTHER_SHA)
-        self.adapted_manifests()
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
         self.write_entry_files(kind="adapted")
-        self.assertTrue(any("UPSTREAM.md" in e for e in self.errors()))
+        self.assert_error("UPSTREAM.md")
 
-    def test_wrapper_needs_codex_manifest_or_limitation(self):
-        self.write_wrapper(codex=False)
-        self.adapted_manifests()
+    def test_wrapper_with_bin_fails(self):
+        (self.write_wrapper() / "bin").mkdir()
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
         self.write_entry_files(kind="adapted")
-        self.assertTrue(any(".codex-plugin" in e for e in self.errors()))
+        self.assert_error("bin")
 
     def test_local_source_outside_plugins_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
-        entry = claude_entry()
-        entry["source"] = "./elsewhere/demo"
-        self.write_manifests([entry], [codex_entry()])
+        self.write_manifest([{"name": "demo", "source": "./elsewhere/demo"}])
         self.write_entry_files(kind="adapted")
-        self.assertTrue(any("./plugins/demo" in e for e in self.errors()))
-
-    def test_missing_docs_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
-        (self.root / "reviews/demo.md").write_text(review_text())
-        self.assertTrue(any("docs/demo.md" in e for e in self.errors()))
-
-    def test_removed_review_still_in_manifest_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry()])
-        self.write_entry_files(status="removed")
-        self.assertTrue(any("removed" in e for e in self.errors()))
-
-    def test_entry_missing_from_codex_fails(self):
-        self.write_manifests([claude_entry()], [])
-        self.write_entry_files()
-        self.assertTrue(any("Codex" in e for e in self.errors()))
-
-    def test_codex_sha_mismatch_fails(self):
-        self.write_manifests([claude_entry()], [codex_entry(sha=OTHER_SHA)])
-        self.write_entry_files()
-        self.assertTrue(any("differs" in e for e in self.errors()))
-
-    def test_codex_without_sha_needs_recorded_limitation(self):
-        self.write_manifests([claude_entry()], [codex_entry(sha=None)])
-        self.write_entry_files()
-        self.assertTrue(any("Codex-Pin" in e for e in self.errors()))
-
-    def test_codex_limitation_allows_missing_codex_entry(self):
-        self.write_manifests([claude_entry()], [])
-        self.write_entry_files(codex_pin="limitation: no Codex manifest, install skills with npx skills")
-        self.assertEqual(self.errors(), [])
-
-    def test_codex_entry_needs_policy_and_category(self):
-        entry = codex_entry()
-        del entry["policy"]
-        del entry["category"]
-        self.write_manifests([claude_entry()], [entry])
-        self.write_entry_files()
-        errs = self.errors()
-        self.assertTrue(any("policy" in e for e in errs))
-        self.assertTrue(any("category" in e for e in errs))
-
-    def test_codex_only_entry_fails(self):
-        self.write_manifests([], [codex_entry()])
-        self.write_entry_files()
-        self.assertTrue(any("Claude Code" in e for e in self.errors()))
-
-    def test_duplicate_names_fail(self):
-        self.write_manifests([claude_entry(), claude_entry()], [codex_entry()])
-        self.write_entry_files()
-        self.assertTrue(any("Duplicate" in e for e in self.errors()))
-
-    def test_rules_files_must_be_identical(self):
-        (self.root / "CLAUDE.md").write_text("rules\n")
-        (self.root / "AGENTS.md").write_text("other rules\n")
-        self.assertTrue(any("identical" in e for e in self.errors()))
+        self.assert_error("./plugins/demo")
 
     def test_committed_zip_fails(self):
         (self.root / "docs/skill.zip").write_bytes(b"PK")
-        self.assertTrue(any("ZIP" in e for e in self.errors()))
+        self.assert_error("ZIP")
 
-    def test_marketplace_names_must_match(self):
-        path = self.root / ".agents/plugins/marketplace.json"
-        data = json.loads(path.read_text())
-        data["name"] = "other"
-        path.write_text(json.dumps(data))
-        self.assertTrue(any("name" in e for e in self.errors()))
+    def test_manifest_missing_owner_fails(self):
+        (self.root / ".claude-plugin/marketplace.json").write_text(json.dumps({"name": "t", "plugins": []}))
+        self.assert_error("owner")
 
 
 if __name__ == "__main__":

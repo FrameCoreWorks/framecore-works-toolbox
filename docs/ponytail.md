@@ -2,63 +2,45 @@
 
 - Upstream: https://github.com/DietrichGebert/ponytail
 - Pinned commit: 09c434ab73ca43761c5d8b0c5d341926c2fba710 (version 5.3.2)
-- Skill folders: `skills/ponytail`, `skills/ponytail-review`,
-  `skills/ponytail-audit`, `skills/ponytail-debt`, `skills/ponytail-gain`,
-  `skills/ponytail-help`
 - Review: [reviews/ponytail.md](../reviews/ponytail.md)
 
-## Claude Code and Codex
+## Install
 
-Install from the toolbox marketplace (see the README). In Claude Code, after
-install, check the plugin options with
-`/plugin configure ponytail@framecore-works-toolbox`: keep `webhookUrl` empty,
-set `ledger` to false if you do not want the local log in
-`~/.config/ponytail/band/`. Turn the mode off for a session with
-`/ponytail off`, or by default with `/ponytail default off`.
+See [install.md](install.md). Plugin id: `ponytail@framecore-works-toolbox`.
 
-Remove: `claude plugin uninstall ponytail@framecore-works-toolbox`, then
-delete `~/.claude/.ponytail-*`, `~/.claude/ponytail-statusline.*`, any
-`statusLine` entry pointing to them in `~/.claude/settings.json`, and
-`~/.config/ponytail/`.
+## Setup after install
 
-## Get the files at the pinned commit
+- Plugin options (Claude Code: `/plugin configure ponytail@framecore-works-toolbox`):
+  keep `webhookUrl` empty so nothing leaves the machine; set `ledger` to
+  false if you do not want the local log in `~/.config/ponytail/band/`.
+- In the first Claude Code or Cowork session the hook asks Claude to offer a
+  statusline edit in `~/.claude/settings.json`. Decline unless you want it.
 
-Every skill is a single `SKILL.md` with no scripts.
+## What works where
 
-```bash
-python3 scripts/pack_skill.py DietrichGebert/ponytail 09c434ab73ca43761c5d8b0c5d341926c2fba710 skills/ponytail
-python3 scripts/pack_skill.py DietrichGebert/ponytail 09c434ab73ca43761c5d8b0c5d341926c2fba710 skills/ponytail-review
-# repeat for ponytail-audit, ponytail-debt, ponytail-gain, ponytail-help as needed
-```
+| Component | Chat | Cowork | Claude Code |
+| --------- | ---- | ------ | ----------- |
+| 6 skills (`ponytail`, `-review`, `-audit`, `-debt`, `-gain`, `-help`) | yes | yes | yes |
+| Hooks (ruleset in every session and subagent, codebase map) | no | yes | yes |
+| Band mod (status band, task ledger, board) | no | no | yes |
 
-## Claude apps (claude.ai, desktop, mobile)
+In chat the mode is active only when a skill matches the task or you ask for
+"ponytail mode"; there is no always-on injection.
 
-General steps and caveats: [apps.md](apps.md).
+## Use
 
-1. Upload `ponytail-<short-sha>.zip` (and optionally the review and audit ZIPs)
-   in the Skills section of settings.
-2. There are no hooks in the apps: the mode is active only when the skill
-   triggers from its description or you ask for "ponytail mode". The band,
-   statusline and codebase map do not exist here.
-3. Remove: delete each skill in the Skills section.
+- Always on in Cowork and Claude Code once enabled.
+- Levels: `/ponytail lite|full|ultra|off`; default for new sessions:
+  `/ponytail default <level>`.
+- Reviews and reports: `/ponytail:ponytail-review`, `/ponytail:ponytail-audit`,
+  `/ponytail:ponytail-debt`.
+- Turn it off for creative or non-coding work: `/ponytail off`, or disable
+  the plugin.
 
-## ChatGPT (Project or custom GPT)
+## Full removal
 
-1. Upload `skills/ponytail/SKILL.md` (and optionally the review and audit
-   `SKILL.md` files, renamed, for example `ponytail-review.md`) as knowledge
-   files.
-2. Add to the instructions: "For coding tasks, follow ponytail SKILL.md."
-3. No scripts are involved, so nothing is lost beyond the hooks, band and
-   codebase map.
-4. Remove: delete the knowledge files and the instruction line.
-
-## ChatGPT Work
-
-Same as ChatGPT. Code execution is not needed.
-
-## Notes
-
-`ponytail-gain` cites `benchmarks/results/...` from the upstream repo, which is
-not inside the skill folder; it reads as a display of numbers and still works
-without it. `ponytail-help` lists slash commands that exist only with the full
-plugin.
+1. Remove the plugin in Customize > Plugins, or run
+   `claude plugin uninstall ponytail@framecore-works-toolbox`.
+2. Delete `~/.claude/.ponytail-*` and `~/.claude/ponytail-statusline.*`, and
+   any `statusLine` entry pointing to them in `~/.claude/settings.json`.
+3. Delete `~/.config/ponytail/`.

@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
-"""Check the toolbox manifests against the repo rules in CLAUDE.md / AGENTS.md.
+"""Check the toolbox marketplace against the repo rules in CLAUDE.md.
 
 Checks:
-- both manifests parse and share the same marketplace name;
-- every Claude Code entry uses a github, url or git-subdir source pinned to a
-  full 40-character commit SHA (never a branch alone), or, for adapted
-  entries (review "Kind: adapted"), the local wrapper ./plugins/<name> with
-  .claude-plugin/plugin.json and UPSTREAM.md naming the reviewed commit;
+- .claude-plugin/marketplace.json parses and has name, owner and plugins;
+- every entry uses a github, url or git-subdir source pinned to a full
+  40-character commit SHA (never a branch alone), or, for adapted entries
+  (review "Kind: adapted"), the local wrapper ./plugins/<name> with
+  .claude-plugin/plugin.json, no bin/, and UPSTREAM.md naming the reviewed
+  commit;
 - every entry has reviews/<name>.md (Status: active, Eligibility filled in,
-  Commit: <same SHA>) and
-  docs/<name>.md mentioning the same SHA;
-- the Codex manifest lists the same entries, pinned to the same SHA (or the
-  same wrapper path with .codex-plugin/plugin.json), with policy and
-  category, unless the review records "Codex-Pin: limitation: ...";
-- reviews marked "Status: removed" are not listed in any manifest;
-- CLAUDE.md and AGENTS.md are identical;
-- no ZIP files are kept in the repo outside the ignored dist/ folder.
+  Commit: <same SHA>) and docs/<name>.md mentioning the same SHA;
+- reviews marked "Status: removed" are not listed in the manifest;
+- no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
 Exit code 0 when clean, 1 when any check fails.
@@ -26,8 +22,7 @@ import re
 import sys
 from pathlib import Path
 
-CLAUDE_MANIFEST = ".claude-plugin/marketplace.json"
-CODEX_MANIFEST = ".agents/plugins/marketplace.json"
+MANIFEST = ".claude-plugin/marketplace.json"
 GIT_SOURCES = {"github", "url", "git-subdir"}
 FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
 FIELD = re.compile(r"^- ([A-Za-z-]+): *(.*)$", re.MULTILINE)
@@ -50,15 +45,15 @@ def review_fields(path):
     return {k: v.strip() for k, v in FIELD.findall(path.read_text(encoding="utf-8"))}
 
 
-def entries_by_name(plugins, label, errors):
+def entries_by_name(plugins, errors):
     by_name = {}
     for i, entry in enumerate(plugins):
         name = entry.get("name") if isinstance(entry, dict) else None
         if not name:
-            errors.append(f"{label} plugins[{i}]: missing name")
+            errors.append(f"plugins[{i}]: missing name")
             continue
         if name in by_name:
-            errors.append(f"{label}: Duplicate entry name '{name}'")
+            errors.append(f"Duplicate entry name '{name}'")
         by_name[name] = entry
     return by_name
 
@@ -70,25 +65,18 @@ def pinned_sha(source):
     return None
 
 
-def local_path(source):
-    """Return the local path of a string or {"source": "local"} source, else None."""
-    if isinstance(source, str):
-        return source
-    if isinstance(source, dict) and source.get("source") == "local":
-        return source.get("path")
-    return None
-
-
 def check_wrapper(root, name, path, sha, fields, errors):
     expected = f"./plugins/{name}"
     if path.rstrip("/") != expected:
-        errors.append(f"Claude Code '{name}': a local source must be {expected}")
+        errors.append(f"'{name}': a local source must be {expected}")
         return
     if fields is not None and fields.get("Kind") != "adapted":
         errors.append(f"'{name}': a local wrapper source needs 'Kind: adapted' in the review")
     plugin = root / expected
     if not (plugin / ".claude-plugin/plugin.json").is_file():
         errors.append(f"'{name}': {expected}/.claude-plugin/plugin.json is missing")
+    if (plugin / "bin").exists():
+        errors.append(f"'{name}': {expected}/bin is not allowed (claude.ai and Cowork refuse it)")
     upstream = plugin / "UPSTREAM.md"
     if not upstream.is_file() or (sha and sha not in upstream.read_text(encoding="utf-8")):
         errors.append(f"'{name}': {expected}/UPSTREAM.md must name the reviewed upstream commit")
@@ -97,39 +85,27 @@ def check_wrapper(root, name, path, sha, fields, errors):
 def check(root):
     root = Path(root)
     errors = []
-    claude = load_json(root / CLAUDE_MANIFEST, errors)
-    codex = load_json(root / CODEX_MANIFEST, errors)
-    if claude is None or codex is None:
+    manifest = load_json(root / MANIFEST, errors)
+    if manifest is None:
         return errors
 
     for key in ("name", "owner", "plugins"):
-        if key not in claude:
-            errors.append(f"{CLAUDE_MANIFEST}: missing '{key}'")
-    for key in ("name", "plugins"):
-        if key not in codex:
-            errors.append(f"{CODEX_MANIFEST}: missing '{key}'")
-    if not codex.get("interface", {}).get("displayName"):
-        errors.append(f"{CODEX_MANIFEST}: missing interface.displayName")
-    if claude.get("name") != codex.get("name"):
-        errors.append("Marketplace name differs between Claude Code and Codex manifests")
+        if key not in manifest:
+            errors.append(f"{MANIFEST}: missing '{key}'")
 
-    claude_entries = entries_by_name(claude.get("plugins", []), "Claude Code", errors)
-    codex_entries = entries_by_name(codex.get("plugins", []), "Codex", errors)
-
-    for name, entry in claude_entries.items():
+    for name, entry in entries_by_name(manifest.get("plugins", []), errors).items():
         source = entry.get("source")
-        wrapper = local_path(source)
         fields = review_fields(root / "reviews" / f"{name}.md")
-        if wrapper is not None:
+        if isinstance(source, str):
             # Adapted entry: our own wrapper in plugins/<name>, pinned to the reviewed upstream commit.
             sha = fields.get("Commit") if fields and FULL_SHA.match(fields.get("Commit", "")) else None
-            check_wrapper(root, name, wrapper, sha, fields, errors)
+            check_wrapper(root, name, source, sha, fields, errors)
         else:
             sha = pinned_sha(source)
             if not isinstance(source, dict) or source.get("source") not in GIT_SOURCES:
-                errors.append(f"Claude Code '{name}': source must be github, url or git-subdir")
+                errors.append(f"'{name}': source must be github, url or git-subdir")
             if sha is None:
-                errors.append(f"Claude Code '{name}': source needs a full 40-character lowercase 'sha'")
+                errors.append(f"'{name}': source needs a full 40-character lowercase 'sha'")
 
         if fields is None:
             errors.append(f"'{name}': reviews/{name}.md is missing")
@@ -140,10 +116,10 @@ def check(root):
             errors.append(f"'{name}': review Status must be 'active'")
         if not fields.get("Eligibility") or fields["Eligibility"].startswith("<"):
             errors.append(f"'{name}': review needs an Eligibility line (upstream manifest or documented skills)")
-        if sha and fields.get("Commit") != sha:
-            errors.append(f"'{name}': review Commit does not match the pinned sha {sha}")
-        if wrapper is not None and sha is None:
+        if sha is None and isinstance(source, str):
             errors.append(f"'{name}': review Commit must be the full 40-character upstream commit")
+        elif sha and fields.get("Commit") != sha:
+            errors.append(f"'{name}': review Commit does not match the pinned sha {sha}")
 
         docs = root / "docs" / f"{name}.md"
         if not docs.is_file():
@@ -151,41 +127,9 @@ def check(root):
         elif sha and sha not in docs.read_text(encoding="utf-8"):
             errors.append(f"'{name}': docs/{name}.md does not mention the pinned sha")
 
-        codex_pin = fields.get("Codex-Pin", "")
-        limitation = codex_pin.startswith("limitation:") and len(codex_pin) > len("limitation:") + 3
-        codex_entry = codex_entries.get(name)
-        if codex_entry is None:
-            if not limitation:
-                errors.append(f"'{name}': missing from the Codex manifest and no Codex-Pin limitation recorded")
-            continue
-        policy = codex_entry.get("policy", {})
-        if not policy.get("installation") or not policy.get("authentication"):
-            errors.append(f"Codex '{name}': policy.installation and policy.authentication are required")
-        if not codex_entry.get("category"):
-            errors.append(f"Codex '{name}': category is required")
-        if wrapper is not None:
-            if local_path(codex_entry.get("source")) != wrapper:
-                errors.append(f"Codex '{name}': source must be the same local wrapper path {wrapper}")
-            elif not (root / wrapper / ".codex-plugin/plugin.json").is_file() and not limitation:
-                errors.append(f"'{name}': wrapper has no .codex-plugin/plugin.json and no Codex-Pin limitation recorded")
-            continue
-        codex_sha = pinned_sha(codex_entry.get("source"))
-        if codex_sha is None:
-            if not limitation:
-                errors.append(f"Codex '{name}': no full 'sha' pin and no Codex-Pin limitation recorded in the review")
-        elif sha and codex_sha != sha:
-            errors.append(f"Codex '{name}': sha {codex_sha} differs from Claude Code sha {sha}")
-
-    for name in codex_entries.keys() - claude_entries.keys():
-        errors.append(f"Codex '{name}': not listed in the Claude Code manifest")
-
-    rules = [root / "CLAUDE.md", root / "AGENTS.md"]
-    if all(p.is_file() for p in rules) and rules[0].read_bytes() != rules[1].read_bytes():
-        errors.append("CLAUDE.md and AGENTS.md must be identical")
-
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)
-        if rel.parts[0] not in ("dist", ".git"):
+        if rel.parts[0] != ".git":
             errors.append(f"{rel}: ZIP files must not be committed")
 
     return errors
@@ -198,9 +142,9 @@ def main(argv):
         print(f"ERROR: {error}")
     if errors:
         return 1
-    with open(root / CLAUDE_MANIFEST, encoding="utf-8") as f:
+    with open(root / MANIFEST, encoding="utf-8") as f:
         count = len(json.load(f)["plugins"])
-    print(f"OK: {count} entries, manifests consistent")
+    print(f"OK: {count} entries, marketplace consistent")
     return 0
 
 

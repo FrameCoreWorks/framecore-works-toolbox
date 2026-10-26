@@ -8,11 +8,10 @@
 - Author: Dietrich Gebert (GitHub user DietrichGebert); latest commit authored as "OhMyCode"
 - License: MIT
 - Commit: 09c434ab73ca43761c5d8b0c5d341926c2fba710
-- Upstream version: 5.3.2 (`.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`)
+- Upstream version: 5.3.2 (`.claude-plugin/plugin.json`)
 - Kind: plugin
-- Eligibility: upstream ships `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and its own Claude Code and Codex marketplaces
-- Claude Code source: github
-- Codex-Pin: sha
+- Eligibility: upstream ships `.claude-plugin/plugin.json` and its own `.claude-plugin/marketplace.json`
+- Source: github
 - Reviewed on: 2026-10-26
 - Reviewer: Claude Code session for Kamil (FrameCore Works)
 - Owner approval: "yes" from Kamil on 2026-10-26. Offered two options (1: skills only, no hooks; 2: full plugin with always-on hooks, mod and local ledger); Kamil replied "2".
@@ -25,17 +24,16 @@ created 2026-06-12, last push 2026-10-18 (GitHub API).
 A "lazy senior dev" mode: rules that push the agent to the smallest correct
 change (YAGNI, standard library first, no unrequested abstractions, short
 replies). Ships 6 skills (`ponytail`, `ponytail-review`, `ponytail-audit`,
-`ponytail-debt`, `ponytail-gain`, `ponytail-help`), lifecycle hooks for Claude
-Code and Codex, and a Claude Code mod ("band") that shows a status band and
-keeps a per-task ledger. The repo also carries ports for Cursor, Copilot,
-Gemini, OpenCode, Qoder, Windsurf and others; those are not used by this entry.
+`ponytail-debt`, `ponytail-gain`, `ponytail-help`), lifecycle hooks, and a
+Claude Code mod ("band") that shows a status band and
+keeps a per-task ledger. The repo also carries ports for other agent tools;
+those are not used by this entry.
 
 ## Files reviewed
 
 `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
-`.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `plugin.json`,
-`package.json`, `skills/*/SKILL.md`, `skills/plugin.json`,
-`hooks/claude-codex-hooks.json`, `hooks/claude-band.json`,
+`plugin.json`, `package.json`, `skills/*/SKILL.md`, `skills/plugin.json`,
+the hook config files under `hooks/`,
 `hooks/ponytail-activate.js`, `hooks/ponytail-mode-tracker.js`,
 `hooks/ponytail-subagent.js` (injection points), `hooks/ponytail-map.js`
 (header), `hooks/ponytail-instructions.js` (header),
@@ -60,7 +58,7 @@ pinned commit; nothing was run.
 
 ## Hooks
 
-From `hooks/claude-codex-hooks.json` (Claude Code and Codex), all run `node`
+From the hooks file referenced by `.claude-plugin/plugin.json`, all run `node`
 on files in the plugin cache:
 
 - `SessionStart` (startup, resume, clear, compact) -> `ponytail-activate.js`:
@@ -103,7 +101,8 @@ name (optional), cost, token counts, turns, timing, model, test counts.
 
 ## Requirements
 
-Node.js on PATH (hooks). The band needs a Claude Code version with mod
+Node.js on PATH (hooks). Hooks run in Cowork and Claude Code; the band mod
+runs only in Claude Code; claude.ai chat uses only the skills. The band needs a Claude Code version with mod
 support (Unknown which minimum; not checked). `git` for the codebase map.
 
 ## Install tests
@@ -116,11 +115,9 @@ support (Unknown which minimum; not checked). `git` for the codebase map.
   reported "4 userConfig options not yet set". Hooks did not run during
   install (no `~/.config/ponytail` created). A live session with the hooks
   was NOT_RUN. Temporary config dir deleted.
-- Codex CLI: NOT_RUN (Codex CLI not installed in the review environment).
-  Upstream ships `.codex-plugin/plugin.json`, so the entry is pinned by `sha`.
-  Per Codex docs, plugin-bundled hooks are skipped until the user trusts them.
-- Claude app / ChatGPT / ChatGPT Work: NOT_RUN (manual upload, see
-  docs/ponytail.md).
+- claude.ai / Cowork (Customize > Plugins, marketplace added from GitHub):
+  NOT_RUN, done by the owner. Unknown whether claude.ai installs the pinned
+  commit; check that it shows version 5.3.2.
 
 ## Risks
 
@@ -145,3 +142,4 @@ owner's explicit approval of the hooks. Leave `webhookUrl` empty; set
 ## History
 
 - 2026-10-26: added at 09c434a (version 5.3.2).
+- 2026-10-26: toolbox narrowed to Claude only; review text updated, entry unchanged.

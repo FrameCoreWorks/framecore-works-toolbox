@@ -17,8 +17,7 @@ Mark anything you did not verify as NOT_RUN or Unknown. Never guess.
 - Upstream version: <version from plugin.json or tag, or none>
 - Kind: <plugin | skills | adapted>
 - Eligibility: <upstream manifest or documented skills that make it marketplace-ready, or "adapted: <what the wrapper exposes>">
-- Claude Code source: <github | git-subdir (path) | url>
-- Codex-Pin: <sha | limitation: reason and workaround>
+- Source: <github | git-subdir (path) | local wrapper ./plugins/<name>>
 - Reviewed on: <YYYY-MM-DD>
 - Reviewer: <who ran the review>
 - Owner approval: <not required | "yes" from Kamil on YYYY-MM-DD, quote>
@@ -63,8 +62,7 @@ service, and is it opt-in?>
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): <PASS | FAIL | NOT_RUN>, with the commands and output summary
-- Codex CLI (isolated CODEX_HOME): <PASS | FAIL | NOT_RUN>, with the reason if not run
-- Claude app / ChatGPT / ChatGPT Work: NOT_RUN (manual upload, see docs/<entry-name>.md)
+- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
 
 ## Risks
 
