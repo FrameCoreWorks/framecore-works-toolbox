@@ -11,9 +11,10 @@ Checks:
 - every entry has reviews/<name>.md (Status: active, Eligibility filled in,
   Commit: <same SHA>) and docs/<name>.md mentioning the same SHA;
 - reviews marked "Status: removed" are not listed in the manifest;
+- every entry except the index has a category from CATEGORIES;
 - first-party plugins (entry metadata.firstParty) live in ./plugins/<name>
   with docs/<name>.md, and the "toolbox" index skill lists exactly the other
-  entries;
+  entries, each under the heading of its category;
 - no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
@@ -31,6 +32,9 @@ FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
 FIELD = re.compile(r"^- ([A-Za-z-]+): *(.*)$", re.MULTILINE)
 INDEX_ROW = re.compile(r"^\|\s*`([a-z0-9][a-z0-9._-]*)`\s*\|", re.MULTILINE)
 INDEX = "toolbox"
+HEADING = re.compile(r"^#+\s*(.+?)\s*$")
+# Entry "category" slug -> heading in the toolbox index. Add new categories here and in CLAUDE.md.
+CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools"}
 
 
 def load_json(path, errors):
@@ -102,16 +106,27 @@ def check_first_party(root, name, source, errors):
         errors.append(f"'{name}': docs/{name}.md is missing")
 
 
-def check_index(root, names, errors):
-    """The toolbox skill must list exactly the other entries of the marketplace."""
+def check_index(root, entries, errors):
+    """The toolbox skill must list exactly the other entries, each under its category heading."""
     skill = root / "plugins" / INDEX / "skills" / INDEX / "SKILL.md"
     if not skill.is_file():
         errors.append(f"'{INDEX}': plugins/{INDEX}/skills/{INDEX}/SKILL.md is missing")
         return
-    listed = set(INDEX_ROW.findall(skill.read_text(encoding="utf-8")))
-    for name in sorted(names - listed):
-        errors.append(f"'{INDEX}': SKILL.md does not list '{name}'")
-    for name in sorted(listed - names):
+    listed, heading = {}, None
+    for line in skill.read_text(encoding="utf-8").splitlines():
+        if m := HEADING.match(line):
+            heading = m.group(1)
+        elif m := INDEX_ROW.match(line):
+            if m.group(1) in listed:
+                errors.append(f"'{INDEX}': SKILL.md lists '{m.group(1)}' more than once")
+            listed[m.group(1)] = heading
+    for name, entry in sorted(entries.items()):
+        expected = CATEGORIES.get(entry.get("category"))
+        if name not in listed:
+            errors.append(f"'{INDEX}': SKILL.md does not list '{name}'")
+        elif expected and listed[name] != expected:
+            errors.append(f"'{INDEX}': SKILL.md lists '{name}' under '{listed[name]}', expected under '{expected}'")
+    for name in sorted(listed.keys() - entries.keys()):
         errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace")
 
 
@@ -129,6 +144,8 @@ def check(root):
     entries = entries_by_name(manifest.get("plugins", []), errors)
     for name, entry in entries.items():
         source = entry.get("source")
+        if name != INDEX and entry.get("category") not in CATEGORIES:
+            errors.append(f"'{name}': category must be one of {sorted(CATEGORIES)}")
         if (entry.get("metadata") or {}).get("firstParty") is True:
             check_first_party(root, name, source, errors)
             continue
@@ -165,7 +182,7 @@ def check(root):
             errors.append(f"'{name}': docs/{name}.md does not mention the pinned sha")
 
     if INDEX in entries:
-        check_index(root, set(entries) - {INDEX}, errors)
+        check_index(root, {n: e for n, e in entries.items() if n != INDEX}, errors)
 
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)

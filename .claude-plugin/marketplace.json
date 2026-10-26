@@ -19,7 +19,7 @@
       "name": "ponytail",
       "description": "Lazy senior dev mode: YAGNI, stdlib first, smallest correct change. Always-on via SessionStart and SubagentStart hooks; local task ledger.",
       "version": "5.3.2",
-      "category": "productivity",
+      "category": "dev-tools",
       "source": {
         "source": "github",
         "repo": "DietrichGebert/ponytail",

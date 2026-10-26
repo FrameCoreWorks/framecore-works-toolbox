@@ -13,10 +13,20 @@ commit.
 
 ## Plugins
 
-| Name | Upstream | Commit (version) | Kind | Chat / Cowork / Claude Code | Notes | Review |
-| ---- | -------- | ---------------- | ---- | --------------------------- | ----- | ------ |
-| toolbox | first-party, this repo | n/a | index: type `toolbox` to list the plugins | skill everywhere | [docs](docs/toolbox.md) | none needed (no hooks, scripts or network) |
-| ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | plugin with always-on hooks | skills / skills + hooks / skills + hooks + mod | [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
+Type `toolbox` in Claude to see this list, grouped by category. The index
+itself: `toolbox` (first-party, this repo, skill everywhere,
+[docs](docs/toolbox.md); no hooks, scripts or network).
+
+### Creative
+
+| Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
+| ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
+
+### Dev tools
+
+| Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
+| ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
+| ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | minimal code changes, code review, repo audit; plugin with always-on hooks | skills / skills + hooks / skills + hooks + mod | [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
 
 ## Install
 

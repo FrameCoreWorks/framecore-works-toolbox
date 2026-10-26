@@ -46,12 +46,27 @@ thin wrapper plugins written here. It never holds upstream code.
 5. Give the owner a short verdict (what it is, what it installs and writes,
    risks, fit for the toolbox).
 6. Only after the owner says "yes": add the entry to the manifest at the full
-   commit, plus `docs/<name>.md`, the README row and the row in the toolbox
-   index skill, in one commit.
+   commit with its category, plus `docs/<name>.md`, the README row and the
+   row in the toolbox index skill under its category, in one commit.
 7. Plugins that send prompts, code or files to an external service, or install
    hooks that change what Claude sees (for example token-saving or context
    compression tools), need an explicit "yes" from the owner recorded in the
    review (`Owner approval:` field) before they are added.
+
+## Categories
+
+Every entry except the `toolbox` index has a `category` in the manifest, and
+the index lists it under the matching heading:
+
+| Slug | Heading in the index | For |
+| ---- | -------------------- | --- |
+| `creative` | Creative | motion graphics, video editing, image, audio, art and gallery sources, other creative production |
+| `dev-tools` | Dev tools | coding, code review, repo and workflow organisation |
+
+To add a category: add it to this table and to `CATEGORIES` in
+`scripts/check_marketplace.py`, and add its heading and empty table to the
+index skill. Each index row has a one-sentence "What it is for" that says
+what the plugin does and when to use it.
 
 ## Manifest rules
 
@@ -107,9 +122,9 @@ They need `docs/<name>.md` but no review or commit pin. No hooks, scripts or
 network unless the owner asks for them.
 
 - `toolbox`: the index. Its skill
-  `plugins/toolbox/skills/toolbox/SKILL.md` holds the catalog table (one row
-  per other entry, name in backticks in the first column) and short "Use" and
-  "Watch out" notes. Every entry added, updated or removed changes this file
+  `plugins/toolbox/skills/toolbox/SKILL.md` holds the catalog, one table per
+  category (one row per other entry, name in backticks in the first column,
+  one-sentence purpose) and short "Use" and "Watch out" notes. Every entry added, updated or removed changes this file
   in the same commit; `scripts/check_marketplace.py` fails when the table and
   the manifest differ.
 

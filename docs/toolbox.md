@@ -17,7 +17,9 @@ See [install.md](install.md). Plugin id: `toolbox@framecore-works-toolbox`.
 ## Use
 
 Type `toolbox` (or `/toolbox:toolbox`). It shows every plugin in the
-toolbox, where it works, and how to add and use it. It does not say which
+toolbox grouped by category (Creative, Dev tools), with a one-line purpose,
+where it works, and how to add and use it. `toolbox creative` shows one
+category. It does not say which
 plugins you have installed (Claude cannot see that reliably); check
 Customize > Plugins, "From marketplaces you added".
 

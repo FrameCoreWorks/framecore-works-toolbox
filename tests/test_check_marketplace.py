@@ -17,7 +17,7 @@ OTHER_SHA = "fedcba9876543210fedcba9876543210fedcba98"
 def entry(name="demo", sha=SHA, **source):
     src = {"source": "github", "repo": "acme/demo", "sha": sha}
     src.update(source)
-    return {"name": name, "source": src, "description": "Demo"}
+    return {"name": name, "source": src, "description": "Demo", "category": "dev-tools"}
 
 
 def review_text(name="demo", sha=SHA, status="active", kind="plugin",
@@ -128,40 +128,41 @@ class CheckMarketplaceTest(unittest.TestCase):
 
     def test_adapted_wrapper_passes(self):
         self.write_wrapper()
-        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo", "category": "creative"}])
         self.write_entry_files(kind="adapted")
         self.assertEqual(self.errors(), [])
 
     def test_local_source_needs_adapted_kind(self):
         self.write_wrapper()
-        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo", "category": "creative"}])
         self.write_entry_files()
         self.assert_error("adapted")
 
     def test_wrapper_must_name_reviewed_commit(self):
         self.write_wrapper(sha=OTHER_SHA)
-        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo", "category": "creative"}])
         self.write_entry_files(kind="adapted")
         self.assert_error("UPSTREAM.md")
 
     def test_wrapper_with_bin_fails(self):
         (self.write_wrapper() / "bin").mkdir()
-        self.write_manifest([{"name": "demo", "source": "./plugins/demo"}])
+        self.write_manifest([{"name": "demo", "source": "./plugins/demo", "category": "creative"}])
         self.write_entry_files(kind="adapted")
         self.assert_error("bin")
 
     def test_local_source_outside_plugins_fails(self):
-        self.write_manifest([{"name": "demo", "source": "./elsewhere/demo"}])
+        self.write_manifest([{"name": "demo", "source": "./elsewhere/demo", "category": "creative"}])
         self.write_entry_files(kind="adapted")
         self.assert_error("./plugins/demo")
 
-    def write_index(self, listed=("demo",)):
+    def write_index(self, listed=("demo",), heading="Dev tools"):
         plugin = self.root / "plugins/toolbox"
         (plugin / ".claude-plugin").mkdir(parents=True)
         (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": "toolbox"}))
         skill = plugin / "skills/toolbox"
         skill.mkdir(parents=True)
-        (skill / "SKILL.md").write_text("".join(f"| `{n}` | x |\n" for n in listed))
+        rows = "".join(f"| `{n}` | x |\n" for n in listed)
+        (skill / "SKILL.md").write_text(f"## Catalog\n\n### {heading}\n\n{rows}\n### Creative\n\n")
         (self.root / "docs/toolbox.md").write_text("Toolbox index\n")
         return {"name": "toolbox", "source": "./plugins/toolbox", "metadata": {"firstParty": True}}
 
@@ -174,6 +175,33 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_manifest([self.write_index(listed=()), entry()])
         self.write_entry_files()
         self.assert_error("does not list 'demo'")
+
+    def test_index_lists_entry_under_its_category(self):
+        self.write_manifest([self.write_index(heading="Creative"), entry()])
+        self.write_entry_files()
+        self.assert_error("under 'Dev tools'")
+
+    def test_index_must_not_list_entry_twice(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text() + "| `demo` | dup |\n")
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assert_error("more than once")
+
+    def test_entry_needs_known_category(self):
+        e = entry()
+        e["category"] = "productivity"
+        self.write_manifest([e])
+        self.write_entry_files()
+        self.assert_error("category")
+
+    def test_entry_without_category_fails(self):
+        e = entry()
+        del e["category"]
+        self.write_manifest([e])
+        self.write_entry_files()
+        self.assert_error("category")
 
     def test_index_must_not_list_unknown_entries(self):
         self.write_manifest([self.write_index(listed=("demo", "gone")), entry()])
