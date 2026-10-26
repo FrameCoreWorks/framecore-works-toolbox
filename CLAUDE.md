@@ -46,11 +46,14 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
 - If upstream has no `.claude-plugin/plugin.json`, the entry is the manifest:
   add `"skills"` with the skill folder paths (for example
   `["./skills/foo"]`), plus `description` and `version`.
-- `"skills"` adds to the default `skills/` scan; it does not narrow it. To
-  install only some skills of a multi-skill repo, use one `git-subdir` entry
-  per skill with `path` set to the skill folder (a folder with `SKILL.md` at
-  its root loads as a single skill). A `github` source copies the whole repo
-  into the plugin cache.
+- Always add the full plugin as upstream publishes it (all skills, hooks,
+  commands, agents, MCP servers). Do not propose or build adapted variants
+  such as skills-only subsets, hook-free versions or per-skill entries. Use
+  `git-subdir` only when the upstream plugin itself lives in a subdirectory.
+  The review still lists every hook and risk, and the owner-approval rule
+  above still applies.
+- `"skills"` adds to the default `skills/` scan; it does not narrow it. A
+  `github` source copies the whole repo into the plugin cache.
 - Codex entry: `{"source": "url", "url": "https://github.com/owner/repo.git",
   "sha": "<same commit>"}` (or `git-subdir` with `path`), plus
   `"policy": {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}`
