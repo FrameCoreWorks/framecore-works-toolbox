@@ -143,6 +143,27 @@ rm -rf "$CLAUDE_CONFIG_DIR"; unset CLAUDE_CONFIG_DIR
 Installing through claude.ai (Customize > Plugins) is done by the owner;
 record it as NOT_RUN until the owner reports the result.
 
+## Maintainer tooling
+
+The owner keeps these Anthropic plugins active for work on this repo. Use
+them as follows:
+
+- superpowers: `brainstorming` before changing rules, layout or the check
+  script; `test-driven-development` for `scripts/check_marketplace.py`;
+  `verification-before-completion` before every commit and status report.
+- plugin-dev: `plugin-structure` and `skill-development` when building wrapper
+  or first-party plugins; the `plugin-validator` agent on them;
+  `skill-reviewer` on any `SKILL.md` written here.
+- pr-review-toolkit: the `code-reviewer` agent on non-trivial diffs before
+  pushing (work goes straight to `main`, so this replaces PR review);
+  `silent-failure-hunter` on check-script changes.
+- claude-md-management: `revise-claude-md` at the end of a session that
+  changed how the repo works.
+- security-guidance: keep its edit-time warnings on; apply the same scrutiny
+  when reviewing upstream code.
+- hookify: only when the owner asks for a rule that must be enforced
+  mechanically.
+
 ## Repo settings
 
 `.claude/settings.json` sets `PONYTAIL_DEFAULT_MODE=full`, so ponytail runs
