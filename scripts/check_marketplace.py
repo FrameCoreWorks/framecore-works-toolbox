@@ -146,6 +146,9 @@ def check(root):
         source = entry.get("source")
         if name != INDEX and entry.get("category") not in CATEGORIES:
             errors.append(f"'{name}': category must be one of {sorted(CATEGORIES)}")
+        # claude.ai skips an inline-manifest entry unless strict is false
+        if "skills" in entry and entry.get("strict") is not False:
+            errors.append(f"'{name}': an entry that declares 'skills' needs 'strict': false (claude.ai skips it otherwise)")
         if (entry.get("metadata") or {}).get("firstParty") is True:
             check_first_party(root, name, source, errors)
             continue

@@ -54,7 +54,8 @@ Node for its scripts; a browser to view the HTML.
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code, 2026-10-26): marketplace add and `claude plugin install` succeeded; `installed_plugins.json` gitCommitSha equals the pinned commit; `claude plugin details` lists the components described above. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): skipped at sync of 03fa287 ("requires .claude-plugin/plugin.json ... set strict: false"). Fixed by adding `"strict": false` to the entry; re-sync result NOT_RUN. Claude Code re-install with strict false: PASS, skill count matches the `skills` list.
+- Cowork: NOT_RUN
 
 ## Risks
 

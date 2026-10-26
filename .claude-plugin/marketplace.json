@@ -206,7 +206,8 @@
       },
       "skills": [
         "./archify"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "marketing-skills",
@@ -257,7 +258,8 @@
         "./mom-test",
         "./monetizing-innovation",
         "./lean-analytics"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-ux-design",
@@ -281,7 +283,8 @@
         "./lean-ux",
         "./microinteractions",
         "./steve-jobs-design-review"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-marketing-cro",
@@ -299,7 +302,8 @@
         "./scorecard-marketing",
         "./contagious",
         "./one-page-marketing"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-sales-influence",
@@ -316,7 +320,8 @@
         "./predictable-revenue",
         "./made-to-stick",
         "./hundred-million-offers"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-product-innovation",
@@ -335,7 +340,8 @@
         "./inspired-product",
         "./continuous-discovery",
         "./37signals-way"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-strategy-growth",
@@ -354,7 +360,8 @@
         "./obviously-awesome",
         "./good-strategy-bad-strategy",
         "./cold-start-problem"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-team-motivation",
@@ -369,7 +376,8 @@
       "skills": [
         "./drive-motivation",
         "./high-output-management"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-code-craftsmanship",
@@ -389,7 +397,8 @@
         "./domain-driven-design",
         "./working-with-legacy-code",
         "./technical-documentation"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-systems-architecture",
@@ -408,7 +417,8 @@
         "./release-it",
         "./high-perf-browser",
         "./team-topologies"
-      ]
+      ],
+      "strict": false
     },
     {
       "name": "wondelai-metaskills",
@@ -435,7 +445,8 @@
         "./design-code-architecture",
         "./conversion-optimization",
         "./architecture-optimization"
-      ]
+      ],
+      "strict": false
     }
   ]
 }

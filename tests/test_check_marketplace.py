@@ -68,6 +68,15 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_entry_files()
         self.assertEqual(self.errors(), [])
 
+    def test_inline_skills_entry_needs_strict_false(self):
+        e = entry(); e["skills"] = ["./demo"]
+        self.write_manifest([e])
+        self.write_entry_files()
+        self.assert_error("'strict': false")
+        e["strict"] = False
+        self.write_manifest([e])
+        self.assertEqual(self.errors(), [])
+
     def test_git_subdir_source_passes(self):
         e = entry()
         e["source"] = {"source": "git-subdir", "url": "https://github.com/acme/demo.git",

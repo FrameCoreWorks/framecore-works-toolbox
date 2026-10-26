@@ -54,7 +54,8 @@ A NotFair account for the MCP; optional Google credentials.
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code, 2026-10-26): marketplace add and `claude plugin install` succeeded; `installed_plugins.json` gitCommitSha equals the pinned commit; `claude plugin details` lists the components described above. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): synced at 03fa287 with a warning: unrecognized plugin.json keys `documentationUrl`, `icon`, `privacyPolicyUrl`, `supportUrl`, `termsOfServiceUrl` stripped (metadata only; skills and MCP unaffected).
+- Cowork: NOT_RUN
 
 ## Risks
 

@@ -94,8 +94,8 @@ what the plugin does and when to use it.
   propose reduced variants such as skills-only subsets, hook-free versions or
   per-skill entries. Adaptation is only for repos that are not eligible as-is.
 - If upstream has no `.claude-plugin/plugin.json`, the entry is the manifest:
-  add `"skills"` with the skill folder paths, plus `description` and
-  `version`. `"skills"` adds to the default `skills/` scan; it does not narrow
+  add `"skills"` with the skill folder paths, `"strict": false` (claude.ai
+  skips the entry without it), plus `description` and `version`. `"skills"` adds to the default `skills/` scan; it does not narrow
   it. A `github` source copies the whole repo into the plugin cache.
 - Entry names: lowercase kebab-case, the same in the manifest, reviews and
   docs.
