@@ -32,13 +32,40 @@ In chat the mode is active only when a skill matches the task or you ask for
 
 ## Use
 
-- Always on in Cowork and Claude Code once enabled.
+- Always on in Cowork and Claude Code once enabled, unless the default is
+  set to off (see below).
 - Levels: `/ponytail lite|full|ultra|off`; default for new sessions:
   `/ponytail default <level>`.
 - Reviews and reports: `/ponytail:ponytail-review`, `/ponytail:ponytail-audit`,
   `/ponytail:ponytail-debt`.
 - Turn it off for creative or non-coding work: `/ponytail off`, or disable
   the plugin.
+
+## Run it only where you want it
+
+Ponytail picks its starting level from `PONYTAIL_DEFAULT_MODE` first, then
+`~/.config/ponytail/config.json`, then `full`. Claude Code applies `env` from
+settings files, and project settings override user settings. So:
+
+- Off everywhere by default:
+  - your computer (Claude Code CLI, desktop Code tab, VS Code): add
+    `"env": {"PONYTAIL_DEFAULT_MODE": "off"}` to `~/.claude/settings.json`;
+  - Claude Code cloud sessions: user settings do not persist there, so set the
+    environment variable `PONYTAIL_DEFAULT_MODE=off` in the cloud
+    environment's settings (environment menu in the session title bar, Edit).
+    New sessions pick it up.
+- On in this repo: `.claude/settings.json` here sets
+  `PONYTAIL_DEFAULT_MODE=full`, which overrides the global `off`.
+- On for one session anywhere: `/ponytail` (or `/ponytail lite|full|ultra`);
+  off again with `/ponytail off` or "stop ponytail".
+
+Tested 2026-10-26 in Claude Code: with `PONYTAIL_DEFAULT_MODE=off` in the
+process environment, a repo without project settings started with ponytail
+off, and a repo with the project setting above started in `full`.
+
+Not covered: Cowork (whether it reads `~/.claude/settings.json` is Unknown;
+use `/ponytail off` there or disable the plugin) and claude.ai chat (no hooks;
+skills load only when a task matches their description).
 
 ## Full removal
 

@@ -143,6 +143,12 @@ rm -rf "$CLAUDE_CONFIG_DIR"; unset CLAUDE_CONFIG_DIR
 Installing through claude.ai (Customize > Plugins) is done by the owner;
 record it as NOT_RUN until the owner reports the result.
 
+## Repo settings
+
+`.claude/settings.json` sets `PONYTAIL_DEFAULT_MODE=full`, so ponytail runs
+in this repo even when the owner's global default is off (see
+`docs/ponytail.md`). Remove that line if ponytail is removed.
+
 ## Repo hygiene
 
 - Do not copy upstream code or skill files into this repo. Point to them.

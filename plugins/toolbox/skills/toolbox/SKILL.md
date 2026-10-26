@@ -43,4 +43,6 @@ Answer in the user's language. Keep it short.
   `/ponytail lite|full|ultra|off`.
 - Watch out: in Cowork and Claude Code its hooks inject the ruleset into
   every session and subagent, also in creative work; turn it off there with
-  `/ponytail off`. Keep the `webhookUrl` option empty.
+  `/ponytail off`, or make it on-demand with `PONYTAIL_DEFAULT_MODE=off`
+  (see the plugin's docs in the toolbox repo). Keep the `webhookUrl` option
+  empty.
