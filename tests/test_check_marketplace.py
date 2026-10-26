@@ -33,9 +33,9 @@ def codex_entry(name="demo", sha=SHA):
 
 
 def review_text(name="demo", sha=SHA, status="active", codex_pin="sha",
-                eligibility="upstream ships .claude-plugin/plugin.json"):
+                eligibility="upstream ships .claude-plugin/plugin.json", kind="plugin"):
     return (
-        f"# Review: {name}\n\n## Entry\n\n- Name: {name}\n- Status: {status}\n"
+        f"# Review: {name}\n\n## Entry\n\n- Name: {name}\n- Status: {status}\n- Kind: {kind}\n"
         f"- Eligibility: {eligibility}\n- Commit: {sha}\n- Codex-Pin: {codex_pin}\n"
     )
 
@@ -113,6 +113,53 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_manifests([claude_entry()], [codex_entry()])
         self.write_entry_files(eligibility="")
         self.assertTrue(any("Eligibility" in e for e in self.errors()))
+
+    def write_wrapper(self, name="demo", sha=SHA, codex=True):
+        plugin = self.root / "plugins" / name
+        (plugin / ".claude-plugin").mkdir(parents=True)
+        (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": name}))
+        if codex:
+            (plugin / ".codex-plugin").mkdir()
+            (plugin / ".codex-plugin/plugin.json").write_text(json.dumps({"name": name}))
+        (plugin / "UPSTREAM.md").write_text(f"Upstream acme/demo at {sha}\n")
+
+    def adapted_manifests(self, name="demo"):
+        claude = {"name": name, "source": f"./plugins/{name}", "description": "Demo"}
+        codex = codex_entry(name)
+        codex["source"] = {"source": "local", "path": f"./plugins/{name}"}
+        self.write_manifests([claude], [codex])
+
+    def test_adapted_wrapper_passes(self):
+        self.write_wrapper()
+        self.adapted_manifests()
+        self.write_entry_files(kind="adapted")
+        self.assertEqual(self.errors(), [])
+
+    def test_local_source_needs_adapted_kind(self):
+        self.write_wrapper()
+        self.adapted_manifests()
+        self.write_entry_files()
+        self.assertTrue(any("adapted" in e for e in self.errors()))
+
+    def test_wrapper_must_name_reviewed_commit(self):
+        self.write_wrapper(sha=OTHER_SHA)
+        self.adapted_manifests()
+        self.write_entry_files(kind="adapted")
+        self.assertTrue(any("UPSTREAM.md" in e for e in self.errors()))
+
+    def test_wrapper_needs_codex_manifest_or_limitation(self):
+        self.write_wrapper(codex=False)
+        self.adapted_manifests()
+        self.write_entry_files(kind="adapted")
+        self.assertTrue(any(".codex-plugin" in e for e in self.errors()))
+
+    def test_local_source_outside_plugins_fails(self):
+        self.write_manifests([claude_entry()], [codex_entry()])
+        entry = claude_entry()
+        entry["source"] = "./elsewhere/demo"
+        self.write_manifests([entry], [codex_entry()])
+        self.write_entry_files(kind="adapted")
+        self.assertTrue(any("./plugins/demo" in e for e in self.errors()))
 
     def test_missing_docs_fails(self):
         self.write_manifests([claude_entry()], [codex_entry()])

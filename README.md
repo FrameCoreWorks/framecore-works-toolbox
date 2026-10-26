@@ -5,7 +5,9 @@ Claude Code, Codex, the Claude apps, ChatGPT and ChatGPT Work.
 
 Every entry points to an upstream GitHub repo pinned to a full commit, has a
 security review in `reviews/` and manual install notes in `docs/`. This repo
-holds no upstream code.
+holds no upstream code. Repos that are not plugins themselves can be added as
+adapted entries: a thin wrapper plugin written here in `plugins/<name>/` that
+points to the reviewed upstream commit (Kind `adapted` in the table).
 
 ## Entries
 

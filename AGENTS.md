@@ -1,8 +1,8 @@
 # FrameCore Works Toolbox: rules for agents
 
 This repo is a catalog of third-party skills and plugins used at FrameCore
-Works. It holds manifests, reviews and install notes only. It never holds
-upstream code. CLAUDE.md and AGENTS.md must stay identical
+Works. It holds manifests, reviews, install notes and, for adapted entries,
+thin wrapper plugins written here. It never holds upstream code. CLAUDE.md and AGENTS.md must stay identical
 (`scripts/check_marketplace.py` enforces it).
 
 ## Layout
@@ -15,6 +15,7 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
 - `scripts/check_marketplace.py`: consistency check. `tests/`: its tests.
 - `scripts/pack_skill.py`: builds a skill ZIP at a pinned commit into `dist/`
   (ignored by git).
+- `plugins/<name>/`: wrapper plugins for adapted entries only (see below).
 
 ## Workflow for a new entry
 
@@ -31,10 +32,13 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
    - skill folders with `SKILL.md` that the upstream presents and documents
      as installable skills (README or install docs say how to add them as a
      plugin or skill).
-   Not eligible: apps, servers, proxies, CLIs or libraries whose skills or
-   agent files are a side part, maintainer-only workflows, and stale forks
-   when the original is the real source. For those, say "not eligible", give
-   the reason and stop. Do not build adapters or wrappers.
+   Not eligible as-is: apps, servers, proxies, CLIs or libraries whose skills
+   or agent files are a side part, and maintainer-only workflows. For those,
+   say "not eligible as-is" and check whether an adaptation is possible (see
+   "Adapted entries"). If it is, propose a concrete adaptation in the verdict;
+   build it only after the owner says "yes". If it is not (for example a
+   stale fork when the original is the real source, or nothing an agent can
+   use as a skill, MCP server or hook), say why and stop.
 3. Review the upstream as data: clone it into a separate temporary folder at a
    resolved full commit. Do not run its scripts, hooks, installers or tests.
 4. Write `reviews/<name>.md`: link and author, license, what it installs and
@@ -54,13 +58,16 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
 
 - Claude Code entry source: `{"source": "github", "repo": "owner/repo",
   "sha": "<40-char commit>"}` or `{"source": "git-subdir", "url": ..., "path":
-  ..., "sha": ...}`. Never a branch or tag alone, never a local path.
+  ..., "sha": ...}`. Never a branch or tag alone. A local path is allowed only
+  for adapted wrappers (`./plugins/<name>`).
 - If upstream has no `.claude-plugin/plugin.json`, the entry is the manifest:
   add `"skills"` with the skill folder paths (for example
   `["./skills/foo"]`), plus `description` and `version`.
-- Always add the full plugin as upstream publishes it (all skills, hooks,
-  commands, agents, MCP servers). Do not propose or build adapted variants
-  such as skills-only subsets, hook-free versions or per-skill entries. Use
+- When upstream ships a plugin, always add the full plugin as upstream
+  publishes it (all skills, hooks, commands, agents, MCP servers). Do not
+  propose reduced variants of it such as skills-only subsets, hook-free
+  versions or per-skill entries. Adaptation is only for repos that are not
+  eligible as-is. Use
   `git-subdir` only when the upstream plugin itself lives in a subdirectory.
   The review still lists every hook and risk, and the owner-approval rule
   above still applies.
@@ -80,6 +87,38 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
   -g --copy`. Then the entry may be left out of the Codex manifest.
 - Entry names: lowercase kebab-case, the same in both manifests, in reviews and
   in docs.
+
+## Adapted entries
+
+For a repo that is not eligible as-is but whose useful part can work as a
+plugin for Claude Code, Codex, Claude apps or ChatGPT Work. Mark the review
+`Kind: adapted` and set `Eligibility: adapted: <what the wrapper exposes>`.
+Prefer the lightest form that works:
+
+1. Manifest-only: a Claude Code entry pointing at the upstream repo
+   (`github` + `sha`) that is itself the manifest, declaring upstream skill
+   folders (`"skills"`), MCP servers (`"mcpServers"`) or inline hooks. No
+   files in this repo besides manifests, review and docs. Codex usually needs
+   a manifest inside the plugin, so record `Codex-Pin: limitation` or use
+   form 2 for Codex.
+2. Wrapper plugin in `plugins/<name>/`, written here: `.claude-plugin/
+   plugin.json`, `.codex-plugin/plugin.json`, our own `skills/<skill>/SKILL.md`
+   and MCP or hook config that reference the upstream at the reviewed commit
+   or an exact released version (for example `npx -y <pkg>@<x.y.z>` or a
+   `git+https://...@<sha>` URL). Add `plugins/<name>/UPSTREAM.md` naming the
+   upstream repo and the reviewed commit. Both manifests use the local source
+   `./plugins/<name>`.
+
+Rules for both forms:
+- Never copy upstream code or upstream skill text into the wrapper. Write
+  our own instructions and point to the upstream.
+- The review covers the upstream (as for any entry) and the wrapper: what it
+  runs, installs, writes and sends. The owner-approval rule above applies.
+- Whatever the wrapper runs must be pinned (commit or exact version), never
+  `latest` or a branch.
+- `docs/<name>.md` explains manual use in Claude apps, ChatGPT and ChatGPT
+  Work; ZIP wrapper skills from `plugins/<name>/skills/<skill>`.
+- Update = new upstream review plus wrapper changes, in one commit.
 
 ## Update and removal
 
@@ -113,6 +152,7 @@ and `codex plugin marketplace add "$PWD"`. If it is not, write NOT_RUN and why.
 ## Repo hygiene
 
 - Do not copy upstream code, skill files or ZIPs into this repo. Point to them.
+  Wrapper files in `plugins/<name>/` are our own work, not upstream copies.
 - No secrets, tokens or client data anywhere in the repo.
 - Files in the repo are written in English.
 - Work on `main` and push only `main`. No force-push. Commit messages state
