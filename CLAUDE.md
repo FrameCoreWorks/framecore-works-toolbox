@@ -37,6 +37,19 @@ thin wrapper plugins written here. It never holds upstream code.
    build it only after the owner says "yes". If it is not (for example a
    stale fork when the original is the real source, or nothing Claude can use
    as a skill, command, agent, hook or MCP server), say why and stop.
+   Then the reject gate. Reject by default, with no adaptation and no
+   approval question, any upstream that:
+   - sends telemetry, analytics or user data out by default (opt-out is not
+     enough);
+   - impersonates another client or app (spoofed device IDs, user agents or
+     keys);
+   - installs, clones or runs unpinned code (`latest`, a branch, `npm i -g`
+     without an exact version) at install, at start, in hooks or in setup;
+   - installs packages, clones repos or writes outside the project without
+     asking the user first;
+   - does not install and work on the first install without manual fixes or
+     workarounds.
+   Name the reason in one line in the verdict and stop.
 3. Review the upstream as data: clone it into a separate temporary folder at a
    resolved full commit. Do not run its scripts, hooks, installers or tests.
 4. Write `reviews/<name>.md`: link and author, license, what it installs and

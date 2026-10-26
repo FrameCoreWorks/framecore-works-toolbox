@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: video-vision
-- Status: active
+- Status: removed
 - Upstream: https://github.com/jordanrendric/claude-video-vision
 - Author: GitHub owner `jordanrendric`
 - License: MIT
@@ -68,3 +68,4 @@ Accept with conditions: Lets Claude watch a video (frames plus timed transcript)
 ## History
 
 - 2026-10-26: added at 4a4f990 (version 1.4.0) from the researched shortlist.
+- 2026-10-26: removed. Its MCP server starts `npx -y claude-video-vision@latest` (unpinned npm code at every start), which the owner's reject gate rules out.

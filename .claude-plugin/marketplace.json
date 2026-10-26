@@ -140,17 +140,6 @@
       }
     },
     {
-      "name": "video-vision",
-      "description": "Lets Claude watch a video (frames plus timed transcript) to review renders and footage.",
-      "version": "1.4.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "jordanrendric/claude-video-vision",
-        "sha": "4a4f99016f249a24018cd19b66531ebbcd58024b"
-      }
-    },
-    {
       "name": "sepia",
       "description": "Removes AI patterns from fiction and professional prose without changing what it says.",
       "version": "0.12.4",

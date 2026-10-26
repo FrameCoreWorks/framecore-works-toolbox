@@ -48,7 +48,6 @@ category. Answer in the user's language. Keep it short.
 | `video-shotcraft` | Cinematic product and promo videos in Remotion from 152 shot recipes and a production template. | Claude Code and Cowork (Node, Remotion); chat: skill loads, rendering Unknown |
 | `brag` | Turns the project you just built into a short launch video with one command. | Claude Code and Cowork; chat: skill loads, rendering Unknown |
 | `nateherk-design` | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | Chat, Cowork and Claude Code |
-| `video-vision` | Lets Claude watch a video (frames plus timed transcript) to review renders and footage. | Cowork and Claude Code (MCP, ffmpeg); chat: no |
 | `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Chat, Cowork and Claude Code |
 | `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Claude Code and Cowork with Blender installed; chat: guidance only |
 | `wondelai-ux-design` | UX and UI design skills. | Chat, Cowork and Claude Code |
@@ -161,11 +160,6 @@ category. Answer in the user's language. Keep it short.
 - Watch out: images go to kie.ai only with `KIE_AI_API_KEY`.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/nateherk-design.md
 
-### video-vision
-
-- Use: ask Claude to watch a video file; run its configure step first and pick the local Whisper backend.
-- Watch out: its MCP runs `claude-video-vision@latest` from npm; cloud audio backends send audio to Google or OpenAI.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/video-vision.md
 
 ### sepia
 
