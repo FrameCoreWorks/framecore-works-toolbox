@@ -9,7 +9,9 @@ description: >
   load it first for a bare invocation of the FrameCore Works Toolbox plugin
   (an @FrameCore Works Toolbox mention with no other text, or a message that
   arrives empty with this plugin attached): answer with the catalog, never
-  with "your message was empty". Not for creative production work.
+  with "your message was empty". "Toolbox" here always means this plugin
+  catalog, never a list of Claude's own tools or connectors. Not for
+  creative production work.
 ---
 
 # Toolbox
@@ -18,7 +20,8 @@ Show the catalog below. Do not start any other workflow or menu.
 
 ## Reply format
 
-1. One line: "FrameCore Works Toolbox: <N> plugins in <M> categories."
+1. One line: "FrameCore Works Toolbox: plugins by category." Do not
+   state a plugin count; it goes stale and is easy to miscount.
 2. For each category in the catalog, in order: its heading, then its table
    as it is. For a category with no rows, write "No plugins yet."
    Translate the "What it is for" text into the user's language; keep plugin
