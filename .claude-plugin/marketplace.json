@@ -5,5 +5,17 @@
     "name": "FrameCore Works",
     "url": "https://github.com/FrameCoreWorks"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "ponytail",
+      "description": "Lazy senior dev mode: YAGNI, stdlib first, smallest correct change. Always-on via SessionStart and SubagentStart hooks; local task ledger.",
+      "version": "5.3.2",
+      "category": "productivity",
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail",
+        "sha": "09c434ab73ca43761c5d8b0c5d341926c2fba710"
+      }
+    }
+  ]
 }

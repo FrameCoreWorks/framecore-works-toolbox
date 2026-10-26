@@ -3,5 +3,19 @@
   "interface": {
     "displayName": "FrameCore Works Toolbox"
   },
-  "plugins": []
+  "plugins": [
+    {
+      "name": "ponytail",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/DietrichGebert/ponytail.git",
+        "sha": "09c434ab73ca43761c5d8b0c5d341926c2fba710"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
 }

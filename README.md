@@ -11,7 +11,7 @@ holds no upstream code.
 
 | Name | Upstream | Commit | Kind | Claude Code | Codex | Apps | Review |
 | ---- | -------- | ------ | ---- | ----------- | ----- | ---- | ------ |
-| _none yet_ | | | | | | | |
+| ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | plugin with hooks | tested | NOT_RUN (sha pinned) | manual, [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
 
 ## Install
 
