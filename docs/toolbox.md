@@ -25,6 +25,9 @@ Customize > Plugins, "From marketplaces you added".
 
 Tested 2026-10-26 in Claude Code with another studio plugin installed:
 `toolbox` and `co jest w toolboxie?` both opened this skill.
+claude.ai (owner, 2026-10-26, synced at bc04b13): works once the toolbox
+plugin itself is added in Customize > Plugins; adding the marketplace alone
+does not add it, and without it Claude lists its own tools instead.
 
 If another plugin answers instead (for example a studio menu), call it
 explicitly with `/toolbox:toolbox`.
