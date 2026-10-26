@@ -24,6 +24,9 @@ See [install.md](install.md). Plugin id: `ponytail@framecore-works-toolbox`.
 | Hooks (ruleset in every session and subagent, codebase map) | no | yes | yes |
 | Band mod (status band, task ledger, board) | no | no | yes |
 
+claude.ai shows a sync warning that `types` in the upstream plugin.json is
+stripped. It is expected: that field serves only the band mod in Claude Code.
+
 In chat the mode is active only when a skill matches the task or you ask for
 "ponytail mode"; there is no always-on injection.
 

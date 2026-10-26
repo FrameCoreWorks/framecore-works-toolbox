@@ -115,9 +115,14 @@ support (Unknown which minimum; not checked). `git` for the codebase map.
   reported "4 userConfig options not yet set". Hooks did not run during
   install (no `~/.config/ponytail` created). A live session with the hooks
   was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins, marketplace added from GitHub):
-  NOT_RUN, done by the owner. Unknown whether claude.ai installs the pinned
-  commit; check that it shows version 5.3.2.
+- claude.ai (Customize > Plugins, marketplace added from GitHub by the
+  owner, 2026-10-26): marketplace synced at toolbox commit b4c3426 with one
+  warning: "Plugin 'ponytail' has unrecognized key in plugin.json: 'types'
+  (stripped - the SDK ignores unknown top-level fields)". `types` only
+  declares the band mod's state types, and the mod runs only in Claude Code,
+  so chat and Cowork lose nothing. Whether claude.ai installed the pinned
+  plugin commit (version 5.3.2) is still Unknown: the sync screen shows the
+  marketplace commit, not the plugin version.
 
 ## Risks
 
