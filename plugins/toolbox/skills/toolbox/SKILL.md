@@ -5,8 +5,11 @@ description: >
   marketplace FrameCoreWorks/framecore-works-toolbox), grouped by category
   (Creative, Dev tools, Marketing & growth) with a one-line description of each. Use when the user
   types "toolbox", "/toolbox", "show toolbox", "co jest w toolboxie", "lista
-  toolbox", or asks which extra plugins or skills the toolbox has. Not for
-  creative production work.
+  toolbox", or asks which extra plugins or skills the toolbox has. Also
+  load it first for a bare invocation of the FrameCore Works Toolbox plugin
+  (an @FrameCore Works Toolbox mention with no other text, or a message that
+  arrives empty with this plugin attached): answer with the catalog, never
+  with "your message was empty". Not for creative production work.
 ---
 
 # Toolbox
