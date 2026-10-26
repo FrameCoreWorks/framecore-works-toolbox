@@ -62,6 +62,7 @@ the index lists it under the matching heading:
 | ---- | -------------------- | --- |
 | `creative` | Creative | motion graphics, video editing, image, audio, art and gallery sources, other creative production |
 | `dev-tools` | Dev tools | coding, code review, repo and workflow organisation |
+| `marketing` | Marketing & growth | SEO, CRO, copy, ads, social, sales, product and business strategy |
 
 To add a category: add it to this table and to `CATEGORIES` in
 `scripts/check_marketplace.py`, and add its heading and empty table to the

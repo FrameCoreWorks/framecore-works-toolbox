@@ -34,7 +34,7 @@ INDEX_ROW = re.compile(r"^\|\s*`([a-z0-9][a-z0-9._-]*)`\s*\|", re.MULTILINE)
 INDEX = "toolbox"
 HEADING = re.compile(r"^#+\s*(.+?)\s*$")
 # Entry "category" slug -> heading in the toolbox index. Add new categories here and in CLAUDE.md.
-CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools"}
+CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools", "marketing": "Marketing & growth"}
 
 
 def load_json(path, errors):

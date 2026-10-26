@@ -104,6 +104,382 @@
         "path": "plugins/open-design",
         "sha": "26d60298f8129e229a1c10aab4df7ca25b1e9ad3"
       }
+    },
+    {
+      "name": "video-shotcraft",
+      "description": "Cinematic product and promo videos in Remotion from 152 shot recipes and a production template.",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "Vincentwei1021/video-shotcraft",
+        "sha": "43bd349a136651865ecfa6ea1cf012f6e957d304"
+      }
+    },
+    {
+      "name": "brag",
+      "description": "Turns the project you just built into a short launch video with one command.",
+      "version": "0.5.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "latent-spaces/brag",
+        "sha": "669ab9286aa28b6c3ee30e75f181ee74319d012a"
+      }
+    },
+    {
+      "name": "nateherk-design",
+      "description": "Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images.",
+      "version": "0.3.1",
+      "category": "creative",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/nateherkai/scroll-craft.git",
+        "path": "plugins/nateherk-design",
+        "sha": "75d81f74e83692add18cd7a8a8e078b8a887a579"
+      }
+    },
+    {
+      "name": "video-vision",
+      "description": "Lets Claude watch a video (frames plus timed transcript) to review renders and footage.",
+      "version": "1.4.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "jordanrendric/claude-video-vision",
+        "sha": "4a4f99016f249a24018cd19b66531ebbcd58024b"
+      }
+    },
+    {
+      "name": "sepia",
+      "description": "Removes AI patterns from fiction and professional prose without changing what it says.",
+      "version": "0.12.4",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "Nanako0129/sepia",
+        "sha": "fb06be76abeae7dd606960a32f2b10c1d1798e0d"
+      }
+    },
+    {
+      "name": "blender-agent-skills",
+      "description": "Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export.",
+      "version": "1.1.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "EL4CTEO/blender-skills",
+        "sha": "71d031dab8bc6729504d11a78cbe91945401045f"
+      }
+    },
+    {
+      "name": "web-quality-skills",
+      "description": "Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices.",
+      "version": "2.0.0",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/web-quality-skills",
+        "sha": "afa8da942115f2961fdbfa80807ea0b232ff6c00"
+      }
+    },
+    {
+      "name": "hud",
+      "description": "Status line for Claude Code: context use, active tools, agents, todos and cost.",
+      "version": "0.13.1",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "jarrodwatts/claude-hud",
+        "sha": "cf95a322afd18db045175d28962650ae7392ed77"
+      }
+    },
+    {
+      "name": "planning-with-files",
+      "description": "File-based plans that survive /clear and compaction, re-injected every turn.",
+      "version": "3.25.2",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "OthmanAdi/planning-with-files",
+        "sha": "dcdfb278de53fdb69b2067ea173dbb1de45345a3"
+      }
+    },
+    {
+      "name": "compound-engineering",
+      "description": "Every's compound engineering workflow: plan, build, review and turn lessons into reusable rules.",
+      "version": "3.32.2",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "EveryInc/compound-engineering-plugin",
+        "sha": "9f5b16fc617fb5bf4817c8f42537b626c17abd05"
+      }
+    },
+    {
+      "name": "skillspector",
+      "description": "Security review of a skill or plugin before you install it (NVIDIA SkillSpector scan plus source review).",
+      "version": "2.12.0",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "NVIDIA/SkillSpector",
+        "sha": "d7338f58200a9ae2a24810cee08911ab68b107a7"
+      }
+    },
+    {
+      "name": "archify",
+      "description": "Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML.",
+      "version": "3.2",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "tt-a1i/archify",
+        "sha": "81c6be8d87090670c45d08a8f97f9d29c5af0bec"
+      },
+      "skills": [
+        "./archify"
+      ]
+    },
+    {
+      "name": "marketing-skills",
+      "description": "52 marketing skills: CRO, copywriting, SEO, email, analytics and launch.",
+      "version": "2.13.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "coreyhaines31/marketingskills",
+        "sha": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
+      }
+    },
+    {
+      "name": "seo",
+      "description": "Complete SEO toolkit: technical SEO, schema, GEO/AEO, local and e-commerce audits and reports.",
+      "version": "2.5.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "AgriciDaniel/claude-seo",
+        "sha": "6be93f45064ffbadced572b5d5c95f55fd263af0"
+      }
+    },
+    {
+      "name": "notfair",
+      "description": "SEO, GEO and Google/Meta Ads work through the NotFair service (remote MCP).",
+      "version": "0.27.17",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "nowork-studio/notfair-plugin",
+        "sha": "ed835f273dce03a451c13fa0cb67305ae58ecb05"
+      }
+    },
+    {
+      "name": "linkedin-agent",
+      "description": "LinkedIn content: posts, comments, replies, profile score and a weekly plan.",
+      "version": "1.0.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "Jakeschincariol/linkedin-agent-skill",
+        "sha": "add2c23882fe79180737d242ff80a5da205eda6a"
+      }
+    },
+    {
+      "name": "wondelai-product-strategy",
+      "description": "Product strategy and innovation frameworks.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./jobs-to-be-done",
+        "./negotiation",
+        "./mom-test",
+        "./monetizing-innovation",
+        "./lean-analytics"
+      ]
+    },
+    {
+      "name": "wondelai-ux-design",
+      "description": "UX and UI design skills.",
+      "version": "1.8.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./refactoring-ui",
+        "./ios-hig-design",
+        "./ux-heuristics",
+        "./hooked-ux",
+        "./improve-retention",
+        "./web-typography",
+        "./top-design",
+        "./design-everyday-things",
+        "./lean-ux",
+        "./microinteractions",
+        "./steve-jobs-design-review"
+      ]
+    },
+    {
+      "name": "wondelai-marketing-cro",
+      "description": "Marketing and conversion optimization skills.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./cro-methodology",
+        "./storybrand-messaging",
+        "./scorecard-marketing",
+        "./contagious",
+        "./one-page-marketing"
+      ]
+    },
+    {
+      "name": "wondelai-sales-influence",
+      "description": "Sales, persuasion, and messaging skills.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./influence-psychology",
+        "./predictable-revenue",
+        "./made-to-stick",
+        "./hundred-million-offers"
+      ]
+    },
+    {
+      "name": "wondelai-product-innovation",
+      "description": "Product innovation and validation frameworks.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./lean-startup",
+        "./design-sprint",
+        "./design-everyday-things",
+        "./inspired-product",
+        "./continuous-discovery",
+        "./37signals-way"
+      ]
+    },
+    {
+      "name": "wondelai-strategy-growth",
+      "description": "Business strategy and growth frameworks.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./crossing-the-chasm",
+        "./blue-ocean-strategy",
+        "./traction-eos",
+        "./obviously-awesome",
+        "./good-strategy-bad-strategy",
+        "./cold-start-problem"
+      ]
+    },
+    {
+      "name": "wondelai-team-motivation",
+      "description": "Team motivation and management skills.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./drive-motivation",
+        "./high-output-management"
+      ]
+    },
+    {
+      "name": "wondelai-code-craftsmanship",
+      "description": "Code quality and software design skills.",
+      "version": "1.8.0",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./clean-code",
+        "./refactoring-patterns",
+        "./software-design-philosophy",
+        "./pragmatic-programmer",
+        "./domain-driven-design",
+        "./working-with-legacy-code",
+        "./technical-documentation"
+      ]
+    },
+    {
+      "name": "wondelai-systems-architecture",
+      "description": "Systems architecture and distributed systems skills.",
+      "version": "1.8.0",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./ddia-systems",
+        "./system-design",
+        "./clean-architecture",
+        "./release-it",
+        "./high-perf-browser",
+        "./team-topologies"
+      ]
+    },
+    {
+      "name": "wondelai-metaskills",
+      "description": "Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder.",
+      "version": "1.8.0",
+      "category": "marketing",
+      "source": {
+        "source": "github",
+        "repo": "wondelai/skills",
+        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
+      },
+      "skills": [
+        "./create-business",
+        "./create-website",
+        "./create-app",
+        "./improve-business",
+        "./improve-website",
+        "./improve-app",
+        "./grow-business",
+        "./grow-website",
+        "./grow-app",
+        "./improve-code-quality",
+        "./remove-technical-debt",
+        "./design-code-architecture",
+        "./conversion-optimization",
+        "./architecture-optimization"
+      ]
     }
   ]
 }
