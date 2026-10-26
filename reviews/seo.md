@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: seo
-- Status: active
+- Status: removed
 - Upstream: https://github.com/AgriciDaniel/claude-seo
 - Author: GitHub owner `AgriciDaniel`
 - License: MIT
@@ -68,3 +68,4 @@ Accept with conditions: Complete SEO toolkit: technical SEO, schema, GEO/AEO, lo
 ## History
 
 - 2026-10-26: added at 6be93f4 (version 2.5.0) from the researched shortlist.
+- 2026-10-26: removed; owner chose to drop it: overlaps marketing-skills and the active Anthropic marketing seo-audit; costs ~4.7k tokens per session plus an edit hook.

@@ -61,8 +61,6 @@ category. Answer in the user's language. Keep it short.
 | `web-quality-skills` | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | Chat, Cowork and Claude Code |
 | `hud` | Status line for Claude Code: context use, active tools, agents, todos and cost. | Claude Code only (status line) |
 | `planning-with-files` | File-based plans that survive /clear and compaction, re-injected every turn. | Cowork and Claude Code (hooks); chat: skills only |
-| `compound-engineering` | Every's compound engineering workflow: plan, build, review and turn lessons into reusable rules. | Claude Code and Cowork; chat: skills only |
-| `skillspector` | Security review of a skill or plugin before you install it (NVIDIA SkillSpector scan plus source review). | Claude Code and Cowork (CLI); chat: manual review only |
 | `archify` | Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML. | Chat, Cowork and Claude Code |
 | `wondelai-code-craftsmanship` | Code quality and software design skills. | Chat, Cowork and Claude Code |
 | `wondelai-systems-architecture` | Systems architecture and distributed systems skills. | Chat, Cowork and Claude Code |
@@ -72,7 +70,6 @@ category. Answer in the user's language. Keep it short.
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
 | `marketing-skills` | 52 marketing skills: CRO, copywriting, SEO, email, analytics and launch. | Chat, Cowork and Claude Code |
-| `seo` | Complete SEO toolkit: technical SEO, schema, GEO/AEO, local and e-commerce audits and reports. | Cowork and Claude Code (hook); chat: skills only |
 | `notfair` | SEO, GEO and Google/Meta Ads work through the NotFair service (remote MCP). | Chat (remote MCP), Cowork and Claude Code |
 | `linkedin-agent` | LinkedIn content: posts, comments, replies, profile score and a weekly plan. | Chat, Cowork and Claude Code |
 | `wondelai-product-strategy` | Product strategy and innovation frameworks. | Chat, Cowork and Claude Code |
@@ -191,17 +188,6 @@ category. Answer in the user's language. Keep it short.
 - Watch out: its hooks inject the plan every turn; overlaps with Superpowers plans.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/planning-with-files.md
 
-### compound-engineering
-
-- Use: use its plan/work/review commands on a coding task.
-- Watch out: overlaps with Superpowers; optional OpenAI review sends code out.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/compound-engineering.md
-
-### skillspector
-
-- Use: ask whether a skill or repo is safe to install.
-- Watch out: install the `skillspector` CLI at the pinned commit (see docs).
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/skillspector.md
 
 ### archify
 
@@ -215,11 +201,6 @@ category. Answer in the user's language. Keep it short.
 - Watch out: integrations reach external services only with their API keys.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/marketing-skills.md
 
-### seo
-
-- Use: ask for an SEO audit or schema review.
-- Watch out: a local hook validates structured data after every edit.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/seo.md
 
 ### notfair
 

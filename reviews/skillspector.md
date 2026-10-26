@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: skillspector
-- Status: active
+- Status: removed
 - Upstream: https://github.com/NVIDIA/SkillSpector
 - Author: GitHub owner `NVIDIA`
 - License: Apache-2.0
@@ -67,3 +67,4 @@ Accept: Security review of a skill or plugin before you install it (NVIDIA Skill
 ## History
 
 - 2026-10-26: added at d7338f5 (version 2.12.0) from the researched shortlist.
+- 2026-10-26: removed; owner chose to drop it: the full scan needs a separate CLI install (fails the first-install rule) and toolbox reviews already cover pre-install checks.

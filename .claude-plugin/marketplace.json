@@ -195,28 +195,6 @@
       }
     },
     {
-      "name": "compound-engineering",
-      "description": "Every's compound engineering workflow: plan, build, review and turn lessons into reusable rules.",
-      "version": "3.32.2",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "EveryInc/compound-engineering-plugin",
-        "sha": "9f5b16fc617fb5bf4817c8f42537b626c17abd05"
-      }
-    },
-    {
-      "name": "skillspector",
-      "description": "Security review of a skill or plugin before you install it (NVIDIA SkillSpector scan plus source review).",
-      "version": "2.12.0",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "NVIDIA/SkillSpector",
-        "sha": "d7338f58200a9ae2a24810cee08911ab68b107a7"
-      }
-    },
-    {
       "name": "archify",
       "description": "Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML.",
       "version": "3.2",
@@ -239,17 +217,6 @@
         "source": "github",
         "repo": "coreyhaines31/marketingskills",
         "sha": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
-      }
-    },
-    {
-      "name": "seo",
-      "description": "Complete SEO toolkit: technical SEO, schema, GEO/AEO, local and e-commerce audits and reports.",
-      "version": "2.5.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "AgriciDaniel/claude-seo",
-        "sha": "6be93f45064ffbadced572b5d5c95f55fd263af0"
       }
     },
     {

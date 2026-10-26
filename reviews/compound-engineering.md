@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: compound-engineering
-- Status: active
+- Status: removed
 - Upstream: https://github.com/EveryInc/compound-engineering-plugin
 - Author: GitHub owner `EveryInc`
 - License: MIT
@@ -68,3 +68,4 @@ Accept with conditions: Every's compound engineering workflow: plan, build, revi
 ## History
 
 - 2026-10-26: added at 9f5b16f (version 3.32.2) from the researched shortlist.
+- 2026-10-26: removed; owner chose to drop it: overlaps Superpowers, which the owner already uses; large dev-team workflow with low fit for the studio.
