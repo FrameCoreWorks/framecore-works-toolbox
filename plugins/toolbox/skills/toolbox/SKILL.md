@@ -39,6 +39,7 @@ category. Answer in the user's language. Keep it short.
 
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
+| `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 
 ### Dev tools
 
@@ -47,6 +48,15 @@ category. Answer in the user's language. Keep it short.
 | `ponytail` | Keeps code changes minimal (YAGNI, stdlib first); also code review, repo audit and a list of deferred shortcuts. Use for coding work, not creative work. | Chat: skills. Cowork and Claude Code: skills plus always-on hooks. Claude Code: plus band mod |
 
 ## Details
+
+### animate
+
+- Use: describe the video ("a 45s explainer of how DNS works, math style,
+  16:9") or `/animate:animate`; it asks questions first, then shows story,
+  look and storyboard before rendering.
+- Watch out: install Node 18+, Playwright Chromium and ffmpeg first; a
+  voice-over uses your ElevenLabs connector or the system voice.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/animate.md
 
 ### ponytail
 

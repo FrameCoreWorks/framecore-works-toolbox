@@ -21,6 +21,7 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
+| animate | [cth9191/animate](https://github.com/cth9191/animate) | `7e5eb56` (0.4.0) | animated explainers and reels in code, rendered to MP4 | skill (render Unknown) / skill + render / skill + render | [docs](docs/animate.md) | [review](reviews/animate.md) |
 
 ### Dev tools
 
