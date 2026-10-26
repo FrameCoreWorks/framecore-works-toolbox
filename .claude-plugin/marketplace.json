@@ -37,6 +37,73 @@
         "path": "plugins/animate",
         "sha": "7e5eb56feb2dd573f890e1b7b34748af43d58263"
       }
+    },
+    {
+      "name": "motion-designer",
+      "description": "Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML.",
+      "version": "1.2.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "kaventro/motion-designer",
+        "sha": "7d0b8bb78ddd2c91c57db9d1e83fcf711304bdb8"
+      }
+    },
+    {
+      "name": "logo-design",
+      "description": "Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos.",
+      "version": "1.4.5",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "kaankiziltug/logo-design-skill",
+        "sha": "734090317a2155c5bf1ae8bd4cc85c6848a0128f"
+      }
+    },
+    {
+      "name": "antislop",
+      "description": "Six rule skills that keep UI, copy and code from looking AI-generated, plus a local colour-contrast checker.",
+      "version": "3.2.23",
+      "category": "dev-tools",
+      "source": {
+        "source": "github",
+        "repo": "miqdadbadjuber/anti-slop",
+        "sha": "5ca57fe37c60670064abf3beae775e3dad6687a1"
+      }
+    },
+    {
+      "name": "meta-ads-designer",
+      "description": "Art-directs and generates Meta/Instagram ads, posters and flyers with an AI image model, then checks the result.",
+      "version": "6.5.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "aievolutionpl/meta-ads-designer",
+        "sha": "656ce907380448389559958f055c8b43d71ab26e"
+      }
+    },
+    {
+      "name": "hallmark",
+      "description": "Designs web pages and app UIs that do not look AI-generated, with themes, a slop linter and optional generated images (Together AI).",
+      "version": "2.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "Nutlope/hallmark",
+        "sha": "7ec868225c6caa040558c321ee0fefa0e73f83a8"
+      }
+    },
+    {
+      "name": "open-design",
+      "description": "Connects Claude to the local Open Design app (139 design skills, 150 design systems, projects and previews) over MCP; needs the app installed.",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/nexu-io/open-design.git",
+        "path": "plugins/open-design",
+        "sha": "26d60298f8129e229a1c10aab4df7ca25b1e9ad3"
+      }
     }
   ]
 }

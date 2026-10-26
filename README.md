@@ -22,12 +22,18 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
 | animate | [cth9191/animate](https://github.com/cth9191/animate) | `7e5eb56` (0.4.0) | animated explainers and reels in code, rendered to MP4 | skill (render Unknown) / skill + render / skill + render | [docs](docs/animate.md) | [review](reviews/animate.md) |
+| motion-designer | [kaventro/motion-designer](https://github.com/kaventro/motion-designer) | `7d0b8bb` (1.2.0) | app launch films and short code videos cut to music, MP4/loop/poster | skill (render Unknown) / skill + render / skill + render | [docs](docs/motion-designer.md) | [review](reviews/motion-designer.md) |
+| logo-design | [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) | `7340903` (1.4.5) | logo design from brief to SVG and brand guidelines | skill / skill + scripts / skill + scripts | [docs](docs/logo-design.md) | [review](reviews/logo-design.md) |
+| meta-ads-designer | [aievolutionpl/meta-ads-designer](https://github.com/aievolutionpl/meta-ads-designer) | `656ce90` (6.5.0) | Meta/social ads, posters and flyers made with an image model | skill / skill + scripts / skill + scripts | [docs](docs/meta-ads-designer.md) | [review](reviews/meta-ads-designer.md) |
+| hallmark | [Nutlope/hallmark](https://github.com/Nutlope/hallmark) | `7ec8682` (2.0.0) | web pages and app UI that do not look AI-generated | skill / skill + scripts / skill + scripts | [docs](docs/hallmark.md) | [review](reviews/hallmark.md) |
+| open-design | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `26d6029` (1.0.0) | bridge to the local Open Design app (design skills, systems, previews) | - / MCP with the app / MCP with the app | [docs](docs/open-design.md) | [review](reviews/open-design.md) |
 
 ### Dev tools
 
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | minimal code changes, code review, repo audit; plugin with always-on hooks | skills / skills + hooks / skills + hooks + mod | [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
+| antislop | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | `5ca57fe` (3.2.23) | rules against generic AI output in UI, copy and code; contrast checker | skills / skills + MCP / skills + MCP | [docs](docs/antislop.md) | [review](reviews/antislop.md) |
 
 ## Install
 
