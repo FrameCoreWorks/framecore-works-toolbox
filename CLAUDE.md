@@ -14,7 +14,8 @@ thin wrapper plugins written here. It never holds upstream code.
 - `docs/<name>.md`: per-entry notes (setup, what works in chat, Cowork and
   Claude Code, full removal), from `docs/TEMPLATE.md`.
 - `docs/install.md`: how to add the marketplace and install plugins.
-- `plugins/<name>/`: wrapper plugins for adapted entries only.
+- `plugins/<name>/`: wrapper plugins for adapted entries, and first-party
+  plugins such as `plugins/toolbox/` (the index).
 - `scripts/check_marketplace.py`: consistency check. `tests/`: its tests.
 
 ## Workflow for a new entry
@@ -45,7 +46,8 @@ thin wrapper plugins written here. It never holds upstream code.
 5. Give the owner a short verdict (what it is, what it installs and writes,
    risks, fit for the toolbox).
 6. Only after the owner says "yes": add the entry to the manifest at the full
-   commit, plus `docs/<name>.md` and the README row, in one commit.
+   commit, plus `docs/<name>.md`, the README row and the row in the toolbox
+   index skill, in one commit.
 7. Plugins that send prompts, code or files to an external service, or install
    hooks that change what Claude sees (for example token-saving or context
    compression tools), need an explicit "yes" from the owner recorded in the
@@ -97,13 +99,27 @@ Rules for both forms:
   do not install plugins that have one.
 - Update = new upstream review plus wrapper changes, in one commit.
 
+## First-party plugins
+
+Plugins written here with no upstream, marked in the manifest entry with
+`"metadata": {"firstParty": true}` and the local source `./plugins/<name>`.
+They need `docs/<name>.md` but no review or commit pin. No hooks, scripts or
+network unless the owner asks for them.
+
+- `toolbox`: the index. Its skill
+  `plugins/toolbox/skills/toolbox/SKILL.md` holds the catalog table (one row
+  per other entry, name in backticks in the first column) and short "Use" and
+  "Watch out" notes. Every entry added, updated or removed changes this file
+  in the same commit; `scripts/check_marketplace.py` fails when the table and
+  the manifest differ.
+
 ## Update and removal
 
 - Update = new review of the new commit. Change the commit and version in the
   manifest, the review, the docs and the README together, in one commit.
-- Removal: delete the entry from the manifest and the README, set `Status:
-  removed` in the review and add a History line with the date and reason.
-  Keep the review.
+- Removal: delete the entry from the manifest, the README and the toolbox
+  index skill, set `Status: removed` in the review and add a History line
+  with the date and reason. Keep the review.
 
 ## Checks before every commit
 

@@ -155,6 +155,44 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_entry_files(kind="adapted")
         self.assert_error("./plugins/demo")
 
+    def write_index(self, listed=("demo",)):
+        plugin = self.root / "plugins/toolbox"
+        (plugin / ".claude-plugin").mkdir(parents=True)
+        (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": "toolbox"}))
+        skill = plugin / "skills/toolbox"
+        skill.mkdir(parents=True)
+        (skill / "SKILL.md").write_text("".join(f"| `{n}` | x |\n" for n in listed))
+        (self.root / "docs/toolbox.md").write_text("Toolbox index\n")
+        return {"name": "toolbox", "source": "./plugins/toolbox", "metadata": {"firstParty": True}}
+
+    def test_first_party_index_passes(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.assertEqual(self.errors(), [])
+
+    def test_index_must_list_every_entry(self):
+        self.write_manifest([self.write_index(listed=()), entry()])
+        self.write_entry_files()
+        self.assert_error("does not list 'demo'")
+
+    def test_index_must_not_list_unknown_entries(self):
+        self.write_manifest([self.write_index(listed=("demo", "gone")), entry()])
+        self.write_entry_files()
+        self.assert_error("'gone'")
+
+    def test_first_party_needs_docs(self):
+        index = self.write_index(listed=())
+        (self.root / "docs/toolbox.md").unlink()
+        self.write_manifest([index])
+        self.assert_error("docs/toolbox.md")
+
+    def test_first_party_must_be_local(self):
+        e = entry(name="toolbox")
+        e["metadata"] = {"firstParty": True}
+        self.write_manifest([e])
+        (self.root / "docs/toolbox.md").write_text("x\n")
+        self.assert_error("./plugins/toolbox")
+
     def test_committed_zip_fails(self):
         (self.root / "docs/skill.zip").write_bytes(b"PK")
         self.assert_error("ZIP")

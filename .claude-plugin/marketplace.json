@@ -7,6 +7,15 @@
   },
   "plugins": [
     {
+      "name": "toolbox",
+      "description": "Type \"toolbox\" to list the plugins in this marketplace, where each one works, and how to install and use it.",
+      "category": "productivity",
+      "source": "./plugins/toolbox",
+      "metadata": {
+        "firstParty": true
+      }
+    },
+    {
       "name": "ponytail",
       "description": "Lazy senior dev mode: YAGNI, stdlib first, smallest correct change. Always-on via SessionStart and SubagentStart hooks; local task ledger.",
       "version": "5.3.2",

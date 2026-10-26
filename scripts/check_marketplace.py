@@ -11,6 +11,9 @@ Checks:
 - every entry has reviews/<name>.md (Status: active, Eligibility filled in,
   Commit: <same SHA>) and docs/<name>.md mentioning the same SHA;
 - reviews marked "Status: removed" are not listed in the manifest;
+- first-party plugins (entry metadata.firstParty) live in ./plugins/<name>
+  with docs/<name>.md, and the "toolbox" index skill lists exactly the other
+  entries;
 - no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
@@ -26,6 +29,8 @@ MANIFEST = ".claude-plugin/marketplace.json"
 GIT_SOURCES = {"github", "url", "git-subdir"}
 FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
 FIELD = re.compile(r"^- ([A-Za-z-]+): *(.*)$", re.MULTILINE)
+INDEX_ROW = re.compile(r"^\|\s*`([a-z0-9][a-z0-9._-]*)`\s*\|", re.MULTILINE)
+INDEX = "toolbox"
 
 
 def load_json(path, errors):
@@ -82,6 +87,34 @@ def check_wrapper(root, name, path, sha, fields, errors):
         errors.append(f"'{name}': {expected}/UPSTREAM.md must name the reviewed upstream commit")
 
 
+def check_first_party(root, name, source, errors):
+    """Our own plugin in plugins/<name>: no upstream, so no review or sha."""
+    expected = f"./plugins/{name}"
+    if not isinstance(source, str) or source.rstrip("/") != expected:
+        errors.append(f"'{name}': a first-party plugin must use the local source {expected}")
+        return
+    plugin = root / expected
+    if not (plugin / ".claude-plugin/plugin.json").is_file():
+        errors.append(f"'{name}': {expected}/.claude-plugin/plugin.json is missing")
+    if (plugin / "bin").exists():
+        errors.append(f"'{name}': {expected}/bin is not allowed (claude.ai and Cowork refuse it)")
+    if not (root / "docs" / f"{name}.md").is_file():
+        errors.append(f"'{name}': docs/{name}.md is missing")
+
+
+def check_index(root, names, errors):
+    """The toolbox skill must list exactly the other entries of the marketplace."""
+    skill = root / "plugins" / INDEX / "skills" / INDEX / "SKILL.md"
+    if not skill.is_file():
+        errors.append(f"'{INDEX}': plugins/{INDEX}/skills/{INDEX}/SKILL.md is missing")
+        return
+    listed = set(INDEX_ROW.findall(skill.read_text(encoding="utf-8")))
+    for name in sorted(names - listed):
+        errors.append(f"'{INDEX}': SKILL.md does not list '{name}'")
+    for name in sorted(listed - names):
+        errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace")
+
+
 def check(root):
     root = Path(root)
     errors = []
@@ -93,8 +126,12 @@ def check(root):
         if key not in manifest:
             errors.append(f"{MANIFEST}: missing '{key}'")
 
-    for name, entry in entries_by_name(manifest.get("plugins", []), errors).items():
+    entries = entries_by_name(manifest.get("plugins", []), errors)
+    for name, entry in entries.items():
         source = entry.get("source")
+        if (entry.get("metadata") or {}).get("firstParty") is True:
+            check_first_party(root, name, source, errors)
+            continue
         fields = review_fields(root / "reviews" / f"{name}.md")
         if isinstance(source, str):
             # Adapted entry: our own wrapper in plugins/<name>, pinned to the reviewed upstream commit.
@@ -126,6 +163,9 @@ def check(root):
             errors.append(f"'{name}': docs/{name}.md is missing")
         elif sha and sha not in docs.read_text(encoding="utf-8"):
             errors.append(f"'{name}': docs/{name}.md does not mention the pinned sha")
+
+    if INDEX in entries:
+        check_index(root, set(entries) - {INDEX}, errors)
 
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)

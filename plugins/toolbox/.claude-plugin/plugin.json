@@ -1,0 +1,15 @@
+{
+  "name": "toolbox",
+  "displayName": "FrameCore Works Toolbox",
+  "description": "Type \"toolbox\" to list the plugins in the FrameCore Works toolbox marketplace, where each one works, and how to install and use it.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "toolbox",
+    "catalog",
+    "index"
+  ]
+}

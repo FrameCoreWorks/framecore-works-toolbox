@@ -15,6 +15,7 @@ commit.
 
 | Name | Upstream | Commit (version) | Kind | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | ---- | --------------------------- | ----- | ------ |
+| toolbox | first-party, this repo | n/a | index: type `toolbox` to list the plugins | skill everywhere | [docs](docs/toolbox.md) | none needed (no hooks, scripts or network) |
 | ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | plugin with always-on hooks | skills / skills + hooks / skills + hooks + mod | [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
 
 ## Install
