@@ -10,6 +10,7 @@
 - Commit: 09c434ab73ca43761c5d8b0c5d341926c2fba710
 - Upstream version: 5.3.2 (`.claude-plugin/plugin.json`, `.codex-plugin/plugin.json`)
 - Kind: plugin
+- Eligibility: upstream ships `.claude-plugin/plugin.json`, `.codex-plugin/plugin.json` and its own Claude Code and Codex marketplaces
 - Claude Code source: github
 - Codex-Pin: sha
 - Reviewed on: 2026-10-26

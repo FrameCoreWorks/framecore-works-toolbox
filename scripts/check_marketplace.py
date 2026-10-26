@@ -5,7 +5,8 @@ Checks:
 - both manifests parse and share the same marketplace name;
 - every Claude Code entry uses a github, url or git-subdir source pinned to a
   full 40-character commit SHA (never a branch alone, never a local path);
-- every entry has reviews/<name>.md (Status: active, Commit: <same SHA>) and
+- every entry has reviews/<name>.md (Status: active, Eligibility filled in,
+  Commit: <same SHA>) and
   docs/<name>.md mentioning the same SHA;
 - the Codex manifest lists the same entries, pinned to the same SHA, with
   policy and category, unless the review records "Codex-Pin: limitation: ...";
@@ -104,6 +105,8 @@ def check(root):
             errors.append(f"'{name}': review is marked removed but the entry is still listed")
         elif fields.get("Status") != "active":
             errors.append(f"'{name}': review Status must be 'active'")
+        if not fields.get("Eligibility") or fields["Eligibility"].startswith("<"):
+            errors.append(f"'{name}': review needs an Eligibility line (upstream manifest or documented skills)")
         if sha and fields.get("Commit") != sha:
             errors.append(f"'{name}': review Commit does not match the pinned sha {sha}")
 

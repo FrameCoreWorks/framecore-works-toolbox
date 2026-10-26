@@ -16,6 +16,7 @@ Mark anything you did not verify as NOT_RUN or Unknown. Never guess.
 - Commit: <full 40-character commit SHA>
 - Upstream version: <version from plugin.json or tag, or none>
 - Kind: <plugin | skills>
+- Eligibility: <which upstream manifest or documented skill install makes it marketplace-ready>
 - Claude Code source: <github | git-subdir (path) | url>
 - Codex-Pin: <sha | limitation: reason and workaround>
 - Reviewed on: <YYYY-MM-DD>

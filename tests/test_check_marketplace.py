@@ -32,10 +32,11 @@ def codex_entry(name="demo", sha=SHA):
     }
 
 
-def review_text(name="demo", sha=SHA, status="active", codex_pin="sha"):
+def review_text(name="demo", sha=SHA, status="active", codex_pin="sha",
+                eligibility="upstream ships .claude-plugin/plugin.json"):
     return (
         f"# Review: {name}\n\n## Entry\n\n- Name: {name}\n- Status: {status}\n"
-        f"- Commit: {sha}\n- Codex-Pin: {codex_pin}\n"
+        f"- Eligibility: {eligibility}\n- Commit: {sha}\n- Codex-Pin: {codex_pin}\n"
     )
 
 
@@ -107,6 +108,11 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_manifests([claude_entry()], [codex_entry()])
         self.write_entry_files(sha=OTHER_SHA)
         self.assertTrue(any("Commit" in e for e in self.errors()))
+
+    def test_review_without_eligibility_fails(self):
+        self.write_manifests([claude_entry()], [codex_entry()])
+        self.write_entry_files(eligibility="")
+        self.assertTrue(any("Eligibility" in e for e in self.errors()))
 
     def test_missing_docs_fails(self):
         self.write_manifests([claude_entry()], [codex_entry()])

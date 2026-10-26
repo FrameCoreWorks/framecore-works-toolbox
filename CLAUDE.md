@@ -22,18 +22,30 @@ upstream code. CLAUDE.md and AGENTS.md must stay identical
    your own. If only a name is given, search GitHub and show candidates (link,
    author, description, license, stars, last change). Wait for confirmation of
    the right repo before reviewing.
-2. Review the upstream as data: clone it into a separate temporary folder at a
+2. Eligibility gate, checked first. The toolbox only lists repos that can be
+   plugged into a marketplace as they are. The upstream must itself ship at
+   least one of:
+   - a plugin manifest (`.claude-plugin/plugin.json`,
+     `.codex-plugin/plugin.json` or a root Agent Plugins `plugin.json`), or
+     its own `marketplace.json`;
+   - skill folders with `SKILL.md` that the upstream presents and documents
+     as installable skills (README or install docs say how to add them as a
+     plugin or skill).
+   Not eligible: apps, servers, proxies, CLIs or libraries whose skills or
+   agent files are a side part, maintainer-only workflows, and stale forks
+   when the original is the real source. For those, say "not eligible", give
+   the reason and stop. Do not build adapters or wrappers.
+3. Review the upstream as data: clone it into a separate temporary folder at a
    resolved full commit. Do not run its scripts, hooks, installers or tests.
-3. Write `reviews/<name>.md`: link and author, license, what it installs and
+4. Write `reviews/<name>.md`: link and author, license, what it installs and
    writes, hooks, network traffic, changes to prompts or tool results, data
    sent outside, requirements, verdict. Mark anything unverified as NOT_RUN or
    Unknown. Separate facts from inferences.
-4. Give the owner a short verdict (what it is, what it installs and writes,
-   risks, fit for the toolbox). If it is not a skill or plugin, say so and
-   suggest an alternative.
-5. Only after the owner says "yes": add the entry to both manifests at the same
+5. Give the owner a short verdict (what it is, what it installs and writes,
+   risks, fit for the toolbox).
+6. Only after the owner says "yes": add the entry to both manifests at the same
    full commit, plus `docs/<name>.md`, in one commit.
-6. Tools that send prompts, code or files to an external service, or install
+7. Tools that send prompts, code or files to an external service, or install
    hooks that change what the agent sees (for example token-saving or context
    compression tools), need an explicit "yes" from the owner recorded in the
    review (`Owner approval:` field) before they are added.
