@@ -1,0 +1,4 @@
+# Upload packages built by scripts/pack_skill.py. Never commit them.
+dist/
+*.zip
+__pycache__/

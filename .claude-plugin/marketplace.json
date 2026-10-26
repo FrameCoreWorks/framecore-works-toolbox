@@ -1,0 +1,9 @@
+{
+  "name": "framecore-works-toolbox",
+  "description": "FrameCore Works personal toolbox: reviewed third-party skills and plugins, each pinned to a full upstream commit.",
+  "owner": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "plugins": []
+}
