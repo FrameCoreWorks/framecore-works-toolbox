@@ -54,7 +54,8 @@ The Open Design app with the `od` command on PATH and its daemon running. Works 
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code 2.1.310): marketplace add and `claude plugin install open-design@framecore-works-toolbox` succeeded; `installed_plugins.json` records gitCommitSha 26d60298f8129e229a1c10aab4df7ca25b1e9ad3. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): toolbox synced at c607fff, every plugin synced. No warnings for this plugin. Versions after adding the plugin: not reported yet.
+- Cowork: NOT_RUN
 
 ## Risks
 

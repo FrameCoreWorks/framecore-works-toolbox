@@ -55,7 +55,8 @@ Python with Pillow and NumPy (`pip install -r requirements.txt`) for the scripts
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code 2.1.310): marketplace add and `claude plugin install meta-ads-designer@framecore-works-toolbox` succeeded; `installed_plugins.json` records gitCommitSha 656ce907380448389559958f055c8b43d71ab26e. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): toolbox synced at c607fff, every plugin synced. No warnings for this plugin. Versions after adding the plugin: not reported yet.
+- Cowork: NOT_RUN
 
 ## Risks
 

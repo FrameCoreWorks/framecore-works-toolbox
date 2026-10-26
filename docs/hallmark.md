@@ -21,6 +21,9 @@ Optional: a local Chrome for screenshot checks; `TOGETHER_API_KEY` only for gene
 
 ## Use
 
+claude.ai warns that the skill description contains angle brackets and stores it without them; only the example `<path>` is lost, so it still loads the same way.
+
+
 Describe the page or redesign, or `/hallmark:hallmark`.
 
 ## Full removal

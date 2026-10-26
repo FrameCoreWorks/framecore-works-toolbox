@@ -91,7 +91,8 @@ Playwright and ffmpeg).
   `gitCommitSha` 7e5eb56feb2dd573f890e1b7b34748af43d58263; the cache holds
   only `skills/` (git-subdir). Rendering a video was NOT_RUN. Temporary
   config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): toolbox synced at c607fff, every plugin synced. No warnings for this plugin. Versions after adding the plugin: not reported yet.
+- Cowork: NOT_RUN
 
 ## Risks
 

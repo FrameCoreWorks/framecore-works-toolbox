@@ -58,7 +58,8 @@ node 22+, Chrome or Chromium, ffmpeg and ffprobe, python3 3.9+; uv recommended; 
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code 2.1.310): marketplace add and `claude plugin install motion-designer@framecore-works-toolbox` succeeded; `installed_plugins.json` records gitCommitSha 7d0b8bb78ddd2c91c57db9d1e83fcf711304bdb8. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): toolbox synced at c607fff, every plugin synced. Warning: unrecognized key `$schema` in plugin.json stripped (it only points editors at a schema; no effect). Versions after adding the plugin: not reported yet.
+- Cowork: NOT_RUN
 
 ## Risks
 

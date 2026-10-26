@@ -57,7 +57,8 @@ Node; a local Chrome/Chromium for screenshots; a Together AI key only for genera
 ## Install tests
 
 - Claude Code (isolated CLAUDE_CONFIG_DIR): PASS (Claude Code 2.1.310): marketplace add and `claude plugin install hallmark@framecore-works-toolbox` succeeded; `installed_plugins.json` records gitCommitSha 7ec868225c6caa040558c321ee0fefa0e73f83a8. Using the plugin was NOT_RUN. Temporary config dir deleted.
-- claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result
+- claude.ai (owner, 2026-10-26): toolbox synced at c607fff, every plugin synced. Warnings: the SKILL.md description contains angle brackets, so claude.ai stores it without them; the only bracketed text is the example `<path>` in "`/hallmark redesign <path>`", so the trigger rule is intact; Claude Code reads the full text. Versions after adding the plugin: not reported yet.
+- Cowork: NOT_RUN
 
 ## Risks
 
