@@ -55,13 +55,15 @@ settings files, and project settings override user settings. So:
     environment's settings (environment menu in the session title bar, Edit).
     New sessions pick it up.
 - On in this repo: `.claude/settings.json` here sets
-  `PONYTAIL_DEFAULT_MODE=full`, which overrides the global `off`.
+  `PONYTAIL_DEFAULT_MODE=lite` (builds what was asked, names smaller options
+  without cutting scope), which overrides the global `off`.
 - On for one session anywhere: `/ponytail` (or `/ponytail lite|full|ultra`);
   off again with `/ponytail off` or "stop ponytail".
 
 Tested 2026-10-26 in Claude Code: with `PONYTAIL_DEFAULT_MODE=off` in the
 process environment, a repo without project settings started with ponytail
-off, and a repo with the project setting above started in `full`.
+off, and a repo with the project setting above started in `full`. After the
+switch to `lite`, a new session in this repo started in `lite`.
 
 Not covered: Cowork (whether it reads `~/.claude/settings.json` is Unknown;
 use `/ponytail off` there or disable the plugin) and claude.ai chat (no hooks;

@@ -1,5 +1,5 @@
 {
   "env": {
-    "PONYTAIL_DEFAULT_MODE": "full"
+    "PONYTAIL_DEFAULT_MODE": "lite"
   }
 }

@@ -164,11 +164,29 @@ them as follows:
 - hookify: only when the owner asks for a rule that must be enforced
   mechanically.
 
+## Superpowers and ponytail
+
+Superpowers decides the process (when to think, plan, test, verify);
+ponytail decides the size of each step (how much code and text). Where they
+meet:
+
+- Specs and plans stay in the chat; no files under `docs/superpowers/`.
+- Brainstorming only for changes to rules, layout or the check script. A new
+  catalog entry follows the workflow above.
+- Test first for logic in `scripts/check_marketplace.py`; no tests for docs,
+  manifest entries or text.
+- Reports are short but keep the evidence (commands and results) and every
+  NOT_RUN and Unknown.
+- Scope comes from the owner: build what was approved, name a smaller option
+  in one line instead of cutting.
+
 ## Repo settings
 
-`.claude/settings.json` sets `PONYTAIL_DEFAULT_MODE=full`, so ponytail runs
+`.claude/settings.json` sets `PONYTAIL_DEFAULT_MODE=lite`, so ponytail runs
 in this repo even when the owner's global default is off (see
-`docs/ponytail.md`). Remove that line if ponytail is removed.
+`docs/ponytail.md`). `lite` builds what was asked and only names a smaller
+option; `full` would cut scope the owner approves. Remove that line if
+ponytail is removed.
 
 ## Repo hygiene
 
