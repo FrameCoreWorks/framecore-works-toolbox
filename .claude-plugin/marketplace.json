@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "earshot-audio",
@@ -32,17 +32,6 @@
         "source": "github",
         "repo": "kajisho5/ffmpeg-skill",
         "sha": "1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff"
-      }
-    },
-    {
-      "name": "ponytail",
-      "description": "Lazy senior dev mode: YAGNI, stdlib first, smallest correct change. Always-on via SessionStart and SubagentStart hooks; local task ledger.",
-      "version": "5.3.2",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "DietrichGebert/ponytail",
-        "sha": "09c434ab73ca43761c5d8b0c5d341926c2fba710"
       }
     },
     {
@@ -192,43 +181,6 @@
       }
     },
     {
-      "name": "hud",
-      "description": "Status line for Claude Code: context use, active tools, agents, todos and cost.",
-      "version": "0.13.1",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "jarrodwatts/claude-hud",
-        "sha": "cf95a322afd18db045175d28962650ae7392ed77"
-      }
-    },
-    {
-      "name": "planning-with-files",
-      "description": "File-based plans that survive /clear and compaction, re-injected every turn.",
-      "version": "3.25.2",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "OthmanAdi/planning-with-files",
-        "sha": "dcdfb278de53fdb69b2067ea173dbb1de45345a3"
-      }
-    },
-    {
-      "name": "archify",
-      "description": "Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML.",
-      "version": "3.2",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "tt-a1i/archify",
-        "sha": "81c6be8d87090670c45d08a8f97f9d29c5af0bec"
-      },
-      "skills": [
-        "./archify"
-      ],
-      "strict": false
-    },
-    {
       "name": "marketing-skills",
       "description": "52 marketing skills: CRO, copywriting, SEO, email, analytics and launch.",
       "version": "2.13.0",
@@ -238,47 +190,6 @@
         "repo": "coreyhaines31/marketingskills",
         "sha": "e85f3cbc2e4a79bf33b2a12e9bdd9087d414735b"
       }
-    },
-    {
-      "name": "notfair",
-      "description": "SEO, GEO and Google/Meta Ads work through the NotFair service (remote MCP).",
-      "version": "0.27.17",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "nowork-studio/notfair-plugin",
-        "sha": "ed835f273dce03a451c13fa0cb67305ae58ecb05"
-      }
-    },
-    {
-      "name": "linkedin-agent",
-      "description": "LinkedIn content: posts, comments, replies, profile score and a weekly plan.",
-      "version": "1.0.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "Jakeschincariol/linkedin-agent-skill",
-        "sha": "add2c23882fe79180737d242ff80a5da205eda6a"
-      }
-    },
-    {
-      "name": "wondelai-product-strategy",
-      "description": "Product strategy and innovation frameworks.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./jobs-to-be-done",
-        "./negotiation",
-        "./mom-test",
-        "./monetizing-innovation",
-        "./lean-analytics"
-      ],
-      "strict": false
     },
     {
       "name": "wondelai-ux-design",
@@ -302,168 +213,6 @@
         "./lean-ux",
         "./microinteractions",
         "./steve-jobs-design-review"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-marketing-cro",
-      "description": "Marketing and conversion optimization skills.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./cro-methodology",
-        "./storybrand-messaging",
-        "./scorecard-marketing",
-        "./contagious",
-        "./one-page-marketing"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-sales-influence",
-      "description": "Sales, persuasion, and messaging skills.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./influence-psychology",
-        "./predictable-revenue",
-        "./made-to-stick",
-        "./hundred-million-offers"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-product-innovation",
-      "description": "Product innovation and validation frameworks.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./lean-startup",
-        "./design-sprint",
-        "./design-everyday-things",
-        "./inspired-product",
-        "./continuous-discovery",
-        "./37signals-way"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-strategy-growth",
-      "description": "Business strategy and growth frameworks.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./crossing-the-chasm",
-        "./blue-ocean-strategy",
-        "./traction-eos",
-        "./obviously-awesome",
-        "./good-strategy-bad-strategy",
-        "./cold-start-problem"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-team-motivation",
-      "description": "Team motivation and management skills.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./drive-motivation",
-        "./high-output-management"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-code-craftsmanship",
-      "description": "Code quality and software design skills.",
-      "version": "1.8.0",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./clean-code",
-        "./refactoring-patterns",
-        "./software-design-philosophy",
-        "./pragmatic-programmer",
-        "./domain-driven-design",
-        "./working-with-legacy-code",
-        "./technical-documentation"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-systems-architecture",
-      "description": "Systems architecture and distributed systems skills.",
-      "version": "1.8.0",
-      "category": "dev-tools",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./ddia-systems",
-        "./system-design",
-        "./clean-architecture",
-        "./release-it",
-        "./high-perf-browser",
-        "./team-topologies"
-      ],
-      "strict": false
-    },
-    {
-      "name": "wondelai-metaskills",
-      "description": "Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder.",
-      "version": "1.8.0",
-      "category": "marketing",
-      "source": {
-        "source": "github",
-        "repo": "wondelai/skills",
-        "sha": "c172996495bed0fcd26896a9416b2093fd7073f0"
-      },
-      "skills": [
-        "./create-business",
-        "./create-website",
-        "./create-app",
-        "./improve-business",
-        "./improve-website",
-        "./improve-app",
-        "./grow-business",
-        "./grow-website",
-        "./grow-app",
-        "./improve-code-quality",
-        "./remove-technical-debt",
-        "./design-code-architecture",
-        "./conversion-optimization",
-        "./architecture-optimization"
       ],
       "strict": false
     }

@@ -27,6 +27,15 @@ Mark anything you did not verify as NOT_RUN or Unknown. Never guess.
 <One paragraph: what the skill or plugin does and which components it ships
 (skills, commands, agents, hooks, MCP servers, scripts).>
 
+## Improvement evidence
+
+Required for new admissions and future entry updates. Use this table rather than
+duplicating the parsed Entry keys above. Unknown benefit does not pass admission.
+
+| Affected FrameCore repository / task | Concrete improvement | Verification and limitations |
+| --- | --- | --- |
+| <repository and task> | <what improves and why this tool is needed> | <observed evidence; distinguish NOT_RUN / Unknown> |
+
 ## Files reviewed
 
 <List of paths read at the pinned commit. Upstream was cloned as data into a

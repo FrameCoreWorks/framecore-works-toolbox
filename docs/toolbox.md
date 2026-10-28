@@ -44,10 +44,16 @@ explicitly with `/toolbox:toolbox`.
 
 ## Maintenance
 
+Current inventory: 17 tools plus this index, 18 marketplace entries. The owner's
+admission rule accepts only tools, assets and repositories with a fully demonstrated
+improvement to FrameCore repositories. New admissions and future updates document
+the affected repository/task, concrete benefit and verification using the
+[review template](../reviews/TEMPLATE.md); see the [rules](../CLAUDE.md).
+
 Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
-`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.0.2` (portable releases started at `1.0.0`). Keep the version and identity
+`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.0.3` (portable releases started at `1.0.0`). Keep the version and identity
 synchronized across the three plugin manifests and its marketplace entry. After
 a package change, rebuild its ZIP and update the existing installation using
 the selected host guide. In Claude use Check for updates or

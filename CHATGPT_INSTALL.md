@@ -8,7 +8,7 @@
    python3 scripts/package_plugins.py --plugin toolbox --output-dir ../toolbox-dist
    ```
 
-3. Use the resulting `toolbox-1.0.2.zip` with Plugin Creator on the user's
+3. Use the resulting `toolbox-1.0.3.zip` with Plugin Creator on the user's
    installation request. The ZIP contains one plugin at its root, including
    `plugin.json`, both compatibility manifests and all skill resources. Do not
    upload the whole marketplace or combine third-party packages into this ZIP.
@@ -26,6 +26,11 @@ compatibility remains Unknown. Local engines need code execution, dependencies
 and permitted network access separately from plugin registration.
 
 Update: rebuild from a verified source commit and update the same saved plugin.
+Inspect its complete current file inventory first. Updates overlay the existing
+release: omitted files survive. For obsolete files actually present in that saved
+plugin, supply exact observed paths through `delete_paths`, then read back the
+complete inventory and confirm their absence. Preserve unrelated files, identity,
+audience and the current release guard. Do not infer deletion from ZIP omission.
 Remove: use the host's plugin controls. Catalog removal does not remove separately
 installed tools or their data.
 

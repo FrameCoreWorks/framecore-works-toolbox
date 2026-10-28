@@ -1,5 +1,34 @@
 # Portable catalog verification
 
+## Catalog cleanup 1.0.3 — 2026-10-28
+
+Owner-approved removal: 33 entries before, 18 after (17 tools plus the index).
+The [historical removal handover](handover-claude-code-2026-10-28.md) records the
+exact IDs, configuration scope, preservation evidence and client-state limits.
+
+Source checks PASS: 37 repository tests, 24 Earshot tests (existing Python 3.12),
+marketplace consistency, both portable package checks/builds, Claude marketplace
+validation and git diff whitespace. All 17 retained marketplace tool objects,
+Earshot source, scripts/tests, UX records and four old removed reviews are unchanged.
+All 30 dedicated files are absent. An 82-term scan includes hidden/ignored files,
+aliases, unique source addresses and configuration keys; only clearly historical
+removal records may name removed tools. The six-file catalog ZIP matches source
+exactly and contains no removed-tool reference. SHA-256:
+`03518f89a31fdb956f4cdd024fd12904a1a0e4aa76c8a57c5df295b536d1ff91`.
+
+Isolated Claude marketplace add, catalog installation and list PASS at 1.0.3;
+a removed-entry installation fails as expected after source verification.
+Isolated Codex catalog-file plan/install/verify PASS (FILES_VERIFIED; baseline
+commit used as fixture marker, candidate content checked separately).
+Temporary scope only: no normal user installation was changed. Fresh client
+invocations remain NOT_RUN. The existing Claude validation advisory is recorded
+in the handover; it does not fail validation.
+
+Saved Work synchronization is pending: no verified editable Toolbox identity was
+found, and no duplicate was created. The handover contains the exact update
+prompt and requires explicit file deletion plus complete inventory readback.
+All earlier sections below are historical evidence for earlier releases.
+
 ## ffmpeg-skill catalog entry — 2026-10-28
 
 Catalog 1.0.2 adds the upstream `kajisho5/ffmpeg-skill` version 2.17.3 pinned to

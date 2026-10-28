@@ -81,29 +81,14 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
-| `ponytail` | Keeps code changes minimal (YAGNI, stdlib first); also code review, repo audit and a list of deferred shortcuts. Use for coding work, not creative work. | Chat: skills. Cowork and Claude Code: skills plus always-on hooks. Claude Code: plus band mod |
 | `antislop` | Six rule skills that keep UI, copy and code from looking AI-generated, plus a local colour-contrast checker. | Chat: skills. Cowork and Claude Code: skills plus local contrast MCP (needs Python 3) |
 | `web-quality-skills` | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | Chat, Cowork and Claude Code |
-| `hud` | Status line for Claude Code: context use, active tools, agents, todos and cost. | Claude Code only (status line) |
-| `planning-with-files` | File-based plans that survive /clear and compaction, re-injected every turn. | Cowork and Claude Code (hooks); chat: skills only |
-| `archify` | Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML. | Chat, Cowork and Claude Code |
-| `wondelai-code-craftsmanship` | Code quality and software design skills. | Chat, Cowork and Claude Code |
-| `wondelai-systems-architecture` | Systems architecture and distributed systems skills. | Chat, Cowork and Claude Code |
 
 ### Marketing & growth
 
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
 | `marketing-skills` | 52 marketing skills: CRO, copywriting, SEO, email, analytics and launch. | Chat, Cowork and Claude Code |
-| `notfair` | SEO, GEO and Google/Meta Ads work through the NotFair service (remote MCP). | Chat (remote MCP), Cowork and Claude Code |
-| `linkedin-agent` | LinkedIn content: posts, comments, replies, profile score and a weekly plan. | Chat, Cowork and Claude Code |
-| `wondelai-product-strategy` | Product strategy and innovation frameworks. | Chat, Cowork and Claude Code |
-| `wondelai-marketing-cro` | Marketing and conversion optimization skills. | Chat, Cowork and Claude Code |
-| `wondelai-sales-influence` | Sales, persuasion, and messaging skills. | Chat, Cowork and Claude Code |
-| `wondelai-product-innovation` | Product innovation and validation frameworks. | Chat, Cowork and Claude Code |
-| `wondelai-strategy-growth` | Business strategy and growth frameworks. | Chat, Cowork and Claude Code |
-| `wondelai-team-motivation` | Team motivation and management skills. | Chat, Cowork and Claude Code |
-| `wondelai-metaskills` | Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder. | Chat, Cowork and Claude Code |
 
 ## Details
 
@@ -135,18 +120,6 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 - Watch out: install Node 18+, Playwright Chromium and ffmpeg first; a
   voice-over uses your ElevenLabs connector or the system voice.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/animate.md
-
-### ponytail
-
-- Use: coding tasks pick it up by description; `/ponytail:ponytail-review`,
-  `/ponytail:ponytail-audit`, `/ponytail:ponytail-debt`; levels with
-  `/ponytail lite|full|ultra|off`.
-- Watch out: in Cowork and Claude Code its hooks inject the ruleset into
-  every session and subagent, also in creative work; turn it off there with
-  `/ponytail off`, or make it on-demand with `PONYTAIL_DEFAULT_MODE=off`
-  (see the plugin's docs in the toolbox repo). Keep the `webhookUrl` option
-  empty.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/ponytail.md
 
 ### motion-designer
 
@@ -221,25 +194,6 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 - Watch out: no special setup.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/web-quality-skills.md
 
-### hud
-
-- Use: run its setup command once, `/hud:setup`, then `/hud:configure` to change what it shows.
-- Watch out: setup writes a statusLine entry; it replaces another status line such as ponytail's.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/hud.md
-
-### planning-with-files
-
-- Use: start a long task with its planning skill; plans live in your project.
-- Watch out: its hooks inject the plan every turn; overlaps with Superpowers plans.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/planning-with-files.md
-
-
-### archify
-
-- Use: ask for a diagram of a system or plan, or `/archify:archify`.
-- Watch out: runs a small update check when used.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/archify.md
-
 ### marketing-skills
 
 - Use: ask a marketing task (landing page copy, CRO audit, email sequence).
@@ -247,74 +201,8 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/marketing-skills.md
 
 
-### notfair
-
-- Use: connect NotFair, then ask for SEO or ads analysis.
-- Watch out: its MCP sends your requests and ad data to notfair.co.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/notfair.md
-
-### linkedin-agent
-
-- Use: ask for LinkedIn posts or a weekly plan.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/linkedin-agent.md
-
-### wondelai-product-strategy
-
-- Use: ask a task in this area or call `/wondelai-product-strategy:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-product-strategy.md
-
 ### wondelai-ux-design
 
 - Use: ask a task in this area or call `/wondelai-ux-design:` and pick a skill.
 - Watch out: none.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-ux-design.md
-
-### wondelai-marketing-cro
-
-- Use: ask a task in this area or call `/wondelai-marketing-cro:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-marketing-cro.md
-
-### wondelai-sales-influence
-
-- Use: ask a task in this area or call `/wondelai-sales-influence:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-sales-influence.md
-
-### wondelai-product-innovation
-
-- Use: ask a task in this area or call `/wondelai-product-innovation:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-product-innovation.md
-
-### wondelai-strategy-growth
-
-- Use: ask a task in this area or call `/wondelai-strategy-growth:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-strategy-growth.md
-
-### wondelai-team-motivation
-
-- Use: ask a task in this area or call `/wondelai-team-motivation:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-team-motivation.md
-
-### wondelai-code-craftsmanship
-
-- Use: ask a task in this area or call `/wondelai-code-craftsmanship:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-code-craftsmanship.md
-
-### wondelai-systems-architecture
-
-- Use: ask a task in this area or call `/wondelai-systems-architecture:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-systems-architecture.md
-
-### wondelai-metaskills
-
-- Use: ask a task in this area or call `/wondelai-metaskills:` and pick a skill.
-- Watch out: none.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-metaskills.md

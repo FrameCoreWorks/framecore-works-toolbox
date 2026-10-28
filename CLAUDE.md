@@ -41,6 +41,19 @@ this repository. Run the portable package check alongside the existing checks.
   plugins such as `plugins/toolbox/` (the index).
 - `scripts/check_marketplace.py`: consistency check. `tests/`: its tests.
 
+## Repository improvement gate (owner decision, 2026-10-28)
+
+Toolbox contains only tools, assets and repositories whose concrete improvement
+to FrameCore repositories is fully demonstrated. A speculative benefit or general
+usefulness is not enough. For each new admission and future entry update, record
+the affected repository/task, the improvement and its verification in the review's
+Improvement evidence table before owner approval. Keep uncertainty explicit;
+this gate is not a claim of guaranteed results on every possible task.
+
+The entries explicitly retained in the 2026-10-28 cleanup keep their existing
+pins and reviews. This prospective rule does not retroactively invalidate them
+or authorize further removals without a separate owner decision.
+
 ## Workflow for a new entry
 
 1. The owner (Kamil) names a repo or a tool. Do not propose or add repos on
@@ -75,7 +88,7 @@ this repository. Run the portable package check alongside the existing checks.
    Name the reason in one line in the verdict and stop.
 3. Review the upstream as data: clone it into a separate temporary folder at a
    resolved full commit. Do not run its scripts, hooks, installers or tests.
-4. Write `reviews/<name>.md`: link and author, license, what it installs and
+4. Write `reviews/<name>.md`, including the Improvement evidence table: link and author, license, what it installs and
    writes, hooks, network traffic, changes to prompts or tool results, data
    sent outside, requirements, verdict. Mark anything unverified as NOT_RUN or
    Unknown. Separate facts from inferences.
@@ -184,6 +197,10 @@ network unless the owner asks for them.
 - Removal: delete the entry from the manifest, the README and the toolbox
   index skill, set `Status: removed` in the review and add a History line
   with the date and reason. Keep the review.
+- One-time owner exception, 2026-10-28: the 15 entries named in the
+  [1.0.3 removal record](CHANGELOG.md#toolbox-catalog-103--2026-10-28) have their
+  dedicated docs and reviews deleted completely. The [handover](docs/handover-claude-code-2026-10-28.md)
+  records the exact scope. This does not change review retention for other removals.
 
 ## Checks before every commit
 
@@ -231,11 +248,9 @@ them as follows:
 - hookify: only when the owner asks for a rule that must be enforced
   mechanically.
 
-## Superpowers and ponytail
+## Independent workflow rules
 
-Superpowers decides the process (when to think, plan, test, verify);
-ponytail decides the size of each step (how much code and text). Where they
-meet:
+Keep these work rules independently of optional catalog tools:
 
 - Specs and plans stay in the chat; no files under `docs/superpowers/`.
 - Brainstorming only for changes to rules, layout or the check script. A new
@@ -246,14 +261,6 @@ meet:
   NOT_RUN and Unknown.
 - Scope comes from the owner: build what was approved, name a smaller option
   in one line instead of cutting.
-
-## Repo settings
-
-`.claude/settings.json` sets `PONYTAIL_DEFAULT_MODE=lite`, so ponytail runs
-in this repo even when the owner's global default is off (see
-`docs/ponytail.md`). `lite` builds what was asked and only names a smaller
-option; `full` would cut scope the owner approves. Remove that line if
-ponytail is removed.
 
 ## Repo hygiene
 

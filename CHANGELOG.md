@@ -1,5 +1,38 @@
 # Changes
 
+## Toolbox catalog 1.0.3 — 2026-10-28
+
+Owner-approved complete removal (historical record):
+
+- `archify`.
+- `hud`.
+- `linkedin-agent`.
+- `notfair`.
+- `planning-with-files`.
+- `ponytail`.
+- `wondelai-code-craftsmanship`.
+- `wondelai-marketing-cro`.
+- `wondelai-metaskills`.
+- `wondelai-product-innovation`.
+- `wondelai-product-strategy`.
+- `wondelai-sales-influence`.
+- `wondelai-strategy-growth`.
+- `wondelai-systems-architecture`.
+- `wondelai-team-motivation`.
+
+Delete all 30 dedicated docs/reviews, their catalog rows and detail sections,
+and the repository's sole dedicated environment setting. Preserve the independent
+work rules. The owner explicitly overrides review retention for this list only.
+The marketplace now has 17 tools plus its index (18 entries); all surviving tool
+objects, pins and packages remain unchanged. In particular, the retained UX entry
+keeps its shared Wondelai source and skill list.
+
+Adopt the owner's prospective admission rule: tools, assets and repositories must
+have fully demonstrated, concrete benefit to FrameCore repositories, recorded in
+the review template. Global/client installations and user data are untouched.
+See the [complete handover](docs/handover-claude-code-2026-10-28.md) for configuration
+scope, verification, retained tools and pending hosted synchronization.
+
 ## Toolbox catalog 1.0.2 — 2026-10-28
 
 - Add the owner's selected `ffmpeg-skill` entry as a separately installed upstream

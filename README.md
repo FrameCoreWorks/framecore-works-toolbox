@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a private GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.0.2.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.0.3.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -15,6 +15,8 @@ Installing the catalog does not install these entries; their existing host
 compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
+
+The current marketplace contains **17 tools plus the toolbox index: 18 entries**.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
@@ -43,29 +45,14 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
-| ponytail | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `09c434a` (5.3.2) | minimal code changes, code review, repo audit; plugin with always-on hooks | skills / skills + hooks / skills + hooks + mod | [docs](docs/ponytail.md) | [review](reviews/ponytail.md) |
 | antislop | [miqdadbadjuber/anti-slop](https://github.com/miqdadbadjuber/anti-slop) | `5ca57fe` (3.2.23) | rules against generic AI output in UI, copy and code; contrast checker | skills / skills + MCP / skills + MCP | [docs](docs/antislop.md) | [review](reviews/antislop.md) |
 | web-quality-skills | [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) | `afa8da9` (2.0.0) | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | skills / skills / skills | [docs](docs/web-quality-skills.md) | [review](reviews/web-quality-skills.md) |
-| hud | [jarrodwatts/claude-hud](https://github.com/jarrodwatts/claude-hud) | `cf95a32` (0.13.1) | Status line for Claude Code: context use, active tools, agents, todos and cost. | - / - / status line | [docs](docs/hud.md) | [review](reviews/hud.md) |
-| planning-with-files | [OthmanAdi/planning-with-files](https://github.com/OthmanAdi/planning-with-files) | `dcdfb27` (3.25.2) | File-based plans that survive /clear and compaction, re-injected every turn. | skills / skills + hooks / skills + hooks | [docs](docs/planning-with-files.md) | [review](reviews/planning-with-files.md) |
-| archify | [tt-a1i/archify](https://github.com/tt-a1i/archify) | `81c6be8` (3.2) | Interactive architecture, flow, sequence and ERD diagrams from an idea or a codebase, as standalone HTML. | skill / skill / skill | [docs](docs/archify.md) | [review](reviews/archify.md) |
-| wondelai-code-craftsmanship | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Code quality and software design skills. | skills / skills / skills | [docs](docs/wondelai-code-craftsmanship.md) | [review](reviews/wondelai-code-craftsmanship.md) |
-| wondelai-systems-architecture | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Systems architecture and distributed systems skills. | skills / skills / skills | [docs](docs/wondelai-systems-architecture.md) | [review](reviews/wondelai-systems-architecture.md) |
 
 ### Marketing & growth
 
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
 | marketing-skills | [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills) | `e85f3cb` (2.13.0) | 52 marketing skills: CRO, copywriting, SEO, email, analytics and launch. | skills / skills / skills | [docs](docs/marketing-skills.md) | [review](reviews/marketing-skills.md) |
-| notfair | [nowork-studio/notfair-plugin](https://github.com/nowork-studio/notfair-plugin) | `ed835f2` (0.27.17) | SEO, GEO and Google/Meta Ads work through the NotFair service (remote MCP). | skills + MCP / skills + MCP / skills + MCP | [docs](docs/notfair.md) | [review](reviews/notfair.md) |
-| linkedin-agent | [Jakeschincariol/linkedin-agent-skill](https://github.com/Jakeschincariol/linkedin-agent-skill) | `add2c23` (1.0.0) | LinkedIn content: posts, comments, replies, profile score and a weekly plan. | skills / skills / skills | [docs](docs/linkedin-agent.md) | [review](reviews/linkedin-agent.md) |
-| wondelai-product-strategy | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Product strategy and innovation frameworks. | skills / skills / skills | [docs](docs/wondelai-product-strategy.md) | [review](reviews/wondelai-product-strategy.md) |
-| wondelai-marketing-cro | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Marketing and conversion optimization skills. | skills / skills / skills | [docs](docs/wondelai-marketing-cro.md) | [review](reviews/wondelai-marketing-cro.md) |
-| wondelai-sales-influence | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Sales, persuasion, and messaging skills. | skills / skills / skills | [docs](docs/wondelai-sales-influence.md) | [review](reviews/wondelai-sales-influence.md) |
-| wondelai-product-innovation | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Product innovation and validation frameworks. | skills / skills / skills | [docs](docs/wondelai-product-innovation.md) | [review](reviews/wondelai-product-innovation.md) |
-| wondelai-strategy-growth | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Business strategy and growth frameworks. | skills / skills / skills | [docs](docs/wondelai-strategy-growth.md) | [review](reviews/wondelai-strategy-growth.md) |
-| wondelai-team-motivation | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Team motivation and management skills. | skills / skills / skills | [docs](docs/wondelai-team-motivation.md) | [review](reviews/wondelai-team-motivation.md) |
-| wondelai-metaskills | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder. | skills / skills / skills | [docs](docs/wondelai-metaskills.md) | [review](reviews/wondelai-metaskills.md) |
 
 ## Install
 
@@ -94,6 +81,10 @@ claude plugin install <name>@framecore-works-toolbox
 ## Maintaining
 
 Rules for adding, updating and removing entries are in [CLAUDE.md](CLAUDE.md).
+Only tools, assets and repositories with a fully demonstrated, concrete improvement
+to FrameCore repositories qualify for new admission or a future entry update.
+Record the affected repository/task, benefit and verification in the review;
+general usefulness or an unverified promise is insufficient.
 Before every commit:
 
 ```bash
