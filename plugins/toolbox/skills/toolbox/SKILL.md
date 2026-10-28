@@ -1,8 +1,8 @@
 ---
 name: toolbox
 description: >
-  Lists the plugins in the FrameCore Works toolbox (Kamil's private Claude
-  marketplace FrameCoreWorks/framecore-works-toolbox), grouped by category
+  Lists the plugins in the FrameCore Works toolbox across Claude, ChatGPT Work
+  and Codex, from FrameCoreWorks/framecore-works-toolbox, grouped by category
   (Creative, Dev tools, Marketing & growth) with a one-line description of each. Use when the user
   types "toolbox", "/toolbox", "show toolbox", "co jest w toolboxie", "lista
   toolbox", or asks which extra plugins or skills the toolbox has. Also
@@ -10,7 +10,7 @@ description: >
   (an @FrameCore Works Toolbox mention with no other text, or a message that
   arrives empty with this plugin attached): answer with the catalog, never
   with "your message was empty". "Toolbox" here always means this plugin
-  catalog, never a list of Claude's own tools or connectors. Not for
+  catalog, never a list of the host's own tools or connectors. Not for
   creative production work.
 ---
 
@@ -27,17 +27,34 @@ Show the catalog below. Do not start any other workflow or menu.
    Translate the "What it is for" text into the user's language; keep plugin
    names as they are.
 3. Do not claim whether a plugin is installed; you cannot see that reliably.
-4. One line on how to add a plugin: claude.ai, desktop and Cowork:
-   Customize > Plugins > Discover, search the name, Add; Claude Code:
-   `claude plugin install <name>@framecore-works-toolbox`. Installed plugins
-   are listed in Customize > Plugins under "From marketplaces you added".
-5. One line on how to use a plugin: describe the task, or type `/` and pick
-   `<plugin>:<skill>`.
+4. Give one installation line for the actual host, following
+   [installation](references/installation.md). In ChatGPT Work use Plugin
+   Creator for an available portable package; in Codex use its observed plugin
+   route or documented native skill installation; in Claude use the marketplace.
+   Do not suggest Claude commands in another host or treat a catalog listing
+   as an installable package for every host.
+5. Give one use line for that host: describe the task or select its installed
+   skill/plugin. Use Claude slash-command examples only in Claude.
 6. Stop there. Only if the user asks about one plugin, give its "Use" and
    "Watch out" notes from the details below and its review link.
 
 If the user asks for one category only ("toolbox creative"), show just that
 category. Answer in the user's language. Keep it short.
+
+## Host compatibility and independence
+
+The catalog's existing "Works in" cells and slash-command examples describe
+Claude chat, Cowork and Claude Code. They do not establish ChatGPT Work or
+Codex support for those third-party entries. Label that scope once above the
+catalog. For an individual tool in another host, check its current reviewed
+package and actual runtime requirements; otherwise report Unknown / NOT_RUN.
+The Toolbox catalog itself is portable. Installing it installs this catalog
+only; it neither bundles nor activates the other entries.
+
+Each local wrapper must work without Creative Studio and without sibling
+plugins. Toolbox maintains discovery and installation information. Creative
+Studio owns cross-plugin selection, sequencing and handoffs. Do not invoke
+Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 
 ## Catalog
 

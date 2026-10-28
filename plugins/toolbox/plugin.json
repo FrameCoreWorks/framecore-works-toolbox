@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "toolbox",
+  "version": "1.0.0",
+  "description": "Browse reviewed FrameCore Works tools by task and check their installation route and host requirements.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "toolbox",
+    "catalog",
+    "index"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "FrameCore Works Toolbox",
+        "shortDescription": "Reviewed tools by task",
+        "longDescription": "Browse the FrameCore Works tool catalog in Claude, ChatGPT Work or Codex. Choose tools by task and check their host-specific installation notes. Catalog entries are independently installed; their runtime compatibility is verified separately.",
+        "developerName": "FrameCore Works",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": "Pokaż narzędzia Toolboxa i sposób ich instalacji w tym środowisku."
+      },
+      "onboardingSkill": "./skills/toolbox/SKILL.md"
+    }
+  }
+}

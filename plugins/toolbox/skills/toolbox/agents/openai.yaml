@@ -1,0 +1,6 @@
+interface:
+  display_name: "FrameCore Works Toolbox"
+  short_description: "Reviewed tools by task"
+  default_prompt: "Pokaż narzędzia Toolboxa i sposób ich instalacji w tym środowisku."
+policy:
+  allow_implicit_invocation: true

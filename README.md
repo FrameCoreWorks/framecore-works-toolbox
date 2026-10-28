@@ -1,19 +1,22 @@
 # FrameCore Works Toolbox
 
-Private Claude plugin marketplace with reviewed third-party plugins used at
-FrameCore Works. Add it once in Claude (claude.ai, desktop, Cowork or Claude
-Code), then add the plugins you want; Claude picks their skills by task or you
-call them with `/`.
+FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
+in a private GitHub repository. The repository remains a Claude marketplace;
+its `toolbox` catalog is also an independently installable portable plugin.
 
-Every entry is pinned to a full upstream commit and has a security review in
-`reviews/` and notes in `docs/`. This repo holds no upstream code. Repos that
-are not plugins themselves can be added as adapted entries: a thin wrapper
-plugin written here in `plugins/<name>/` that points to the reviewed upstream
-commit.
+**Catalog plugin version: 1.0.0.** One source directory, `plugins/toolbox/`,
+contains the portable manifest, Codex and Claude compatibility manifests, and
+shared host-aware instructions. [Choose an installation route](INSTALL.md).
+
+Every third-party entry is pinned to a full upstream commit and has a review in
+`reviews/` and notes in `docs/`. This repo holds no upstream code. Adapted entries
+can have a thin wrapper in `plugins/<name>/` pointing to the reviewed upstream.
+Installing the catalog does not install these entries; their existing host
+compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-Type `toolbox` in Claude to see this list, grouped by category. The index
+Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
 [docs](docs/toolbox.md); no hooks, scripts or network).
 
@@ -64,7 +67,17 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 
 ## Install
 
-Full steps: [docs/install.md](docs/install.md).
+| Host | Guide | Route |
+| --- | --- | --- |
+| Claude apps / Claude Code | [Claude installation](docs/install.md) | Marketplace and selected plugins |
+| ChatGPT Work | [ChatGPT installation](CHATGPT_INSTALL.md) | Portable single-plugin ZIP through Plugin Creator |
+| Codex | [Codex installation](CODEX_INSTALL.md) | Local plugin or native entry with the complete bundle |
+
+Host activation and runtime compatibility are recorded separately in
+[verification](docs/verification.md). The shared layout and independence rules
+are in [architecture](docs/architecture.md).
+
+Existing Claude routes:
 
 - Claude apps: Customize > Plugins > Add > Add marketplace >
   `FrameCoreWorks/framecore-works-toolbox` (connect GitHub and give the Claude
@@ -84,5 +97,7 @@ Before every commit:
 ```bash
 python3 -m unittest discover -s tests
 python3 scripts/check_marketplace.py
+python3 scripts/package_plugins.py --check
+python3 scripts/package_plugins.py --output-dir ../toolbox-dist
 claude plugin validate .
 ```

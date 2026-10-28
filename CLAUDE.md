@@ -1,11 +1,34 @@
 # FrameCore Works Toolbox: rules for agents
 
-This repo is a Claude plugin marketplace with reviewed third-party plugins
+This repo is a portable tool catalog plus a Claude plugin marketplace with reviewed third-party plugins
 used at FrameCore Works. It is added once as a marketplace in Claude
 (claude.ai, desktop and Cowork through Customize > Plugins, or Claude Code
 with `claude plugin marketplace add`), and each plugin is then installed from
 it. It holds the manifest, reviews, install notes and, for adapted entries,
 thin wrapper plugins written here. It never holds upstream code.
+
+## Cross-host installation (owner request, 2026-10-28)
+
+The local catalog and future local wrappers follow Creative Studio's three-host
+package pattern: root `plugin.json` (Agent Plugins 1.0), `.codex-plugin/plugin.json`
+and `.claude-plugin/plugin.json`, one shared `skills/` source, and one ZIP per
+plugin. Keep identity, version and presentation synchronized. The repository
+marketplace stays separate and is never included in a portable plugin ZIP.
+
+`INSTALL.md`, `CHATGPT_INSTALL.md` and `CODEX_INSTALL.md` own host-specific
+installation. The catalog's older third-party compatibility notes cover Claude;
+do not generalize those claims to Work or Codex. Record actual host activation
+separately from file checks. The first portable catalog release is 1.0.0.
+
+Keep local plugins independent from Creative Studio and sibling plugins.
+Creative Studio owns cross-plugin selection, sequencing and handoff rules.
+Toolbox owns discovery, installation notes and the adapters' source. Existing
+upstream pinning, reviews and the no-upstream-copy rule continue to apply.
+
+Repository packaging/installation helpers are maintainer tooling, outside the
+installed catalog. They make no network requests. The catalog plugin itself
+still has no scripts, hooks, engines or servers. Write generated ZIPs outside
+this repository. Run the portable package check alongside the existing checks.
 
 ## Layout
 
@@ -155,6 +178,7 @@ network unless the owner asks for them.
 ```bash
 python3 -m unittest discover -s tests
 python3 scripts/check_marketplace.py
+python3 scripts/package_plugins.py --check
 claude plugin validate .
 ```
 

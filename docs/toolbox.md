@@ -6,13 +6,23 @@ this marketplace.
 
 ## Install
 
-See [install.md](install.md). Plugin id: `toolbox@framecore-works-toolbox`.
+See the [three-host installation overview](../INSTALL.md). The same package at
+`plugins/toolbox/` carries all three manifests. Claude plugin id:
+`toolbox@framecore-works-toolbox`; portable/Codex name: `toolbox`.
+ChatGPT Work uses a single-plugin ZIP through Plugin Creator. Codex can use its
+observed plugin route or the complete-bundle native entry helper.
+
+The catalog is portable; each listed third-party tool needs separate host
+verification. See [verification](verification.md).
 
 ## What works where
 
 | Component | Chat | Cowork | Claude Code |
 | --------- | ---- | ------ | ----------- |
-| Skill `toolbox` | yes | yes | yes |
+| Skill `toolbox` | yes (prior owner report) | prior package support | prior CLI test |
+
+This historical table covers Claude. The current portable source and native
+Codex installer have automated checks; fresh host activation remains NOT_RUN.
 
 ## Use
 
@@ -37,12 +47,15 @@ explicitly with `/toolbox:toolbox`.
 Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
-`scripts/check_marketplace.py` fails when they differ. The plugin sets no
-`version`, so no stale version string holds back updates; after a toolbox
-change, use Check for updates in claude.ai or
+`scripts/check_marketplace.py` fails when they differ. The portable release starts at version `1.0.0`. Keep the version and identity
+synchronized across the three plugin manifests and its marketplace entry. After
+a package change, rebuild its ZIP and update the existing installation using
+the selected host guide. In Claude use Check for updates or
 `claude plugin update toolbox@framecore-works-toolbox`.
 
 ## Full removal
 
-Remove it in Customize > Plugins, or run
+Remove it through the actual host plugin controls. For the native Codex entry,
+inspect its installation receipt and remove only the catalog entry and bundle.
+In Claude, remove it in Customize > Plugins, or run
 `claude plugin uninstall toolbox@framecore-works-toolbox`. It leaves no files.

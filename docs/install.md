@@ -1,6 +1,9 @@
-# Install from the toolbox
+# Install from the toolbox in Claude
 
-The toolbox is a Claude plugin marketplace in a private GitHub repo:
+For ChatGPT Work or Codex, use the [installation overview](../INSTALL.md).
+This page documents the Claude route.
+
+The toolbox includes a Claude plugin marketplace in a private GitHub repo:
 `FrameCoreWorks/framecore-works-toolbox`. Add the marketplace once, then add
 each plugin you want. Adding the marketplace does not install its plugins.
 
