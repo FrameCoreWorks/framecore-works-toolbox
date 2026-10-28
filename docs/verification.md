@@ -1,5 +1,23 @@
 # Portable catalog verification
 
+## ffmpeg-skill catalog entry — 2026-10-28
+
+Catalog 1.0.2 adds the upstream `kajisho5/ffmpeg-skill` version 2.17.3 pinned to
+`1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff`. No upstream implementation is
+bundled in the catalog. A separate temporary skill-directory install reproduced
+the skill and 145 source files in its five payload folders byte-for-byte; its
+installed static contract reports 42 tools. Earlier synthetic tests passed for
+contract, MCP exposure, changed-source refusal, audio offset/drift, multicam
+and HDR-to-SDR. Catalog source checks: 37 repository tests and 24 Earshot tests
+PASS; marketplace check reports 33 entries; both local packages validate.
+The six-file 1.0.2 catalog ZIP matches its source and contains the new row.
+An isolated native Codex catalog helper install and verify returned
+`FILES_VERIFIED` (synthetic source-commit marker; host activation NOT_RUN).
+The upstream plugin's marketplace install, Claude validation,
+fresh Work/Codex/Claude client discovery, speech engines and real footage
+remain NOT_RUN. Its root `bin/` is present; claude.ai / Cowork compatibility
+is not established. See the [review](../reviews/ffmpeg-skill.md) for scope.
+
 ## Earshot addition — 2026-10-28
 
 Catalog 1.0.1 and Earshot Audio wrapper 1.2.0, based on GitHub

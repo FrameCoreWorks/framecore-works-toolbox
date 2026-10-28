@@ -8,7 +8,7 @@
    python3 scripts/package_plugins.py --plugin toolbox --output-dir ../toolbox-dist
    ```
 
-3. Use the resulting `toolbox-1.0.1.zip` with Plugin Creator on the user's
+3. Use the resulting `toolbox-1.0.2.zip` with Plugin Creator on the user's
    installation request. The ZIP contains one plugin at its root, including
    `plugin.json`, both compatibility manifests and all skill resources. Do not
    upload the whole marketplace or combine third-party packages into this ZIP.

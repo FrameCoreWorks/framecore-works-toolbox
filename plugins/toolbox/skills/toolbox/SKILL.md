@@ -63,6 +63,7 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
 | `earshot-audio` | Measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Portable wrapper for Claude, ChatGPT Work and Codex; engine requires Python 3.12 and dependencies; fresh host activation NOT_RUN |
+| `ffmpeg-skill` | Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Python and FFmpeg required; isolated skill-directory install tested; native client activation NOT_RUN |
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Chat, Cowork and Claude Code (scripts need python3) |
@@ -105,6 +106,15 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 | `wondelai-metaskills` | Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder. | Chat, Cowork and Claude Code |
 
 ## Details
+
+### ffmpeg-skill
+
+- Use: ask for a local recording alignment, multicam edit, HDR-to-SDR conform or other
+  supported media operation. Install the original entry separately from the catalog.
+- Watch out: requires Python, FFmpeg and FFprobe. The tool's audio alignment does not
+  establish lip sync or subject tracking. Transcription needs a separate engine and
+  may download model weights. Check the actual host's installation route first.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/ffmpeg-skill.md
 
 ### earshot-audio
 
