@@ -1,6 +1,6 @@
 {
   "name": "toolbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browse reviewed FrameCore Works tools by task and check their installation route and host requirements.",
   "author": {
     "name": "FrameCore Works",

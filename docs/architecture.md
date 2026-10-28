@@ -27,7 +27,7 @@ hooks, runtimes or servers.
 
 ## Independent adapters and Studio
 
-Future local adapters such as Earshot belong in their own `plugins/<name>/`
+Local adapters such as Earshot belong in their own `plugins/<name>/`
 directory with all three manifests, their own instructions and a reviewed,
 pinned upstream. They can be distributed separately from the same repository.
 Keep upstream source outside this repository, as required by its existing rules;
@@ -37,8 +37,9 @@ adapter's actual supported hosts before registering it.
 Adapters receive ordinary input files and metadata and return documented outputs.
 They must not require sibling plugins. Creative Studio owns cross-plugin
 selection, sequencing and handoff rules; neither Toolbox nor Earshot inherits
-that orchestration responsibility. Earshot integration is a separate pending
-change, not included in the catalog portability release.
+that orchestration responsibility. Earshot Audio 1.2.0 is now supplied in `plugins/earshot-audio/`. Its upstream
+engine stays at 0.4.0, with external verified source resources and locked setup.
+See [its installation notes](earshot-audio.md) and [review](../reviews/earshot-audio.md).
 
 ## Open Assets
 

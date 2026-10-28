@@ -43,7 +43,7 @@ category. Answer in the user's language. Keep it short.
 
 ## Host compatibility and independence
 
-The catalog's existing "Works in" cells and slash-command examples describe
+Unless a row explicitly names another host, the catalog's "Works in" cells and slash-command examples describe
 Claude chat, Cowork and Claude Code. They do not establish ChatGPT Work or
 Codex support for those third-party entries. Label that scope once above the
 catalog. For an individual tool in another host, check its current reviewed
@@ -62,6 +62,7 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
+| `earshot-audio` | Measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Portable wrapper for Claude, ChatGPT Work and Codex; engine requires Python 3.12 and dependencies; fresh host activation NOT_RUN |
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Chat, Cowork and Claude Code (scripts need python3) |
@@ -104,6 +105,17 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 | `wondelai-metaskills` | Fourteen guided journeys that orchestrate the whole skill library step by step: create, improve, and grow a business, website, or app, plus improve code quality, remove technical debt, design code architecture, optimize a conversion flow, and optimize an existing codebase for speed and structure. Each metaskill invokes the right skills phase by phase, asks the user questions at every decision point, and records results as living documents in the project docs/ folder. | Chat, Cowork and Claude Code |
 
 ## Details
+
+### earshot-audio
+
+- Use: select Earshot Audio and ask to measure audio, choose a sound, render cue effects
+  or review sync. In Claude the skill is `/earshot-audio:earshot`; use the actual
+  installed entry in Work or Codex.
+- Watch out: plugin installation does not install the engine or models. Check runtime
+  status and approve a setup plan when needed. It works without Studio or other
+  catalog entries. Full-tier inference and fresh host activation remain NOT_RUN.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/earshot-audio.md
+
 
 ### animate
 

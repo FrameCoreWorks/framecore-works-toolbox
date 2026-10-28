@@ -47,7 +47,7 @@ explicitly with `/toolbox:toolbox`.
 Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
-`scripts/check_marketplace.py` fails when they differ. The portable release starts at version `1.0.0`. Keep the version and identity
+`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.0.1` (portable releases started at `1.0.0`). Keep the version and identity
 synchronized across the three plugin manifests and its marketplace entry. After
 a package change, rebuild its ZIP and update the existing installation using
 the selected host guide. In Claude use Check for updates or

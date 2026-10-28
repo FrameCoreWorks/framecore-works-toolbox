@@ -1,0 +1,11 @@
+Earshot Audio is an independent FrameCore Works wrapper for Earshot 0.4.0
+by Leon Lin, https://github.com/Leonxlnx/earshot, MIT.
+
+The wrapper includes FrameCore Works instructions, a launcher, a local source
+record adapter, dependency locks and provenance metadata. Upstream engine code
+and real-sound resources are downloaded separately at the pinned commit during
+authorized setup. They retain their original notices and MIT license.
+
+Model weights, third-party dependencies and user recordings retain their own
+licenses. This package's license does not relicense those materials. Creative
+Studio and sibling plugins are optional callers, not runtime dependencies.

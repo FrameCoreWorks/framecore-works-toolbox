@@ -89,6 +89,18 @@ this repository. Run the portable package check alongside the existing checks.
    compression tools), need an explicit "yes" from the owner recorded in the
    review (`Owner approval:` field) before they are added.
 
+## Earshot adaptation (owner authorization, 2026-10-28)
+
+The owner explicitly requested the FrameCore Works Earshot wrapper inside
+Toolbox ("Wprowadź", then "Spróbować earshot do toolboxa"). This bounded entry
+uses the owned Work 1.1.0 adaptation as its baseline and upstream Earshot 0.4.0
+at the reviewed commit. It is an exception to the ordinary full-upstream rule:
+keep our adapter's local command scope and excluded hosted critique/MCP routes.
+Do not copy upstream code or skills into the repository. External runtime setup
+keeps the verified source outside it, installs hash-locked wheels only after
+consent, and preserves existing runtimes. Do not generalize this exception to
+other catalog entries. Studio remains the owner of cross-plugin orchestration.
+
 ## Categories
 
 Every entry except the `toolbox` index has a `category` in the manifest, and
@@ -179,6 +191,8 @@ network unless the owner asks for them.
 python3 -m unittest discover -s tests
 python3 scripts/check_marketplace.py
 python3 scripts/package_plugins.py --check
+python3 scripts/package_plugins.py --plugin earshot-audio --check
+python3 -m unittest discover -s plugins/earshot-audio/tests -p '*_test.py'
 claude plugin validate .
 ```
 

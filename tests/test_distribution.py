@@ -100,6 +100,20 @@ class DistributionTest(unittest.TestCase):
             install_codex.run('install', self.repo, self.base / 'skills',
                               self.base / 'skills/bundle', self.commit)
 
+    def test_earshot_native_entry_and_archive_work_without_sibling_plugins(self):
+        shutil.rmtree(self.plugin)
+        earshot = self.repo / 'plugins/earshot-audio'
+        shutil.copytree(ROOT / 'plugins/earshot-audio', earshot,
+                        ignore=shutil.ignore_patterns('__pycache__'))
+        archive = package_plugins.build(self.repo, 'earshot-audio', self.base / 'dist')
+        self.assertTrue(archive.is_file())
+        result = install_codex.run('install', self.repo, self.base / 'skills',
+                                   self.base / 'earshot-bundle', self.commit, 'earshot-audio')
+        self.assertEqual(result['status'], 'FILES_VERIFIED')
+        entry = self.base / 'skills/earshot-audio/SKILL.md'
+        self.assertIn('earshot-bundle/skills/earshot/SKILL.md', entry.read_text())
+        self.assertFalse((self.base / 'skills/toolbox').exists())
+
 
 if __name__ == '__main__':
     unittest.main()

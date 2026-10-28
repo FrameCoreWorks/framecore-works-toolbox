@@ -1,0 +1,36 @@
+{
+  "interface": {
+    "displayName": "Earshot Audio",
+    "shortDescription": "Local listening and sound kits",
+    "longDescription": "Run pinned Earshot locally in the executing host to measure, choose and synthesize sound, assemble supplied recordings and verify cue timing. Works independently of Creative Studio and sibling plugins. Engine and model setup are separate, consented steps. The wrapper excludes hosted audio critique and MCP serving.",
+    "developerName": "FrameCore Works",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Check whether Earshot is ready here.",
+      "Render a whoosh and a hit for my film's cues.",
+      "Review the sound of this video against its picture."
+    ]
+  },
+  "name": "earshot-audio",
+  "version": "1.2.0",
+  "description": "Independent FrameCore Works adapter for Earshot 0.4.0 by Leon Lin (MIT): measure, select and synthesize audio, assemble local recordings and return cue and source evidence.",
+  "author": {
+    "name": "FrameCore Works"
+  },
+  "keywords": [
+    "audio",
+    "sound-design",
+    "sfx",
+    "soundtrack",
+    "audio-analysis",
+    "loudness",
+    "sync",
+    "earshot",
+    "motion-design",
+    "video"
+  ],
+  "skills": "./skills",
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "license": "MIT"
+}

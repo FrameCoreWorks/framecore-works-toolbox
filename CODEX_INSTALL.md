@@ -38,3 +38,10 @@ and replace only the previously installed entry under the user's update request.
 This helper deliberately does not overwrite an installation. Remove only the
 verified `toolbox` entry and its bundle after checking the receipt and local edits.
 Third-party plugins and their data are separate installations.
+
+## Earshot Audio
+
+Use the same helper with `--plugin earshot-audio`, a distinct persistent bundle
+and the desired native skill scope. It creates `earshot-audio/SKILL.md` backed
+by the complete Earshot package. This installs no engine or model weights.
+See [Earshot setup](docs/earshot-audio.md) for the separate runtime plan.

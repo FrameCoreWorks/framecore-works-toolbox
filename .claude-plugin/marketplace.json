@@ -14,7 +14,14 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.0.0"
+      "version": "1.0.1"
+    },
+    {
+      "name": "earshot-audio",
+      "description": "Independent FrameCore Works adapter for Earshot by Leon Lin: local audio measurements, sound kits and source-aware soundtrack work.",
+      "version": "1.2.0",
+      "category": "creative",
+      "source": "./plugins/earshot-audio"
     },
     {
       "name": "ponytail",

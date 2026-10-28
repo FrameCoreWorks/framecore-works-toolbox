@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install one native Toolbox entry backed by the complete bundle; no network."""
+"""Install one native local-plugin entry backed by the complete bundle; no network."""
 import argparse
 import json
 import re
@@ -18,20 +18,21 @@ def overlaps(a, b):
     return a == b or a in b.parents or b in a.parents
 
 
-def entry_text(bundle):
-    return ('---\nname: toolbox\ndescription: Show the FrameCore Works Toolbox catalog '
-            'when the user asks for toolbox, available tools or their installation routes.\n---\n\n'
-            '# FrameCore Works Toolbox\n\n'
-            f'Read `{bundle / "skills/toolbox/SKILL.md"}` and follow its catalog instructions.\n'
-            'Resolve references from that bundled skill location. Use the actual host and\n'
-            'the user\'s language. Catalog entries are not automatically installed tools.\n')
+def entry_text(bundle, name='toolbox', skill='toolbox', description='Show the FrameCore Works Toolbox catalog and installation routes.'):
+    return ('---\nname: ' + name + '\ndescription: ' + json.dumps(description) + '\n---\n\n'
+            '# ' + name + '\n\n'
+            f'Read `{bundle / "skills" / skill / "SKILL.md"}` and follow its instructions.\n'
+            'Resolve all references from that bundled skill location. Use the actual host\n'
+            'and the user\'s language. Installed files do not establish engine readiness.\n')
 
 
-def run(action, repo, skills, bundle, source_commit):
+def run(action, repo, skills, bundle, source_commit, plugin_name="toolbox"):
     if action not in {'plan', 'install', 'verify'}:
         raise ValueError('Unknown action')
     if not re.fullmatch('[0-9a-f]{40}', source_commit):
         raise ValueError('Use a verified full source commit')
+    if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', plugin_name):
+        raise ValueError('Invalid plugin name')
     repo = Path(repo).resolve()
     for path in (skills, bundle):
         if not path.is_absolute() or any(c in str(path) for c in ('\n', '\r', '`')):
@@ -40,13 +41,16 @@ def run(action, repo, skills, bundle, source_commit):
     skills, bundle = skills.resolve(), bundle.resolve()
     if overlaps(skills, bundle) or overlaps(repo, bundle) or overlaps(repo, skills):
         raise ValueError('Keep destinations separate and outside the source repository')
-    target = skills / 'toolbox'
+    target = skills / plugin_name
     reject_symlinks(target)
-    source = repo / 'plugins/toolbox'
+    source = repo / 'plugins' / plugin_name
     manifest = validate_plugin(source)
     files = inventory(source)
-    entry = entry_text(bundle)
-    receipt = {'plugin': 'toolbox', 'version': manifest['version'],
+    entrypoints = list((source / 'skills').glob('*/SKILL.md'))
+    if len(entrypoints) != 1:
+        raise ValueError('Native entry helper requires exactly one declared entry skill')
+    entry = entry_text(bundle, plugin_name, entrypoints[0].parent.name, manifest['description'])
+    receipt = {'plugin': plugin_name, 'version': manifest['version'],
                'source_commit': source_commit, 'bundle_dir': str(bundle), 'files': files}
 
     def verify():
@@ -92,12 +96,13 @@ def run(action, repo, skills, bundle, source_commit):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['plan', 'install', 'verify'])
+    parser.add_argument('--plugin', default='toolbox')
     parser.add_argument('--skills-dir', type=Path, required=True)
     parser.add_argument('--bundle-dir', type=Path, required=True)
     parser.add_argument('--source-commit', required=True)
     args = parser.parse_args()
     print(json.dumps(run(args.action, ROOT, args.skills_dir, args.bundle_dir,
-                         args.source_commit), indent=2))
+                         args.source_commit, args.plugin), indent=2))
 
 
 if __name__ == '__main__':
