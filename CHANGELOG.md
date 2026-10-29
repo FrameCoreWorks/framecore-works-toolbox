@@ -1,5 +1,13 @@
 # Changes
 
+## Records — 2026-10-29: old Earshot Audio plugin retired
+
+- Owner decision 2026-10-29 (stage 6b of the Earshot migration): every installed copy of
+  the separate `earshot-audio` plugin is retired. [Retirement steps](docs/earshot-audio.md#retiring-installed-copies-owner-decision-2026-10-29)
+  per host (Claude Code, Claude apps, ChatGPT Work release `plugins_6ada290e…`, Codex
+  native entry); the owner runs them, the engine runtime folder stays. Install guides
+  point to them. No plugin package changed, so no version bump.
+
 ## Toolbox 1.2.1 — 2026-10-29
 
 - New app note `scenario-kinetic-film` (owner decision 2026-10-29): Scenario's kinetic-type

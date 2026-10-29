@@ -30,6 +30,27 @@ is not in the marketplace any more.
 3. Run `status --json` (below). An existing runtime appears under `candidates`;
    choose it with `--root` or `EARSHOT_NATIVE_ROOT`. Nothing is selected for you.
 
+## Retiring installed copies (owner decision 2026-10-29)
+
+The owner approved retiring every installed copy of the old separate Earshot
+plugin (stage 6b of the Earshot migration). Status: **retired**. No route in
+Toolbox or Creative Studio uses it, and no marketplace offers it. Removal is a
+host step the owner does on each device or account; nothing in this repository
+can remove an installed copy. Do it only after Toolbox 1.1.0 or later is
+installed on that host, and keep the engine runtime folder (by default
+`~/.framecore-works/earshot`, older ones under `~/.framecore-studio/extensions/earshot`):
+it is not part of the plugin and Toolbox reuses it.
+
+| Host | Old identity | How to remove it | Check afterwards |
+| --- | --- | --- | --- |
+| Claude Code | `earshot-audio@framecore-works-toolbox` (Toolbox 1.0.x) or `earshot-audio@framecore-works` (Creative Studio's marketplace up to Studio 1.151.0) | `claude plugin list`, then `claude plugin uninstall earshot-audio@<marketplace>` for each listed copy | `claude plugin list` shows no `earshot-audio`; a new conversation lists `toolbox:toolbox` |
+| Claude apps / Cowork | Earshot Audio from either marketplace | Customize > Plugins, open Earshot Audio, uninstall | The plugin list shows FrameCore Works Toolbox and no Earshot Audio |
+| ChatGPT Work | Saved standalone Earshot Audio plugin (Work 1.1.0, release `plugins_6ada290e…`) | First read back the saved Toolbox plugin at 1.1.0 or later. Then remove the Earshot Audio plugin in Work's plugin settings, or with Plugin Creator against its current release guard and its exact observed paths | Work's plugin list has no Earshot Audio; a new conversation answers a sound task through Toolbox |
+| Codex | Native entry `<skills-dir>/earshot-audio/` made by `install_codex.py --plugin earshot-audio` | Open its `installation.json`: remove the entry only when `plugin` is `earshot-audio`. Delete that entry folder and the `bundle_dir` the receipt names, and nothing else | `install_codex.py verify` for the `toolbox` entry reports `FILES_VERIFIED`; no `earshot-audio` entry remains |
+
+Report each host as `retired` only after its check passed; until then it stays
+`pending` (owner-run, NOT_RUN here).
+
 ## Engine setup
 
 Inspect readiness and the setup plan from the installed Toolbox package. Only the

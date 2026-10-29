@@ -43,6 +43,7 @@ Third-party plugins and their data are separate installations.
 
 Earshot is built into the Toolbox bundle since 1.1.0; the `toolbox` entry and
 its bundle carry it, so there is no separate `--plugin earshot-audio` install.
-An older native `earshot-audio` entry can be removed after checking its receipt;
+An older native `earshot-audio` entry is retired (owner decision 2026-10-29);
+remove it after checking its receipt ([retirement steps](docs/earshot-audio.md#retiring-installed-copies-owner-decision-2026-10-29));
 its runtime folder is separate and stays. This installs no engine or model weights.
 See [Earshot setup](docs/earshot-audio.md) for the separate runtime plan.
