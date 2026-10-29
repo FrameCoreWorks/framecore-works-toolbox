@@ -9,7 +9,10 @@ repository tests, 52 Earshot tests on Python 3.12, marketplace check (21 entries
 package check for `toolbox` 1.2.3, `claude plugin validate .` and `plugins/toolbox`;
 `toolbox` 1.2.3 installed in an isolated Claude config; manual Claude Code install of both
 new app notes from a clone at the pin PASS in an isolated config. claude.ai re-sync after
-the push: NOT_RUN at commit time.
+the push (Check for updates in the owner's account, Chrome on the owner's Mac, 2026-10-30
+00:43 local): "Updated to 39b7bf0", 0 skipped, 3 warnings in 2 upstream plugins
+(`motion-designer` `$schema`; `hallmark` angle brackets, two lines); the `toolbox`
+description warning is gone.
 
 ## Toolbox 1.2.2, app note scenario-kinetic-film removed — 2026-10-29
 
