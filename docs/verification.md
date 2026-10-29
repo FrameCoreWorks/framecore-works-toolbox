@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.2.1, app note scenario-kinetic-film — 2026-10-29
+
+Baseline: GitHub `main` at `215068b`. Source checks PASS: 52 repository tests, Earshot
+tests on Python 3.12, marketplace check (23 entries), portable package check for
+`toolbox` 1.2.1, `claude plugin validate .`. Isolated Claude config: `toolbox` 1.2.1
+installed and its cache holds the new `apps.json` and index rows. Archive: SHA-256
+matches the hash in the upstream download URL; unzip into a temporary HOME skills
+folder and removal PASS. NOT_RUN: rendering a film, Scenario MCP generation, host
+invocation of the skill, ZIP hash of the portable package.
+
 ## Toolbox 1.2.0, recommended tools moved from Creative Studio — 2026-10-29
 
 Baseline: GitHub `main` at `343f74f`. Source checks PASS: 52 repository tests

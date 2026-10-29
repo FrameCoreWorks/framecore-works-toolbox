@@ -44,7 +44,7 @@ explicitly with `/toolbox:toolbox`.
 
 ## Maintenance
 
-Current inventory: 25 listed items: 22 marketplace tools, Earshot (built in) and 2 app notes (`plugins/toolbox/apps.json`), plus this index; 23 marketplace entries. The owner's
+Current inventory: 26 listed items: 22 marketplace tools, Earshot (built in) and 3 app notes (`plugins/toolbox/apps.json`), plus this index; 23 marketplace entries. The owner's
 admission rule accepts only tools, assets and repositories with a fully demonstrated
 improvement to FrameCore repositories. New admissions and future updates document
 the affected repository/task, concrete benefit and verification using the
@@ -54,7 +54,7 @@ Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
 Built-in capabilities from `plugins/toolbox/capabilities.json` and app notes from `plugins/toolbox/apps.json` are listed there too. An app note is a desktop app or skill archive that is not a plugin: it has a review (`Kind: app`, `Pin:` a full commit or `sha256:` of the archive) and docs with manual install steps, and is never a marketplace entry.
-`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.2.0` (portable releases started at `1.0.0`). Keep the version and identity
+`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.2.1` (portable releases started at `1.0.0`). Keep the version and identity
 synchronized across the three plugin manifests and its marketplace entry. After
 a package change, rebuild its ZIP and update the existing installation using
 the selected host guide. In Claude use Check for updates or

@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a private GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.2.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.2.1.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -16,7 +16,7 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-The current marketplace contains **22 tools plus the toolbox index: 23 entries**. The index also lists the built-in Earshot capability and two app notes (a desktop app and a skill archive that are not plugins, listed in `plugins/toolbox/apps.json` with manual install steps in `docs/`). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
+The current marketplace contains **22 tools plus the toolbox index: 23 entries**. The index also lists the built-in Earshot capability and three app notes (a desktop app and two skill archives that are not plugins, listed in `plugins/toolbox/apps.json` with manual install steps in `docs/`). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
@@ -54,6 +54,7 @@ Desktop apps and skill archives that Toolbox lists for discovery. You install th
 | ---- | -------- | ------------- | -------------- | ------------- | ----- | ------ |
 | voicebox | [jamiepine/voicebox](https://github.com/jamiepine/voicebox) | commit `2bcb98d1a8b6fe05e15fbc1559e3085669e4035d` (0.5.0) | Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | desktop app; agents over localhost MCP or REST | [docs](docs/voicebox.md) | [review](reviews/voicebox.md) |
 | iso-glow | [isoglow.dev](https://isoglow.dev/) | `sha256:6c88dba1424bada2ee651a1b273095f9a13b82dd9362f9bc873600b5bff6b0a1` (archive) | Isometric hairline figures where the switched-on part glows, as single HTML pages. | skill archive installed by hand | [docs](docs/iso-glow.md) | [review](reviews/iso-glow.md) |
+| scenario-kinetic-film | [scenario.com](https://www.scenario.com/explorations/kinetic-film/) | `sha256:2217ab5dbd452185a5c3c1509994da46b1ac20d2ebeaa888536244372ce73ebf` (archive) | Kinetic-type launch films, teasers and trailers built as code on the beat grid, rendered to 4K, with music and sound from Scenario MCP. | skill archive installed by hand; paid Scenario account | [docs](docs/scenario-kinetic-film.md) | [review](reviews/scenario-kinetic-film.md) |
 
 ### Dev tools
 

@@ -1,5 +1,12 @@
 # Changes
 
+## Toolbox 1.2.1 — 2026-10-29
+
+- New app note `scenario-kinetic-film` (owner decision 2026-10-29): Scenario's kinetic-type
+  film skill, a skill archive from scenario.com pinned by SHA-256 `2217ab5dbd452185a5c3c1509994da46b1ac20d2ebeaa888536244372ce73ebf`.
+  Listed for discovery with manual install steps; not a marketplace entry (no Git repository,
+  no code licence in the archive, unpinned Playwright install upstream). No upstream code copied.
+
 ## Toolbox 1.2.0 — 2026-10-29
 
 Toolbox becomes the single place for the tools Creative Studio used to recommend
