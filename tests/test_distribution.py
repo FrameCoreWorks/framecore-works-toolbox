@@ -100,20 +100,41 @@ class DistributionTest(unittest.TestCase):
             install_codex.run('install', self.repo, self.base / 'skills',
                               self.base / 'skills/bundle', self.commit)
 
-    def test_earshot_native_entry_and_archive_work_without_sibling_plugins(self):
-        shutil.rmtree(self.plugin)
-        earshot = self.repo / 'plugins/earshot-audio'
-        shutil.copytree(ROOT / 'plugins/earshot-audio', earshot,
-                        ignore=shutil.ignore_patterns('__pycache__'))
-        archive = package_plugins.build(self.repo, 'earshot-audio', self.base / 'dist')
-        self.assertTrue(archive.is_file())
+    def test_earshot_ships_inside_the_toolbox_package(self):
+        self.assertFalse((ROOT / 'plugins/earshot-audio').exists())
+        archive = package_plugins.build(self.repo, 'toolbox', self.base / 'dist')
+        with zipfile.ZipFile(archive) as zipped:
+            names = set(zipped.namelist())
+        for name in ('capabilities.json', 'contracts/framecore-task.schema.json',
+                     'capabilities/earshot/scripts/runtime.py', 'capabilities/earshot/upstream.json',
+                     'capabilities/earshot/requirements/full.txt', 'skills/toolbox/references/earshot/earshot.md'):
+            self.assertIn(name, names)
+        self.assertEqual([n for n in names if n.endswith('SKILL.md')], ['skills/toolbox/SKILL.md'])
         result = install_codex.run('install', self.repo, self.base / 'skills',
-                                   self.base / 'earshot-bundle', self.commit, 'earshot-audio')
+                                   self.base / 'bundle', self.commit)
         self.assertEqual(result['status'], 'FILES_VERIFIED')
-        entry = self.base / 'skills/earshot-audio/SKILL.md'
-        self.assertIn('earshot-bundle/skills/earshot/SKILL.md', entry.read_text())
-        self.assertFalse((self.base / 'skills/toolbox').exists())
+        self.assertTrue((self.base / 'bundle/capabilities/earshot/scripts/runtime.py').is_file())
 
+    def test_capability_file_drift_is_rejected(self):
+        caps = self.plugin / 'capabilities.json'
+        original = json.loads(caps.read_text())
+        for change, message in (({'plugin': {**original['plugin'], 'version': '0.0.1'}}, 'version'),
+                                ({'contract_schema': {**original['contract_schema'], 'sha256': '0' * 64}}, 'schema'),
+                                ({'capabilities': [{**original['capabilities'][0], 'path': 'capabilities/none'}]}, 'missing'),
+                                ({'capabilities': [{**original['capabilities'][0], 'launcher': '../../scripts/check_marketplace.py'}]}, 'inside')):
+            caps.write_text(json.dumps({**original, **change}))
+            with self.assertRaisesRegex(ValueError, message):
+                package_plugins.validate_plugin(self.plugin)
+        caps.write_text(json.dumps(original))
+        package_plugins.validate_plugin(self.plugin)
+        sys.path.insert(0, str(self.plugin / 'capabilities/earshot/scripts'))
+        import runtime
+        self.assertEqual(original['capabilities'][0]['run_commands'], sorted(runtime.ALLOWED))
+
+    def test_shared_contract_schema_is_the_pinned_version(self):
+        import hashlib
+        schema = (self.plugin / 'contracts/framecore-task.schema.json').read_bytes()
+        self.assertEqual(hashlib.sha256(schema).hexdigest(), package_plugins.CONTRACT_SHA256)
 
 if __name__ == '__main__':
     unittest.main()

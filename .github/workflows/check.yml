@@ -12,9 +12,7 @@ jobs:
           python-version: '3.12'
       - run: sudo apt-get update && sudo apt-get install --yes ffmpeg
       - run: python3 -m unittest discover -s tests
-      - run: python3 -m unittest discover -s plugins/earshot-audio/tests -p '*_test.py'
+      - run: python3.12 -m unittest discover -s tests/earshot -p '*_test.py'
       - run: python3 scripts/check_marketplace.py
       - run: python3 scripts/package_plugins.py --check
-      - run: python3 scripts/package_plugins.py --plugin earshot-audio --check
       - run: python3 scripts/package_plugins.py --output-dir "$RUNNER_TEMP/toolbox-dist"
-      - run: python3 scripts/package_plugins.py --plugin earshot-audio --output-dir "$RUNNER_TEMP/toolbox-dist"

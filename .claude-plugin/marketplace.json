@@ -8,20 +8,13 @@
   "plugins": [
     {
       "name": "toolbox",
-      "description": "Browse reviewed FrameCore Works tools by task and check their installation route and host requirements.",
+      "description": "Browse reviewed FrameCore Works tools by task, check their installation route, and run the built-in Earshot audio capability.",
       "category": "productivity",
       "source": "./plugins/toolbox",
       "metadata": {
         "firstParty": true
       },
-      "version": "1.0.3"
-    },
-    {
-      "name": "earshot-audio",
-      "description": "Independent FrameCore Works adapter for Earshot by Leon Lin: local audio measurements, sound kits and source-aware soundtrack work.",
-      "version": "1.2.0",
-      "category": "creative",
-      "source": "./plugins/earshot-audio"
+      "version": "1.1.0"
     },
     {
       "name": "ffmpeg-skill",

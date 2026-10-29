@@ -1,4 +1,4 @@
-"""earshot-audio launcher (scripts/runtime.py): pinned, verified installation and an allowlist of local commands. No network."""
+"""Toolbox Earshot launcher (capabilities/earshot/scripts/runtime.py): pinned, verified installation and an allowlist of local commands. No network."""
 import contextlib
 import hashlib
 import importlib.util
@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-PLUGIN = pathlib.Path(__file__).resolve().parent.parent
+PLUGIN = pathlib.Path(__file__).resolve().parents[2] / 'plugins' / 'toolbox' / 'capabilities' / 'earshot'
 spec = importlib.util.spec_from_file_location('earshot_runtime', PLUGIN / 'scripts/runtime.py')
 runtime = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runtime)
@@ -159,6 +159,8 @@ class Readiness(unittest.TestCase):
                 (root / 'engine.json').write_text('{not json')
                 self.assertEqual(runtime.status(root)['state'], 'unavailable')
                 (root / 'engine.json').write_text(json.dumps({**runtime.PIN, 'tier': 'light'}))
+                self.assertEqual(runtime.status(root)['state'], 'unlocked_legacy')   # no lock record: another route
+                (root / 'engine.json').write_text(json.dumps({**runtime.PIN, 'tier': 'light', 'wrapper_version': '1.1.0'}))
                 self.assertEqual(runtime.status(root)['state'], 'ready_light')
 
     def test_exec_applies_the_offline_cache_and_checks_earshot_commands(self):
@@ -189,7 +191,7 @@ class Readiness(unittest.TestCase):
                 (package / name).write_text('real = True\n')
             runtime.disable_remote_modules(package)
             for name in ('llm.py', 'mcp_server.py'):
-                self.assertIn('earshot-audio', (package / name).read_text())
+                self.assertIn('Toolbox Earshot', (package / name).read_text())
                 self.assertIn('raise ImportError', (package / name).read_text())
             self.assertEqual((package / 'api.py').read_text(), 'real = True\n')
 
@@ -221,8 +223,8 @@ class RemoteStub(unittest.TestCase):
             pkg = pathlib.Path(d)
             (pkg / 'llm.py').write_text('upload')
             runtime.disable_remote_modules(pkg)
-            self.assertIn('Removed by earshot-audio', (pkg / 'llm.py').read_text())
-            self.assertIn('Removed by earshot-audio', (pkg / 'mcp_server.py').read_text())
+            self.assertIn('Removed by Toolbox Earshot', (pkg / 'llm.py').read_text())
+            self.assertIn('Removed by Toolbox Earshot', (pkg / 'mcp_server.py').read_text())
 
 
 if __name__ == '__main__':

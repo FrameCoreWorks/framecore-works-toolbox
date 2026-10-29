@@ -37,8 +37,12 @@ adapter's actual supported hosts before registering it.
 Adapters receive ordinary input files and metadata and return documented outputs.
 They must not require sibling plugins. Creative Studio owns cross-plugin
 selection, sequencing and handoff rules; neither Toolbox nor Earshot inherits
-that orchestration responsibility. Earshot Audio 1.2.0 is now supplied in `plugins/earshot-audio/`. Its upstream
-engine stays at 0.4.0, with external verified source resources and locked setup.
+that orchestration responsibility. Since Toolbox 1.1.0 Earshot is a capability built into
+the `toolbox` plugin (`plugins/toolbox/capabilities/earshot/`, instructions under the Toolbox
+skill's `references/earshot/`, discovery in `plugins/toolbox/capabilities.json`); the separate
+`earshot-audio` plugin is retired. Its upstream engine stays at 0.4.0, with external verified
+source resources and locked setup. Results to a caller use the shared
+`framecore-task-result/1` contract (`plugins/toolbox/contracts/`).
 See [its installation notes](earshot-audio.md) and [review](../reviews/earshot-audio.md).
 
 ## Open Assets

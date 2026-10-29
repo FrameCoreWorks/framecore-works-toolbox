@@ -1,5 +1,9 @@
 # Changes
 
+## Toolbox 1.1.0 — 2026-10-29
+
+- Built into Toolbox; the separate plugin is retired. See the repository CHANGELOG.
+
 ## 1.2.0 — 2026-10-28
 
 - Move the FrameCore Works adaptation into Toolbox as an independently

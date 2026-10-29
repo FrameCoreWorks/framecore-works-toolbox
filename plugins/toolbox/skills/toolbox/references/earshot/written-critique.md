@@ -49,6 +49,6 @@ fix after it is made with `timeline` and `ab` on the same stretch.
 ## Why not an upload
 
 Upstream's audio-LLM command sends a mono 64 kbps copy to Google Gemini and needs the user's own API key. It is outside
-this plugin: the launcher refuses it and the installed engine has it removed. The review above covers sync, mix and
+Toolbox Earshot: the launcher refuses it and the installed engine has it removed. The review above covers sync, mix and
 loudness from measurements at least as well; character judgements rest on the local models (`describe`, `realness`)
 instead of a hosted listener.

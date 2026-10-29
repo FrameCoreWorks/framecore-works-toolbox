@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest import mock
 
-PLUGIN = Path(__file__).resolve().parents[1]
+PLUGIN = Path(__file__).resolve().parents[2] / 'plugins' / 'toolbox' / 'capabilities' / 'earshot'
 spec = importlib.util.spec_from_file_location('independent_earshot_runtime', PLUGIN / 'scripts/runtime.py')
 runtime = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runtime)

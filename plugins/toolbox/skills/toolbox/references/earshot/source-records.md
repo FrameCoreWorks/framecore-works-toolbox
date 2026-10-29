@@ -19,4 +19,4 @@ copyright ownership, actual licence-page review or creative suitability.
 The output manifest preserves source identity, attribution and verified byte
 hash. Optional `--handoff-out` writes a generic asset record with creative review
 `not_reviewed`; `--studio-out` remains a compatibility spelling. No plugin API is
-called. Output paths must be new, distinct and outside the plugin package.
+called. Output paths must be new, distinct and outside the Toolbox plugin package.

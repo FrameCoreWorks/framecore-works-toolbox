@@ -8,7 +8,7 @@ import sys
 import tempfile
 import unittest
 import wave
-S=Path(__file__).resolve().parents[1]/'scripts'
+S=Path(__file__).resolve().parents[2]/'plugins'/'toolbox'/'capabilities'/'earshot'/'scripts'
 sys.path.insert(0,str(S))
 import import_source_record as bridge
 

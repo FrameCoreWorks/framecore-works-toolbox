@@ -41,7 +41,8 @@ Third-party plugins and their data are separate installations.
 
 ## Earshot Audio
 
-Use the same helper with `--plugin earshot-audio`, a distinct persistent bundle
-and the desired native skill scope. It creates `earshot-audio/SKILL.md` backed
-by the complete Earshot package. This installs no engine or model weights.
+Earshot is built into the Toolbox bundle since 1.1.0; the `toolbox` entry and
+its bundle carry it, so there is no separate `--plugin earshot-audio` install.
+An older native `earshot-audio` entry can be removed after checking its receipt;
+its runtime folder is separate and stays. This installs no engine or model weights.
 See [Earshot setup](docs/earshot-audio.md) for the separate runtime plan.

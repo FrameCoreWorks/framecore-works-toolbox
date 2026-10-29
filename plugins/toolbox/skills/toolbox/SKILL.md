@@ -10,13 +10,22 @@ description: >
   (an @FrameCore Works Toolbox mention with no other text, or a message that
   arrives empty with this plugin attached): answer with the catalog, never
   with "your message was empty". "Toolbox" here always means this plugin
-  catalog, never a list of the host's own tools or connectors. Not for
-  creative production work.
+  catalog, never a list of the host's own tools or connectors. Also the
+  entry for Earshot, a local audio capability built into Toolbox: measuring
+  loudness (LUFS, true peak), choosing or comparing sound effects, checking
+  audio-to-picture sync, rendering cue effects from its sound bank, and
+  Earshot task requests from Creative Studio. Not for music composition,
+  voice-over, video editing or other creative production.
 ---
 
 # Toolbox
 
-Show the catalog below. Do not start any other workflow or menu.
+Two jobs, kept apart. A catalog request gets the catalog below and nothing
+else; do not start any other workflow or menu. An Earshot task (section
+"Built-in capability: Earshot") runs the capability. A question about what
+exists (also "toolbox audio") gets the catalog; a request naming a file, cue
+list or audio task to run goes to Earshot. If a message is both, show the
+catalog and offer the Earshot step.
 
 ## Reply format
 
@@ -56,13 +65,43 @@ plugins. Toolbox maintains discovery and installation information. Creative
 Studio owns cross-plugin selection, sequencing and handoffs. Do not invoke
 Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 
+## Built-in capability: Earshot
+
+Earshot is part of this plugin, not a catalog entry to install separately.
+Its instructions are [references/earshot/earshot.md](references/earshot/earshot.md);
+read that file before any Earshot step. Discovery for other plugins is
+`capabilities.json` in the plugin root.
+
+- Route here: a request to measure, hear, choose, compare or sync-check
+  audio, trim a sound-effect take, render cue sound effects from the Earshot bank, or a
+  `framecore-task-request/1` with `provider.capability: "earshot"`.
+- First run `status --json` with the launcher named in the instructions.
+  Setup, model downloads, model reuse from another root and adding source
+  are plans until the user agrees; then add `--yes`. Return a needed setup as
+  `needs_consent` with that plan, not as a failure.
+- `status` lists other runtime roots under `candidates` and never picks one;
+  the user chooses `--root`. For an `unlocked_legacy` root, offer a new locked
+  root with `fetch-models --from <old root>`; use `--allow-unlocked` only with
+  the user's agreement and label it in the result.
+- For a request with a task id, run the operation through
+  `capabilities/earshot/scripts/envelope.py` in the plugin root (syntax in
+  the instructions, section 6) so the caller gets a validated
+  `framecore-task-result/1` with hashes, readiness and what did not run.
+  `envelope.py` refuses `exec`; run each reading as its own `run <command>`.
+- There is no other route: no `earshot-audio` plugin, no `earshot-local`
+  binary, no Studio `listen.py` bridge and no bare venv interpreter. If the
+  launcher cannot run in this host, say so and give the commands; never
+  report a reading that did not run.
+- Toolbox does not call Creative Studio, Open Assets or any catalog entry.
+  The caller keeps the brief, the master timeline and the final review.
+
 ## Catalog
 
 ### Creative
 
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
-| `earshot-audio` | Measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Portable wrapper for Claude, ChatGPT Work and Codex; engine requires Python 3.12 and dependencies; fresh host activation NOT_RUN |
+| `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Built into Toolbox; not a separate install. Engine setup requires Python 3.12 and a consented local install; fresh host activation NOT_RUN |
 | `ffmpeg-skill` | Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Python and FFmpeg required; isolated skill-directory install tested; native client activation NOT_RUN |
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
@@ -103,12 +142,13 @@ Studio, Open Assets or another companion as a prerequisite for using Toolbox.
 
 ### earshot-audio
 
-- Use: select Earshot Audio and ask to measure audio, choose a sound, render cue effects
-  or review sync. In Claude the skill is `/earshot-audio:earshot`; use the actual
-  installed entry in Work or Codex.
-- Watch out: plugin installation does not install the engine or models. Check runtime
-  status and approve a setup plan when needed. It works without Studio or other
-  catalog entries. Full-tier inference and fresh host activation remain NOT_RUN.
+- Use: built into Toolbox; nothing else to install as a plugin. Ask Toolbox to measure
+  audio, choose a sound, render cue effects or review sync (in Claude, `/toolbox:toolbox`
+  with the task). The separate `earshot-audio` plugin of Toolbox 1.0.x is retired.
+- Watch out: installing Toolbox does not install the engine or models. Check runtime
+  status and approve a setup plan when needed; an existing runtime is listed, never
+  picked for you. It works without Studio or other catalog entries. Full-tier
+  inference and fresh host activation remain NOT_RUN.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/earshot-audio.md
 
 

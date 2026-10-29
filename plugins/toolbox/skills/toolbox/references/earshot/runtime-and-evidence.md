@@ -1,8 +1,9 @@
 # Runtime and evidence
 
-Use `../../../scripts/runtime.py` from this reference directory. The skill-local
-`../scripts/runtime.py` is a compatibility forwarding entry for the same launcher.
-Upstream 0.4.0 is pinned in `upstream.json`; the wrapper version is 1.2.0.
+Use `../../../../capabilities/earshot/scripts/runtime.py` from this reference directory
+(`capabilities/earshot/scripts/runtime.py` in the Toolbox plugin root). Upstream 0.4.0 is
+pinned in `capabilities/earshot/upstream.json`; the launcher reports the Toolbox version
+as `wrapper_version`.
 
 `status --json` and setup without `--yes` make no installation writes. Status may
 run lightweight import checks in an existing venv. Setup downloads from GitHub
@@ -21,6 +22,17 @@ selects another. A nonempty target is never overwritten. A failed install may
 leave a partial root: inspect it and choose a fresh destination for retry, rather
 than deleting or treating it as complete. Successful setup writes `engine.json`.
 The preserved `upstream/` snapshot supplies real-sound files and retains attribution.
+
+Other roots are listed read-only in `status --json` under `candidates` (path, engine
+commit, tier, wrapper version, models, real-sound source, `lock_conformance`); none is
+selected. A pinned engine whose `engine.json` has no `wrapper_version`, or whose
+installed packages differ from the tier lock, is `unlocked_legacy`: runs on it are
+refused without `--allow-unlocked`, and each allowed run prints a warning to carry into
+the result. Preferred reuse is a new locked root plus `fetch-models --from <old root>
+--yes`, which verifies the old root's pinned snapshots and places them by hard link
+or copy with no download, leaving the old root unchanged. `attach-source --yes` adds
+only a verified `upstream/` to a pinned root that lacks it. A root whose engine commit
+differs from the pin stays `unavailable`.
 
 Readiness has distinct levels: readable skill; importable light dependencies;
 importable full dependencies; complete pinned model file containers; actual task

@@ -11,6 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json'
 EXCLUDED = {'.git', '__pycache__', '.venv', 'node_modules'}
+# The FrameCore task contract 1 schema, byte-identical in Creative Studio, Toolbox and Open Assets.
+CONTRACT_SHA256 = 'e7cc0f4e612395768e8c8c6cf2a033a555bc69b4c8ea5ca45c4db019a342897a'
 
 
 def inventory(directory):
@@ -43,6 +45,35 @@ def read_json(path):
     if not isinstance(data, dict):
         raise ValueError('Expected manifest object: ' + str(path))
     return data
+
+
+def validate_capabilities(plugin, manifest):
+    """A plugin's capabilities.json, when present: identity, pinned contract schema and every built-in path."""
+    path = plugin / 'capabilities.json'
+    if not path.exists():
+        return
+    caps = read_json(path)
+    if caps.get('schema') != 'framecore-capabilities/1':
+        raise ValueError('capabilities.json: unknown schema')
+    if caps.get('plugin') != {'name': manifest.get('name'), 'version': manifest.get('version')}:
+        raise ValueError('capabilities.json: plugin name or version differs from plugin.json')
+    contract = caps.get('contract_schema') or {}
+    schema = plugin / str(contract.get('path', ''))
+    if not contract.get('path') or not schema.is_file():
+        raise ValueError('capabilities.json: contract schema file is missing')
+    digest = hashlib.sha256(schema.read_bytes()).hexdigest()
+    if contract.get('sha256') != digest or digest != CONTRACT_SHA256:
+        raise ValueError('capabilities.json: contract schema hash differs from the pinned contract')
+    if not (plugin / str(caps.get('entry_skill', ''))).is_file():
+        raise ValueError('capabilities.json: entry skill is missing')
+    for cap in caps.get('capabilities', []):
+        for key in ('path', 'instructions', 'launcher', 'envelope'):
+            if key in cap and (Path(str(cap[key])).is_absolute() or '..' in Path(str(cap[key])).parts):
+                raise ValueError(f"capabilities.json: {cap.get('id')} {key} must stay inside the plugin")
+            if key in cap and not (plugin / str(cap[key])).exists():
+                raise ValueError(f"capabilities.json: {cap.get('id')} {key} {cap[key]} is missing")
+        if (plugin / str(cap.get('path', '')) / 'bin').exists():
+            raise ValueError('capabilities.json: a capability must not have a bin/ folder')
 
 
 def validate_plugin(plugin):
@@ -85,6 +116,7 @@ def validate_plugin(plugin):
             raise ValueError('Skill description missing')
     if (plugin / 'bin').exists():
         raise ValueError('Top-level bin/ is not portable to Claude apps')
+    validate_capabilities(plugin, manifest)
     inventory(plugin)
     return manifest
 

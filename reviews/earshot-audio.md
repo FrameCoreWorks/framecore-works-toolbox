@@ -5,18 +5,26 @@
 - Name: earshot-audio
 - Status: active
 - Upstream: https://github.com/Leonxlnx/earshot
-- Author: Leon Lin; FrameCore Works wrapper
+- Author: Leon Lin; FrameCore Works launcher
 - License: MIT
 - Commit: 591fa3e028032e6dce56620a20e932e35667e8d8
 - Upstream version: 0.4.0
-- Kind: adapted
-- Eligibility: adapted: independent local audio launcher and workflow, explicitly requested by the owner
-- Source: local wrapper ./plugins/earshot-audio
-- Reviewed on: 2026-10-28
-- Reviewer: ChatGPT Work; source review and wrapper tests
+- Kind: built-in
+- Eligibility: built-in capability of the toolbox plugin: local audio launcher and workflow, explicitly requested by the owner
+- Source: built-in ./plugins/toolbox/capabilities/earshot (instructions ./plugins/toolbox/skills/toolbox/references/earshot/)
+- Reviewed on: 2026-10-28; built-in move reviewed 2026-10-29
+- Reviewer: ChatGPT Work; source review and wrapper tests. Built-in move: Claude Code (cloud), launcher tests and package checks
 - Owner approval: Kamil on 2026-10-28: "Wprowadź", followed by "Spróbować earshot do toolboxa"; prior instructions require an independent FrameCore adaptation
 
 ## What it is
+
+Since Toolbox 1.1.0 (2026-10-29) this is a capability built into the `toolbox`
+plugin, not a separate marketplace entry: owner decisions D-1 (clean cut of the
+separate plugin in the same release), D-3 (keep this catalog name and review) and
+D-7 (`attach-source`). The engine pin, dependency locks and command scope did not
+change. The text below describes the reviewed 1.2.0 wrapper; paths now live under
+`plugins/toolbox/capabilities/earshot/` and its instructions under the Toolbox
+skill's `references/earshot/`.
 
 One portable `earshot` skill, a FrameCore launcher, a source-record importer,
 three host manifests, dependency locks and source-hash metadata. The original
@@ -96,6 +104,32 @@ Locks were resolved from package metadata with builds disabled: 37 light package
 - Fresh engine installation, real sound rendering, full-tier model inference:
   NOT_RUN; no new runtime or model download was requested by this catalog change.
 
+## Built-in move (Toolbox 1.1.0)
+
+- Launcher: version from the Toolbox manifest; messages prefixed `toolbox/earshot:`;
+  `status --json` adds `lock_conformance` and a read-only `candidates[]` of other
+  roots (never selected); a pinned engine without this launcher's lock record, or
+  with drifted packages, is `unlocked_legacy` and runs on it need `--allow-unlocked`.
+- New consented writes, each a plan without `--yes`: `fetch-models --from <root>`
+  places another root's verified pinned model snapshots by hard link or copy (no
+  download, source unchanged); `attach-source` adds only a verified `upstream/`.
+- `envelope.py` wraps one operation and writes a schema-validated
+  `framecore-task-result/1` to a new file; `exec` is refused there.
+- `import_source_record.py` refuses outputs anywhere inside the Toolbox plugin.
+- No new network host, hook or MCP server. Upstream code is still not copied.
+
+## Improvement evidence
+
+| Repository / task | Improvement | Verification |
+| --- | --- | --- |
+| Creative Studio motion sound (cue effects, sync check) | One engine route through Toolbox instead of three (Studio launcher, separate plugin, local binary) | Launcher tests PASS (python3.12, `tests/earshot/`); Studio routing change is Stage 4, NOT_RUN here |
+| Existing runtime on the owner's Mac (pinned engine, off-lock packages) | Reported as `unlocked_legacy` with `lock_conformance: mismatch` instead of silently `ready_full`; models reusable without a 1.1 GB download | Fixture tests PASS; the real Mac root NOT_RUN |
+| Studio task handoff | Results come back as validated `framecore-task-result/1` with hashes | `envelope_test.py` PASS; Studio intake NOT_RUN |
+
+Fresh host activation of Toolbox 1.1.0, engine install and full-tier inference: NOT_RUN.
+Isolated Claude Code install of `toolbox` 1.1.0: PASS (see docs/verification.md);
+`earshot-audio` is no longer installable from the marketplace (expected).
+
 ## Risks and verdict
 
 Accept with conditions: explicit adaptation request, pinned source and hash-locked
@@ -109,3 +143,4 @@ The earlier Work plugin remains a separate saved release until explicitly update
 ## History
 
 - 2026-10-28: added FrameCore wrapper 1.2.0 at upstream `591fa3e`; catalog 1.0.1.
+- 2026-10-29: moved into Toolbox 1.1.0 as a built-in capability; the separate `earshot-audio` plugin and its marketplace object were removed in the same release (owner decisions D-1..D-8). Upstream pin unchanged.

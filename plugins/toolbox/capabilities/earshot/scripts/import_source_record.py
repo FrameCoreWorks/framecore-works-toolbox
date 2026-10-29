@@ -101,7 +101,7 @@ def main():
         outputs = [p for p in (args.out, args.handoff_out) if p is not None]
         if len({p.resolve() for p in outputs}) != len(outputs) or any(p.exists() or p.is_symlink() for p in outputs):
             raise ValueError('Use distinct new output files')
-        package = Path(__file__).resolve().parents[1]
+        package = Path(__file__).resolve().parents[3]   # the whole Toolbox plugin, not only capabilities/earshot
         if any(p.resolve().is_relative_to(package) for p in outputs):
             raise ValueError('Write project output outside the plugin')
         entry, studio = prepare(args.sidecar, args.root, args.need)

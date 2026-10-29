@@ -20,13 +20,13 @@ The current marketplace contains **17 tools plus the toolbox index: 18 entries**
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
-[docs](docs/toolbox.md); no hooks, scripts or network).
+[docs](docs/toolbox.md); no hooks or MCP servers; carries the built-in Earshot launcher, which writes or downloads nothing without the user's --yes).
 
 ### Creative
 
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
-| earshot-audio | [Leonxlnx/earshot](https://github.com/Leonxlnx/earshot) | `591fa3e` (engine 0.4.0; wrapper 1.2.0) | Local audio measurements, sound kits and soundtracks from supplied recordings. Independent portable wrapper. | portable package; fresh host activation NOT_RUN | [docs](docs/earshot-audio.md) | [review](reviews/earshot-audio.md) |
+| earshot-audio | [Leonxlnx/earshot](https://github.com/Leonxlnx/earshot) | `591fa3e` (engine 0.4.0; built into Toolbox 1.1.0) | Local audio measurements, sound kits and soundtracks from supplied recordings. Built into the `toolbox` plugin; no separate install. | built in; fresh host activation NOT_RUN | [docs](docs/earshot-audio.md) | [review](reviews/earshot-audio.md) |
 | ffmpeg-skill | [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) | `1ae1bdf` (2.17.3) | Local recording sync, multicam, HDR-to-SDR and media preparation with FFmpeg. | native marketplace install and client activation NOT_RUN | [docs](docs/ffmpeg-skill.md) | [review](reviews/ffmpeg-skill.md) |
 | animate | [cth9191/animate](https://github.com/cth9191/animate) | `7e5eb56` (0.4.0) | animated explainers and reels in code, rendered to MP4 | skill (render Unknown) / skill + render / skill + render | [docs](docs/animate.md) | [review](reviews/animate.md) |
 | motion-designer | [kaventro/motion-designer](https://github.com/kaventro/motion-designer) | `7d0b8bb` (1.2.0) | app launch films and short code videos cut to music, MP4/loop/poster | skill (render Unknown) / skill + render / skill + render | [docs](docs/motion-designer.md) | [review](reviews/motion-designer.md) |

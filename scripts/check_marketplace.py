@@ -14,7 +14,11 @@ Checks:
 - every entry except the index has a category from CATEGORIES;
 - first-party plugins (entry metadata.firstParty) live in ./plugins/<name>
   with docs/<name>.md, and the "toolbox" index skill lists exactly the other
-  entries, each under the heading of its category;
+  entries and the built-in capabilities, each under the heading of its category;
+- built-in capabilities (plugins/toolbox/capabilities.json, kind "built-in")
+  are not marketplace entries, have their folder with UPSTREAM.md naming the
+  reviewed commit, and reviews/<name>.md (Status: active, Kind: built-in) and
+  docs/<name>.md with the same commit;
 - no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
@@ -106,6 +110,50 @@ def check_first_party(root, name, source, errors):
         errors.append(f"'{name}': docs/{name}.md is missing")
 
 
+def check_builtins(root, entries, errors):
+    """Capabilities built into the index plugin; returns {catalog name: pseudo-entry with its category}."""
+    caps = root / "plugins" / INDEX / "capabilities.json"
+    if not caps.is_file():
+        return {}
+    data = load_json(caps, errors) or {}
+    found = {}
+    for cap in data.get("capabilities", []):
+        if not isinstance(cap, dict) or cap.get("kind") != "built-in":
+            continue
+        name = cap.get("catalog_name") or cap.get("id")
+        if not name:
+            errors.append(f"plugins/{INDEX}/capabilities.json: a built-in capability needs catalog_name")
+            continue
+        if name in entries:
+            errors.append(f"'{name}': is both a marketplace entry and a built-in capability")
+        if cap.get("category") not in CATEGORIES:
+            errors.append(f"'{name}': built-in category must be one of {sorted(CATEGORIES)}")
+        found[name] = {"category": cap.get("category")}
+        fields = review_fields(root / "reviews" / f"{name}.md")
+        if fields is None:
+            errors.append(f"'{name}': reviews/{name}.md is missing")
+            continue
+        if fields.get("Status") != "active":
+            errors.append(f"'{name}': review Status must be 'active'")
+        if fields.get("Kind") != "built-in":
+            errors.append(f"'{name}': a built-in capability needs 'Kind: built-in' in the review")
+        sha = fields.get("Commit", "")
+        if not FULL_SHA.match(sha):
+            errors.append(f"'{name}': review Commit must be the full 40-character upstream commit")
+            sha = None
+        folder = root / "plugins" / INDEX / str(cap.get("path", ""))
+        if not cap.get("path") or not folder.is_dir():
+            errors.append(f"'{name}': plugins/{INDEX}/{cap.get('path')} is missing")
+        elif not (folder / "UPSTREAM.md").is_file() or (sha and sha not in (folder / "UPSTREAM.md").read_text(encoding="utf-8")):
+            errors.append(f"'{name}': plugins/{INDEX}/{cap['path']}/UPSTREAM.md must name the reviewed upstream commit")
+        docs = root / "docs" / f"{name}.md"
+        if not docs.is_file():
+            errors.append(f"'{name}': docs/{name}.md is missing")
+        elif sha and sha not in docs.read_text(encoding="utf-8"):
+            errors.append(f"'{name}': docs/{name}.md does not mention the pinned sha")
+    return found
+
+
 def check_index(root, entries, errors):
     """The toolbox skill must list exactly the other entries, each under its category heading."""
     skill = root / "plugins" / INDEX / "skills" / INDEX / "SKILL.md"
@@ -127,7 +175,7 @@ def check_index(root, entries, errors):
         elif expected and listed[name] != expected:
             errors.append(f"'{INDEX}': SKILL.md lists '{name}' under '{listed[name]}', expected under '{expected}'")
     for name in sorted(listed.keys() - entries.keys()):
-        errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace")
+        errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace or a built-in capability")
 
 
 def check(root):
@@ -185,7 +233,9 @@ def check(root):
             errors.append(f"'{name}': docs/{name}.md does not mention the pinned sha")
 
     if INDEX in entries:
-        check_index(root, {n: e for n, e in entries.items() if n != INDEX}, errors)
+        listed = {n: e for n, e in entries.items() if n != INDEX}
+        builtins = check_builtins(root, listed, errors)
+        check_index(root, {**builtins, **listed}, errors)
 
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)

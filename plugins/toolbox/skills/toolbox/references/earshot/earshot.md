@@ -1,18 +1,16 @@
----
-name: earshot
-description: Hear sound you cannot hear, locally. Use before saying how audio sounds or fits; to choose, trim, compare or verify sound effects, music or ambience; to check a soundtrack or a video's audio against its picture (sync, loudness, mix, a launch-film scorecard); to render a film's sound effects on cue frames from a bank of 252 code-made sounds (sfx, kit, the launch preset), make or fit a sound in code (forge, fit), or build a full soundtrack from real licensed recordings (the real-sound process). Earshot runs in the executing host; the wrapper does not upload media.
----
+# Earshot in Toolbox: ears and a sound kit for an agent
 
-# Earshot: ears and a sound kit for an agent
+Read this file when a task needs Earshot. It is a capability built into Toolbox, not a separate plugin; there is
+no `earshot-audio` plugin, no Studio launcher and no other engine route to fall back to.
 
 You cannot hear. Never say how a sound sounds or that it fits without an Earshot reading behind it, and quote the
 number ("strong match, z +3.9", "p_real 0.96", "-14.2 LUFS"). Earshot 0.4.0 by Leon Lin (MIT) runs in the executing
-host on CPU; this plugin installs it from one pinned commit. No sibling plugin is required.
+host on CPU; Toolbox installs it from one pinned commit. No sibling plugin is required.
 
-`<runtime>` below is this plugin's `scripts/runtime.py`, two folders above this file (`../../scripts/runtime.py`,
-not inside this skill folder). `<skill>` is the external `real_sound_root` returned by
-`status --json` after engine setup. It is outside the plugin, under the selected runtime
-root. Resolve paths from the installed package and status; never copy paths from another host.
+`<runtime>` below is `capabilities/earshot/scripts/runtime.py` in the Toolbox plugin root, four folders above this
+file's folder (`../../../../capabilities/earshot/scripts/runtime.py`). `<plugin>` is `capabilities/earshot` there. `<skill>` is
+the external `real_sound_root` returned by `status --json` after engine setup: outside the plugin, under the selected
+runtime root. Resolve paths from the installed package and status; never copy paths from another host.
 
 ## 1. Readiness and consent (always first)
 
@@ -20,13 +18,22 @@ root. Resolve paths from the installed package and status; never copy paths from
    measure, critique --fast, sfx, kit and the real-sound scripts); `full_ready` with `models_cached` (timeline,
    sheet, describe, match, rank, find, compare, ab, realness, full critique); a task actually completed. `unavailable`
    means not installed here, not "probably works".
-2. Missing tier: show the setup plan, destination, download requirements and limits, then
-   proceed only within the user's authorized setup scope. `python3.12 <runtime> install
+2. Missing tier: show the setup plan, destination, download requirements and limits. Without `--yes` every
+   setup command prints a plan; add `--yes` only after the user accepts that plan. `python3.12 <runtime> install
    --tier light` prints a plan; adding `--yes` installs a new runtime using hash-locked
    wheels and a verified upstream snapshot. `--tier full` selects CPU PyTorch and local
    semantic models; `fetch-models --yes` separately downloads their pinned revisions.
    Source is never taken from upstream `main`. Existing nonempty runtimes are preserved;
-   choose a new `--root` for a replacement. See `references/runtime-and-evidence.md`.
+   choose a new `--root` for a replacement. See `references/earshot/runtime-and-evidence.md`.
+   An existing runtime: `status` lists other roots it finds under `candidates` (for example one an earlier Studio
+   route built in `~/.framecore-studio/extensions/earshot`) and never selects one. The user picks: `--root <path>`
+   or `EARSHOT_NATIVE_ROOT`. A root with the pinned engine but without this launcher's package locks reads
+   `unlocked_legacy`: offer a new locked root that reuses its models without a download (`fetch-models --root
+   <new> --from <old root>`, then `--yes`), or, only if the user agrees, runs on it with `--allow-unlocked`,
+   labelled in the result. A root without real-sound source can get it with `attach-source --root <root>` (adds a
+   verified `upstream/` only; `--yes` after the plan). `--root` and `--allow-unlocked` go before `run`, `python`
+   and `exec`: `python3 <runtime> --root <path> --allow-unlocked run <command> ...`; after the subcommand they
+   would reach the engine instead.
 3. For installation, model-load or render errors, read the error and `status --json`,
    identify the failed step, and report missing runtime/network requirements accurately.
 4. No shell or code execution in this host: give the plan, the exact commands and what each would prove; never
@@ -41,9 +48,10 @@ root. Resolve paths from the installed package and status; never copy paths from
   realness timeline sheet critique profile forge fit sfx kit gallery doctor`. Runs are offline.
 - Many readings in one task: models take 20-40 s to load per process, so write one short script and run it with
   `python3 <runtime> exec -I my_script.py` (`from earshot import api`, then `api.find(...)`, `api.realness(...)`).
-  `exec` is the venv interpreter with the plugin's offline model cache; never call the venv's python directly, which
-  would miss that cache and could download the models again.
-- Not in this plugin: `llm` (uploads audio to Gemini) and `mcp` (a server). The launcher refuses them, and the
+  `exec` is the venv interpreter with the runtime's offline model cache; never call the venv's python directly, which
+  would miss that cache and could download the models again. Inside a caller's task request, `envelope.py`
+  refuses `exec`: run each reading as its own `run <command>` there, and batch with `exec` only outside a task.
+- Not in Toolbox Earshot: `llm` (uploads audio to Gemini) and `mcp` (a server). The launcher refuses them, and the
   installation replaces both modules in the engine with a stub that raises an error, so those upstream entry points fail from Python
   too; Gemini keys are removed from the engine environment. `exec` runs authorized user
   Python and is not a network sandbox. `doctor --fetch` is refused too (use `fetch-models`). If someone asks
@@ -75,7 +83,7 @@ LRA, bands, onsets, tempo and key.
 yourself from local readings: `timeline`, the opened `sheet` PNG, `critique`, `measure` and `describe` or `realness` on
 the sounds you judge, then sync, realism, mix, loudness and the cheap tells, each tied to a number, and fixes by
 impact. Say it is a review written from readings, not a listening test. Steps and criteria:
-`references/written-critique.md`. The review uses local measurements rather than upstream's hosted audio-critique route;
+`references/earshot/written-critique.md`. The review uses local measurements rather than upstream's hosted audio-critique route;
 no additional provider key is required.
 
 **A/B a change.** `ab before.wav after.wav --query "..."` or `--refs`, with trims for multi-take files, then
@@ -122,10 +130,10 @@ real.
 ## 5. A soundtrack from real recordings (real-sound)
 
 Follow `<skill>/references/process.md` and the prompt briefs in `<skill>/templates/prompts/`. Upstream pages that install
-the repository with pip or call `python -m earshot ...` (for example `references/troubleshooting.md`) mean this
-plugin's `python3 <runtime> install` and `python3 <runtime> exec -m earshot ...`: never install another engine. In those files
+the repository with pip or call `python -m earshot ...` (for example upstream `<skill>/references/troubleshooting.md`) mean
+`python3 <runtime> install` and `python3 <runtime> exec -m earshot ...`: never install another engine. In those files
 `{{PY}}` means `python3 <runtime> exec`: fill it in that way, also in briefs handed to other agents, so every
-script and every `-m earshot <command>` runs offline from the plugin's cache and through the allowlist.
+script and every `-m earshot <command>` runs offline from the runtime's cache and through the allowlist.
 
 Steps: cue list from the picture (`templates/cues.json`), brief (`templates/SOUND_BRIEF.md`), recordings, licence
 audit, music edit at bar lines (`arrange.py`), design fragments, integrate and QA (`mix.py`, `qa.py --layers`,
@@ -143,20 +151,25 @@ input data and does not prove that a named plugin ran. Technical-only, unknown, 
 SA records are outside this adapter's accepted source policy. Retain the source page and
 record actual licence review separately. Run `python3 <runtime> python audit.py ...` and
 `credits.py` on supplied files; `audit.py --fetch` is refused. Do not publish or upload
-recordings as part of a local sound task. See `references/source-records.md`.
+recordings as part of a local sound task. See `references/earshot/source-records.md`.
 
 ## 6. Returning results to the caller
 
-Return, for each result: the engine that produced it (this plugin, a pinned Earshot command line, or another tool),
+For a caller's `framecore-task-request/1`, run each operation through the envelope runner and return the file it
+writes: `python3 <plugin>/scripts/envelope.py --result-out <new file> --task-id <id> --requester <plugin>
+[--input <file>]... [--output <file>]... -- <runtime arguments>`. It keeps the launcher's exit code, hashes the
+declared files, records readiness and warnings, and maps a plan without `--yes` to `needs_consent`.
+
+Return, for each result: the engine (the Toolbox Earshot launcher, its root path and state; label `unlocked_legacy` runs),
 the commands run, WAV paths with SHA-256, `kit.lock.json`, measured onset, peak and end, the readings with their
 numbers, and what was not run. The project's editor keeps the master timeline: convert a zero-based
 frame as `frame * fps_den / fps_num` seconds and place a take at `round(t * rate) - round(anchor * rate)` samples;
 Earshot 0.4.0 reads a numeric fps in cue files, so pass seconds with rational FPS kept in the project. The project's
-owner keeps the brief, approvals and final review. Details: `references/handoff.md`.
+owner keeps the brief, approvals and final review. Details: `references/earshot/handoff.md`.
 
 ## 7. Limits (say them when they matter)
 
 Taste is not measured: Earshot says what a sound is and how it measures, not whether it is right for the story. No
 speech recognition. CLAP hears about 50 Hz to 14 kHz and AST up to 8 kHz. Picture cuts come from a frame-difference
 detector: pass cues for animation. Model scores never prove a licence or where a recording came from. Upstream's
-full listening workflows: `references/listening.md`.
+full listening workflows: `references/earshot/listening.md`.

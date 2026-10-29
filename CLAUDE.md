@@ -27,7 +27,8 @@ upstream pinning, reviews and the no-upstream-copy rule continue to apply.
 
 Repository packaging/installation helpers are maintainer tooling, outside the
 installed catalog. They make no network requests. The catalog plugin itself
-still has no scripts, hooks, engines or servers. Write generated ZIPs outside
+has no hooks, MCP servers or bundled engines; its only scripts are the built-in
+Earshot capability's (see below). Write generated ZIPs outside
 this repository. Run the portable package check alongside the existing checks.
 
 ## Layout
@@ -114,6 +115,20 @@ keeps the verified source outside it, installs hash-locked wheels only after
 consent, and preserves existing runtimes. Do not generalize this exception to
 other catalog entries. Studio remains the owner of cross-plugin orchestration.
 
+## Built-in capabilities (owner decisions D-1..D-8, 2026-10-29)
+
+Since Toolbox 1.1.0 Earshot is a capability built into the `toolbox` plugin, not
+a separate plugin: launcher, locks and pins in `plugins/toolbox/capabilities/earshot/`,
+instructions in `plugins/toolbox/skills/toolbox/references/earshot/` (no second
+skill), discovery in `plugins/toolbox/capabilities.json`, and the shared contract
+schema in `plugins/toolbox/contracts/` (byte-identical with Creative Studio and Open
+Assets; its SHA-256 is pinned in `scripts/package_plugins.py`). Its tests live in
+`tests/earshot/` and need Python 3.12. The catalog identity `earshot-audio` stays,
+with its review (`Kind: built-in`) and docs; it is listed in the index but is not a
+marketplace entry. There is no separate `earshot-audio` package, no fallback
+route and no compatibility forwarder. Toolbox never invokes Studio, Open Assets
+or a catalog entry; it returns `framecore-task-result/1` to a caller.
+
 ## Categories
 
 Every entry except the `toolbox` index has a `category` in the manifest, and
@@ -181,14 +196,15 @@ Rules for both forms:
 Plugins written here with no upstream, marked in the manifest entry with
 `"metadata": {"firstParty": true}` and the local source `./plugins/<name>`.
 They need `docs/<name>.md` but no review or commit pin. No hooks, scripts or
-network unless the owner asks for them.
+network unless the owner asks for them (the owner asked for the built-in
+Earshot capability above).
 
 - `toolbox`: the index. Its skill
   `plugins/toolbox/skills/toolbox/SKILL.md` holds the catalog, one table per
   category (one row per other entry, name in backticks in the first column,
   one-sentence purpose) and short "Use" and "Watch out" notes. Every entry added, updated or removed changes this file
   in the same commit; `scripts/check_marketplace.py` fails when the table and
-  the manifest differ.
+  the manifest plus built-in capabilities differ.
 
 ## Update and removal
 
@@ -208,8 +224,7 @@ network unless the owner asks for them.
 python3 -m unittest discover -s tests
 python3 scripts/check_marketplace.py
 python3 scripts/package_plugins.py --check
-python3 scripts/package_plugins.py --plugin earshot-audio --check
-python3 -m unittest discover -s plugins/earshot-audio/tests -p '*_test.py'
+python3.12 -m unittest discover -s tests/earshot -p '*_test.py'
 claude plugin validate .
 ```
 

@@ -44,7 +44,7 @@ explicitly with `/toolbox:toolbox`.
 
 ## Maintenance
 
-Current inventory: 17 tools plus this index, 18 marketplace entries. The owner's
+Current inventory: 17 tools (16 marketplace entries plus Earshot, built in) and this index; 17 marketplace entries. The owner's
 admission rule accepts only tools, assets and repositories with a fully demonstrated
 improvement to FrameCore repositories. New admissions and future updates document
 the affected repository/task, concrete benefit and verification using the
@@ -53,7 +53,8 @@ the affected repository/task, concrete benefit and verification using the
 Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
-`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.0.3` (portable releases started at `1.0.0`). Keep the version and identity
+Built-in capabilities from `plugins/toolbox/capabilities.json` are listed there too.
+`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.1.0` (portable releases started at `1.0.0`). Keep the version and identity
 synchronized across the three plugin manifests and its marketplace entry. After
 a package change, rebuild its ZIP and update the existing installation using
 the selected host guide. In Claude use Check for updates or
@@ -64,4 +65,5 @@ the selected host guide. In Claude use Check for updates or
 Remove it through the actual host plugin controls. For the native Codex entry,
 inspect its installation receipt and remove only the catalog entry and bundle.
 In Claude, remove it in Customize > Plugins, or run
-`claude plugin uninstall toolbox@framecore-works-toolbox`. It leaves no files.
+`claude plugin uninstall toolbox@framecore-works-toolbox`. The plugin leaves no files; an Earshot
+runtime folder the user set up is separate and stays until removed on request.

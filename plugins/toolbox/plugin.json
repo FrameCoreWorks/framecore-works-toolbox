@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "toolbox",
-  "version": "1.0.3",
-  "description": "Browse reviewed FrameCore Works tools by task and check their installation route and host requirements.",
+  "version": "1.1.0",
+  "description": "Browse reviewed FrameCore Works tools by task, check their installation route, and run the built-in Earshot audio capability.",
   "author": {
     "name": "FrameCore Works",
     "url": "https://github.com/FrameCoreWorks"
@@ -18,7 +18,7 @@
       "interface": {
         "displayName": "FrameCore Works Toolbox",
         "shortDescription": "Reviewed tools by task",
-        "longDescription": "Browse the FrameCore Works tool catalog in Claude, ChatGPT Work or Codex. Choose tools by task and check their host-specific installation notes. Catalog entries are independently installed; their runtime compatibility is verified separately.",
+        "longDescription": "Browse the FrameCore Works tool catalog in Claude, ChatGPT Work or Codex. Choose tools by task and check their host-specific installation notes. Catalog entries are independently installed; their runtime compatibility is verified separately. Earshot (local audio measurement, selection and sound kits) is built in and needs a consented, pinned local setup.",
         "developerName": "FrameCore Works",
         "category": "Productivity",
         "capabilities": [],

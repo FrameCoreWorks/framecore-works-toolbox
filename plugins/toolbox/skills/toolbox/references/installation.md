@@ -2,7 +2,10 @@
 
 Use the actual current host. Never infer that a tool is installed because it
 appears in this catalog. The catalog plugin is independent of Creative Studio
-and all listed tools. It contains no installers, hooks, MCP servers or engines.
+and all listed tools. It contains no hooks or MCP servers. It does contain the
+built-in Earshot launcher: a pinned, standard-library script that installs the
+Earshot engine into a separate local runtime folder only after the user agrees
+to its printed plan. Installing Toolbox does not install the engine or models.
 
 | Host | Catalog installation | An individual tool |
 | --- | --- | --- |

@@ -1,0 +1,104 @@
+{
+  "schema": "framecore-capabilities/1",
+  "plugin": {
+    "name": "toolbox",
+    "version": "1.1.0"
+  },
+  "entry_skill": "skills/toolbox/SKILL.md",
+  "contract_versions": [
+    "1"
+  ],
+  "contract_schema": {
+    "path": "contracts/framecore-task.schema.json",
+    "sha256": "e7cc0f4e612395768e8c8c6cf2a033a555bc69b4c8ea5ca45c4db019a342897a"
+  },
+  "capabilities": [
+    {
+      "id": "earshot",
+      "kind": "built-in",
+      "catalog_name": "earshot-audio",
+      "category": "creative",
+      "path": "capabilities/earshot",
+      "instructions": "skills/toolbox/references/earshot/earshot.md",
+      "launcher": "capabilities/earshot/scripts/runtime.py",
+      "envelope": "capabilities/earshot/scripts/envelope.py",
+      "operations": [
+        "status",
+        "plan_install",
+        "install",
+        "plan_fetch_models",
+        "fetch_models",
+        "plan_reuse_models",
+        "reuse_models",
+        "plan_attach_source",
+        "attach_source",
+        "run",
+        "real_sound_script"
+      ],
+      "user_only_operations": [
+        "exec"
+      ],
+      "run_commands": [
+        "ab",
+        "compare",
+        "critique",
+        "describe",
+        "doctor",
+        "find",
+        "fit",
+        "forge",
+        "gallery",
+        "kit",
+        "match",
+        "measure",
+        "profile",
+        "rank",
+        "realness",
+        "sfx",
+        "sheet",
+        "timeline"
+      ],
+      "readiness_command": "python3 capabilities/earshot/scripts/runtime.py status --json",
+      "readiness_states": [
+        "ready_full",
+        "ready_light",
+        "unlocked_legacy",
+        "unavailable",
+        "blocked_host"
+      ],
+      "consent_required": [
+        "install",
+        "fetch_models",
+        "reuse_models",
+        "attach_source",
+        "run on unlocked_legacy (--allow-unlocked)"
+      ],
+      "upstream": {
+        "repository": "https://github.com/Leonxlnx/earshot",
+        "tag": "v0.4.0",
+        "commit": "591fa3e028032e6dce56620a20e932e35667e8d8"
+      },
+      "requirements": {
+        "launcher": "any python3 (standard library)",
+        "setup": "CPython 3.12",
+        "light": "about 200 MB",
+        "full": "about 1.5 GB plus about 1.1 GB models",
+        "api_keys": "none"
+      },
+      "network": {
+        "status": "none",
+        "runs": "offline",
+        "setup": "GitHub, PyPI and files.pythonhosted.org; full tier download.pytorch.org; models Hugging Face",
+        "refused": [
+          "llm (audio upload)",
+          "mcp (server)",
+          "doctor --fetch",
+          "audit.py --fetch"
+        ]
+      },
+      "separate_tools": {
+        "import_source_record": "capabilities/earshot/scripts/import_source_record.py"
+      }
+    }
+  ]
+}

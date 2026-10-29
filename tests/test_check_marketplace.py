@@ -175,6 +175,57 @@ class CheckMarketplaceTest(unittest.TestCase):
         (self.root / "docs/toolbox.md").write_text("Toolbox index\n")
         return {"name": "toolbox", "source": "./plugins/toolbox", "metadata": {"firstParty": True}}
 
+    def write_builtin(self, name="sound", sha=SHA, kind="built-in", folder="capabilities/sound"):
+        """A capability built into the toolbox plugin: listed in capabilities.json, not in the marketplace."""
+        plugin = self.root / "plugins/toolbox"
+        (plugin / folder).mkdir(parents=True, exist_ok=True)
+        (plugin / folder / "UPSTREAM.md").write_text(f"Upstream acme/sound at {sha}\n")
+        caps = {"schema": "framecore-capabilities/1", "capabilities": [
+            {"id": "sound", "kind": "built-in", "catalog_name": name, "category": "creative", "path": "capabilities/sound"}]}
+        (plugin / "capabilities.json").write_text(json.dumps(caps))
+        (self.root / f"reviews/{name}.md").write_text(review_text(name, sha, kind=kind, eligibility="built into toolbox"))
+        (self.root / f"docs/{name}.md").write_text(f"Pinned commit: {sha}\n")
+
+    def write_creative_row(self, name="sound"):
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text() + f"| `{name}` | built in |\n")
+
+    def test_builtin_capability_listed_in_index_passes(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_builtin()
+        self.write_creative_row()
+        self.assertEqual(self.errors(), [])
+
+    def test_index_must_list_builtin_capability(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_builtin()
+        self.assert_error("does not list 'sound'")
+
+    def test_builtin_capability_must_not_also_be_a_marketplace_entry(self):
+        self.write_manifest([self.write_index(listed=("demo", "sound")), entry(), entry("sound")])
+        self.write_entry_files()
+        self.write_builtin()
+        self.assert_error("both a marketplace entry and a built-in capability")
+
+    def test_builtin_capability_needs_its_folder_and_reviewed_commit(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_builtin()
+        self.write_creative_row()
+        (self.root / "plugins/toolbox/capabilities/sound/UPSTREAM.md").write_text(f"Upstream at {OTHER_SHA}\n")
+        self.assert_error("UPSTREAM.md must name the reviewed upstream commit")
+        shutil.rmtree(self.root / "plugins/toolbox/capabilities/sound")
+        self.assert_error("capabilities/sound is missing")
+
+    def test_builtin_capability_review_kind_and_status(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_builtin(kind="adapted")
+        self.write_creative_row()
+        self.assert_error("'Kind: built-in'")
+
     def test_first_party_index_passes(self):
         self.write_manifest([self.write_index(), entry()])
         self.write_entry_files()

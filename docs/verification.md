@@ -1,5 +1,27 @@
 # Portable catalog verification
 
+## Toolbox 1.1.0, Earshot built in — 2026-10-29
+
+Baseline: GitHub `main` before this release. Source checks PASS: 44 repository
+tests (`python3 -m unittest discover -s tests`), 52 Earshot tests on Python 3.12
+(`tests/earshot/`: 24 moved, 15 capability including the import guard, 13 envelope), marketplace
+check (17 entries), portable package check, `claude plugin validate .`.
+The Toolbox ZIP has 30 files, one skill, the capability, the contract schema
+(SHA-256 `e7cc0f4e612395768e8c8c6cf2a033a555bc69b4c8ea5ca45c4db019a342897a`) and
+the Leon Lin attribution; ZIP SHA-256
+`1ffcd5f312465a6ff1db62399c78c992525635ff77b9e860b1cd8e4369978695`. Code review (0 blockers; 3 important and 7 of 9 minor fixed; kept: origin wording, stale lock-file
+header comments kept byte-identical), plugin validator PASS and skill review fixes applied.
+
+Isolated Claude config: marketplace add and `toolbox` install PASS at 1.1.0, the
+cached package contains `capabilities/earshot/scripts/runtime.py`; installing
+`earshot-audio` fails as expected (not in the marketplace). Unmocked envelope run
+of `status` on an empty root: `succeeded`, readiness `unavailable`, nothing
+written to the root; `install --tier light` without `--yes`: `needs_consent`.
+
+NOT_RUN: engine installation, model reuse on a real root (owner's Mac root),
+full-tier inference, fresh client invocations in Claude apps, ChatGPT Work and
+Codex. Saved Work update: pending (prompt in the shared handover folder).
+
 ## Catalog cleanup 1.0.3 — 2026-10-28
 
 Owner-approved removal: 33 entries before, 18 after (17 tools plus the index).

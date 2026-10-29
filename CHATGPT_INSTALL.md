@@ -36,12 +36,10 @@ installed tools or their data.
 
 ## Earshot Audio
 
-Build separately with `--plugin earshot-audio`; the output is
-`earshot-audio-1.2.0.zip`. On an explicit Work installation/update request, inspect
-the existing owned Earshot Audio identity and current release before saving.
-Do not create a duplicate or assume a repository update updates the saved Work
-plugin. A full migration from Work 1.1.0 must explicitly remove the observed old
-vendored-source and copied real-sound paths: omitted files are otherwise retained.
-Preserve user overlays, use the current release guard, read back the complete
-inventory and confirm the one active Earshot skill. Runtime/model setup remains
-separate. See [Earshot setup](docs/earshot-audio.md).
+Since Toolbox 1.1.0 Earshot is built into the Toolbox ZIP (`capabilities/earshot/`
+and `skills/toolbox/references/earshot/`); there is no separate Earshot package to
+build. Updating the saved Toolbox plugin adds it. A saved standalone Earshot Audio
+plugin (Work 1.1.0) is a separate identity: once Toolbox 1.1.0 is saved and read
+back, retire it only on the owner's explicit request, with its exact observed
+paths and the current release guard. Runtime/model setup remains separate and
+existing runtime folders are kept. See [Earshot setup](docs/earshot-audio.md).

@@ -1,6 +1,6 @@
 # Listening workflows in full
 
-Restated from upstream Earshot 0.4.0 for this plugin. Run every command as `python3 <runtime> run <command> ...`.
+Restated from upstream Earshot 0.4.0 for Toolbox Earshot. Run every command as `python3 <runtime> run <command> ...`.
 
 ## Choosing an asset
 

@@ -1,5 +1,23 @@
 # Changes
 
+## Toolbox 1.1.0 — 2026-10-29
+
+Earshot becomes a capability built into Toolbox (owner decisions D-1..D-8):
+
+- Launcher, locks, pins and attribution move to `plugins/toolbox/capabilities/earshot/`;
+  instructions to the Toolbox skill's `references/earshot/`; tests to `tests/earshot/`.
+- The separate `earshot-audio` plugin and its marketplace object are removed in this
+  release. The catalog name, review and docs stay; the index lists it as built in.
+- Launcher: Toolbox version and `toolbox/earshot:` messages; `status` reports
+  `lock_conformance` and read-only `candidates`; new `unlocked_legacy` state with
+  `--allow-unlocked`; `fetch-models --from` (model reuse, no download) and
+  `attach-source` (verified `upstream/` only), both plans until `--yes`.
+- New `envelope.py` writes a validated `framecore-task-result/1`; new
+  `capabilities.json` and the shared contract schema (SHA-256 `e7cc0f4e…897a`).
+- Source-record outputs are refused anywhere inside the Toolbox plugin.
+- Checks: the index may list built-in capabilities; the package check validates
+  `capabilities.json` and the schema hash. CI runs the Earshot tests on Python 3.12.
+
 ## Toolbox catalog 1.0.3 — 2026-10-28
 
 Owner-approved complete removal (historical record):
