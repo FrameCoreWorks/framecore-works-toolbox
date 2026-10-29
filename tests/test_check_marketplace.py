@@ -356,6 +356,23 @@ class CheckMarketplaceTest(unittest.TestCase):
         (self.root / "docs/toolbox.md").write_text("x\n")
         self.assert_error("./plugins/toolbox")
 
+    def write_local_skill(self, description, plugin="toolbox", skill="toolbox"):
+        path = self.root / "plugins" / plugin / "skills" / skill / "SKILL.md"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"---\nname: {skill}\ndescription: >\n  {description}\n---\n\nBody\n")
+
+    def test_local_skill_description_within_claude_ai_limit_passes(self):
+        self.write_local_skill("x" * 1024)
+        self.assertEqual(self.errors(), [])
+
+    def test_local_skill_description_over_1024_fails(self):
+        self.write_local_skill("x" * 1025)
+        self.assert_error("1024")
+
+    def test_local_skill_description_with_angle_brackets_fails(self):
+        self.write_local_skill("Run it on a <path> you name.", plugin="rea", skill="rea")
+        self.assert_error("angle brackets")
+
     def test_committed_zip_fails(self):
         (self.root / "docs/skill.zip").write_bytes(b"PK")
         self.assert_error("ZIP")

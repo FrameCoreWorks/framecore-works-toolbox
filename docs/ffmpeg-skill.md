@@ -1,20 +1,28 @@
-# ffmpeg-skill: installation and use
+# ffmpeg-skill: app note
 
 - Upstream: https://github.com/kajisho5/ffmpeg-skill
 - Pinned commit: `1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff` (version 2.17.3, MIT).
 - Review: [reviews/ffmpeg-skill.md](../reviews/ffmpeg-skill.md).
 
-## Installation
+## Install in Claude Code (by hand)
 
-The Toolbox catalog lists this independently installed original; selecting or
-installing the catalog does not install ffmpeg-skill, FFmpeg, models or MCP.
+claude.ai and Cowork refuse plugins with a top-level `bin/`, and this upstream
+ships one, so it is an app note, not a marketplace entry: the Toolbox
+marketplace does not install it. In Claude Code, clone it at the pinned commit
+and add the clone as its own marketplace:
 
-For Claude's marketplace, the entry is `ffmpeg-skill@framecore-works-toolbox`.
-The upstream ships its own Claude plugin manifest and marketplace, and this
-catalog pins the complete original repository. Native marketplace installation
-and skill discovery have not been tested in this session. The upstream has a
-top-level `bin/`; claude.ai / Cowork compatibility is unknown. Do not claim an
-installation succeeded until the host shows the actual installed skill.
+```bash
+git clone https://github.com/kajisho5/ffmpeg-skill ~/.claude/framecore-apps/ffmpeg-skill
+git -C ~/.claude/framecore-apps/ffmpeg-skill checkout 1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff
+claude plugin marketplace add ~/.claude/framecore-apps/ffmpeg-skill
+claude plugin install ffmpeg-skill@ffmpeg-skill
+```
+
+Tested 2026-10-29 in an isolated Claude Code 2.1.312 config: the plugin
+installed and was enabled at the pinned version. A newer upstream commit needs
+a new review before you move the checkout.
+
+## Other hosts
 
 For Codex or another local skill host, use the upstream's documented native
 skill installer from a checkout verified at the pinned commit. Select and
@@ -52,7 +60,9 @@ When used with FrameCut, Studio owns the accepted board and master timeline.
 
 ## Full removal
 
-Remove the selected entry through the host's own plugin or skill removal route.
+In Claude Code: `claude plugin uninstall ffmpeg-skill@ffmpeg-skill`, then
+`claude plugin marketplace remove ffmpeg-skill` and delete
+`~/.claude/framecore-apps/ffmpeg-skill`. On other hosts use their own removal route.
 For a manual upstream native skill installation, inspect its recorded target
 and remove only the installed `ffmpeg-skill` directory when authorized; the
 installer's `--uninstall` targets are host-specific. Separately review any MCP

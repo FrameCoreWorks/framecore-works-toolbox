@@ -1,5 +1,23 @@
 # Changes
 
+## Toolbox 1.2.3 — 2026-10-29
+
+Trigger: the owner's claude.ai marketplace sync at `47e9378` skipped two plugins and
+reported five warnings.
+
+- `ffmpeg-skill` and `pixel-plugin` move from the marketplace to app notes at the same
+  pins: both upstreams ship a top-level `bin/`, which claude.ai and Cowork refuse, and no
+  upstream commit drops it (`ffmpeg-skill` main at `432cc1b` still has `bin/install.js`).
+  They stay in the catalog with manual Claude Code install steps (a clone at the pin added
+  as its own marketplace), tested in an isolated Claude Code config. 20 tools plus the
+  index: 21 marketplace entries; four app notes.
+- The `toolbox` skill description is shortened to 1,018 characters (claude.ai cuts at 1,024).
+- `scripts/check_marketplace.py` now fails when a skill under `plugins/` has a description
+  over 1,024 characters or with angle brackets.
+- Not fixed here, upstream only and harmless: `motion-designer`'s `plugin.json` carries a
+  `$schema` key (claude.ai drops it) and `hallmark`'s skill description contains
+  placeholders such as `<path>` (claude.ai strips the brackets). Both plugins sync and work.
+
 ## Toolbox 1.2.2 — 2026-10-29
 
 - App note `scenario-kinetic-film` removed (owner decision 2026-10-29): it needs a Scenario

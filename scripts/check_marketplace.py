@@ -23,6 +23,8 @@ Checks:
   not plugins) are not marketplace entries, have a category, a pin (full
   commit SHA or sha256:<hex>), reviews/<name>.md (Status: active, Kind: app,
   Pin: <same pin>) and docs/<name>.md naming the pin, and are listed in the index;
+- every SKILL.md under plugins/ has a description of at most 1024 characters
+  without angle brackets (claude.ai cuts or strips anything else on sync);
 - no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
@@ -43,6 +45,8 @@ INDEX_ROW = re.compile(r"^\|\s*`([a-z0-9][a-z0-9._-]*)`\s*\|", re.MULTILINE)
 INDEX = "toolbox"
 HEADING = re.compile(r"^#+\s*(.+?)\s*$")
 # Entry "category" slug -> heading in the toolbox index. Add new categories here and in CLAUDE.md.
+# claude.ai keeps at most this many description characters and strips angle brackets.
+DESCRIPTION_LIMIT = 1024
 CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools", "marketing": "Marketing & growth"}
 
 
@@ -234,6 +238,42 @@ def check_index(root, entries, errors):
         errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace, a built-in capability or an app note")
 
 
+def skill_description(text):
+    """The frontmatter description of a SKILL.md, folded the way YAML folds '>' blocks."""
+    lines = text.split("\n")
+    if not lines or lines[0].strip() != "---":
+        return None
+    for i, line in enumerate(lines[1:], 1):
+        if line.strip() == "---":
+            return None
+        if not line.startswith("description:"):
+            continue
+        value = line[len("description:"):].strip()
+        if value[:1] in (">", "|"):
+            block = []
+            for nxt in lines[i + 1:]:
+                if nxt and not nxt[0].isspace():
+                    break
+                block.append(nxt.strip())
+            joiner = " " if value[0] == ">" else "\n"
+            return joiner.join(part for part in block if part)
+        return value.strip("'\"")
+    return None
+
+
+def check_skill_descriptions(root, errors):
+    """claude.ai cuts descriptions over the limit and strips angle brackets on sync."""
+    for skill in sorted((root / "plugins").glob("*/skills/*/SKILL.md")):
+        rel = skill.relative_to(root)
+        description = skill_description(skill.read_text(encoding="utf-8"))
+        if description is None:
+            continue
+        if len(description) > DESCRIPTION_LIMIT:
+            errors.append(f"{rel}: description has {len(description)} characters; claude.ai keeps at most {DESCRIPTION_LIMIT}")
+        if "<" in description or ">" in description:
+            errors.append(f"{rel}: description must not contain angle brackets (claude.ai strips them)")
+
+
 def check(root):
     root = Path(root)
     errors = []
@@ -293,6 +333,8 @@ def check(root):
         builtins = check_builtins(root, listed, errors)
         apps = check_apps(root, {**listed, **builtins}, errors)
         check_index(root, {**apps, **builtins, **listed}, errors)
+
+    check_skill_descriptions(root, errors)
 
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)

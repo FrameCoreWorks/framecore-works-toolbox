@@ -1,5 +1,16 @@
 # Portable catalog verification
 
+## Toolbox 1.2.3, claude.ai sync fixes — 2026-10-29
+
+Baseline: GitHub `main` at `47e9378`. Owner's claude.ai sync at that commit: 2 plugins skipped
+(`ffmpeg-skill`, `pixel-plugin`: top-level `bin/`), 5 warnings (`toolbox` description over 1,024
+characters; `motion-designer` `$schema`; `hallmark` angle brackets). Source checks PASS: 55
+repository tests, 52 Earshot tests on Python 3.12, marketplace check (21 entries), portable
+package check for `toolbox` 1.2.3, `claude plugin validate .` and `plugins/toolbox`;
+`toolbox` 1.2.3 installed in an isolated Claude config; manual Claude Code install of both
+new app notes from a clone at the pin PASS in an isolated config. claude.ai re-sync after
+the push: NOT_RUN at commit time.
+
 ## Toolbox 1.2.2, app note scenario-kinetic-film removed — 2026-10-29
 
 Baseline: GitHub `main` at `a656a4a`. Source checks PASS: repository tests, Earshot tests on

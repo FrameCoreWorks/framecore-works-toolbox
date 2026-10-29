@@ -14,18 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.2.2"
-    },
-    {
-      "name": "ffmpeg-skill",
-      "description": "Local FFmpeg media tools for synchronized recordings, multicam, HDR-to-SDR conversion and video/audio preparation.",
-      "version": "2.17.3",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "kajisho5/ffmpeg-skill",
-        "sha": "1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff"
-      }
+      "version": "1.2.3"
     },
     {
       "name": "animate",
@@ -208,17 +197,6 @@
         "./steve-jobs-design-review"
       ],
       "strict": false
-    },
-    {
-      "name": "pixel-plugin",
-      "description": "Pixel art drawn in Aseprite from a conversation: canvases, layers, palettes, dithering, frame animation and export to PNG, GIF and spritesheets.",
-      "version": "0.5.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "willibrandon/pixel-plugin",
-        "sha": "dee350645b705916655c013f208bf5580ecb9317"
-      }
     },
     {
       "name": "taste-skill",

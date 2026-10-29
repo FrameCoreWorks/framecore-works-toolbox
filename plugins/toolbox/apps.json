@@ -1,7 +1,21 @@
 {
   "schema": "framecore-toolbox-apps/1",
-  "note": "Desktop apps and skill archives that are not plugins: listed for discovery with manual install steps in docs/<name>.md; Toolbox installs none of them.",
+  "note": "Desktop apps, skill archives and plugins that claude.ai and Cowork cannot host: listed for discovery with manual install steps in docs/<name>.md; Toolbox installs none of them.",
   "apps": [
+    {
+      "name": "ffmpeg-skill",
+      "category": "creative",
+      "upstream": "https://github.com/kajisho5/ffmpeg-skill",
+      "pin": "1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff",
+      "version": "2.17.3"
+    },
+    {
+      "name": "pixel-plugin",
+      "category": "creative",
+      "upstream": "https://github.com/willibrandon/pixel-plugin",
+      "pin": "dee350645b705916655c013f208bf5580ecb9317",
+      "version": "0.5.0"
+    },
     {
       "name": "voicebox",
       "category": "creative",

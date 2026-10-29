@@ -9,9 +9,10 @@
 - License: MIT
 - Commit: 1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff
 - Upstream version: 2.17.3
-- Kind: plugin
-- Eligibility: upstream `.claude-plugin/plugin.json` and documented native `SKILL.md`
-- Source: github
+- Kind: app
+- Pin: 1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff
+- Eligibility: app note: a Claude plugin with a top-level `bin/`, which claude.ai and Cowork refuse; listed in plugins/toolbox/apps.json with manual Claude Code install steps, never installed from the marketplace
+- Source: none (manual Claude Code install from a clone at the pin)
 - Reviewed on: 2026-10-28
 - Reviewer: ChatGPT Work for Kamil, FrameCore Works
 - Owner approval: yes, 2026-10-28: "dolaczamy gfo do toolboxa"
@@ -93,3 +94,4 @@ The catalog entry itself is not proof of a working marketplace installation.
 ## History
 
 - 2026-10-28: added at `1ae1bdf` after owner request.
+- 2026-10-29: moved to an app note (Toolbox 1.2.3). claude.ai and Cowork skip any plugin with a top-level `bin/` (marketplace sync at 47e9378, 2026-10-29), so the entry moved from the marketplace to an app note installed by hand in Claude Code at the same pin; the upstream still ships `bin/` (ffmpeg-skill main at 432cc1b; pixel-plugin unchanged since dee3506). Manual install test: `claude plugin marketplace add` of a clone at the pin, then `claude plugin install ffmpeg-skill@ffmpeg-skill`, PASS in an isolated Claude Code 2.1.312 config (2026-10-29); plugin enabled at the pinned version.

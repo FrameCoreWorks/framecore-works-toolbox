@@ -9,9 +9,10 @@
 - License: MIT
 - Commit: dee350645b705916655c013f208bf5580ecb9317
 - Upstream version: 0.5.0
-- Kind: plugin
-- Eligibility: upstream ships .claude-plugin/plugin.json and its own marketplace.json
-- Source: github
+- Kind: app
+- Pin: dee350645b705916655c013f208bf5580ecb9317
+- Eligibility: app note: a Claude plugin with a top-level `bin/`, which claude.ai and Cowork refuse; listed in plugins/toolbox/apps.json with manual Claude Code install steps, never installed from the marketplace
+- Source: none (manual Claude Code install from a clone at the pin)
 - Reviewed on: 2026-10-29
 - Reviewer: Claude (cloud orchestration thread), carrying over the Creative Studio registry review at the same commit
 - Owner approval: "yes" from Kamil on 2026-10-29 (decision card "Przenieść wszystko do Toolboxa", then "decyzje są już podjęte" accepting the move list)
@@ -72,3 +73,4 @@ accept with conditions: Claude Code only, Aseprite required, binaries unverified
 ## History
 
 - 2026-10-29: added at dee3506, moved from Creative Studio's recommended extensions.
+- 2026-10-29: moved to an app note (Toolbox 1.2.3). claude.ai and Cowork skip any plugin with a top-level `bin/` (marketplace sync at 47e9378, 2026-10-29), so the entry moved from the marketplace to an app note installed by hand in Claude Code at the same pin; the upstream still ships `bin/` (ffmpeg-skill main at 432cc1b; pixel-plugin unchanged since dee3506). Manual install test: `claude plugin marketplace add` of a clone at the pin, then `claude plugin install pixel-plugin@pixel-plugin`, PASS in an isolated Claude Code 2.1.312 config (2026-10-29); plugin enabled at the pinned version.

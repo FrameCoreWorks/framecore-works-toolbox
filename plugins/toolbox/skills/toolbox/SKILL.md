@@ -3,19 +3,18 @@ name: toolbox
 description: >
   Lists the plugins in the FrameCore Works toolbox across Claude, ChatGPT Work
   and Codex, from FrameCoreWorks/framecore-works-toolbox, grouped by category
-  (Creative, Dev tools, Marketing & growth) with a one-line description of each. Use when the user
-  types "toolbox", "/toolbox", "show toolbox", "co jest w toolboxie", "lista
-  toolbox", or asks which extra plugins or skills the toolbox has. Also
-  load it first for a bare invocation of the FrameCore Works Toolbox plugin
-  (an @FrameCore Works Toolbox mention with no other text, or a message that
-  arrives empty with this plugin attached): answer with the catalog, never
-  with "your message was empty". "Toolbox" here always means this plugin
-  catalog, never a list of the host's own tools or connectors. Also the
-  entry for Earshot, a local audio capability built into Toolbox: measuring
-  loudness (LUFS, true peak), choosing or comparing sound effects, checking
-  audio-to-picture sync, rendering cue effects from its sound bank, and
-  Earshot task requests from Creative Studio. Not for music composition,
-  voice-over, video editing or other creative production.
+  (Creative, Dev tools, Marketing & growth) with a one-line description of
+  each. Use when the user types "toolbox", "/toolbox", "show toolbox", "co jest
+  w toolboxie", "lista toolbox", or asks which extra plugins or skills the
+  toolbox has. Also load it first for a bare invocation of this plugin (an
+  @FrameCore Works Toolbox mention with no other text, or an empty message
+  with this plugin attached): answer with the catalog, never with "your message
+  was empty". "Toolbox" always means this catalog, never the host's own tools
+  or connectors. Also the entry for Earshot, the local audio capability built
+  into Toolbox: loudness (LUFS, true peak), choosing or comparing sound
+  effects, audio-to-picture sync, cue effects from its sound bank, and Earshot
+  task requests from Creative Studio. Not for music composition, voice-over,
+  video editing or other creative production.
 ---
 
 # Toolbox
@@ -104,7 +103,6 @@ read that file before any Earshot step. Discovery for other plugins is
 | Plugin | What it is for | Works in |
 | ------ | -------------- | -------- |
 | `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Built into Toolbox; not a separate install. Engine setup requires Python 3.12 and a consented local install; fresh host activation NOT_RUN |
-| `ffmpeg-skill` | Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Python and FFmpeg required; isolated skill-directory install tested; native client activation NOT_RUN |
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Chat, Cowork and Claude Code (scripts need python3) |
@@ -117,11 +115,12 @@ read that file before any Earshot step. Discovery for other plugins is
 | `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Chat, Cowork and Claude Code |
 | `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Claude Code and Cowork with Blender installed; chat: guidance only |
 | `wondelai-ux-design` | UX and UI design skills. | Chat, Cowork and Claude Code |
-| `pixel-plugin` | Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Claude Code with Aseprite; not chat or Cowork (top-level `bin/`) |
 | `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Chat: skill. Cowork and Claude Code: skill plus scripts and browser |
 | `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Chat: skills. Cowork and Claude Code: skills plus browser check |
 | `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Chat: skill. Cowork and Claude Code: skill plus renderer (Node, browser) |
 | `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
+| `ffmpeg-skill` | App note: Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Python and FFmpeg required |
+| `pixel-plugin` | App note: Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Aseprite required |
 | `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
 | `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Skill archive, install by hand with checksum; chat via custom skill upload |
 
@@ -144,7 +143,7 @@ read that file before any Earshot step. Discovery for other plugins is
 ### ffmpeg-skill
 
 - Use: ask for a local recording alignment, multicam edit, HDR-to-SDR conform or other
-  supported media operation. Install the original entry separately from the catalog.
+  supported media operation. Not in the marketplace; install it by hand in Claude Code: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/ffmpeg-skill.md
 - Watch out: requires Python, FFmpeg and FFprobe. The tool's audio alignment does not
   establish lip sync or subject tracking. Transcription needs a separate engine and
   may download model weights. Check the actual host's installation route first.
@@ -259,7 +258,7 @@ read that file before any Earshot step. Discovery for other plugins is
 
 ### pixel-plugin
 
-- Use: Ask for a sprite, a character or a pixel animation, or run `/pixel-setup` first and then `/pixel-new`.
+- Use: Ask for a sprite, a character or a pixel animation, or run `/pixel-setup` first and then `/pixel-new`. Install steps (Claude Code, by hand): https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/pixel-plugin.md
 - Watch out: Needs Aseprite 1.3+; Claude Code only (top-level `bin/`); its MCP binaries are prebuilt and unverified.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixel-plugin.md
 
