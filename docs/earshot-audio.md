@@ -51,6 +51,18 @@ it is not part of the plugin and Toolbox reuses it.
 Report each host as `retired` only after its check passed; until then it stays
 `pending` (owner-run, NOT_RUN here).
 
+Observed on the owner's Mac and accounts, 2026-10-29 (Remote Control session with
+the owner's Chrome, owner choice "remove now", before Toolbox was installed there):
+
+| Host | Result |
+| --- | --- |
+| ChatGPT Work | `retired`: Earshot Audio 1.1.0 (`plugins_6ada290e00e08191a449126f758c8b7d`) uninstalled, gone from Installed after reload; the plugin itself stays on the account and can be reinstalled |
+| Codex | Remote-plugin cache copy of 1.1.0 still present; expected to clear on the next account sync; no native entry found |
+| Claude Code, claude.ai | Not installed; nothing to remove |
+
+Toolbox was not installed on any of these hosts, so Earshot is unavailable there
+until Toolbox 1.1.0 or later is added.
+
 ## Engine setup
 
 Inspect readiness and the setup plan from the installed Toolbox package. Only the
