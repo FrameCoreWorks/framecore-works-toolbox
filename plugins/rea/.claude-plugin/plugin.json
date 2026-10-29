@@ -1,0 +1,15 @@
+{
+  "name": "rea",
+  "version": "6.5.0",
+  "description": "REA (Reverse Engineer Anything) by morluto, wrapped by FrameCore Works: evidence-backed reverse engineering of apps, sites and binaries you may analyse, through the pinned rea-agents 6.5.0 MCP server. No setup command, no unpinned packages.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "reverse engineering",
+    "mcp",
+    "rea"
+  ]
+}

@@ -19,6 +19,10 @@ Checks:
   are not marketplace entries, have their folder with UPSTREAM.md naming the
   reviewed commit, and reviews/<name>.md (Status: active, Kind: built-in) and
   docs/<name>.md with the same commit;
+- app notes (plugins/toolbox/apps.json: desktop apps and archives that are
+  not plugins) are not marketplace entries, have a category, a pin (full
+  commit SHA or sha256:<hex>), reviews/<name>.md (Status: active, Kind: app,
+  Pin: <same pin>) and docs/<name>.md naming the pin, and are listed in the index;
 - no ZIP files are kept in the repo.
 
 Usage: python3 scripts/check_marketplace.py [repo_root]
@@ -33,6 +37,7 @@ from pathlib import Path
 MANIFEST = ".claude-plugin/marketplace.json"
 GIT_SOURCES = {"github", "url", "git-subdir"}
 FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
+APP_PIN = re.compile(r"^(?:[0-9a-f]{40}|sha256:[0-9a-f]{64})$")
 FIELD = re.compile(r"^- ([A-Za-z-]+): *(.*)$", re.MULTILINE)
 INDEX_ROW = re.compile(r"^\|\s*`([a-z0-9][a-z0-9._-]*)`\s*\|", re.MULTILINE)
 INDEX = "toolbox"
@@ -154,6 +159,57 @@ def check_builtins(root, entries, errors):
     return found
 
 
+def check_apps(root, entries, errors):
+    """App notes listed by the index plugin; returns {name: pseudo-entry with its category}."""
+    path = root / "plugins" / INDEX / "apps.json"
+    if not path.is_file():
+        return {}
+    data = load_json(path, errors)
+    if data is None:
+        return {}
+    if not isinstance(data, dict):
+        errors.append(f"plugins/{INDEX}/apps.json must be an object with an 'apps' list")
+        return {}
+    apps = data.get("apps")
+    if not isinstance(apps, list):
+        errors.append(f"plugins/{INDEX}/apps.json: 'apps' must be a list")
+        return {}
+    found = {}
+    for app in apps:
+        name = app.get("name") if isinstance(app, dict) else None
+        if not name:
+            errors.append(f"plugins/{INDEX}/apps.json: an app note needs a name")
+            continue
+        if name in found:
+            errors.append(f"'{name}': listed twice in apps.json")
+            continue
+        if name in entries:
+            errors.append(f"'{name}': is both a marketplace entry and an app note")
+        if app.get("category") not in CATEGORIES:
+            errors.append(f"'{name}': app category must be one of {sorted(CATEGORIES)}")
+        pin = str(app.get("pin", ""))
+        if not APP_PIN.match(pin):
+            errors.append(f"'{name}': app pin must be a full commit SHA or sha256:<64 hex>")
+            pin = None
+        found[name] = {"category": app.get("category")}
+        fields = review_fields(root / "reviews" / f"{name}.md")
+        if fields is None:
+            errors.append(f"'{name}': reviews/{name}.md is missing")
+            continue
+        if fields.get("Status") != "active":
+            errors.append(f"'{name}': review Status must be 'active'")
+        if fields.get("Kind") != "app":
+            errors.append(f"'{name}': an app note needs 'Kind: app' in the review")
+        if pin and fields.get("Pin") != pin:
+            errors.append(f"'{name}': review Pin does not match apps.json pin {pin}")
+        docs = root / "docs" / f"{name}.md"
+        if not docs.is_file():
+            errors.append(f"'{name}': docs/{name}.md is missing")
+        elif pin and pin not in docs.read_text(encoding="utf-8"):
+            errors.append(f"'{name}': docs/{name}.md does not mention the pin")
+    return found
+
+
 def check_index(root, entries, errors):
     """The toolbox skill must list exactly the other entries, each under its category heading."""
     skill = root / "plugins" / INDEX / "skills" / INDEX / "SKILL.md"
@@ -175,7 +231,7 @@ def check_index(root, entries, errors):
         elif expected and listed[name] != expected:
             errors.append(f"'{INDEX}': SKILL.md lists '{name}' under '{listed[name]}', expected under '{expected}'")
     for name in sorted(listed.keys() - entries.keys()):
-        errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace or a built-in capability")
+        errors.append(f"'{INDEX}': SKILL.md lists '{name}', which is not in the marketplace, a built-in capability or an app note")
 
 
 def check(root):
@@ -235,7 +291,8 @@ def check(root):
     if INDEX in entries:
         listed = {n: e for n, e in entries.items() if n != INDEX}
         builtins = check_builtins(root, listed, errors)
-        check_index(root, {**builtins, **listed}, errors)
+        apps = check_apps(root, {**listed, **builtins}, errors)
+        check_index(root, {**apps, **builtins, **listed}, errors)
 
     for zip_path in root.rglob("*.zip"):
         rel = zip_path.relative_to(root)

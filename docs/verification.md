@@ -1,5 +1,33 @@
 # Portable catalog verification
 
+## Toolbox 1.2.0, recommended tools moved from Creative Studio — 2026-10-29
+
+Baseline: GitHub `main` at `343f74f`. Source checks PASS: 52 repository tests
+(including 8 new app-note tests), 52 Earshot tests on Python 3.12, marketplace check
+(23 entries, 2 app notes, Earshot built in), portable package checks for `toolbox`
+and the new `rea` wrapper, `claude plugin validate .` and `claude plugin validate plugins/rea`.
+Toolbox ZIP: 31 files (adds `apps.json`), SHA-256 `7ed68164ef32dae45a875be079363e6411b699ed12ab4ed65ef27a8fa6048a58`.
+
+Isolated Claude config: marketplace add, then `claude plugin install` PASS for
+`pixel-plugin`, `taste-skill`, `hairline`, `huashu-art-motion`, `anatomy` and `rea`
+(wrapper), and for `toolbox` 1.2.0 (cache holds `apps.json`). A headless `claude -p`
+session listed every new skill: 9 `pixel-plugin:` skills and commands,
+`taste-skill:taste-skill`, `hairline:hairline-create` and `hairline:hairline-adopt`,
+`huashu-art-motion:huashu-art-motion`, `anatomy:anatomy`, `rea:rea`.
+
+Code review (independent subagent, read-only): 3 blockers, 3 important, 2 minor.
+Fixed: `upscayl` and `opencreator` rejected for default telemetry; `rea` moved to our
+own wrapper because the upstream skill runs `rea-agents@latest` and `setup`;
+`check_apps` hardened (duplicates, malformed file) with tests; pixel-plugin Cowork
+wording and Windows bash note; CLAUDE.md app-note gate line; README app-note table.
+Not changed: no cross-check of `apps.json` upstream/version against the review (minor).
+
+NOT_RUN: starting any MCP server (`aseprite` prebuilt binary, `rea-agents@6.5.0`
+from npm), using each skill on a real task, Voicebox app, iso-glow archive re-download
+(isoglow.dev blocked by this session's proxy; Studio's 2026-10-18 checksum stands),
+claude.ai/Cowork installs, ChatGPT Work and Codex. Saved Work update: pending
+(Kamil updates Work from this repository).
+
 ## Toolbox 1.1.0, Earshot built in — 2026-10-29
 
 Baseline: GitHub `main` before this release. Source checks PASS: 44 repository

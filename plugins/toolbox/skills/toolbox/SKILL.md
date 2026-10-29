@@ -36,6 +36,8 @@ catalog and offer the Earshot step.
    Translate the "What it is for" text into the user's language; keep plugin
    names as they are.
 3. Do not claim whether a plugin is installed; you cannot see that reliably.
+   Rows starting with "App note:" are desktop apps or skill archives, not
+   plugins: give their manual steps from the docs, never a marketplace install.
 4. Give one installation line for the actual host, following
    [installation](references/installation.md). In ChatGPT Work use Plugin
    Creator for an available portable package; in Codex use its observed plugin
@@ -115,6 +117,13 @@ read that file before any Earshot step. Discovery for other plugins is
 | `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Chat, Cowork and Claude Code |
 | `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Claude Code and Cowork with Blender installed; chat: guidance only |
 | `wondelai-ux-design` | UX and UI design skills. | Chat, Cowork and Claude Code |
+| `pixel-plugin` | Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Claude Code with Aseprite; not chat or Cowork (top-level `bin/`) |
+| `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Chat: skill. Cowork and Claude Code: skill plus scripts and browser |
+| `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Chat: skills. Cowork and Claude Code: skills plus browser check |
+| `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Chat: skill. Cowork and Claude Code: skill plus renderer (Node, browser) |
+| `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
+| `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
+| `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Skill archive, install by hand with checksum; chat via custom skill upload |
 
 ### Dev tools
 
@@ -122,6 +131,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | ------ | -------------- | -------- |
 | `antislop` | Six rule skills that keep UI, copy and code from looking AI-generated, plus a local colour-contrast checker. | Chat: skills. Cowork and Claude Code: skills plus local contrast MCP (needs Python 3) |
 | `web-quality-skills` | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | Chat, Cowork and Claude Code |
+| `rea` | Reverse engineering of apps, sites and binaries you may analyse, each finding with its evidence, through a pinned local MCP server. | Claude Code and Cowork (Node 22.19+ for the MCP server); chat: skill only |
 
 ### Marketing & growth
 
@@ -246,3 +256,53 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: ask a task in this area or call `/wondelai-ux-design:` and pick a skill.
 - Watch out: none.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-ux-design.md
+
+### pixel-plugin
+
+- Use: Ask for a sprite, a character or a pixel animation, or run `/pixel-setup` first and then `/pixel-new`.
+- Watch out: Needs Aseprite 1.3+; Claude Code only (top-level `bin/`); its MCP binaries are prebuilt and unverified.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixel-plugin.md
+
+### taste-skill
+
+- Use: Ask for a landing page, a product page or an app screen with a strong art direction.
+- Watch out: Found pictures keep their own licences; check each before client use.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/taste-skill.md
+
+### hairline
+
+- Use: Ask for an isometric line figure or run `/hairline-create` with an idea.
+- Watch out: Interactive pages, not seekable video; for video use Studio's Hairline kit.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/hairline.md
+
+### huashu-art-motion
+
+- Use: Ask for an animation in an art style or an explainer grammar (Kurzgesagt-like, whiteboard).
+- Watch out: Skill text is in Chinese; do not reuse its showcase characters or likenesses.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/huashu-art-motion.md
+
+### anatomy
+
+- Use: Ask for an isometric technical figure or an interactive explainer of a system.
+- Watch out: Publishing to its public gallery happens only on request; never by default.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/anatomy.md
+
+### rea
+
+- Use: Ask how a feature of an app, a bundle or a binary works; the skill calls the `rea` MCP tools.
+- Watch out: Lawful targets only; native binaries need Ghidra, IDA or Hopper.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/rea.md
+
+### voicebox
+
+- Use: Install the app, then generate in it, or add its MCP server and ask for a voice-over. Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/voicebox.md
+- Watch out: Clone voices only with permission; check each engine model's licence.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/voicebox.md
+
+
+
+### iso-glow
+
+- Use: After installing, ask for a figure ("use the iso-glow skill to draw a lighthouse"). Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/iso-glow.md
+- Watch out: Not a Git repository: the archive pin is a checksum; a changed archive needs a new review.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/iso-glow.md

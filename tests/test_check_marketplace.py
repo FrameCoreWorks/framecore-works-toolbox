@@ -226,6 +226,81 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_creative_row()
         self.assert_error("'Kind: built-in'")
 
+    def write_app(self, name="studio-app", pin=SHA, kind="app", category="creative", review_pin=None):
+        """A desktop app or archive note: listed in apps.json and the index, not installable from the marketplace."""
+        plugin = self.root / "plugins/toolbox"
+        plugin.mkdir(parents=True, exist_ok=True)
+        apps = {"schema": "framecore-toolbox-apps/1", "apps": [
+            {"name": name, "category": category, "upstream": "https://example.org/app", "pin": pin}]}
+        (plugin / "apps.json").write_text(json.dumps(apps))
+        text = review_text(name, pin if len(pin) == 40 else SHA, kind=kind, eligibility="app note: not a plugin")
+        (self.root / f"reviews/{name}.md").write_text(text + f"- Pin: {review_pin or pin}\n")
+        (self.root / f"docs/{name}.md").write_text(f"Pinned: {pin}\n")
+
+    def test_app_note_listed_in_index_passes(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app()
+        self.write_creative_row("studio-app")
+        self.assertEqual(self.errors(), [])
+
+    def test_app_note_with_archive_checksum_passes(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app(pin="sha256:" + "a" * 64)
+        self.write_creative_row("studio-app")
+        self.assertEqual(self.errors(), [])
+
+    def test_index_must_list_app_note(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app()
+        self.assert_error("does not list 'studio-app'")
+
+    def test_app_note_must_not_be_a_marketplace_entry(self):
+        self.write_manifest([self.write_index(listed=("demo", "studio-app")), entry(), entry("studio-app")])
+        self.write_entry_files()
+        self.write_app()
+        self.assert_error("both a marketplace entry and an app note")
+
+    def test_app_note_needs_kind_app_and_matching_pin(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app(kind="plugin")
+        self.write_creative_row("studio-app")
+        self.assert_error("'Kind: app'")
+        self.write_app(review_pin=OTHER_SHA)
+        self.assert_error("review Pin does not match")
+
+    def test_app_note_needs_valid_pin_and_category(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app(pin="main")
+        self.write_creative_row("studio-app")
+        self.assert_error("pin must be a full commit SHA or sha256:")
+        self.write_app(category="audio")
+        self.assert_error("app category must be one of")
+
+    def test_duplicate_app_note_fails(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        self.write_app()
+        self.write_creative_row("studio-app")
+        path = self.root / "plugins/toolbox/apps.json"
+        data = json.loads(path.read_text())
+        data["apps"].append(dict(data["apps"][0]))
+        path.write_text(json.dumps(data))
+        self.assert_error("listed twice in apps.json")
+
+    def test_malformed_apps_file_fails(self):
+        self.write_manifest([self.write_index(), entry()])
+        self.write_entry_files()
+        path = self.root / "plugins/toolbox/apps.json"
+        path.write_text(json.dumps([{"name": "x"}]))
+        self.assert_error("apps.json must be an object")
+        path.write_text(json.dumps({"schema": "framecore-toolbox-apps/1", "apps": "x"}))
+        self.assert_error("'apps' must be a list")
+
     def test_first_party_index_passes(self):
         self.write_manifest([self.write_index(), entry()])
         self.write_entry_files()

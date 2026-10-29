@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "ffmpeg-skill",
@@ -208,6 +208,85 @@
         "./steve-jobs-design-review"
       ],
       "strict": false
+    },
+    {
+      "name": "pixel-plugin",
+      "description": "Pixel art drawn in Aseprite from a conversation: canvases, layers, palettes, dithering, frame animation and export to PNG, GIF and spritesheets.",
+      "version": "0.5.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "willibrandon/pixel-plugin",
+        "sha": "dee350645b705916655c013f208bf5580ecb9317"
+      }
+    },
+    {
+      "name": "taste-skill",
+      "description": "Art direction for landing pages, product pages, dashboards and app screens, with researched directions, openly licensed pictures and a real-browser check.",
+      "version": "2.1.5",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "Leonxlnx/taste-skill",
+        "sha": "12af471f627f866411b4bd785b19646d3672784c"
+      },
+      "skills": [
+        "./skills/taste-skill"
+      ],
+      "strict": false
+    },
+    {
+      "name": "hairline",
+      "description": "Isometric line figures that answer the mouse pointer on a web page: draw a new figure as one HTML file or adopt the Hairline library in a project.",
+      "version": "0.5.1",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "lucasmarkes/hairline",
+        "sha": "37d2e78dcb333ab30c3338e28ed4a690364ea014"
+      },
+      "skills": [
+        "./skills/hairline-create",
+        "./skills/hairline-adopt"
+      ],
+      "strict": false
+    },
+    {
+      "name": "huashu-art-motion",
+      "description": "Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks (skill text in Chinese).",
+      "version": "1.2.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "alchaincyf/huashu-art-motion",
+        "sha": "8a0d7d72ca65fcce6f8ba82c4a6c8dfe35b8422c"
+      },
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "anatomy",
+      "description": "Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders and browser checks.",
+      "version": "0.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "wheresryan22/anatomy",
+        "sha": "e9488296a44211c42701ff71705b7901470ec78f"
+      },
+      "skills": [
+        "./"
+      ],
+      "strict": false
+    },
+    {
+      "name": "rea",
+      "description": "Reverse engineering of apps, sites and binaries you may analyse (Electron and JavaScript, .NET, Android, native with Ghidra, IDA or Hopper), each finding with its evidence, through a pinned local MCP server.",
+      "version": "6.5.0",
+      "category": "dev-tools",
+      "source": "./plugins/rea"
     }
   ]
 }

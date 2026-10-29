@@ -1,0 +1,28 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rea",
+  "version": "6.5.0",
+  "description": "REA (Reverse Engineer Anything) by morluto, wrapped by FrameCore Works: evidence-backed reverse engineering of apps, sites and binaries you may analyse, through the pinned rea-agents 6.5.0 MCP server. No setup command, no unpinned packages.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "reverse engineering",
+    "mcp",
+    "rea"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "REA Reverse Engineering",
+        "shortDescription": "Evidence-backed app analysis",
+        "longDescription": "Reverse engineering of apps, sites and binaries you own or may examine, with REA by morluto through the pinned rea-agents 6.5.0 MCP server. Every finding comes with its evidence and unknowns. Needs Node.js 22.19+; native binaries need Ghidra, IDA or Hopper installed by you.",
+        "developerName": "FrameCore Works",
+        "category": "Developer Tools",
+        "capabilities": []
+      }
+    }
+  }
+}

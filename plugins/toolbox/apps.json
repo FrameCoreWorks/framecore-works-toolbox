@@ -1,0 +1,20 @@
+{
+  "schema": "framecore-toolbox-apps/1",
+  "note": "Desktop apps and skill archives that are not plugins: listed for discovery with manual install steps in docs/<name>.md; Toolbox installs none of them.",
+  "apps": [
+    {
+      "name": "voicebox",
+      "category": "creative",
+      "upstream": "https://github.com/jamiepine/voicebox",
+      "pin": "2bcb98d1a8b6fe05e15fbc1559e3085669e4035d",
+      "version": "0.5.0"
+    },
+    {
+      "name": "iso-glow",
+      "category": "creative",
+      "upstream": "https://isoglow.dev/",
+      "pin": "sha256:6c88dba1424bada2ee651a1b273095f9a13b82dd9362f9bc873600b5bff6b0a1",
+      "version": "archive iso-glow.zip (2026-10-18)"
+    }
+  ]
+}

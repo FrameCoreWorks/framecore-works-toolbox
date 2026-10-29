@@ -40,6 +40,12 @@ this repository. Run the portable package check alongside the existing checks.
 - `docs/install.md`: how to add the marketplace and install plugins.
 - `plugins/<name>/`: wrapper plugins for adapted entries, and first-party
   plugins such as `plugins/toolbox/` (the index).
+- `plugins/toolbox/apps.json`: app notes, desktop apps and skill archives that
+  are not plugins (owner decision 2026-10-29). Each has a review with
+  `Kind: app` and `Pin:` (full commit or `sha256:` of the archive) and docs with
+  manual install steps; the index lists it, the marketplace never does. App
+  notes pass the same reject gate, review and owner-approval rules as entries,
+  and `apps.json`, docs, README and the index change in one commit.
 - `scripts/check_marketplace.py`: consistency check. `tests/`: its tests.
 
 ## Repository improvement gate (owner decision, 2026-10-28)

@@ -1,5 +1,30 @@
 # Changes
 
+## Toolbox 1.2.0 — 2026-10-29
+
+Toolbox becomes the single place for the tools Creative Studio used to recommend
+(owner decision 2026-10-29: move the recommended repositories from Studio to Toolbox):
+
+- Six new marketplace entries, pinned to the commits Studio reviewed: `pixel-plugin`,
+  `taste-skill`, `hairline`, `huashu-art-motion`, `anatomy` (Creative) and `rea`
+  (Dev tools; our own wrapper `plugins/rea` with its own skill and the pinned
+  `rea-agents@6.5.0` MCP server, because the upstream skill runs `@latest` and `setup`).
+- Two app notes in the new `plugins/toolbox/apps.json`: `voicebox` and `iso-glow`
+  (archive pinned by SHA-256). They are listed in the index with manual install
+  steps and are never marketplace entries.
+- Rejected by the reject gate (default telemetry, found in code review): `upscayl`
+  (PostHog on launch) and `opencreator` (opt-out usage reports). Their reviews are
+  kept with `Status: rejected`.
+- Seven tools Studio also recommended were already here (`animate`,
+  `motion-designer`, `meta-ads-designer`, `logo-design`, `antislop`, `hallmark`,
+  `open-design`); Toolbox's pins stay the source of truth.
+- Not moved, by owner decision: VoxCPM, OmniVoice, MOSS-TTS, MOSS-TTSD,
+  MoneyPrinterTurbo, Agent Reach and Adobe Skills (removed from recommendations).
+- Check: `scripts/check_marketplace.py` validates app notes (category, pin, review
+  `Kind: app` and `Pin:`, docs, index row, no marketplace duplicate), with tests.
+- Install test: all six new entries installed in an isolated Claude config and their
+  skills were listed in a headless session; MCP servers were not started (NOT_RUN).
+
 ## Toolbox 1.1.0 — 2026-10-29
 
 Earshot becomes a capability built into Toolbox (owner decisions D-1..D-8):
