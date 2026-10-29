@@ -1,5 +1,11 @@
 # Portable catalog verification
 
+## Toolbox 1.2.2, app note scenario-kinetic-film removed — 2026-10-29
+
+Baseline: GitHub `main` at `a656a4a`. Source checks PASS: repository tests, Earshot tests on
+Python 3.12, marketplace check (23 entries), portable package check for `toolbox` 1.2.2,
+`claude plugin validate .`; `toolbox` 1.2.2 installed in an isolated Claude config.
+
 ## Toolbox 1.2.1, app note scenario-kinetic-film — 2026-10-29
 
 Baseline: GitHub `main` at `215068b`. Source checks PASS: 52 repository tests, Earshot

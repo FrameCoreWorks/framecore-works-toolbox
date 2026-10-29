@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: scenario-kinetic-film
-- Status: active
+- Status: removed
 - Upstream: https://www.scenario.com/explorations/kinetic-film/
 - Author: Scenario (scenario.com)
 - License: Unknown for the code (no licence file in the archive; not in the MIT repo scenario-labs/skills). Bundled fonts Archivo, JetBrains Mono, Instrument Sans: SIL OFL 1.1
@@ -32,7 +32,7 @@ The archive as data, nothing executed: `SKILL.md`, 5 references, `engine/` (core
 
 ## Install (manual)
 
-See [docs/scenario-kinetic-film.md](../docs/scenario-kinetic-film.md): download, check SHA-256 2217ab5dbd452185a5c3c1509994da46b1ac20d2ebeaa888536244372ce73ebf, unzip into `~/.claude/skills` or `~/.agents/skills`, install Playwright at an exact version.
+Removed from Toolbox; the docs page was deleted. The steps were: download, check SHA-256 2217ab5dbd452185a5c3c1509994da46b1ac20d2ebeaa888536244372ce73ebf, unzip into `~/.claude/skills` or `~/.agents/skills`, install Playwright at an exact version.
 
 ## Hooks, MCP, prompts
 
@@ -61,3 +61,4 @@ accept as an app note: listed for discovery with manual steps; Toolbox installs 
 ## History
 
 - 2026-10-29: added as an app note by owner decision.
+- 2026-10-29: removed by owner decision: it needs a Scenario account, so it is not recommended; its best knowledge became Creative Studio's own kinetic film kit (Studio 1.155.0), written from scratch.

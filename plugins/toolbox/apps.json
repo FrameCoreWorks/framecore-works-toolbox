@@ -15,13 +15,6 @@
       "upstream": "https://isoglow.dev/",
       "pin": "sha256:6c88dba1424bada2ee651a1b273095f9a13b82dd9362f9bc873600b5bff6b0a1",
       "version": "archive iso-glow.zip (2026-10-18)"
-    },
-    {
-      "name": "scenario-kinetic-film",
-      "category": "creative",
-      "upstream": "https://www.scenario.com/explorations/kinetic-film/",
-      "pin": "sha256:2217ab5dbd452185a5c3c1509994da46b1ac20d2ebeaa888536244372ce73ebf",
-      "version": "archive scenario-kinetic-film-skill.zip (2026-10-29)"
     }
   ]
 }

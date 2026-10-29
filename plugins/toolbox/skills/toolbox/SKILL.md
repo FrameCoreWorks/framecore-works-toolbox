@@ -124,7 +124,6 @@ read that file before any Earshot step. Discovery for other plugins is
 | `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
 | `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
 | `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Skill archive, install by hand with checksum; chat via custom skill upload |
-| `scenario-kinetic-film` | App note: Kinetic-type launch films, teasers and trailers built as code on the music's beat grid, rendered to 4K, with music and sound from Scenario MCP; a skill archive installed by hand (no Git repo). | Skill archive, install by hand with checksum; Claude Code (Node, Playwright, ffmpeg, Python) and a paid Scenario account; chat Unknown |
 
 ### Dev tools
 
@@ -307,9 +306,3 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: After installing, ask for a figure ("use the iso-glow skill to draw a lighthouse"). Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/iso-glow.md
 - Watch out: Not a Git repository: the archive pin is a checksum; a changed archive needs a new review.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/iso-glow.md
-
-### scenario-kinetic-film
-
-- Use: After installing, ask for a kinetic-type launch film or teaser ("use the scenario-kinetic-film skill to make a 20 s teaser for my app"). Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/scenario-kinetic-film.md
-- Watch out: Music, sounds and pictures cost Scenario credits (priced before each run); no code licence in the archive, so use it as published and never copy its code; the archive pin is a checksum.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/scenario-kinetic-film.md

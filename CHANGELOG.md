@@ -1,5 +1,12 @@
 # Changes
 
+## Toolbox 1.2.2 — 2026-10-29
+
+- App note `scenario-kinetic-film` removed (owner decision 2026-10-29): it needs a Scenario
+  account, so Toolbox no longer recommends it. Its review is kept with `Status: removed`;
+  its docs page is deleted. Creative Studio 1.155.0 carries its best knowledge as Studio's
+  own kinetic film kit, written from scratch.
+
 ## Records — 2026-10-29: old Earshot Audio plugin retired
 
 - Owner decision 2026-10-29 (stage 6b of the Earshot migration): every installed copy of
