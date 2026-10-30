@@ -75,6 +75,27 @@ class Readiness(unittest.TestCase):
             self.assertIn('--yes', out)
             started.assert_not_called()
 
+    def test_without_hash_locks_pins_come_from_the_in_files_and_install_refuses(self):
+        expected = runtime.lock_pins('full')
+        with tempfile.TemporaryDirectory() as tmp:
+            req = pathlib.Path(tmp)
+            for name in ('light.in', 'full.in', 'build.in', 'build.txt'):
+                (req / name).write_bytes((runtime.REQUIREMENTS / name).read_bytes())
+            with mock.patch.object(runtime, 'REQUIREMENTS', req):
+                pins = runtime.lock_pins('full')   # the .in files pin the direct requirements, a subset of the lock
+                self.assertEqual(pins['torch'], expected['torch'])
+                self.assertEqual(pins['numpy'], expected['numpy'])
+                self.assertLessEqual(pins.items(), expected.items())
+                root = pathlib.Path(tmp) / 'rt'
+                with mock.patch.object(runtime, 'fetch_source') as fetched, mock.patch.object(runtime.subprocess, 'run') as started, \
+                        mock.patch.object(runtime.sys, 'version_info', (3, 12, 0)):
+                    code, _, err = quiet(runtime.main, ['install', '--tier', 'light', '--root', str(root), '--yes'])
+                self.assertNotEqual(code, 0)
+                self.assertIn('light.txt', err)
+                fetched.assert_not_called()
+                started.assert_not_called()
+                self.assertFalse(root.exists())
+
     def test_one_changed_file_stops_install_before_any_write(self):
         with tempfile.TemporaryDirectory() as tmp:
             src = pathlib.Path(tmp) / 'src'

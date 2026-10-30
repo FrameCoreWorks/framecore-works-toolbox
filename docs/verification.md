@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.2.4, ChatGPT Work install route — 2026-10-30
+
+Unit tests, marketplace check, package check for `toolbox` 1.2.4, Earshot tests under
+Python 3.12 (54, one new for the missing locks), `claude plugin validate .` and an
+isolated Claude Code install of `toolbox` 1.2.4: PASS. A lean 29-file copy without
+`light.txt`/`full.txt` reports `status` `unavailable` and `install --tier light --yes`
+stops before any download, naming the missing lock. The documented check-and-zip cell
+built a 31-file and a 29-file ZIP with every git blob hash matching. ChatGPT Work
+installation: NOT_RUN.
+
 ## Toolbox 1.2.3, claude.ai sync fixes — 2026-10-29
 
 Baseline: GitHub `main` at `47e9378`. Owner's claude.ai sync at that commit: 2 plugins skipped

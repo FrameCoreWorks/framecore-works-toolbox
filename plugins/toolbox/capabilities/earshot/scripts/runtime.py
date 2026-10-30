@@ -209,12 +209,18 @@ def _norm(name):
 
 
 def lock_pins(tier):
-    """{normalized distribution: version} from the hash-locked requirements file of a tier."""
+    """{normalized distribution: version} from the hash-locked requirements file of a tier, or from its .in file
+    (following -r) when an installation without the hash locks has only that (ChatGPT Work text install)."""
     pins = {}
-    for line in (REQUIREMENTS / (tier + '.txt')).read_text(encoding='utf-8').splitlines():
-        match = re.match(r'^([A-Za-z0-9][A-Za-z0-9._-]*)==([^\s\\;]+)', line)
-        if match:
-            pins[_norm(match.group(1))] = match.group(2)
+    def read(name):
+        for line in (REQUIREMENTS / name).read_text(encoding='utf-8').splitlines():
+            included = re.match(r'^-r\s+(\S+)', line)
+            if included:
+                read(included.group(1))
+            match = re.match(r'^([A-Za-z0-9][A-Za-z0-9._-]*)==([^\s\\;]+)', line)
+            if match:
+                pins[_norm(match.group(1))] = match.group(2)
+    read(tier + '.txt' if (REQUIREMENTS / (tier + '.txt')).is_file() else tier + '.in')
     return pins
 
 
@@ -317,6 +323,10 @@ def install(tier, root):
     root = Path(root)
     if sys.version_info[:2] != (3, 12):
         raise OSError('the dependency locks target Python 3.12; run setup with python3.12')
+    missing = [name for name in ('build.txt', tier + '.txt') if not (REQUIREMENTS / name).is_file()]
+    if missing:
+        raise OSError('the hash locks ' + ', '.join(missing) + ' are not in this Toolbox installation (a ChatGPT Work text '
+                      'install leaves them out); update Toolbox with the complete package first')
     if root.exists() and any(root.iterdir()):
         raise OSError('runtime destination is not empty; preserve it and select a new --root for this version')
     for parent in (root, *root.parents):

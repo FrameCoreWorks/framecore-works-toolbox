@@ -16,6 +16,9 @@ only. Full tier pins CPU PyTorch 2.6.0 and Transformers 4.48.3. `requirements/*.
 records the resolution inputs; `.txt` locks are consumed by pip. Their versions
 were resolved, not a proof of successful full-tier installation. Upstream build
 uses the separately locked build tools with no dependency or build-isolation fetch.
+A ChatGPT Work installation without network may leave out `light.txt` and
+`full.txt`: `install` then names the missing locks and stops before any download,
+and `status` reads the pinned versions from the `.in` files.
 
 The default root is `~/.framecore-works/earshot`; `EARSHOT_NATIVE_ROOT` or `--root`
 selects another. A nonempty target is never overwritten. A failed install may

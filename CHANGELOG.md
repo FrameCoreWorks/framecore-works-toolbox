@@ -1,5 +1,21 @@
 # Changes
 
+## Toolbox 1.2.4 — 2026-10-30
+
+Trigger: the owner's ChatGPT Work installation attempt on 2026-10-30 (Toolbox at
+`133edbb`) stopped: Plugin Creator's `create_plugin` takes only a ZIP path in code
+execution, code execution has no network and the GitHub connector writes no files.
+
+- `CHATGPT_INSTALL.md` "Update without a ZIP": the model writes each file read through the
+  connector into code execution, checks every git blob hash in one cell that then builds
+  the ZIP, and calls `create_plugin` or `update_plugin` with that archive. The owner is
+  never asked for a file.
+- A Work installation without network may leave out the Earshot hash locks
+  `requirements/light.txt` and `full.txt` (230 KB; 29 files and 150 KB remain). The
+  launcher handles that: `install` names the missing locks and stops before any download,
+  and `status` reads the pinned versions from the `.in` files. New Earshot test for it.
+- Hosted run: NOT_RUN.
+
 ## Toolbox 1.2.3 — 2026-10-29
 
 Trigger: the owner's claude.ai marketplace sync at `47e9378` skipped two plugins and
