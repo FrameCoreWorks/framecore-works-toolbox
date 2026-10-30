@@ -403,7 +403,12 @@ def engine_env(root, offline=True):
                 'EARSHOT_CLAP': MODELS[0], 'EARSHOT_AST': MODELS[1],
                 'EARSHOT_CLAP_REVISION': MODEL_PINS[MODELS[0]]['revision'],
                 'EARSHOT_AST_REVISION': MODEL_PINS[MODELS[1]]['revision']})
-    env['EARSHOT_HOME'] = str(Path(root) / 'cache')   # the cache fetch-models fills; keys dropped, nothing to upload with
+    cache = Path(root) / 'cache'
+    env['EARSHOT_HOME'] = str(cache)   # the cache fetch-models fills; keys dropped, nothing to upload with
+    # Library caches stay in the root, not ~/.cache or ~/.config. HF_HUB_CACHE is Earshot's own model folder; it also
+    # covers Transformers, whose TRANSFORMERS_CACHE is deprecated. Xet stays off: downloads keep the plain HTTPS route.
+    env.update({'HF_HUB_CACHE': str(cache / 'hf'), 'HF_HOME': str(cache / 'hf-home'), 'HF_HUB_DISABLE_XET': '1',
+                'TORCH_HOME': str(cache / 'torch'), 'MPLCONFIGDIR': str(cache / 'matplotlib')})
     if offline:
         env.update(OFFLINE)
     return env

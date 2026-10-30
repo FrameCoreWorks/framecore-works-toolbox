@@ -86,6 +86,17 @@ class IndependentRuntime(unittest.TestCase):
         self.assertEqual(env['HF_HUB_DISABLE_TELEMETRY'], '1')
         self.assertEqual(env['PYTHONDONTWRITEBYTECODE'], '1')
 
+    def test_engine_caches_stay_inside_the_runtime_root(self):
+        # 1.3.3: Hugging Face, PyTorch and Matplotlib otherwise default to ~/.cache and ~/.config.
+        with mock.patch.dict(runtime.os.environ, {'HF_HOME': '/home/user/.cache/huggingface', 'HF_HUB_CACHE': '/elsewhere'}):
+            for offline in (True, False):
+                env = runtime.engine_env(Path('/runtime'), offline=offline)
+                self.assertEqual(env['HF_HUB_CACHE'], str(Path('/runtime/cache/hf')))   # the folder fetch-models fills
+                for key in ('HF_HOME', 'TORCH_HOME', 'MPLCONFIGDIR'):
+                    self.assertTrue(Path(env[key]).is_relative_to(Path('/runtime/cache')), key)
+                self.assertNotIn('TRANSFORMERS_CACHE', env)   # deprecated in Transformers 4.57: HF_HUB_CACHE covers it
+                self.assertEqual(env['HF_HUB_DISABLE_XET'], '1')
+
 
 if __name__ == '__main__':
     unittest.main()

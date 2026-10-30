@@ -82,8 +82,9 @@ select a new one for replacement or a different tier.
 
 Light covers local measurement and procedural sound workflows, roughly 360 MB (358 MB measured 2026-10-30)
 plus the source snapshot. Full adds CPU PyTorch and semantic dependencies, roughly
-1.5 GB before the separate approximately 1.1 GB model download. Full setup and
-inference remain NOT_RUN. The dependency locks target Python 3.12. The full lock takes
+1.5 GB before the separate approximately 1.1 GB model download. Full setup and the model
+download on an Apple Silicon Mac: PASS_REPORTED by the owner (2026-10-30, Toolbox 1.3.2);
+real-model inference with the 1.3.3 lock (Transformers 4.57.6) is NOT_RUN. The dependency locks target Python 3.12. The full lock takes
 `torch==2.6.0+cpu` from the PyTorch CPU index on Linux and Windows and the PyPI
 `torch==2.6.0` arm64 wheel on macOS; an Intel Mac is refused for full (no PyTorch 2.6.0
 wheel) and its light tier is Unknown. Other OS/CPU combinations are Unknown. FFmpeg/FFprobe decode media; Node.js is only for mux.

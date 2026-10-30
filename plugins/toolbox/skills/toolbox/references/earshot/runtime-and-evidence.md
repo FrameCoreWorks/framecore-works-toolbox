@@ -12,13 +12,18 @@ and, for full tier, download.pytorch.org. Model setup uses Hugging Face's model
 and file-delivery hosts. State actual blocked hosts; do not change sources silently.
 
 Automatic setup uses Python 3.12 and exact dependency locks with hashes and wheels
-only. Full tier pins CPU PyTorch 2.6.0 and Transformers 4.48.3. `requirements/*.in`
+only. Full tier pins CPU PyTorch 2.6.0 and Transformers 4.57.6, the first line whose CLAP
+processor takes the `audio` keyword Earshot 0.4.0 passes (with 4.48.3, up to Toolbox 1.3.2,
+`describe` and `match` stop with "You have to specify either text or audios"). `requirements/*.in`
 records the resolution inputs; `.txt` locks are consumed by pip. Their versions
 were resolved, not a proof of successful full-tier installation. Upstream build
 uses the separately locked build tools with no dependency or build-isolation fetch.
 A ChatGPT Work installation without network may leave out `light.txt` and
 `full.txt`: `install` then names the missing locks and stops before any download,
 and `status` reads the pinned versions from the `.in` files.
+
+Engine runs keep library caches in `<root>/cache` (`HF_HUB_CACHE`, `HF_HOME`, `TORCH_HOME`,
+`MPLCONFIGDIR`), not in `~/.cache` or `~/.config`; Hugging Face Xet downloads stay off.
 
 The default root is `~/.framecore-works/earshot`; `EARSHOT_NATIVE_ROOT` or `--root`
 selects another. A nonempty target is never overwritten. A failed install may

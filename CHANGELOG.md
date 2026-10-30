@@ -1,5 +1,39 @@
 # Changes
 
+## Toolbox 1.3.3 — 2026-10-30
+
+Trigger: after the 1.3.2 full install on the owner's Mac mini (Apple Silicon, Python 3.12,
+torch 2.6.0, transformers 4.48.3) and the model download, `earshot describe` and
+`earshot match` on `selftest/test.wav` stopped with "You have to specify either text or
+audios. Both cannot be none." Earshot 0.4.0 calls the CLAP processor with `audio=`
+(`earshot/models/clap.py`, `_forward`); `ClapProcessor` accepts that keyword only from
+Transformers 4.57.0 and before that drops it.
+
+- `requirements/full.in` and `full.txt`: `transformers==4.57.6` (last 4.x; 5.x not reviewed
+  with torch 2.6.0), `huggingface-hub==0.36.0`, `tokenizers==0.22.2` and the new
+  `hf-xet==1.8.0` dependency, all hashed. The torch platform split from 1.3.2 is unchanged.
+  The upstream code is not changed.
+- Engine runs set `HF_HUB_CACHE` (Earshot's model folder), `HF_HOME`, `TORCH_HOME` and
+  `MPLCONFIGDIR` under `<root>/cache`, so nothing writes to `~/.cache` or `~/.config`, and
+  `HF_HUB_DISABLE_XET=1` keeps model downloads on plain HTTPS. `TRANSFORMERS_CACHE` is not
+  set: Transformers 4.57 deprecates it and reads `HF_HUB_CACHE`.
+- New `tests/earshot/transformers_compat_test.py`: the locked Transformers must be at least
+  4.57 on every platform, `full.in` and `full.txt` must agree, the reviewed `clap.py` hash is
+  pinned, and, in an interpreter that has the full packages, the `audio=` call Earshot makes
+  must reach the feature extractor (offline, tiny local tokenizer).
+- Upgrading from 1.3.2: `status` reports the old root as `unlocked_legacy` (its packages
+  differ from the new lock). Install a new root with `install --tier full --yes` and reuse
+  the downloaded models with `fetch-models --root <new> --from <old> --yes`.
+- Verified here: the new test fails on the 1.3.2 lock with Transformers 4.48.3 and the
+  owner's exact error, and passes with 4.57.6. The pinned Earshot 0.4.0 `Clap._forward`,
+  text features and `AST._forward` run on random-initialised models with torch 2.6.0 and
+  Transformers 4.57.6 (CLAP 1x512 audio and text, AST 1x527), and fail on 4.48.3 with the
+  owner's error. `uv pip install --dry-run` with `--require-hashes` resolves every locked
+  wheel for macOS arm64, Linux x86_64/aarch64 and Windows x86_64 (Linux/Windows torch from
+  the CPU index unchanged and not re-fetched: the index is blocked here). Loading the real
+  pinned CLAP and AST checkpoints and a real `describe`/`match`: NOT_RUN (Hugging Face is
+  blocked in this session). Host runs: NOT_RUN.
+
 ## Toolbox 1.3.2 — 2026-10-30
 
 Trigger: the owner's Earshot full install on a Mac mini (Apple Silicon, Python 3.12) on
