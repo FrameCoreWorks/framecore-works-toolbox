@@ -170,7 +170,7 @@ class CheckMarketplaceTest(unittest.TestCase):
         (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": "toolbox"}))
         skill = plugin / "skills/toolbox"
         skill.mkdir(parents=True)
-        rows = "".join(f"| `{n}` | x |\n" for n in listed)
+        rows = "".join(f"| `{n}` | x | helps | session | Claude |\n" for n in listed)
         (skill / "SKILL.md").write_text(f"## Catalog\n\n### {heading}\n\n{rows}\n### Creative\n\n")
         (self.root / "docs/toolbox.md").write_text("Toolbox index\n")
         return {"name": "toolbox", "source": "./plugins/toolbox", "metadata": {"firstParty": True}}
@@ -188,7 +188,7 @@ class CheckMarketplaceTest(unittest.TestCase):
 
     def write_creative_row(self, name="sound"):
         skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
-        skill.write_text(skill.read_text() + f"| `{name}` | built in |\n")
+        skill.write_text(skill.read_text() + f"| `{name}` | built in | helps | computer | Claude |\n")
 
     def test_builtin_capability_listed_in_index_passes(self):
         self.write_manifest([self.write_index(), entry()])
@@ -315,6 +315,30 @@ class CheckMarketplaceTest(unittest.TestCase):
         self.write_manifest([self.write_index(heading="Creative"), entry()])
         self.write_entry_files()
         self.assert_error("under 'Dev tools'")
+
+    def test_index_row_needs_runs_column(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text().replace("| session |", "| anywhere |"))
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assert_error("'demo': index row needs Runs 'session' or 'computer'")
+
+    def test_index_row_needs_studio_benefit(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text().replace("| helps |", "|  |"))
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assert_error("'demo': index row needs a 'How it helps Studio' text")
+
+    def test_index_row_with_computer_runs_passes(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text().replace("| session |", "| computer |"))
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assertEqual(self.errors(), [])
 
     def test_index_must_not_list_entry_twice(self):
         index = self.write_index()

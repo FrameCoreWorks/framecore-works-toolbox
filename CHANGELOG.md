@@ -1,5 +1,24 @@
 # Changes
 
+## Toolbox 1.3.0 — 2026-10-30
+
+Trigger: owner request 2026-10-30 (thread "Ujednolić instalację trzech pluginów z
+linku"): after installing Creative Studio a non-technical user gets Toolbox's
+recommendations as a numbered list, each with what it does and how it improves Studio,
+split into tools that work right away in a session (chat, cloud, phone) and tools that
+need the user's own computer.
+
+- Every catalog row gains "How it helps Studio" and "Runs" (`session` or `computer`);
+  `scripts/check_marketplace.py` fails when either is missing (three new tests).
+- The `toolbox` skill's reply format is now that numbered two-group list ending with
+  "Which numbers do you want?", in plain words; a new section installs the picked numbers
+  per host, including the Claude Code cloud-session case (container only; keep it through
+  claude.ai Customize > Plugins). In ChatGPT Work and Codex third-party entries without a
+  reviewed route stay listed as "(Claude only)".
+- `references/installation.md` and `INSTALL.md` describe the repository as public (the
+  private-repository sentence was stale since 2026-10-30).
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.2.5 — 2026-10-30
 
 Trigger: right after saving Toolbox 1.2.4 in ChatGPT Work (owner's screenshot,

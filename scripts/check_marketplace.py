@@ -14,7 +14,9 @@ Checks:
 - every entry except the index has a category from CATEGORIES;
 - first-party plugins (entry metadata.firstParty) live in ./plugins/<name>
   with docs/<name>.md, and the "toolbox" index skill lists exactly the other
-  entries and the built-in capabilities, each under the heading of its category;
+  entries and the built-in capabilities, each under the heading of its category,
+  with columns Plugin | What it is for | How it helps Studio | Runs | Works in,
+  where Runs is "session" or "computer";
 - built-in capabilities (plugins/toolbox/capabilities.json, kind "built-in")
   are not marketplace entries, have their folder with UPSTREAM.md naming the
   reviewed commit, and reviews/<name>.md (Status: active, Kind: built-in) and
@@ -47,6 +49,9 @@ HEADING = re.compile(r"^#+\s*(.+?)\s*$")
 # Entry "category" slug -> heading in the toolbox index. Add new categories here and in CLAUDE.md.
 # claude.ai keeps at most this many description characters and strips angle brackets.
 DESCRIPTION_LIMIT = 1024
+# Index "Runs" column: "session" works inside a chat, cloud or phone session; "computer" needs
+# programs, libraries or an app installed on the user's own computer.
+RUNS = {"session", "computer"}
 CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools", "marketing": "Marketing & growth"}
 
 
@@ -228,6 +233,11 @@ def check_index(root, entries, errors):
             if m.group(1) in listed:
                 errors.append(f"'{INDEX}': SKILL.md lists '{m.group(1)}' more than once")
             listed[m.group(1)] = heading
+            cells = [c.strip() for c in line.strip().strip("|").split("|")]
+            if len(cells) < 4 or not cells[2]:
+                errors.append(f"'{m.group(1)}': index row needs a 'How it helps Studio' text")
+            if len(cells) < 4 or cells[3] not in RUNS:
+                errors.append(f"'{m.group(1)}': index row needs Runs 'session' or 'computer'")
     for name, entry in sorted(entries.items()):
         expected = CATEGORIES.get(entry.get("category"))
         if name not in listed:

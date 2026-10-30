@@ -9,12 +9,12 @@ to its printed plan. Installing Toolbox does not install the engine or models.
 
 | Host | Catalog installation | An individual tool |
 | --- | --- | --- |
-| Claude apps / Cowork | Add the private FrameCoreWorks/framecore-works-toolbox marketplace, then add `toolbox` | Add the selected reviewed entry through that marketplace |
-| Claude Code | `claude plugin install toolbox@framecore-works-toolbox` after adding the marketplace | Install the selected entry with its reviewed setup requirements |
+| Claude apps / Cowork | Add the FrameCoreWorks/framecore-works-toolbox marketplace (Customize > Plugins), then add `toolbox` | Add the selected reviewed entry through that marketplace |
+| Claude Code | `claude plugin marketplace add FrameCoreWorks/framecore-works-toolbox`, then `claude plugin install toolbox@framecore-works-toolbox` | `claude plugin install <entry>@framecore-works-toolbox`, with its reviewed setup requirements; in a cloud session it lasts only for that container, so also give the claude.ai step above to keep it |
 | ChatGPT Work | One portable Toolbox ZIP saved with Plugin Creator | Inspect a reviewed portable package and use its supported save/update route |
 | Codex | Complete local package through the observed plugin route, or the repository's native-entry helper | Inspect the tool's own supported plugin/skill route and runtime requirements |
 
-Full guides, requiring access to the private repository:
+Full guides (the repository is public):
 - https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/INSTALL.md
 - https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/CHATGPT_INSTALL.md
 - https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/CODEX_INSTALL.md
@@ -26,8 +26,8 @@ MCP configurations work in ChatGPT Work or Codex. If no reviewed route exists,
 report Unknown / NOT_RUN and explain the missing requirement.
 Never adapt, convert or repackage a Claude-format entry for ChatGPT Work or
 Codex; that is not a route. Saving Toolbox ends the installation: do not go
-on to inspect, download or install catalog entries unless the user asks for a
-specific one.
+on to inspect, download or install catalog entries unless the user asks for
+specific ones (picking their numbers from the list counts as asking).
 
 For use, select the installed plugin/skill or describe the task in ordinary
 language. Claude slash commands apply to Claude. Saving a plugin, installing

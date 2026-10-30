@@ -10,8 +10,8 @@ all three hosts; adding the catalog does not install its listed tools.
 | ChatGPT Work | [ChatGPT installation](CHATGPT_INSTALL.md) | One private portable `toolbox` package through Plugin Creator |
 | Codex | [Codex installation](CODEX_INSTALL.md) | Local plugin where supported, or one native entry backed by the complete catalog bundle |
 
-This GitHub repository is private. Use an already authorized GitHub connection
-and preserve that visibility. Source access is separate from host installation.
+This GitHub repository is public; no GitHub sign-in is needed to read it.
+Source access is separate from host installation.
 Each third-party entry needs its own host compatibility review; Claude hooks,
 commands and MCP configurations are not automatically portable.
 

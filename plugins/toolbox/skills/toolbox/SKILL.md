@@ -28,28 +28,60 @@ catalog and offer the Earshot step.
 
 ## Reply format
 
-1. One line: "FrameCore Works Toolbox: plugins by category." Do not
-   state a plugin count; it goes stale and is easy to miscount.
-2. For each category in the catalog, in order: its heading, then its table
-   as it is. For a category with no rows, write "No plugins yet."
-   Translate the "What it is for" text into the user's language; keep plugin
+Write for someone who has never used a terminal: plain words, no command
+unless they ask how it works, and say what each step does before doing it.
+
+1. One line: "FrameCore Works Toolbox: tools I recommend next to Creative
+   Studio. Pick the numbers you want." Do not state a plugin count; it goes
+   stale and is easy to miscount.
+2. Two groups, numbered continuously (1, 2, 3 ... across both groups), each
+   entry on one line: name, then "What it is for" and "How it helps Studio"
+   translated into the user's language as one sentence each. Keep plugin
    names as they are.
-3. Do not claim whether a plugin is installed; you cannot see that reliably.
-   Rows starting with "App note:" are desktop apps or skill archives, not
-   plugins: give their manual steps from the docs, never a marketplace install.
-4. Give one installation line for the actual host, following
-   [installation](references/installation.md). In ChatGPT Work use Plugin
-   Creator for an available portable package; in Codex use its observed plugin
-   route or documented native skill installation; in Claude use the marketplace.
-   Do not suggest Claude commands in another host or treat a catalog listing
-   as an installable package for every host.
-5. Give one use line for that host: describe the task or select its installed
-   skill/plugin. Use Claude slash-command examples only in Claude.
-6. Stop there. Only if the user asks about one plugin, give its "Use" and
-   "Watch out" notes from the details below and its review link.
+   - **Works right away in a session** (rows with Runs `session`): skills
+     that run inside the chat, a cloud session or the phone app.
+   - **Needs your computer** (rows with Runs `computer`): tools that need
+     programs, libraries or a separate app installed on the user's own
+     computer (desktop Claude Code or Codex). Add the requirement from
+     "Works in" in a few words.
+   Inside each group keep the category order (Creative, Dev tools, Marketing
+   & growth). Mark "App note:" rows as installed by hand, and Earshot as
+   built into Toolbox (it needs only its engine, after the user's yes).
+3. In ChatGPT Work and Codex, add after the name "(Claude only)" for every
+   third-party entry without a reviewed route for that host (see "Host
+   compatibility" below); keep it in the list so the user sees what exists.
+4. Do not claim whether a plugin is installed; you cannot see that reliably.
+5. End with one question: "Which numbers do you want? You can also say none."
+   Stop there.
 
 If the user asks for one category only ("toolbox creative"), show just that
-category. Answer in the user's language. Keep it short.
+category, numbered the same way. Answer in the user's language. If the user
+asks about one plugin, give its "Use" and "Watch out" notes from the details
+below and its review link.
+
+## After the user picks numbers
+
+The picked numbers are the user's request for those entries. For each one,
+in order, say in one plain sentence what will be added and where, then follow
+[installation](references/installation.md) for the actual host:
+
+- Claude Code with a shell: add the Toolbox marketplace once, then install
+  each picked entry; a new conversation loads them. In a Claude Code cloud
+  session (for example from the phone) the install lasts only for that
+  session's container; to keep an entry, guide the user step by step to add
+  the marketplace `FrameCoreWorks/framecore-works-toolbox` once under
+  Customize > Plugins in claude.ai and turn the entry on there.
+- Claude apps (claude.ai, desktop chat, Cowork): guide the user step by step
+  through Customize > Plugins (add the marketplace once, then each entry).
+- App notes and Earshot's engine: give their own steps (docs link; Earshot
+  through its plan and the user's yes).
+- ChatGPT Work and Codex: install only an entry that has a reviewed route
+  for this host; for a "(Claude only)" entry say in one line that it works
+  in Claude and give the Claude steps if the user wants them.
+
+Report each picked entry as installed, waiting for the user's step, or not
+available on this host. A "Needs your computer" entry picked in a session
+without that computer gets its steps for later, not a failed install.
 
 ## Host compatibility and independence
 
@@ -108,43 +140,43 @@ read that file before any Earshot step. Discovery for other plugins is
 
 ### Creative
 
-| Plugin | What it is for | Works in |
-| ------ | -------------- | -------- |
-| `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Built into Toolbox; not a separate install. Engine setup requires Python 3.12 and a consented local install; fresh host activation NOT_RUN |
-| `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
-| `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
-| `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Chat, Cowork and Claude Code (scripts need python3) |
-| `meta-ads-designer` | Art-directs and generates Meta/Instagram ads, posters and flyers with an AI image model, then checks the result. | Chat, Cowork and Claude Code (image generation needs an image tool or a fal.ai key) |
-| `hallmark` | Designs web pages and app UIs that do not look AI-generated, with themes, a slop linter and optional generated images (Together AI). | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
-| `open-design` | Connects Claude to the local Open Design app (139 design skills, 150 design systems, projects and previews) over MCP; needs the app installed. | Cowork and Claude Code with the Open Design app running; not chat |
-| `video-shotcraft` | Cinematic product and promo videos in Remotion from 152 shot recipes and a production template. | Claude Code and Cowork (Node, Remotion); chat: skill loads, rendering Unknown |
-| `brag` | Turns the project you just built into a short launch video with one command. | Claude Code and Cowork; chat: skill loads, rendering Unknown |
-| `nateherk-design` | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | Chat, Cowork and Claude Code |
-| `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Chat, Cowork and Claude Code |
-| `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Claude Code and Cowork with Blender installed; chat: guidance only |
-| `wondelai-ux-design` | UX and UI design skills. | Chat, Cowork and Claude Code |
-| `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Chat: skill. Cowork and Claude Code: skill plus scripts and browser |
-| `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Chat: skills. Cowork and Claude Code: skills plus browser check |
-| `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Chat: skill. Cowork and Claude Code: skill plus renderer (Node, browser) |
-| `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
-| `ffmpeg-skill` | App note: Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Python and FFmpeg required |
-| `pixel-plugin` | App note: Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Aseprite required |
-| `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
-| `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Skill archive, install by hand with checksum; chat via custom skill upload |
+| Plugin | What it is for | How it helps Studio | Runs | Works in |
+| ------ | -------------- | ------------------- | ---- | -------- |
+| `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Gives Studio's films sound effects placed on the right frame and a loudness check before delivery. | computer | Built into Toolbox; not a separate install. Engine setup requires Python 3.12 and a consented local install; fresh host activation NOT_RUN |
+| `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Turns a Studio script and storyboard into a rendered explainer or animated video. | computer | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
+| `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Renders Studio's app-launch and promo concepts as finished MP4 films cut to music. | computer | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
+| `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Gives Studio's brand and campaign work a real logo with construction and usage rules. | session | Chat, Cowork and Claude Code (scripts need python3) |
+| `meta-ads-designer` | Art-directs and generates Meta/Instagram ads, posters and flyers with an AI image model, then checks the result. | Turns Studio's ad concepts and copy into checked Meta and Instagram ad images. | session | Chat, Cowork and Claude Code (image generation needs an image tool or a fal.ai key) |
+| `hallmark` | Designs web pages and app UIs that do not look AI-generated, with themes, a slop linter and optional generated images (Together AI). | Builds the landing page or app screen that a Studio campaign points to, without the AI look. | session | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
+| `open-design` | Connects Claude to the local Open Design app (139 design skills, 150 design systems, projects and previews) over MCP; needs the app installed. | Opens Studio's design work in the Open Design app with its design systems and previews. | computer | Cowork and Claude Code with the Open Design app running; not chat |
+| `video-shotcraft` | Cinematic product and promo videos in Remotion from 152 shot recipes and a production template. | Adds 152 cinematic shot recipes to Studio's product-video storyboards and renders them in Remotion. | computer | Claude Code and Cowork (Node, Remotion); chat: skill loads, rendering Unknown |
+| `brag` | Turns the project you just built into a short launch video with one command. | Makes a quick launch video of a finished project when a full Studio production is not needed. | computer | Claude Code and Cowork; chat: skill loads, rendering Unknown |
+| `nateherk-design` | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | Builds the scroll-driven website for a Studio campaign or brand story. | session | Chat, Cowork and Claude Code |
+| `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Gives Studio's scripts and copy a second pass that removes AI-sounding prose. | session | Chat, Cowork and Claude Code |
+| `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Adds 3D models, product renders and animation to Studio's visual work. | computer | Claude Code and Cowork with Blender installed; chat: guidance only |
+| `wondelai-ux-design` | UX and UI design skills. | Adds UX and UI design method when a Studio project includes an app or site screen. | session | Chat, Cowork and Claude Code |
+| `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Gives Studio's web and screen work a researched art direction and a browser check. | session | Chat: skill. Cowork and Claude Code: skill plus scripts and browser |
+| `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Adds interactive isometric line figures that match Studio's Hairline motion style on web pages. | session | Chat: skills. Cowork and Claude Code: skills plus browser check |
+| `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Adds 36 art styles and 9 explainer grammars to Studio's animation ideas and shot lists. | computer | Chat: skill. Cowork and Claude Code: skill plus renderer (Node, browser) |
+| `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Explains a technical product in a Studio piece as a detailed isometric figure. | session | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
+| `ffmpeg-skill` | App note: Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Syncs, cuts and converts the recordings a Studio edit is built from. | computer | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Python and FFmpeg required |
+| `pixel-plugin` | App note: Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Draws the pixel-art sprites and animations a Studio concept calls for. | computer | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Aseprite required |
+| `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Records voice-overs for Studio's scripts on your own computer, with designed or cloned voices. | computer | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
+| `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Adds glowing isometric figures for Studio's explainer and product visuals. | session | Skill archive, install by hand with checksum; chat via custom skill upload |
 
 ### Dev tools
 
-| Plugin | What it is for | Works in |
-| ------ | -------------- | -------- |
-| `antislop` | Six rule skills that keep UI, copy and code from looking AI-generated, plus a local colour-contrast checker. | Chat: skills. Cowork and Claude Code: skills plus local contrast MCP (needs Python 3) |
-| `web-quality-skills` | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | Chat, Cowork and Claude Code |
-| `rea` | Reverse engineering of apps, sites and binaries you may analyse, each finding with its evidence, through a pinned local MCP server. | Claude Code and Cowork (Node 22.19+ for the MCP server); chat: skill only |
+| Plugin | What it is for | How it helps Studio | Runs | Works in |
+| ------ | -------------- | ------------------- | ---- | -------- |
+| `antislop` | Six rule skills that keep UI, copy and code from looking AI-generated, plus a local colour-contrast checker. | Keeps the UI, copy and code around Studio's work from looking AI-generated. | session | Chat: skills. Cowork and Claude Code: skills plus local contrast MCP (needs Python 3) |
+| `web-quality-skills` | Web quality checks from Lighthouse and Core Web Vitals: speed, accessibility, best practices. | Checks the speed and accessibility of the pages a Studio campaign sends people to. | session | Chat, Cowork and Claude Code |
+| `rea` | Reverse engineering of apps, sites and binaries you may analyse, each finding with its evidence, through a pinned local MCP server. | Shows how an existing app or site builds an effect, so Studio can plan a lawful reference. | computer | Claude Code and Cowork (Node 22.19+ for the MCP server); chat: skill only |
 
 ### Marketing & growth
 
-| Plugin | What it is for | Works in |
-| ------ | -------------- | -------- |
-| `marketing-skills` | 52 marketing skills: CRO, copywriting, SEO, email, analytics and launch. | Chat, Cowork and Claude Code |
+| Plugin | What it is for | How it helps Studio | Runs | Works in |
+| ------ | -------------- | ------------------- | ---- | -------- |
+| `marketing-skills` | 52 marketing skills: CRO, copywriting, SEO, email, analytics and launch. | Adds the marketing side of a Studio campaign: positioning, landing-page copy, ads, email and launch. | session | Chat, Cowork and Claude Code |
 
 ## Details
 
