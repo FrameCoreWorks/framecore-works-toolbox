@@ -1,5 +1,16 @@
 # Changes
 
+## Toolbox 1.2.5 — 2026-10-30
+
+Trigger: right after saving Toolbox 1.2.4 in ChatGPT Work (owner's screenshot,
+2026-10-30), Work started downloading and analysing the third-party catalog entries
+to "adapt" Claude packages to the Work format.
+
+- The `toolbox` skill, `references/installation.md` and `CHATGPT_INSTALL.md` now say
+  plainly: installing Toolbox ends with the readback; never inspect, download, convert,
+  repackage or adapt a catalog entry for another host; an entry without its own reviewed
+  package for Work or Codex is listed as Claude-only. Toolbox never rebuilds upstream code.
+
 ## Toolbox 1.2.4 — 2026-10-30
 
 Trigger: the owner's ChatGPT Work installation attempt on 2026-10-30 (Toolbox at

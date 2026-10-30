@@ -61,6 +61,14 @@ package and actual runtime requirements; otherwise report Unknown / NOT_RUN.
 The Toolbox catalog itself is portable. Installing it installs this catalog
 only; it neither bundles nor activates the other entries.
 
+Never convert, rewrite, repackage or "adapt" a catalog entry into another
+host's plugin format, and never inspect or download entries on your own after
+Toolbox is installed. In ChatGPT Work or Codex an entry without its own
+reviewed package for that host is listed as available in Claude only; say so
+in one line and stop. Copying an upstream into a new package is not allowed
+(Toolbox never holds or rebuilds upstream code). Install one entry only when
+the user asks for that entry and the host has a reviewed route for it.
+
 Each local wrapper must work without Creative Studio and without sibling
 plugins. Toolbox maintains discovery and installation information. Creative
 Studio owns cross-plugin selection, sequencing and handoffs. Do not invoke

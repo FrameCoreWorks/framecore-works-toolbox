@@ -24,6 +24,10 @@ authorization for the stated scope. Preserve existing installations and resolve
 identity before updates. Do not promise that Claude commands, hooks or local
 MCP configurations work in ChatGPT Work or Codex. If no reviewed route exists,
 report Unknown / NOT_RUN and explain the missing requirement.
+Never adapt, convert or repackage a Claude-format entry for ChatGPT Work or
+Codex; that is not a route. Saving Toolbox ends the installation: do not go
+on to inspect, download or install catalog entries unless the user asks for a
+specific one.
 
 For use, select the installed plugin/skill or describe the task in ordinary
 language. Claude slash commands apply to Claude. Saving a plugin, installing

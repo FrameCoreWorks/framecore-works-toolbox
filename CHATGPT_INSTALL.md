@@ -21,6 +21,11 @@
 5. Inspect the returned component diagnostics and read back the saved manifests
    and `skills/toolbox/SKILL.md`. Verify the catalog skill is actually readable
    in a fresh host invocation before claiming activation.
+6. Stop after the readback. Installing Toolbox installs the catalog and its
+   built-in Earshot launcher only. Do not inspect, download, convert or adapt
+   the third-party catalog entries for Work: most are Claude plugins with no
+   reviewed Work package, and Toolbox never rebuilds upstream code. List them
+   as Claude-only when asked.
 
 Ask for "toolbox" or select FrameCore Works Toolbox. The catalog identifies
 tools and installation requirements; it does not install all tools it lists.
