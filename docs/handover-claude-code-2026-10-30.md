@@ -13,6 +13,13 @@ Read `CHANGELOG.md` (1.3.3) first; this note only says where the work stands.
   audios". Real-model inference on the 1.3.3 lock: NOT_RUN (Hugging Face and the PyTorch
   CPU index are blocked in cloud sessions).
 
+## 2026-10-31: Toolbox 1.3.4
+
+- Fixes from the Codex retest report: Earshot light size text (about 470 MB) and
+  `attach-source` staging inside the runtime root. The 1.3.3 lock and steps below are
+  unchanged; on the Mac, update to 1.3.4 instead of 1.3.3.
+- Still open in another thread: the iso-glow archive hash changed upstream (report U2).
+
 ## Next step for the owner's Mac
 
 1. Update Toolbox to 1.3.3.

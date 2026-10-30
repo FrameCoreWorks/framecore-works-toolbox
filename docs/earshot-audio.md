@@ -80,7 +80,7 @@ locked build tools. Defaults to `~/.framecore-works/earshot`; choose another roo
 with `EARSHOT_NATIVE_ROOT` or `--root`. Existing nonempty roots are preserved;
 select a new one for replacement or a different tier.
 
-Light covers local measurement and procedural sound workflows, roughly 360 MB (358 MB measured 2026-10-30)
+Light covers local measurement and procedural sound workflows, roughly 470 MB (469 MB measured on 1.3.3, 2026-10-31)
 plus the source snapshot. Full adds CPU PyTorch and semantic dependencies, roughly
 1.5 GB before the separate approximately 1.1 GB model download. Full setup and the model
 download on an Apple Silicon Mac: PASS_REPORTED by the owner (2026-10-30, Toolbox 1.3.2);

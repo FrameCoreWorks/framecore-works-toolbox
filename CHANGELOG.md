@@ -1,5 +1,17 @@
 # Changes
 
+## Toolbox 1.3.4 — 2026-10-31
+
+Trigger: the 2026-10-31 Codex desktop retest of Toolbox 1.3.3 (report U4 and U14).
+
+- Earshot light is described as about 470 MB: a light install of 1.3.3 measured 469 MB
+  (venv 458 MB), not the 358 MB measured on 2026-10-30. `runtime.py` `SIZES`,
+  `capabilities.json` and `docs/earshot-audio.md` agree.
+- `attach-source` stages the download in a hidden temporary folder inside the runtime root,
+  like `install` already did, so nothing lands in the system temporary folder.
+- Verified here: two new or changed `runtime_test` cases fail on 1.3.3 and pass on 1.3.4.
+  A new light install measurement and host runs: NOT_RUN.
+
 ## Toolbox 1.3.3 — 2026-10-30
 
 Trigger: after the 1.3.2 full install on the owner's Mac mini (Apple Silicon, Python 3.12,

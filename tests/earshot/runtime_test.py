@@ -159,10 +159,28 @@ class Readiness(unittest.TestCase):
             self.assertEqual(seen[0].parent, root)
             self.assertFalse(seen[0].exists())
 
+    def test_attach_source_is_staged_inside_the_runtime_root(self):
+        # 2026-10-31 Codex retest: attach-source still staged the download outside --root.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp) / 'rt'
+            root.mkdir()
+            seen = []
+
+            def fetch(staging):
+                seen.append(pathlib.Path(staging))
+                raise OSError('stop after staging')
+            with mock.patch.object(runtime, 'read_engine', return_value={'commit': runtime.PIN['commit']}), \
+                    mock.patch.object(runtime, 'fetch_source', side_effect=fetch):
+                code, _, _ = quiet(runtime.main, ['attach-source', '--root', str(root), '--yes'])
+            self.assertEqual(code, 1)
+            self.assertEqual(seen[0].parent, root)
+            self.assertFalse(seen[0].exists())
+            self.assertFalse((root / 'upstream').exists())
+
     def test_light_size_matches_the_measured_install(self):
-        # 2026-10-30 Codex test: a light install measured 358 MB, not about 200 MB.
-        self.assertIn('360 MB', runtime.SIZES['light'])
-        self.assertIn('360 MB', runtime.plan('light', pathlib.Path('/x'))['size'])
+        # 2026-10-30 Codex test measured 358 MB; the 2026-10-31 retest on 1.3.3 measured 469 MB.
+        self.assertIn('470 MB', runtime.SIZES['light'])
+        self.assertIn('470 MB', runtime.plan('light', pathlib.Path('/x'))['size'])
 
     def test_a_failed_download_is_one_line_not_a_traceback(self):
         # 2026-10-22 container run: the CPU PyTorch index was unreachable and install ended in a traceback.

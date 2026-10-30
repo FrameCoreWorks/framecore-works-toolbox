@@ -60,7 +60,7 @@ MODEL_PINS = {
                 'files': ['config.json', 'preprocessor_config.json', 'model.safetensors']},
 }
 OFFLINE = {'EARSHOT_OFFLINE': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1'}
-SIZES = {'light': 'about 360 MB (engine, NumPy, SciPy, librosa and friends; measured 358 MB on 2026-10-30)',
+SIZES = {'light': 'about 470 MB (engine, NumPy, SciPy, librosa and friends; measured 469 MB on 1.3.3, 2026-10-31)',
          'full': 'about 1.5 GB (light plus CPU PyTorch and transformers); models are a separate fetch-models step, about 1.1 GB'}
 
 
@@ -552,7 +552,7 @@ def attach_source(root, yes):
         return 2
     staging = root / '.upstream.partial'
     try:
-        with tempfile.TemporaryDirectory(prefix='earshot-src-') as tmp:
+        with tempfile.TemporaryDirectory(prefix='.earshot-src-', dir=root) as tmp:
             src = fetch_source(tmp)
             problems = verify_tree(src, load_manifest()['files'])
             if problems:
