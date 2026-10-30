@@ -1,6 +1,6 @@
 # Install Toolbox in ChatGPT Work
 
-1. Use an authorized GitHub connection to obtain this private repository at one
+1. Use an authorized GitHub connection to obtain this public repository at one
    resolved full commit. Inspect `plugins/toolbox/`; preserve its identity.
 2. Build from the repository root with Python 3.10+:
 

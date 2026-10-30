@@ -1,7 +1,7 @@
 # FrameCore Works Toolbox
 
 FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
-in a private GitHub repository. The repository remains a Claude marketplace;
+in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
 **Catalog plugin version: 1.2.4.** One source directory, `plugins/toolbox/`,
@@ -84,8 +84,7 @@ are in [architecture](docs/architecture.md).
 Existing Claude routes:
 
 - Claude apps: Customize > Plugins > Add > Add marketplace >
-  `FrameCoreWorks/framecore-works-toolbox` (connect GitHub and give the Claude
-  GitHub App access to this private repo), then Add each plugin.
+  `FrameCoreWorks/framecore-works-toolbox`, then Add each plugin.
 - Claude Code CLI:
 
 ```bash

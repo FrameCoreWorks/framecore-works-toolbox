@@ -1,6 +1,6 @@
 # Install Toolbox in Codex
 
-Obtain this private repository through an authorized GitHub connection at a
+Obtain this public repository through an authorized GitHub connection at a
 resolved full commit. `plugins/toolbox/` is the complete portable package and
 also includes `.codex-plugin/plugin.json` for compatible local plugin clients.
 Use the actual host's documented local plugin route when available; do not

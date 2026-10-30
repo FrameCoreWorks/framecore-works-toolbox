@@ -3,16 +3,15 @@
 For ChatGPT Work or Codex, use the [installation overview](../INSTALL.md).
 This page documents the Claude route.
 
-The toolbox includes a Claude plugin marketplace in a private GitHub repo:
+The toolbox includes a Claude plugin marketplace in a public GitHub repo:
 `FrameCoreWorks/framecore-works-toolbox`. Add the marketplace once, then add
 each plugin you want. Adding the marketplace does not install its plugins.
 
 ## Claude apps (claude.ai, desktop, Cowork)
 
 1. Open Customize > Plugins > Add > Add marketplace.
-2. Enter `FrameCoreWorks/framecore-works-toolbox`. The repo is private: when
-   the dialog asks, connect GitHub and give the Claude GitHub App access to
-   this repo.
+2. Enter `FrameCoreWorks/framecore-works-toolbox` (a public repo; no GitHub
+   connection is needed).
 3. Open the plugin in the list, read what it contains, select Add.
 4. The plugin is saved to your account: its skills and commands work in chat,
    Cowork loads skills, commands, agents and hooks, and Claude Code receives it
@@ -33,7 +32,7 @@ claude.ai or Cowork.
 
 ## Claude Code CLI
 
-Needs git access to the private repo (for example `gh auth login`).
+Needs `git`; the repository is public, so no GitHub sign-in is required.
 
 ```bash
 claude plugin marketplace add FrameCoreWorks/framecore-works-toolbox
