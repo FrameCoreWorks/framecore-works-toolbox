@@ -21,10 +21,10 @@ runtime root. Resolve paths from the installed package and status; never copy pa
 2. Missing tier: show the setup plan, destination, download requirements and limits. Without `--yes` every
    setup command prints a plan; add `--yes` only after the user accepts that plan. `python3.12 <runtime> install
    --tier light` prints a plan; adding `--yes` installs a new runtime using hash-locked
-   wheels and a verified upstream snapshot. `--tier full` selects CPU PyTorch and local
-   semantic models; `fetch-models --yes` separately downloads their pinned revisions.
+   wheels and a verified upstream snapshot. `--tier full` selects CPU PyTorch (the PyPI wheel on an Apple Silicon
+   Mac; an Intel Mac gets light only) and local semantic models; `fetch-models --yes` separately downloads their pinned revisions.
    Source is never taken from upstream `main`. Existing nonempty runtimes are preserved;
-   choose a new `--root` for a replacement. See `references/earshot/runtime-and-evidence.md`.
+   choose a new `--root` for a replacement, also after a failed install left a partial root. See `references/earshot/runtime-and-evidence.md`.
    An existing runtime: `status` lists other roots it finds under `candidates` (for example one an earlier Studio
    route built in `~/.framecore-studio/extensions/earshot`) and never selects one. The user picks: `--root <path>`
    or `EARSHOT_NATIVE_ROOT`. A root with the pinned engine but without this launcher's package locks reads

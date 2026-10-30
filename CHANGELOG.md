@@ -1,5 +1,27 @@
 # Changes
 
+## Toolbox 1.3.2 — 2026-10-30
+
+Trigger: the owner's Earshot full install on a Mac mini (Apple Silicon, Python 3.12) on
+2026-10-30 stopped with "No matching distribution found for torch==2.6.0+cpu": the full
+lock pinned only the CPU-index build, which PyTorch publishes for Linux and Windows.
+
+- `requirements/full.in` and `full.txt` split torch by platform: `torch==2.6.0+cpu` from the
+  CPU index off macOS, `torch==2.6.0` with the PyPI `macosx_11_0_arm64` wheel hashes on
+  macOS. Every other locked package already had a hashed macOS arm64 wheel (checked against
+  PyPI for all 53 full and 37 light entries). On macOS the installer no longer adds the
+  PyTorch index.
+- Full install on an Intel Mac is refused before any write (PyTorch 2.6.0 has no macOS
+  x86_64 wheels); the message points to `--tier light`.
+- A failed install that left files in a new root now says to delete that folder or choose a
+  new `--root`, and a pip failure names "no wheel for this platform" among the causes.
+- `lock_pins` follows the platform markers, so lock conformance reads `2.6.0` on macOS.
+- Verified here: `uv pip install --dry-run --python-platform aarch64-apple-darwin` resolves
+  all 53 full packages with hashes (the 1.3.1 lock reproduces the owner's error); the cp312
+  macOS torch wheel downloaded with `--require-hashes` matches its hash; pip honours the
+  marker-split duplicate entries under `--require-hashes`. A real install on a Mac and full
+  inference: NOT_RUN. Host runs: NOT_RUN.
+
 ## Toolbox 1.3.1 — 2026-10-30
 
 Trigger: fresh-install test of Studio, Toolbox and Open Assets on 2026-10-30 (report

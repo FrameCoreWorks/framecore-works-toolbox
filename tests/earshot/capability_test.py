@@ -77,7 +77,7 @@ class LegacyRoots(unittest.TestCase):
 
     def test_lock_conformance_compares_installed_versions_with_the_tier_lock(self):
         pins = runtime.lock_pins('full')
-        self.assertEqual(pins['torch'], '2.6.0+cpu')
+        self.assertEqual(runtime.lock_pins('full', 'linux')['torch'], '2.6.0+cpu')
         good = legacy_root(self.base / 'good', '1.2.0', {n: v for n, v in pins.items()})
         drift = legacy_root(self.base / 'drift', '1.2.0', {**pins, 'torch': '2.14.1'})
         self.assertEqual(runtime.lock_conformance(good, 'full'), 'match')

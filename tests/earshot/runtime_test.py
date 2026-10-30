@@ -6,6 +6,7 @@ import io
 import json
 import os
 import pathlib
+import re
 import tempfile
 import unittest
 from unittest import mock
@@ -273,3 +274,86 @@ class RemoteStub(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class PlatformLocks(unittest.TestCase):
+    # 2026-10-30 owner run on a Mac mini (arm64, Python 3.12): the full lock pinned only torch==2.6.0+cpu, which
+    # download.pytorch.org publishes for Linux and Windows, so pip found no matching distribution on macOS.
+    MAC_TORCH_CP312 = '9a610afe216a85a8b9bc9f8365ed561535c93e804c2a317ef7fabcc5deda0989'   # PyPI torch-2.6.0-cp312-none-macosx_11_0_arm64.whl
+
+    def torch_entries(self):
+        text = (runtime.REQUIREMENTS / 'full.txt').read_text(encoding='utf-8')
+        return {match.group(2).strip(): (match.group(1), set(re.findall(r'sha256:([0-9a-f]{64})', match.group(3))))
+                for match in re.finditer(r'^torch==(\S+) ;([^\\\n]*)((?:\s*\\\n\s+--hash=sha256:[0-9a-f]+)+)', text, re.M)}
+
+    def test_full_lock_has_a_hashed_macos_arm64_torch_and_keeps_the_cpu_build_elsewhere(self):
+        entries = self.torch_entries()
+        self.assertEqual(set(entries), {"sys_platform == 'darwin'", "sys_platform != 'darwin'"})
+        version, hashes = entries["sys_platform == 'darwin'"]
+        self.assertEqual(version, '2.6.0')
+        self.assertIn(self.MAC_TORCH_CP312, hashes)
+        self.assertEqual(entries["sys_platform != 'darwin'"][0], '2.6.0+cpu')
+        self.assertNotRegex((runtime.REQUIREMENTS / 'full.txt').read_text(encoding='utf-8'), r'(?m)^torch==\S+ \\$')
+
+    def test_full_in_carries_the_same_platform_split(self):
+        lines = (runtime.REQUIREMENTS / 'full.in').read_text(encoding='utf-8').splitlines()
+        self.assertIn("torch==2.6.0+cpu ; sys_platform != 'darwin'", lines)
+        self.assertIn("torch==2.6.0 ; sys_platform == 'darwin'", lines)
+
+    def test_lock_pins_follow_the_platform(self):
+        self.assertEqual(runtime.lock_pins('full', 'darwin')['torch'], '2.6.0')
+        self.assertEqual(runtime.lock_pins('full', 'linux')['torch'], '2.6.0+cpu')
+        self.assertEqual(runtime.lock_pins('full', 'win32')['torch'], '2.6.0+cpu')
+        self.assertEqual(runtime.lock_pins('full', 'darwin')['numpy'], runtime.lock_pins('full', 'linux')['numpy'])
+
+    def full_install_calls(self, platform, machine):
+        with tempfile.TemporaryDirectory() as tmp:
+            src = pathlib.Path(tmp) / 'src'
+            src.mkdir()
+            (src / 'pyproject.toml').write_text('x')
+            manifest = {'pyproject.toml': hashlib.sha256(b'x').hexdigest()}
+            with mock.patch.object(runtime, 'fetch_source', return_value=src), \
+                    mock.patch.object(runtime, 'load_manifest', return_value={'files': manifest}), \
+                    mock.patch.object(runtime, 'venv_python', return_value=pathlib.Path('/venv/bin/python')), \
+                    mock.patch.object(runtime, 'status', return_value={}), \
+                    mock.patch.object(runtime, 'engine_package', return_value=pathlib.Path(tmp)), \
+                    mock.patch.object(runtime.sys, 'version_info', (3, 12, 0)), \
+                    mock.patch.object(runtime.sys, 'platform', platform), \
+                    mock.patch.object(runtime.platform, 'machine', return_value=machine), \
+                    mock.patch.object(runtime.subprocess, 'run') as started:
+                result = quiet(runtime.main, ['install', '--tier', 'full', '--root', str(pathlib.Path(tmp) / 'rt'), '--yes'])
+            return result, [c.args[0] for c in started.call_args_list]
+
+    def test_macos_full_install_takes_torch_from_pypi_only(self):
+        (code, _, _), calls = self.full_install_calls('darwin', 'arm64')
+        self.assertEqual(code, 0)
+        self.assertFalse(any(runtime.TORCH_INDEX in call for call in calls))
+        (code, _, _), calls = self.full_install_calls('linux', 'x86_64')
+        self.assertEqual(code, 0)
+        self.assertTrue(any(runtime.TORCH_INDEX in call for call in calls))
+
+    def test_intel_mac_full_install_is_refused_before_any_write(self):
+        # PyTorch 2.6.0 publishes no macOS x86_64 wheels.
+        (code, _, err), calls = self.full_install_calls('darwin', 'x86_64')
+        self.assertEqual(code, 1)
+        self.assertIn('Apple Silicon', err)
+        self.assertIn('--tier light', err)
+        self.assertEqual(calls, [])
+
+    def test_a_failed_install_says_the_partial_root_must_be_removed_or_replaced(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            src = pathlib.Path(tmp) / 'src'
+            src.mkdir()
+            (src / 'pyproject.toml').write_text('x')
+            manifest = {'pyproject.toml': hashlib.sha256(b'x').hexdigest()}
+            root = pathlib.Path(tmp) / 'rt'
+            failing = runtime.subprocess.CalledProcessError(1, ['pip', 'install', '-r', 'full.txt'])
+            with mock.patch.object(runtime, 'fetch_source', return_value=src), \
+                    mock.patch.object(runtime, 'load_manifest', return_value={'files': manifest}), \
+                    mock.patch.object(runtime, 'venv_python', return_value=pathlib.Path('/venv/bin/python')), \
+                    mock.patch.object(runtime.subprocess, 'run', side_effect=[None, None, failing]):
+                code, _, err = quiet(runtime.main, ['install', '--tier', 'full', '--root', str(root), '--yes'])
+            self.assertEqual(code, 1)
+            self.assertIn(str(root), err)
+            self.assertIn('new --root', err)
+            self.assertIn('platform', err)

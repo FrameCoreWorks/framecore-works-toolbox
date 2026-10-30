@@ -1,5 +1,6 @@
 -r light.in
-torch==2.6.0+cpu
+torch==2.6.0+cpu ; sys_platform != 'darwin'
+torch==2.6.0 ; sys_platform == 'darwin'
 transformers==4.48.3
 safetensors==0.5.3
 huggingface-hub==0.28.1

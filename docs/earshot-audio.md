@@ -83,8 +83,10 @@ select a new one for replacement or a different tier.
 Light covers local measurement and procedural sound workflows, roughly 360 MB (358 MB measured 2026-10-30)
 plus the source snapshot. Full adds CPU PyTorch and semantic dependencies, roughly
 1.5 GB before the separate approximately 1.1 GB model download. Full setup and
-inference remain NOT_RUN. The dependency locks target Python 3.12; other OS/CPU
-combinations are Unknown. FFmpeg/FFprobe decode media; Node.js is only for mux.
+inference remain NOT_RUN. The dependency locks target Python 3.12. The full lock takes
+`torch==2.6.0+cpu` from the PyTorch CPU index on Linux and Windows and the PyPI
+`torch==2.6.0` arm64 wheel on macOS; an Intel Mac is refused for full (no PyTorch 2.6.0
+wheel) and its light tier is Unknown. Other OS/CPU combinations are Unknown. FFmpeg/FFprobe decode media; Node.js is only for mux.
 
 Models need the separately authorized `fetch-models --yes`, or, from another root
 that already holds the pinned snapshots, `fetch-models --from <root> --yes`

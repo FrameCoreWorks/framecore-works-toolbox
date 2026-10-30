@@ -18,6 +18,7 @@ import argparse
 import hashlib
 import json
 import os
+import platform
 import re
 import shutil
 import subprocess
@@ -208,17 +209,27 @@ def _norm(name):
     return re.sub(r'[-_.]+', '-', name).lower()
 
 
-def lock_pins(tier):
+def _marker_applies(marker, system):
+    """The locks use only `sys_platform == '<name>'` and `sys_platform != '<name>'` markers."""
+    match = re.fullmatch(r"\s*sys_platform\s*(==|!=)\s*'([^']+)'\s*", marker)
+    if not match:
+        raise ValueError('unsupported marker in the Earshot locks: ' + marker)
+    return (system == match.group(2)) == (match.group(1) == '==')
+
+
+def lock_pins(tier, system=None):
     """{normalized distribution: version} from the hash-locked requirements file of a tier, or from its .in file
-    (following -r) when an installation without the hash locks has only that (ChatGPT Work text install)."""
+    (following -r) when an installation without the hash locks has only that (ChatGPT Work text install).
+    Entries whose platform marker does not apply to `system` (default: this interpreter's sys.platform) are skipped."""
+    system = system or sys.platform
     pins = {}
     def read(name):
         for line in (REQUIREMENTS / name).read_text(encoding='utf-8').splitlines():
             included = re.match(r'^-r\s+(\S+)', line)
             if included:
                 read(included.group(1))
-            match = re.match(r'^([A-Za-z0-9][A-Za-z0-9._-]*)==([^\s\\;]+)', line)
-            if match:
+            match = re.match(r'^([A-Za-z0-9][A-Za-z0-9._-]*)==([^\s\\;]+)(?:\s*;([^\\]*))?', line)
+            if match and (not match.group(3) or _marker_applies(match.group(3), system)):
                 pins[_norm(match.group(1))] = match.group(2)
     read(tier + '.txt' if (REQUIREMENTS / (tier + '.txt')).is_file() else tier + '.in')
     return pins
@@ -327,6 +338,9 @@ def install(tier, root):
     if missing:
         raise OSError('the hash locks ' + ', '.join(missing) + ' are not in this Toolbox installation (a ChatGPT Work text '
                       'install leaves them out); update Toolbox with the complete package first')
+    if tier == 'full' and sys.platform == 'darwin' and platform.machine() != 'arm64':
+        raise OSError('the full tier needs an Apple Silicon Mac: PyTorch 2.6.0 has no macOS x86_64 wheels; '
+                      'use --tier light on this Mac')
     if root.exists() and any(root.iterdir()):
         raise OSError('runtime destination is not empty; preserve it and select a new --root for this version')
     for parent in (root, *root.parents):
@@ -349,7 +363,7 @@ def install(tier, root):
         locked = ['--require-hashes', '--only-binary=:all:', '--index-url', 'https://pypi.org/simple']
         subprocess.run(pip + locked + ['-r', str(REQUIREMENTS / 'build.txt')], check=True)
         dependencies = pip + locked
-        if tier == 'full':
+        if tier == 'full' and sys.platform != 'darwin':   # macOS takes the plain PyPI torch wheel
             dependencies += ['--extra-index-url', TORCH_INDEX]
         subprocess.run(dependencies + ['-r', str(REQUIREMENTS / (tier + '.txt'))], check=True)
         subprocess.run(pip + ['--no-deps', '--no-build-isolation', '--no-index', str(src)], check=True)
@@ -589,12 +603,16 @@ def main(argv=None):
         if not args.yes:
             print(json.dumps(plan(args.tier, root), indent=2))
             return 0
+        was_empty = not root.is_dir() or not any(root.iterdir())
         try:
             return install(args.tier, root)
         except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError) as error:
             what = ' '.join(map(str, error.cmd[-2:])) if isinstance(error, (subprocess.CalledProcessError, subprocess.TimeoutExpired)) else str(error)
-            print(PREFIX + f'install stopped at `{what}` (network, proxy or disk); nothing beyond it was installed; '
-                  f'see `runtime.py status`', file=sys.stderr)
+            partial = was_empty and root.is_dir() and any(root.iterdir())
+            cause = ' (no wheel for this platform, network, proxy or disk)' if not isinstance(error, OSError) else ''
+            retry = (f'{root} now holds a partial install: delete that folder or choose a new --root before retrying'
+                     if partial else 'see `runtime.py status`')
+            print(PREFIX + f'install stopped at `{what}`{cause}; nothing beyond it was installed; {retry}', file=sys.stderr)
             return 1
     if args.cmd == 'attach-source':
         return attach_source(root, args.yes)
