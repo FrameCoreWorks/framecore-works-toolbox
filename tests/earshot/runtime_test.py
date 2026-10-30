@@ -4,6 +4,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import os
 import pathlib
 import tempfile
 import unittest
@@ -13,6 +14,8 @@ PLUGIN = pathlib.Path(__file__).resolve().parents[2] / 'plugins' / 'toolbox' / '
 spec = importlib.util.spec_from_file_location('earshot_runtime', PLUGIN / 'scripts/runtime.py')
 runtime = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(runtime)
+# macOS temp folders sit under the /var -> /private/var symlink, which install() refuses.
+tempfile.tempdir = os.path.realpath(tempfile.gettempdir())
 
 
 def quiet(fn, *args):
@@ -139,6 +142,26 @@ class Readiness(unittest.TestCase):
             for call in pip_calls:
                 self.assertIn('--no-warn-conflicts', call)
             self.assertFalse(any('torch' in ' '.join(call) for call in pip_calls))
+
+    def test_source_is_staged_inside_the_runtime_root(self):
+        # 2026-10-30 Codex test: without TMPDIR the source was staged outside --root.
+        with tempfile.TemporaryDirectory() as tmp:
+            root = pathlib.Path(tmp) / 'rt'
+            seen = []
+
+            def fetch(staging):
+                seen.append(pathlib.Path(staging))
+                raise OSError('stop after staging')
+            with mock.patch.object(runtime, 'fetch_source', side_effect=fetch):
+                code, _, _ = quiet(runtime.main, ['install', '--tier', 'light', '--root', str(root), '--yes'])
+            self.assertEqual(code, 1)
+            self.assertEqual(seen[0].parent, root)
+            self.assertFalse(seen[0].exists())
+
+    def test_light_size_matches_the_measured_install(self):
+        # 2026-10-30 Codex test: a light install measured 358 MB, not about 200 MB.
+        self.assertIn('360 MB', runtime.SIZES['light'])
+        self.assertIn('360 MB', runtime.plan('light', pathlib.Path('/x'))['size'])
 
     def test_a_failed_download_is_one_line_not_a_traceback(self):
         # 2026-10-22 container run: the CPU PyTorch index was unreachable and install ended in a traceback.

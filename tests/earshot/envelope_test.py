@@ -59,6 +59,43 @@ class Envelope(unittest.TestCase):
         self.assertEqual(doc['commands_run'][0]['exit_code'], 0)
         self.assertEqual(doc['audio']['stdout_json'], {'lufs': -14.1})
 
+    def request(self, **change):
+        doc = {'contract': 'framecore-task-request/1', 'task_id': 't-9', 'origin': 'studio',
+               'requester': {'plugin': 'framecore-work-creative-studio', 'version': '1.159.0'},
+               'owner': 'studio', 'host': 'codex', 'model': 'gpt-6-astra',
+               'provider': {'plugin': 'toolbox', 'capability': 'earshot', 'operation': 'run', 'command': 'measure'},
+               **change}
+        path = self.base / f'request-{len(list(self.base.glob("request-*.json")))}.json'
+        path.write_text(json.dumps(doc))
+        return path
+
+    def test_a_request_document_supplies_task_requester_host_and_model(self):
+        # 2026-10-30 Codex test: the envelope took no request JSON and wrote host/model as null.
+        code, doc, err = self.run_with(0, '{"lufs": -14.0}', ['--request', str(self.request())])
+        self.assertEqual(code, 0, err)
+        self.assertEqual(envelope.contract.validate(doc, 'result'), [])
+        self.assertEqual((doc['task_id'], doc['origin'], doc['owner']), ('t-9', 'studio', 'studio'))
+        self.assertEqual(doc['requester'], {'plugin': 'framecore-work-creative-studio', 'version': '1.159.0'})
+        self.assertEqual((doc['host'], doc['model']), ('codex', 'gpt-6-astra'))
+
+    def test_host_model_and_requester_version_flags_are_kept(self):
+        _, doc, _ = self.run_with(0, extra=['--task-id', 't-2', '--requester', 'framecore-work-creative-studio@1.159.0',
+                                            '--host', 'claude_code', '--model', 'claude-opus-5-5'])
+        self.assertEqual(doc['requester'], {'plugin': 'framecore-work-creative-studio', 'version': '1.159.0'})
+        self.assertEqual(doc['origin'], 'studio')
+        self.assertEqual((doc['host'], doc['model']), ('claude_code', 'claude-opus-5-5'))
+
+    def test_an_invalid_or_conflicting_request_is_refused_before_running(self):
+        bad = self.request(provider={'plugin': 'framecore-open-assets', 'capability': 'search', 'operation': 'search'})
+        for extra in (['--request', str(bad)],
+                      ['--request', str(self.request(contract='framecore-task-result/1'))],
+                      ['--request', str(self.request()), '--host', 'chatgpt_work']):
+            with mock.patch.object(envelope, 'launch') as launched:
+                code, _, err = quiet(['--result-out', str(self.base / 'r.json'), *extra, '--', 'run', 'measure', 'a.wav'])
+            self.assertEqual(code, 2, extra)
+            self.assertIn('toolbox/earshot:', err)
+            launched.assert_not_called()
+
     def test_refusal_and_failure_map_to_contract_statuses(self):
         self.assertEqual(self.run_with(2)[1]['status'], 'refused')
         self.assertEqual(self.run_with(1)[1]['status'], 'failed')

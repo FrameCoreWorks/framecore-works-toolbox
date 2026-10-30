@@ -2,7 +2,7 @@
   "schema": "framecore-capabilities/1",
   "plugin": {
     "name": "toolbox",
-    "version": "1.3.0"
+    "version": "1.3.1"
   },
   "entry_skill": "skills/toolbox/SKILL.md",
   "contract_versions": [
@@ -81,7 +81,7 @@
       "requirements": {
         "launcher": "any python3 (standard library)",
         "setup": "CPython 3.12",
-        "light": "about 200 MB",
+        "light": "about 360 MB",
         "full": "about 1.5 GB plus about 1.1 GB models",
         "api_keys": "none"
       },

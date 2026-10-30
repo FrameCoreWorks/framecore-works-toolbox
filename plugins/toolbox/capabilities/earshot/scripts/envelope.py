@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Run one Toolbox Earshot operation and write its framecore-task-result/1 envelope.
 
-    python3 envelope.py --result-out result.json [--task-id ID] [--requester PLUGIN] [--owner NAME]
-                        [--input FILE ...] [--output FILE ...] -- <runtime.py arguments>
+    python3 envelope.py --result-out result.json [--request REQUEST.json] [--task-id ID] [--requester PLUGIN[@VERSION]]
+                        [--owner NAME] [--host HOST] [--model MODEL] [--input FILE ...] [--output FILE ...]
+                        -- <runtime.py arguments>
 
 The launcher runs unchanged and its own output passes through. The envelope records the operation, the readiness of
 the runtime root, the exit code, SHA-256 of the declared inputs and outputs, warnings and what did not run, and is
-validated against the shared schema before it is written to a new file. `exec` (arbitrary venv Python) is a
+validated against the shared schema before it is written to a new file. A framecore-task-request/1 document
+(--request) supplies the task id, origin, requester, owner, host and model; flags may repeat but not contradict it. `exec` (arbitrary venv Python) is a
 user-invoked operation, not a task operation, and is refused here. Standard library only; no network of its own.
 """
 import argparse
@@ -60,12 +62,52 @@ def operation(argv):
     return op, command, root or runtime.default_root()
 
 
+def party(text):
+    """A requester flag `name` or `name@version` as a contract party, or None."""
+    if not text:
+        return None
+    name, _, version = text.rpartition('@') if '@' in text else (text, '', '')
+    if not name:
+        raise ValueError('give the requester as name or name@version')
+    return {'plugin': name, 'version': version or None}
+
+
+def identity(args):
+    """Task id, origin, requester, owner, host and model from --request and the flags."""
+    request = {}
+    if args.request:
+        try:
+            request = json.loads(args.request.read_text(encoding='utf-8'))
+        except (OSError, ValueError) as error:
+            raise ValueError(f'request unreadable ({error})') from error
+        problems = contract.validate(request, 'request')
+        if problems:
+            raise ValueError('request is not a framecore-task-request/1: ' + '; '.join(problems[:3]))
+        if (request['provider'].get('plugin'), request['provider'].get('capability')) != ('toolbox', 'earshot'):
+            raise ValueError('the request is addressed to another provider')
+    flags = {'task_id': args.task_id, 'owner': args.owner, 'host': args.host, 'model': args.model}
+    values = {}
+    for key, flag in flags.items():
+        given = request.get(key)
+        if flag is not None and given is not None and flag != given:
+            raise ValueError(f'--{key.replace("_", "-")} {flag} differs from the request ({given})')
+        values[key] = given if given is not None else flag
+    who, asked = request.get('requester'), party(args.requester)
+    if who and asked and (asked['plugin'] != who['plugin'] or asked['version'] not in (None, who.get('version'))):
+        raise ValueError('--requester differs from the request')
+    values['requester'] = {k: v for k, v in (who or asked or {}).items() if v is not None} or None
+    plugin = (values['requester'] or {}).get('plugin')
+    values['origin'] = request.get('origin') or (
+        'studio' if plugin == STUDIO and values['task_id'] else 'standalone' if not plugin else 'other')
+    return values
+
+
 def file_record(path, **extra):
     data = Path(path).read_bytes()
     return {'path': str(path), 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data), **extra}
 
 
-def build(args, argv, code, stdout, stderr, inputs, started, duration):
+def build(args, argv, code, stdout, stderr, inputs, started, duration, who=None):
     op, command, root = operation(argv)
     observed = datetime.now(timezone.utc).isoformat(timespec='seconds')
     try:
@@ -99,13 +141,13 @@ def build(args, argv, code, stdout, stderr, inputs, started, duration):
     if code != 0:
         errors.append({'code': f'exit_{code}', 'message': 'the launcher stopped; see its stderr', 'next_action': None})
     unexecuted.append({'check': 'listening_review', 'reason': 'model readings are evidence, not a human listening test'})
-    requester = {'plugin': args.requester} if args.requester else None
-    origin = 'studio' if args.requester == STUDIO and args.task_id else 'standalone' if not args.requester else 'other'
+    who = who or identity(args)
     return {
-        'contract': RESULT, 'task_id': args.task_id, 'origin': origin, 'requester': requester, 'owner': args.owner,
+        'contract': RESULT, 'task_id': who['task_id'], 'origin': who['origin'], 'requester': who['requester'],
+        'owner': who['owner'],
         'provider': {'plugin': 'toolbox', 'version': runtime.WRAPPER_VERSION, 'capability': 'earshot',
                      'operation': op, 'command': command},
-        'status': status, 'host': None, 'model': None,
+        'status': status, 'host': who['host'], 'model': who['model'],
         'inputs': inputs,
         'outputs': outputs,
         'readiness': {'state': readiness.get('state', 'unavailable'), 'command': 'runtime.py status --json',
@@ -128,9 +170,12 @@ def main(argv=None):
     split = argv.index('--')
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument('--result-out', required=True, type=Path)
+    parser.add_argument('--request', type=Path, help='framecore-task-request/1 document from the caller')
     parser.add_argument('--task-id')
-    parser.add_argument('--requester')
+    parser.add_argument('--requester', help='Calling plugin as name or name@version')
     parser.add_argument('--owner')
+    parser.add_argument('--host', help='Actual executing host, for example codex or claude_code')
+    parser.add_argument('--model', help='Actual agent model identifier')
     parser.add_argument('--input', action='append', default=[], type=Path)
     parser.add_argument('--output', action='append', default=[], type=Path)
     args = parser.parse_args(argv[:split])
@@ -138,6 +183,11 @@ def main(argv=None):
     op, _, _ = operation(launcher)
     if op not in OPERATIONS:
         print('toolbox/earshot: name a task operation (exec stays a user-invoked command)', file=sys.stderr)
+        return 2
+    try:
+        who = identity(args)
+    except ValueError as error:
+        print(f'toolbox/earshot: {error}; nothing was run', file=sys.stderr)
         return 2
     declared = {p.resolve() for p in (*args.input, *args.output)}
     if args.result_out.exists() or args.result_out.is_symlink() or args.result_out.resolve() in declared:
@@ -153,7 +203,7 @@ def main(argv=None):
     code, stdout, stderr = launch(launcher)
     sys.stdout.write(stdout)
     sys.stderr.write(stderr)
-    document = build(args, launcher, code, stdout, stderr, inputs, started, time.monotonic() - clock)
+    document = build(args, launcher, code, stdout, stderr, inputs, started, time.monotonic() - clock, who)
     problems = contract.validate(document, 'result')
     if problems:
         print('toolbox/earshot: envelope not written: ' + '; '.join(problems[:5]), file=sys.stderr)

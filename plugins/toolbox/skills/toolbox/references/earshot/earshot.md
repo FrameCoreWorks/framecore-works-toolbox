@@ -156,8 +156,10 @@ recordings as part of a local sound task. See `references/earshot/source-records
 ## 6. Returning results to the caller
 
 For a caller's `framecore-task-request/1`, run each operation through the envelope runner and return the file it
-writes: `python3 <plugin>/scripts/envelope.py --result-out <new file> --task-id <id> --requester <plugin>
-[--input <file>]... [--output <file>]... -- <runtime arguments>`. It keeps the launcher's exit code, hashes the
+writes: `python3 <plugin>/scripts/envelope.py --result-out <new file> --request <request file> --host <actual host>
+--model <actual model> [--input <file>]... [--output <file>]... -- <runtime arguments>`. The request supplies the task
+id, origin, requester (with its version), owner, host and model; without a request file pass `--task-id <id>
+--requester <plugin>@<version>` instead. Flags may repeat the request but never contradict it. It keeps the launcher's exit code, hashes the
 declared files, records readiness and warnings, and maps a plan without `--yes` to `needs_consent`.
 
 Return, for each result: the engine (the Toolbox Earshot launcher, its root path and state; label `unlocked_legacy` runs),

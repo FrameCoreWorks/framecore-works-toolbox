@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.3.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.3.1.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 

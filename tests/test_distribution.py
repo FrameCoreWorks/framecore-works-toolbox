@@ -16,7 +16,7 @@ import install_codex
 class DistributionTest(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.base = Path(self.temp.name)
+        self.base = Path(self.temp.name).resolve()
         self.repo = self.base / 'repo'
         self.plugin = self.repo / 'plugins/toolbox'
         shutil.copytree(ROOT / 'plugins/toolbox', self.plugin)

@@ -8,13 +8,29 @@
 
 See [install.md](install.md). Plugin id: `rea@framecore-works-toolbox`.
 
+## Codex
+
+`plugins/rea/` also carries `.codex-plugin/plugin.json`, which declares the
+skill and the same pinned MCP server (`npx -y rea-agents@6.5.0 mcp`). On the
+user's installation request, install that complete directory through the
+actual Codex host's local plugin route. Where no plugin route exists, the
+native-entry helper installs the skill from a checkout at a verified commit:
+
+```sh
+python3 scripts/install_codex.py install --plugin rea --skills-dir "<skills-dir>" --bundle-dir "<bundle-dir>" --source-commit "<40-character-commit>"
+```
+
+The helper adds no MCP server; register the pinned command above as a local
+MCP server in the user's Codex configuration, with their agreement, and never
+run upstream's `setup`. Codex activation and a Codex run remain NOT_RUN.
+
 ## Setup after install
 
 Node.js 22.19+, 24.11+ or 26+ with npm; a Chrome-family browser for web targets; Ghidra, IDA or Hopper only for native binaries.
 
 ## What works where
 
-Claude Code and Cowork (Node 22.19+ for the MCP server); chat: skill only.
+Claude Code and Cowork (Node 22.19+ for the MCP server); Codex through its own `.codex-plugin` package; chat: skill only.
 
 ## Use
 

@@ -1,5 +1,23 @@
 # Changes
 
+## Toolbox 1.3.1 — 2026-10-30
+
+Trigger: fresh-install test of Studio, Toolbox and Open Assets on 2026-10-30 (report
+`raporty/2026-10-30-test-instalacji-trzech-pluginow.md`, items 3, 5–9).
+
+- Earshot `envelope.py` takes the caller's `framecore-task-request/1` (`--request`) and
+  `--host`/`--model`; the result no longer writes host and model as null, and a
+  `--requester name@version` keeps its version. An invalid, misaddressed or contradicted
+  request is refused before anything runs.
+- Earshot install stages the downloaded source inside `--root`, so nothing is written
+  outside the runtime root when `TMPDIR` is unset.
+- Earshot light is described as about 360 MB (358 MB measured), not about 200 MB.
+- Catalog: `ffmpeg-skill` lists its reviewed Codex route instead of "Claude Code only";
+  `rea` gains Codex steps for its existing `.codex-plugin` package; the iso-glow review
+  names its one install-time download.
+- Tests resolve the macOS `/var` temp symlink, so the suite also passes on a Mac.
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.3.0 — 2026-10-30
 
 Trigger: owner request 2026-10-30 (thread "Ujednolić instalację trzech pluginów z

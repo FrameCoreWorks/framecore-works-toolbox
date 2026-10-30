@@ -34,7 +34,7 @@ Download https://isoglow.dev/iso-glow.zip, check `shasum -a 256 iso-glow.zip` eq
 
 ## Network traffic
 
-None on install. 3D pages load three.js from a public CDN.
+One HTTPS download on install: the archive from isoglow.dev, checked against the SHA-256 above. 3D pages load three.js from a public CDN.
 
 ## Rights
 

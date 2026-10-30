@@ -59,7 +59,7 @@ MODEL_PINS = {
                 'files': ['config.json', 'preprocessor_config.json', 'model.safetensors']},
 }
 OFFLINE = {'EARSHOT_OFFLINE': '1', 'HF_HUB_OFFLINE': '1', 'TRANSFORMERS_OFFLINE': '1'}
-SIZES = {'light': 'about 200 MB (engine, NumPy, SciPy, librosa and friends)',
+SIZES = {'light': 'about 360 MB (engine, NumPy, SciPy, librosa and friends; measured 358 MB on 2026-10-30)',
          'full': 'about 1.5 GB (light plus CPU PyTorch and transformers); models are a separate fetch-models step, about 1.1 GB'}
 
 
@@ -332,14 +332,15 @@ def install(tier, root):
     for parent in (root, *root.parents):
         if parent.is_symlink():
             raise OSError('runtime destination must not contain symlinks')
-    with tempfile.TemporaryDirectory(prefix='earshot-src-') as tmp:
+    root.mkdir(parents=True, exist_ok=True)
+    # Stage the download inside --root so nothing is written elsewhere, whatever TMPDIR is.
+    with tempfile.TemporaryDirectory(prefix='.earshot-src-', dir=root) as tmp:
         src = fetch_source(tmp)
         problems = verify_tree(src, load_manifest()['files'])
         if problems:
             print(PREFIX + 'the downloaded source differs from the pinned upstream; nothing was installed:\n  '
                   + '\n  '.join(problems[:20]), file=sys.stderr)
             return 1
-        root.mkdir(parents=True, exist_ok=True)
         # Keep upstream resources outside the plugin, before the package build can add files.
         shutil.copytree(src, root / 'upstream', ignore=shutil.ignore_patterns('.git'))
         subprocess.run([sys.executable, '-m', 'venv', str(root / 'venv')], check=True)
