@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: video-shotcraft
-- Status: active
+- Status: removed
 - Upstream: https://github.com/Vincentwei1021/video-shotcraft
 - Author: GitHub owner `Vincentwei1021`
 - License: Apache-2.0
@@ -68,3 +68,4 @@ Accept: Cinematic product and promo videos in Remotion from 152 shot recipes and
 ## History
 
 - 2026-10-26: added at 43bd349 (version 1.0.0) from the researched shortlist.
+- 2026-10-31: removed by owner decision ("15 jak sie pokrywa z skillem w glownej wtyczce to moze nie potrzebna"): it overlaps with Creative Studio's Remotion and cinematography skills, and Studio already adapted its useful sound-timing methods (motion-sound-design.md).

@@ -15,8 +15,8 @@ Checks:
 - first-party plugins (entry metadata.firstParty) live in ./plugins/<name>
   with docs/<name>.md, and the "toolbox" index skill lists exactly the other
   entries and the built-in capabilities, each under the heading of its category,
-  with columns Plugin | What it is for | How it helps Studio | Runs | Works in,
-  where Runs is "session" or "computer";
+  with columns Plugin | What it is for | How it helps Studio | Runs | Works in | Menu,
+  where Runs is one of RUNS and Menu is "<group>: <few words>" with a group from MENU_GROUPS;
 - built-in capabilities (plugins/toolbox/capabilities.json, kind "built-in")
   are not marketplace entries, have their folder with UPSTREAM.md naming the
   reviewed commit, and reviews/<name>.md (Status: active, Kind: built-in) and
@@ -49,9 +49,13 @@ HEADING = re.compile(r"^#+\s*(.+?)\s*$")
 # Entry "category" slug -> heading in the toolbox index. Add new categories here and in CLAUDE.md.
 # claude.ai keeps at most this many description characters and strips angle brackets.
 DESCRIPTION_LIMIT = 1024
-# Index "Runs" column: "session" works inside a chat, cloud or phone session; "computer" needs
-# programs, libraries or an app installed on the user's own computer.
-RUNS = {"session", "computer"}
+# Index "Runs" column: "ready" works as soon as the plugin is on; "session-install" installs
+# programs (Node, ffmpeg, a browser, Python packages) into the current conversation only;
+# "computer" needs something that cannot be installed in a session (a desktop app).
+RUNS = {"ready", "session-install", "computer"}
+# Index "Menu" column groups, in the order the catalog menu shows them.
+MENU_GROUPS = ("Design & web", "Writing", "Video & animation", "Sound", "Marketing", "Code")
+MENU_LINE = re.compile(r"^(" + "|".join(re.escape(g) for g in MENU_GROUPS) + r"): \S.*$")
 CATEGORIES = {"creative": "Creative", "dev-tools": "Dev tools", "marketing": "Marketing & growth"}
 
 
@@ -237,7 +241,9 @@ def check_index(root, entries, errors):
             if len(cells) < 4 or not cells[2]:
                 errors.append(f"'{m.group(1)}': index row needs a 'How it helps Studio' text")
             if len(cells) < 4 or cells[3] not in RUNS:
-                errors.append(f"'{m.group(1)}': index row needs Runs 'session' or 'computer'")
+                errors.append(f"'{m.group(1)}': index row needs Runs 'ready', 'session-install' or 'computer'")
+            if len(cells) < 6 or not MENU_LINE.match(cells[5]):
+                errors.append(f"'{m.group(1)}': index row needs a Menu line '<group>: <few words>'")
     for name, entry in sorted(entries.items()):
         expected = CATEGORIES.get(entry.get("category"))
         if name not in listed:

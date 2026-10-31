@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.4.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.5.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -16,7 +16,7 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-The current marketplace contains **17 tools plus the toolbox index: 18 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
+The current marketplace contains **16 tools plus the toolbox index: 17 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
 **What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
@@ -33,7 +33,6 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | motion-designer | [kaventro/motion-designer](https://github.com/kaventro/motion-designer) | `7d0b8bb` (1.2.0) | app launch films and short code videos cut to music, MP4/loop/poster | skill (render Unknown) / skill + render / skill + render | [docs](docs/motion-designer.md) | [review](reviews/motion-designer.md) |
 | logo-design | [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) | `7340903` (1.4.5) | logo design from brief to SVG and brand guidelines | skill / skill + scripts / skill + scripts | [docs](docs/logo-design.md) | [review](reviews/logo-design.md) |
 | hallmark | [Nutlope/hallmark](https://github.com/Nutlope/hallmark) | `7ec8682` (2.0.0) | web pages and app UI that do not look AI-generated | skill / skill + scripts / skill + scripts | [docs](docs/hallmark.md) | [review](reviews/hallmark.md) |
-| video-shotcraft | [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | `43bd349` (1.0.0) | Cinematic product and promo videos in Remotion from 152 shot recipes and a production template. | skill / skill + render / skill + render | [docs](docs/video-shotcraft.md) | [review](reviews/video-shotcraft.md) |
 | brag | [latent-spaces/brag](https://github.com/latent-spaces/brag) | `669ab92` (0.5.0) | Turns the project you just built into a short launch video with one command. | skill / skill + render / skill + render | [docs](docs/brag.md) | [review](reviews/brag.md) |
 | nateherk-design | [nateherkai/scroll-craft](https://github.com/nateherkai/scroll-craft) | `75d81f7` (0.3.1) | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | skill / skill / skill | [docs](docs/nateherk-design.md) | [review](reviews/nateherk-design.md) |
 | sepia | [Nanako0129/sepia](https://github.com/Nanako0129/sepia) | `fb06be7` (0.12.4) | Removes AI patterns from fiction and professional prose without changing what it says. | skills / skills / skills | [docs](docs/sepia.md) | [review](reviews/sepia.md) |

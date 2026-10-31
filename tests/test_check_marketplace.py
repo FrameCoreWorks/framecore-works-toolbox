@@ -170,7 +170,7 @@ class CheckMarketplaceTest(unittest.TestCase):
         (plugin / ".claude-plugin/plugin.json").write_text(json.dumps({"name": "toolbox"}))
         skill = plugin / "skills/toolbox"
         skill.mkdir(parents=True)
-        rows = "".join(f"| `{n}` | x | helps | session | Claude |\n" for n in listed)
+        rows = "".join(f"| `{n}` | x | helps | ready | Claude | Code: short line |\n" for n in listed)
         (skill / "SKILL.md").write_text(f"## Catalog\n\n### {heading}\n\n{rows}\n### Creative\n\n")
         (self.root / "docs/toolbox.md").write_text("Toolbox index\n")
         return {"name": "toolbox", "source": "./plugins/toolbox", "metadata": {"firstParty": True}}
@@ -188,7 +188,7 @@ class CheckMarketplaceTest(unittest.TestCase):
 
     def write_creative_row(self, name="sound"):
         skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
-        skill.write_text(skill.read_text() + f"| `{name}` | built in | helps | computer | Claude |\n")
+        skill.write_text(skill.read_text() + f"| `{name}` | built in | helps | session-install | Claude | Sound: short line |\n")
 
     def test_builtin_capability_listed_in_index_passes(self):
         self.write_manifest([self.write_index(), entry()])
@@ -319,10 +319,26 @@ class CheckMarketplaceTest(unittest.TestCase):
     def test_index_row_needs_runs_column(self):
         index = self.write_index()
         skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
-        skill.write_text(skill.read_text().replace("| session |", "| anywhere |"))
+        skill.write_text(skill.read_text().replace("| ready |", "| session |"))
         self.write_manifest([index, entry()])
         self.write_entry_files()
-        self.assert_error("'demo': index row needs Runs 'session' or 'computer'")
+        self.assert_error("'demo': index row needs Runs 'ready', 'session-install' or 'computer'")
+
+    def test_index_row_needs_menu_line_with_group(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text().replace("| Code: short line |", "| short line |"))
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assert_error("'demo': index row needs a Menu line '<group>: <few words>'")
+
+    def test_index_row_with_unknown_menu_group_fails(self):
+        index = self.write_index()
+        skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
+        skill.write_text(skill.read_text().replace("| Code: short line |", "| Gadgets: short line |"))
+        self.write_manifest([index, entry()])
+        self.write_entry_files()
+        self.assert_error("'demo': index row needs a Menu line '<group>: <few words>'")
 
     def test_index_row_needs_studio_benefit(self):
         index = self.write_index()
@@ -335,7 +351,7 @@ class CheckMarketplaceTest(unittest.TestCase):
     def test_index_row_with_computer_runs_passes(self):
         index = self.write_index()
         skill = self.root / "plugins/toolbox/skills/toolbox/SKILL.md"
-        skill.write_text(skill.read_text().replace("| session |", "| computer |"))
+        skill.write_text(skill.read_text().replace("| ready |", "| computer |"))
         self.write_manifest([index, entry()])
         self.write_entry_files()
         self.assertEqual(self.errors(), [])

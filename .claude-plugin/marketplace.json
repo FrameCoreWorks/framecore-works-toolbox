@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.4.0"
+      "version": "1.5.0"
     },
     {
       "name": "animate",
@@ -70,17 +70,6 @@
         "source": "github",
         "repo": "Nutlope/hallmark",
         "sha": "7ec868225c6caa040558c321ee0fefa0e73f83a8"
-      }
-    },
-    {
-      "name": "video-shotcraft",
-      "description": "Cinematic product and promo videos in Remotion from 152 shot recipes and a production template.",
-      "version": "1.0.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "Vincentwei1021/video-shotcraft",
-        "sha": "43bd349a136651865ecfa6ea1cf012f6e957d304"
       }
     },
     {

@@ -1,5 +1,29 @@
 # Changes
 
+## Toolbox 1.5.0 — 2026-10-31
+
+Trigger: owner report 2026-10-31: the numbered catalog menu shown in Claude web was hard to
+read, and entries such as animate and motion-designer were listed as "needs your computer"
+although their tools (Node, Playwright Chromium, ffmpeg, python3) install inside a session.
+
+- New catalog menu format: two blocks, "Ready to use" and "Installs tools for this
+  conversation", grouped by purpose (Design & web, Writing, Video & animation, Sound,
+  Marketing, Code), one short line per entry from the new index column "Menu". The full
+  descriptions, "Works in", "Use" and "Watch out" notes are shown when the user asks about
+  one number.
+- "Runs" values are now `ready`, `session-install` and `computer`. Re-checked every entry:
+  Earshot, animate, motion-designer, brag, huashu-art-motion and rea install their tools for
+  the conversation (Claude Code desktop, cloud and phone, Cowork; Earshot also in Codex and
+  ChatGPT Work with public internet access on). No entry needs only a desktop computer now;
+  rea's native-binary analysis still needs Ghidra, IDA or Hopper. The menu says that a
+  session install lasts only for that conversation and asks before downloads over about
+  300 MB.
+- Removed `video-shotcraft` by owner decision: it overlaps with Creative Studio's Remotion
+  and cinematography skills, and Studio already adapted its sound-timing methods. Its docs
+  page is deleted; its review stays with Status: removed.
+- `scripts/check_marketplace.py` checks the new Runs values and the Menu column (tests first).
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.4.0 — 2026-10-31
 
 Trigger: owner decision 2026-10-31 after the catalog review of 2026-10-30: Toolbox lists only
