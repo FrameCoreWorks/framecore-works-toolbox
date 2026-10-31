@@ -1,5 +1,16 @@
 # Changes
 
+## Toolbox 1.5.2 — 2026-10-31
+
+Trigger: owner requirement 2026-10-31: even when nothing was picked at setup, a task that needs
+a tool gets it installed on demand with a notice of how long it lasts.
+
+- New index section "Installs during work": install only what the task needs (Earshot's
+  engine or an installed entry's programs), announced in one line with the host's lifetime
+  (this conversation in the Claude apps, a cloud session or ChatGPT Work; once on the user's
+  computer in Claude Code or Codex); ask first above about 300 MB; offer a missing entry once.
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.5.1 — 2026-10-31
 
 Trigger: owner requirements 2026-10-31 for the first-install list: say what can be installed,

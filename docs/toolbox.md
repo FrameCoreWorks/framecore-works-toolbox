@@ -54,7 +54,7 @@ Every entry added to or removed from `.claude-plugin/marketplace.json` must be
 added to or removed from the catalog table in
 `plugins/toolbox/skills/toolbox/SKILL.md` in the same commit.
 Built-in capabilities from `plugins/toolbox/capabilities.json` and app notes from `plugins/toolbox/apps.json` are listed there too. An app note is a desktop app, a skill archive or a plugin with a top-level `bin/` (claude.ai and Cowork skip those on marketplace sync): it has a review (`Kind: app`, `Pin:` a full commit or `sha256:` of the archive) and docs with manual install steps, and is never a marketplace entry.
-`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.5.1` (portable releases started at `1.0.0`). Keep the version and identity
+`scripts/check_marketplace.py` fails when they differ. The current catalog version is `1.5.2` (portable releases started at `1.0.0`). Keep the version and identity
 synchronized across the three plugin manifests and its marketplace entry. After
 a package change, rebuild its ZIP and update the existing installation using
 the selected host guide. In Claude use Check for updates or

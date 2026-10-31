@@ -117,6 +117,18 @@ blocked step and give the steps for a session or computer that allows it,
 not a failed install. A "Needs your computer" entry picked without that
 computer gets its steps for later.
 
+## Installs during work
+
+Nothing has to be picked in advance. When a task (the user's or a caller's
+such as Creative Studio) needs Earshot's engine or the programs of an
+installed entry, install just those for that task: one line first, "I'm
+installing X because Y needs it", with how long it lasts from "Where
+installs go" (only this conversation in the Claude apps, a Claude Code
+cloud session or ChatGPT Work; once and for later on the user's computer in
+Claude Code or Codex). Ask first for anything over about 300 MB (Earshot's
+engine included). An entry that is not installed is offered once when it
+clearly fits; a plugin added mid-conversation loads in a new conversation.
+
 ## Host compatibility and independence
 
 Unless a row explicitly names another host, the catalog's "Works in" cells and slash-command examples describe
