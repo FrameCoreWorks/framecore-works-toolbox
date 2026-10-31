@@ -6,6 +6,17 @@ also includes `.codex-plugin/plugin.json` for compatible local plugin clients.
 Use the actual host's documented local plugin route when available; do not
 invent CLI commands or install both routes for the same user/scope.
 
+## Plugin route (recommended where Codex has a plugin manager)
+
+Codex CLI 0.166.0 installs plugins from a marketplace (checked 2026-10-31; `codex plugin marketplace --help` shows whether this Codex can). Toolbox is pinned in Creative Studio's marketplace, and that is the route Studio's setup uses:
+
+```sh
+codex plugin marketplace add FrameCoreWorks/framecore-works-creative-studio
+codex plugin add toolbox@framecore-works
+```
+
+Without Studio, `codex plugin marketplace add FrameCoreWorks/framecore-works-toolbox` then `codex plugin add toolbox@framecore-works-toolbox` also works, but install Toolbox from one marketplace only. That marketplace also lists the third-party catalog entries; in Codex install only those the catalog marks with a Codex route. The skill is then `toolbox:toolbox`; update with `codex plugin marketplace upgrade <marketplace>` and the same `codex plugin add`. Never also create the native entry below for the same user: both would load.
+
 ## Native entry with the complete bundle
 
 The same direct-source pattern used by Creative Studio is available without
