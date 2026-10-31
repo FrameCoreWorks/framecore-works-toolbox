@@ -1,5 +1,20 @@
 # Changes
 
+## Toolbox 1.5.1 — 2026-10-31
+
+Trigger: owner requirements 2026-10-31 for the first-install list: say what can be installed,
+where and for how long; let the user pick numbers or "all"; let them come back later.
+
+- The menu opens with one line for the current host from the new "Where installs go"
+  section: on the user's computer (Claude Code desktop or terminal, Codex) entries and their
+  programs stay; in the Claude apps an entry turned on in Customize > Plugins stays on the
+  account while programs last for the conversation; in a Claude Code cloud session and in
+  ChatGPT Work programs last only for that session or conversation.
+- The second block is now "Also installs programs", with the same host-specific lifetime.
+- The question accepts "all" (every entry installable on this host), and the menu ends with
+  "type toolbox to see this list again and add more".
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.5.0 — 2026-10-31
 
 Trigger: owner report 2026-10-31: the numbered catalog menu shown in Claude web was hard to

@@ -33,16 +33,16 @@ lines, plain words, no command unless they ask how it works.
 
 1. One line: "FrameCore Works Toolbox: tools I recommend next to Creative
    Studio. Pick the numbers you want." Do not state a plugin count; it goes
-   stale and is easy to miscount.
+   stale and is easy to miscount. Then one line for this host on where an
+   install goes and how long it lasts, from "Where installs go" below.
 2. Two blocks, numbered continuously (1, 2, 3 ... across both):
    - **Ready to use** (rows with Runs `ready`): work as soon as they are
      added.
-   - **Installs tools for this conversation** (rows with Runs
-     `session-install`). Under the heading, one line: "These install
-     programs such as Node, ffmpeg or a browser when you first use them.
-     The install lasts only for this conversation; a new one installs them
-     again (the plugin itself stays added)." Also one line that you ask
-     before any download over about 300 MB.
+   - **Also installs programs** (rows with Runs `session-install`). Under
+     the heading, one line saying they install programs such as Node,
+     ffmpeg or a browser when first used, how long those last on this host
+     (from "Where installs go"), and that you ask before any download over
+     about 300 MB.
    - **Needs your computer** (rows with Runs `computer`), only when such a
      row exists: say what has to be on the computer in a few words.
 3. Inside each block, group entries by the group before the colon in the
@@ -58,8 +58,28 @@ lines, plain words, no command unless they ask how it works.
    compatibility" below); keep it in the list so the user sees what exists.
    In Claude, say nothing about hosts.
 5. Do not claim whether a plugin is installed; you cannot see that reliably.
-6. End with one question: "Which numbers do you want? You can also say
-   none, or ask about one number." Stop there.
+6. End with one line and one question: "You can come back any time:
+   type toolbox to see this list again and add more." Then "Which numbers
+   do you want? You can say all, none, or ask about one number." Stop
+   there. "All" means every entry that can be installed on this host.
+
+### Where installs go
+
+Pick the line for the host you are in; never promise more than it keeps.
+
+- Claude Code on the user's computer (desktop app or terminal) and Codex on
+  the user's computer: entries install on this computer and stay available
+  in every new conversation; their programs install on the computer too
+  (with the user's yes) and stay.
+- Claude apps (claude.ai web, desktop chat, phone, Cowork): an entry turned
+  on in Customize > Plugins stays on the account in every Claude app;
+  programs it installs in a conversation last only for that conversation.
+- Claude Code in the cloud (claude.ai/code, the phone): an install made in
+  the session lasts only for that session; to keep an entry, turn it on in
+  Customize > Plugins on the account. Programs last only for the session.
+- ChatGPT Work: Toolbox and Earshot stay saved as a plugin; programs and
+  Earshot's engine last only for this conversation (downloads need public
+  internet access for Work turned on). Third-party entries are Claude only.
 
 If the user asks for one category or group only ("toolbox creative"), show
 just that, numbered the same way. Answer in the user's language. If the user
@@ -68,7 +88,7 @@ asks about one entry, give its full "What it is for", "How it helps Studio",
 
 ## After the user picks numbers
 
-The picked numbers are the user's request for those entries. For each one,
+The picked numbers (or "all") are the user's request for those entries. For each one,
 in order, say in one plain sentence what will be added and where, then follow
 [installation](references/installation.md) for the actual host:
 
