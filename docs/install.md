@@ -49,12 +49,14 @@ Plugins installed this way stay on that machine and are not added to your
 claude.ai account. Plugins added in claude.ai arrive in Claude Code as
 `@synced` on their own; do not install the same plugin both ways.
 
-Toolbox itself is also in Creative Studio's marketplace: installing Studio there
-brings `toolbox@framecore-works`. Keep one copy. Both copies stay enabled
-side by side (observed with Claude Code 2.1.316 on 2026-10-31), so with Studio
-installed remove the other one with
-`claude plugin uninstall toolbox@framecore-works-toolbox` and keep this
-marketplace for the catalog entries. Do not run `claude plugin prune` while
-Studio is installed: it would remove Studio's Toolbox.
+Toolbox is listed only in this marketplace. Since Creative Studio 1.163.1,
+Studio's marketplace no longer carries its own copy: Studio depends on
+`toolbox@framecore-works-toolbox`, so add this marketplace before installing
+Studio and Claude Code installs Toolbox with it. Up to Studio 1.163.0 Studio's
+marketplace had a second copy (`toolbox@framecore-works`), which showed Toolbox
+twice in the Claude apps. If that copy is still installed, or shows "failed to
+load", run `claude plugin uninstall toolbox@framecore-works` and keep
+`toolbox@framecore-works-toolbox`. Do not run `claude plugin prune` while
+Studio is installed: it can remove Studio's Toolbox.
 
 Per-plugin setup, options and full removal steps are in `docs/<name>.md`.
