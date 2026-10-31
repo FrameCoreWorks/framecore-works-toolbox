@@ -61,6 +61,15 @@ The entries explicitly retained in the 2026-10-28 cleanup keep their existing
 pins and reviews. This prospective rule does not retroactively invalidate them
 or authorize further removals without a separate owner decision.
 
+## Self-contained entries only (owner decision, 2026-10-31)
+
+Toolbox lists only tools that install without trouble and work on their own: no account to
+create, no required API key and no separate desktop app or manual install. An optional key
+for an extra feature is acceptable when the tool works without it. Libraries and runtimes
+that install cleanly (Node, Python, ffmpeg, a browser) and Earshot's consented engine install
+are allowed. Reject anything else at the reject gate. Toolbox 1.4.0 removed seven entries
+under this rule (see CHANGELOG).
+
 ## Workflow for a new entry
 
 1. The owner (Kamil) names a repo or a tool. Do not propose or add repos on

@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: iso-glow
-- Status: active
+- Status: removed
 - Upstream: https://isoglow.dev/
 - Author: April Zhu
 - License: MIT (built on iso-figure by Tolga Cohce, MIT)
@@ -51,3 +51,4 @@ accept as an app note: listed for discovery with manual steps; nothing is instal
 ## History
 
 - 2026-10-29: added as an app note, moved from Creative Studio's recommended extensions.
+- 2026-10-31: removed by owner decision: Toolbox keeps only entries that install without accounts, API keys or separate desktop apps; it is a skill archive installed by hand, and the upstream archive has changed since review (sha256 28725d3b0f47ed0d4e1ec4411f6b0377a91d13960bd3a7a8224516b3a0017a36 seen in the 2026-10-30 Codex retest).

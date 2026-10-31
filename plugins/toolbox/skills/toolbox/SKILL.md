@@ -146,23 +146,16 @@ read that file before any Earshot step. Discovery for other plugins is
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Turns a Studio script and storyboard into a rendered explainer or animated video. | computer | Claude Code and Cowork (needs Node, Playwright Chromium, ffmpeg); chat: skill loads, rendering Unknown |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Renders Studio's app-launch and promo concepts as finished MP4 films cut to music. | computer | Claude Code and Cowork (needs node, Chrome, ffmpeg, python3); chat: skill loads, rendering Unknown |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Gives Studio's brand and campaign work a real logo with construction and usage rules. | session | Chat, Cowork and Claude Code (scripts need python3) |
-| `meta-ads-designer` | Art-directs and generates Meta/Instagram ads, posters and flyers with an AI image model, then checks the result. | Turns Studio's ad concepts and copy into checked Meta and Instagram ad images. | session | Chat, Cowork and Claude Code (image generation needs an image tool or a fal.ai key) |
 | `hallmark` | Designs web pages and app UIs that do not look AI-generated, with themes, a slop linter and optional generated images (Together AI). | Builds the landing page or app screen that a Studio campaign points to, without the AI look. | session | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
-| `open-design` | Connects Claude to the local Open Design app (139 design skills, 150 design systems, projects and previews) over MCP; needs the app installed. | Opens Studio's design work in the Open Design app with its design systems and previews. | computer | Cowork and Claude Code with the Open Design app running; not chat |
 | `video-shotcraft` | Cinematic product and promo videos in Remotion from 152 shot recipes and a production template. | Adds 152 cinematic shot recipes to Studio's product-video storyboards and renders them in Remotion. | computer | Claude Code and Cowork (Node, Remotion); chat: skill loads, rendering Unknown |
 | `brag` | Turns the project you just built into a short launch video with one command. | Makes a quick launch video of a finished project when a full Studio production is not needed. | computer | Claude Code and Cowork; chat: skill loads, rendering Unknown |
 | `nateherk-design` | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | Builds the scroll-driven website for a Studio campaign or brand story. | session | Chat, Cowork and Claude Code |
 | `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Gives Studio's scripts and copy a second pass that removes AI-sounding prose. | session | Chat, Cowork and Claude Code |
-| `blender-agent-skills` | Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and export. | Adds 3D models, product renders and animation to Studio's visual work. | computer | Claude Code and Cowork with Blender installed; chat: guidance only |
 | `wondelai-ux-design` | UX and UI design skills. | Adds UX and UI design method when a Studio project includes an app or site screen. | session | Chat, Cowork and Claude Code |
 | `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Gives Studio's web and screen work a researched art direction and a browser check. | session | Chat: skill. Cowork and Claude Code: skill plus scripts and browser |
 | `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Adds interactive isometric line figures that match Studio's Hairline motion style on web pages. | session | Chat: skills. Cowork and Claude Code: skills plus browser check |
 | `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Adds 36 art styles and 9 explainer grammars to Studio's animation ideas and shot lists. | computer | Chat: skill. Cowork and Claude Code: skill plus renderer (Node, browser) |
 | `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Explains a technical product in a Studio piece as a detailed isometric figure. | session | Chat: skill. Cowork and Claude Code: skill plus scripts (Node, Chrome) |
-| `ffmpeg-skill` | App note: Synchronizes recordings, prepares multicam edits, converts HDR footage to SDR and performs local FFmpeg media operations. | Syncs, cuts and converts the recordings a Studio edit is built from. | computer | Claude Code and Codex, installed by hand at the pin (Codex: the upstream's native skill installer, see its notes); top-level `bin/`, so not chat or Cowork; Python and FFmpeg required |
-| `pixel-plugin` | App note: Pixel art drawn in Aseprite from a conversation: sprites, palettes, dithering, frame animation and GIF or spritesheet export. | Draws the pixel-art sprites and animations a Studio concept calls for. | computer | Claude Code only, installed by hand at the pin (top-level `bin/`, so not chat or Cowork); Aseprite required |
-| `voicebox` | App note: Local desktop voice studio: cloning, designed voices, multi-voice stories, with a localhost REST API and MCP server. | Records voice-overs for Studio's scripts on your own computer, with designed or cloned voices. | computer | Desktop app, install yourself; agents reach it over localhost MCP or REST. Not chat |
-| `iso-glow` | App note: Isometric hairline figures where the switched-on part glows, as single HTML pages; a skill archive installed by hand (no Git repo). | Adds glowing isometric figures for Studio's explainer and product visuals. | session | Skill archive, install by hand with checksum; chat via custom skill upload |
 
 ### Dev tools
 
@@ -180,15 +173,6 @@ read that file before any Earshot step. Discovery for other plugins is
 
 ## Details
 
-### ffmpeg-skill
-
-- Use: ask for a local recording alignment, multicam edit, HDR-to-SDR conform or other
-  supported media operation. Not in the marketplace; install it by hand in Claude Code: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/ffmpeg-skill.md
-- Watch out: requires Python, FFmpeg and FFprobe. The tool's audio alignment does not
-  establish lip sync or subject tracking. Transcription needs a separate engine and
-  may download model weights. Check the actual host's installation route first.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/ffmpeg-skill.md
-
 ### earshot-audio
 
 - Use: built into Toolbox; nothing else to install as a plugin. Ask Toolbox to measure
@@ -199,7 +183,6 @@ read that file before any Earshot step. Discovery for other plugins is
   picked for you. It works without Studio or other catalog entries. Full-tier
   inference and fresh host activation remain NOT_RUN.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/earshot-audio.md
-
 
 ### animate
 
@@ -228,23 +211,11 @@ read that file before any Earshot step. Discovery for other plugins is
 - Watch out: its skills may load on many tasks; disable it in projects where you do not want its rules.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/antislop.md
 
-### meta-ads-designer
-
-- Use: ask for an ad, poster or flyer, or `/meta-ads-designer:meta-ads-designer`; default format 4:5.
-- Watch out: with `FAL_KEY` set it sends prompts to fal.ai; without an image tool you get prompts, not images.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/meta-ads-designer.md
-
 ### hallmark
 
 - Use: describe the page or redesign, or `/hallmark:hallmark`.
 - Watch out: generated images go to Together AI only with `TOGETHER_API_KEY`; do not run `install-hook.mjs` unless you want a lint hook.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/hallmark.md
-
-### open-design
-
-- Use: with the app running, ask Claude to open or work on an Open Design project; the tools come from the `open-design` MCP server.
-- Watch out: needs the Open Design app (`od`) installed and its daemon running; the app itself was not reviewed.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/open-design.md
 
 ### video-shotcraft
 
@@ -264,18 +235,11 @@ read that file before any Earshot step. Discovery for other plugins is
 - Watch out: images go to kie.ai only with `KIE_AI_API_KEY`.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/nateherk-design.md
 
-
 ### sepia
 
 - Use: ask to de-AI a text, or `/sepia:sepia`.
 - Watch out: overlaps with Studio's Humanizer.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/sepia.md
-
-### blender-agent-skills
-
-- Use: ask for a 3D task in Blender, or `/blender-agent-skills:` and pick a skill.
-- Watch out: needs Blender 5.2 on the machine.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/blender-agent-skills.md
 
 ### web-quality-skills
 
@@ -289,18 +253,11 @@ read that file before any Earshot step. Discovery for other plugins is
 - Watch out: integrations reach external services only with their API keys.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/marketing-skills.md
 
-
 ### wondelai-ux-design
 
 - Use: ask a task in this area or call `/wondelai-ux-design:` and pick a skill.
 - Watch out: none.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/wondelai-ux-design.md
-
-### pixel-plugin
-
-- Use: Ask for a sprite, a character or a pixel animation, or run `/pixel-setup` first and then `/pixel-new`. Install steps (Claude Code, by hand): https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/pixel-plugin.md
-- Watch out: Needs Aseprite 1.3+; Claude Code only (top-level `bin/`); its MCP binaries are prebuilt and unverified.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixel-plugin.md
 
 ### taste-skill
 
@@ -332,16 +289,3 @@ read that file before any Earshot step. Discovery for other plugins is
 - Watch out: Lawful targets only; native binaries need Ghidra, IDA or Hopper.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/rea.md
 
-### voicebox
-
-- Use: Install the app, then generate in it, or add its MCP server and ask for a voice-over. Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/voicebox.md
-- Watch out: Clone voices only with permission; check each engine model's licence.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/voicebox.md
-
-
-
-### iso-glow
-
-- Use: After installing, ask for a figure ("use the iso-glow skill to draw a lighthouse"). Install steps: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/docs/iso-glow.md
-- Watch out: Not a Git repository: the archive pin is a checksum; a changed archive needs a new review.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/iso-glow.md

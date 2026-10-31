@@ -1,34 +1,5 @@
 {
   "schema": "framecore-toolbox-apps/1",
   "note": "Desktop apps, skill archives and plugins that claude.ai and Cowork cannot host: listed for discovery with manual install steps in docs/<name>.md; Toolbox installs none of them.",
-  "apps": [
-    {
-      "name": "ffmpeg-skill",
-      "category": "creative",
-      "upstream": "https://github.com/kajisho5/ffmpeg-skill",
-      "pin": "1ae1bdf1ca0adbb1606fbca493948b1bbb2f83ff",
-      "version": "2.17.3"
-    },
-    {
-      "name": "pixel-plugin",
-      "category": "creative",
-      "upstream": "https://github.com/willibrandon/pixel-plugin",
-      "pin": "dee350645b705916655c013f208bf5580ecb9317",
-      "version": "0.5.0"
-    },
-    {
-      "name": "voicebox",
-      "category": "creative",
-      "upstream": "https://github.com/jamiepine/voicebox",
-      "pin": "2bcb98d1a8b6fe05e15fbc1559e3085669e4035d",
-      "version": "0.5.0"
-    },
-    {
-      "name": "iso-glow",
-      "category": "creative",
-      "upstream": "https://isoglow.dev/",
-      "pin": "sha256:6c88dba1424bada2ee651a1b273095f9a13b82dd9362f9bc873600b5bff6b0a1",
-      "version": "archive iso-glow.zip (2026-10-18)"
-    }
-  ]
+  "apps": []
 }

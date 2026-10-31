@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: open-design
-- Status: active
+- Status: removed
 - Upstream: https://github.com/nexu-io/open-design
 - Author: nexu-io (GitHub org; latest commit by open-design-crew[bot])
 - License: MIT
@@ -69,3 +69,4 @@ Accept with conditions: the plugin is two config files; install the Open Design 
 ## History
 
 - 2026-10-26: added at 26d6029 (version 1.0.0) under the owner's blanket approval for the shortlist.
+- 2026-10-31: removed by owner decision: Toolbox keeps only entries that install without accounts, API keys or separate desktop apps; it needs the separate Open Design desktop app installed and running.

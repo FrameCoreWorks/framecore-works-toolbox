@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: voicebox
-- Status: active
+- Status: removed
 - Upstream: https://github.com/jamiepine/voicebox
 - Author: Jamie Pine (jamiepine)
 - License: MIT (app); each engine's model has its own licence
@@ -51,3 +51,4 @@ accept as an app note: listed for discovery with manual steps; nothing is instal
 ## History
 
 - 2026-10-29: added as an app note, moved from Creative Studio's recommended extensions.
+- 2026-10-31: removed by owner decision: Toolbox keeps only entries that install without accounts, API keys or separate desktop apps; it is a separate desktop app to install.

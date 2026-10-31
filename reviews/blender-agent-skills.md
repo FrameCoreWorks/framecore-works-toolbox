@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: blender-agent-skills
-- Status: active
+- Status: removed
 - Upstream: https://github.com/EL4CTEO/blender-skills
 - Author: GitHub owner `EL4CTEO`
 - License: MIT
@@ -68,3 +68,4 @@ Accept: Blender 5.2 workflows for 3D: modeling, UVs, PBR, rigging, animation and
 ## History
 
 - 2026-10-26: added at 71d031d (version 1.1.0) from the researched shortlist.
+- 2026-10-31: removed by owner decision: Toolbox keeps only entries that install without accounts, API keys or separate desktop apps; it needs the Blender desktop app installed.

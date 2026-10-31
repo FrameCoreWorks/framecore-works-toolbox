@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: meta-ads-designer
-- Status: active
+- Status: removed
 - Upstream: https://github.com/aievolutionpl/meta-ads-designer
 - Author: AI Evolution Labs / AI Evolution Polska (GitHub org aievolutionpl)
 - License: MIT
@@ -70,3 +70,4 @@ Accept with conditions: external image generation only with your own fal.ai key,
 ## History
 
 - 2026-10-26: added at 656ce90 (version 6.5.0) under the owner's blanket approval for the shortlist.
+- 2026-10-31: removed by owner decision: Toolbox keeps only entries that install without accounts, API keys or separate desktop apps; it needs a fal.ai account and API key (or another image tool) to make images.

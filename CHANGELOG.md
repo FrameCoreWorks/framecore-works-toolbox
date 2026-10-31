@@ -1,5 +1,23 @@
 # Changes
 
+## Toolbox 1.4.0 — 2026-10-31
+
+Trigger: owner decision 2026-10-31 after the catalog review of 2026-10-30: Toolbox lists only
+tools that install without trouble and work on their own, with no account, no required API
+key and no separate desktop app. Libraries and runtimes that install cleanly (Node, Python,
+ffmpeg, a browser) and the built-in Earshot engine stay allowed.
+
+- Removed from the marketplace: `open-design` (needs the Open Design desktop app),
+  `blender-agent-skills` (needs Blender), `meta-ads-designer` (needs a fal.ai key or another
+  image tool to make images).
+- Removed app notes: `pixel-plugin` (paid Aseprite app, manual Claude Code-only install),
+  `voicebox` (desktop app), `iso-glow` (manual archive install; the upstream archive has also
+  changed since review), `ffmpeg-skill` (manual install at the pin). `apps.json` is now empty.
+- Their docs pages are deleted; their reviews stay with Status: removed and a History line.
+  README, the index skill and `docs/toolbox.md` are updated. Users who installed one keep their
+  copy; it can no longer be installed or updated from Toolbox.
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.3.4 — 2026-10-31
 
 Trigger: the 2026-10-31 Codex desktop retest of Toolbox 1.3.3 (report U4 and U14).
