@@ -53,9 +53,11 @@ lines, plain words, no command unless they ask how it works.
    sentence, no requirements list, no "Works in" text. Keep plugin names as
    they are. Add "(built into Toolbox)" after Earshot and "(overlaps with
    Studio's ...)" only where the menu text already names an overlap.
-4. In ChatGPT Work and Codex, add "(Claude only)" after the name of every
-   third-party entry without a reviewed route for that host (see "Host
-   compatibility" below); keep it in the list so the user sees what exists.
+4. In ChatGPT Work, add "(Claude only)" only after an entry with no skill
+   folders to install (see [Work entries](references/installation.md#chatgpt-work-an-entry-as-a-private-plugin));
+   in Codex, after every third-party entry without a reviewed route for
+   Codex (see "Host compatibility" below); keep it in the list so the user
+   sees what exists.
    In Claude, say nothing about hosts.
 5. Do not claim whether a plugin is installed; you cannot see that reliably.
 6. End with one line and one question: "You can come back any time:
@@ -79,7 +81,8 @@ Pick the line for the host you are in; never promise more than it keeps.
   Customize > Plugins on the account. Programs last only for the session.
 - ChatGPT Work: Toolbox and Earshot stay saved as a plugin; programs and
   Earshot's engine last only for this conversation (downloads need public
-  internet access for Work turned on). Third-party entries are Claude only.
+  internet access for Work turned on). A picked entry is saved as its own
+  private plugin and stays; its programs last only for the conversation.
 
 If the user asks for one category or group only ("toolbox creative"), show
 just that, numbered the same way. Answer in the user's language. If the user
@@ -102,9 +105,13 @@ in order, say in one plain sentence what will be added and where, then follow
   through Customize > Plugins (add the marketplace once, then each entry).
 - App notes and Earshot's engine: give their own steps (docs link; Earshot
   through its plan and the user's yes).
-- ChatGPT Work and Codex: install only an entry that has a reviewed route
-  for this host; for a "(Claude only)" entry say in one line that it works
-  in Claude and give the Claude steps if the user wants them.
+- ChatGPT Work: save each picked entry as its own private plugin with
+  Plugin Creator, exactly as [Work entries](references/installation.md#chatgpt-work-an-entry-as-a-private-plugin)
+  says: the upstream's skill files unchanged at the reviewed commit, and the
+  upstream author, licence and link credited, never the user.
+- Codex: install only an entry that has a reviewed route for Codex; for a
+  "(Claude only)" entry say in one line that it works in Claude and give the
+  Claude steps if the user wants them.
 
 Report each picked entry as installed, waiting for the user's step, or not
 available on this host. For a `session-install` entry, install its tools
@@ -139,11 +146,12 @@ package and actual runtime requirements; otherwise report Unknown / NOT_RUN.
 The Toolbox catalog itself is portable. Installing it installs this catalog
 only; it neither bundles nor activates the other entries.
 
-Never convert, rewrite, repackage or "adapt" a catalog entry into another
-host's plugin format, and never inspect or download entries on your own after
-Toolbox is installed. In ChatGPT Work or Codex an entry without its own
-reviewed package for that host is listed as available in Claude only; say so
-in one line and stop. Copying an upstream into a new package is not allowed
+Never rewrite or "adapt" a catalog entry's instructions, and never inspect
+or download entries on your own after Toolbox is installed. The one packaging
+route is [ChatGPT Work's private plugin](references/installation.md#chatgpt-work-an-entry-as-a-private-plugin):
+the upstream's skill files copied unchanged and credited to their author.
+In Codex an entry without its own reviewed package is listed as available in
+Claude only; say so in one line and stop. Copying an upstream into a new package is not allowed
 (Toolbox never holds or rebuilds upstream code). Install one entry only when
 the user asks for that entry and the host has a reviewed route for it.
 

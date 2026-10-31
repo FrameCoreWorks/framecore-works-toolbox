@@ -1,5 +1,21 @@
 # Changes
 
+## Toolbox 1.6.0 — 2026-10-31
+
+Trigger: owner report 2026-10-31: asked in ChatGPT Work to install `huashu-art-motion`, Work
+(still on Toolbox 1.2.0) built a private plugin that rewrote the upstream's instructions and
+named the owner as its author ("By Kamil Sikora") instead of alchaincyf (花叔).
+
+- New route [ChatGPT Work: an entry as a private plugin](plugins/toolbox/skills/toolbox/references/installation.md#chatgpt-work-an-entry-as-a-private-plugin):
+  a picked entry is saved as its own private plugin from the upstream's skill folders, copied
+  unchanged at the reviewed commit and checked against their git blob SHAs; commands, hooks,
+  MCP servers and apps are left out; programs install in the conversation when a task needs them.
+- Credit: plugin name, `author`, licence, repository and version come from the upstream; the
+  description opens with the author, licence and link. Never the user or FrameCore Works as
+  author. ChatGPT may still show the saving account as "By ..." on a private plugin page.
+- In ChatGPT Work "(Claude only)" stays only on entries with no skill folders; Codex is unchanged.
+- Host runs: NOT_RUN.
+
 ## Toolbox 1.5.2 — 2026-10-31
 
 Trigger: owner requirement 2026-10-31: even when nothing was picked at setup, a task that needs
