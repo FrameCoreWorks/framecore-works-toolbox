@@ -18,6 +18,8 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 The current marketplace contains **17 tools plus the toolbox index: 18 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
+**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
+
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
 [docs](docs/toolbox.md); no hooks or MCP servers; carries the built-in Earshot launcher, which writes or downloads nothing without the user's --yes).
