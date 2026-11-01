@@ -8,6 +8,11 @@ its `toolbox` catalog is also an independently installable portable plugin.
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
+**Quick start.** After installing, type `toolbox` in the chat: you get the
+numbered catalog, and you pick only the tools you want. Earshot (audio
+loudness, sound effects, sync) is built in, so it needs no separate install;
+ask for it by name, for example "check the loudness of this file with Earshot".
+
 Every third-party entry is pinned to a full upstream commit and has a review in
 `reviews/` and notes in `docs/`. This repo holds no upstream code. Adapted entries
 can have a thin wrapper in `plugins/<name>/` pointing to the reviewed upstream.

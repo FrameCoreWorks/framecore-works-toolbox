@@ -1,5 +1,12 @@
 # Changes
 
+## Records — 2026-11-01: README quick start
+
+Trigger: Grok external review 2026-11-01 (quick win: say how to start and that Earshot is built in).
+
+- README: a three-line quick start under the intro (type `toolbox`, pick tools from the numbered
+  list; Earshot is built in and asked for by name). Documentation only; no plugin version change.
+
 ## Records — 2026-11-01: licence file
 
 Trigger: external review 2026-11-01 found no licence in this repository (Creative Studio and
