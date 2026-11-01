@@ -1,5 +1,17 @@
 # Changes
 
+## Toolbox 1.6.1 — 2026-11-01
+
+Trigger: live ChatGPT Work test 2026-11-01 (owner's Chrome, Toolbox 1.6.0): asked to measure
+loudness, Toolbox gave Earshot's size (about 470 MB) and asked first, but did not say that the
+engine lasts only for that conversation.
+
+- The Earshot section of the index skill and `references/earshot/earshot.md` now require every
+  setup question to name the size and how long the engine lasts on this host (only this
+  conversation in ChatGPT Work, the Claude apps and a cloud session; installed once on the
+  user's computer).
+- Host rerun: NOT_RUN.
+
 ## Toolbox 1.6.0 — 2026-10-31
 
 Trigger: owner report 2026-10-31: asked in ChatGPT Work to install `huashu-art-motion`, Work

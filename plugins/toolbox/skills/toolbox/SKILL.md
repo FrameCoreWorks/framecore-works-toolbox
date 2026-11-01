@@ -173,7 +173,10 @@ read that file before any Earshot step. Discovery for other plugins is
 - First run `status --json` with the launcher named in the instructions.
   Setup, model downloads, model reuse from another root and adding source
   are plans until the user agrees; then add `--yes`. Return a needed setup as
-  `needs_consent` with that plan, not as a failure.
+  `needs_consent` with that plan, not as a failure. Every setup question
+  names the size and how long the engine lasts on this host, from "Where
+  installs go" (in ChatGPT Work, the Claude apps and a cloud session: only
+  this conversation; on the user's computer: installed once).
 - `status` lists other runtime roots under `candidates` and never picks one;
   the user chooses `--root`. For an `unlocked_legacy` root, offer a new locked
   root with `fetch-models --from <old root>`; use `--allow-unlocked` only with

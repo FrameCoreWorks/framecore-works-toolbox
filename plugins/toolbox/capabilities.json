@@ -2,7 +2,7 @@
   "schema": "framecore-capabilities/1",
   "plugin": {
     "name": "toolbox",
-    "version": "1.6.0"
+    "version": "1.6.1"
   },
   "entry_skill": "skills/toolbox/SKILL.md",
   "contract_versions": [

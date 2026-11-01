@@ -18,7 +18,9 @@ runtime root. Resolve paths from the installed package and status; never copy pa
    measure, critique --fast, sfx, kit and the real-sound scripts); `full_ready` with `models_cached` (timeline,
    sheet, describe, match, rank, find, compare, ab, realness, full critique); a task actually completed. `unavailable`
    means not installed here, not "probably works".
-2. Missing tier: show the setup plan, destination, download requirements and limits. Without `--yes` every
+2. Missing tier: show the setup plan, destination, download requirements, limits, the size and how long the engine
+   lasts here (ChatGPT Work, the Claude apps and a cloud session: only this conversation; the user's own computer:
+   installed once). Without `--yes` every
    setup command prints a plan; add `--yes` only after the user accepts that plan. `python3.12 <runtime> install
    --tier light` prints a plan; adding `--yes` installs a new runtime using hash-locked
    wheels and a verified upstream snapshot. `--tier full` selects CPU PyTorch (the PyPI wheel on an Apple Silicon
