@@ -99,3 +99,7 @@ python3 scripts/package_plugins.py --check
 python3 scripts/package_plugins.py --output-dir ../toolbox-dist
 claude plugin validate .
 ```
+
+## Licence
+
+FrameCore Works' own files in this repository (the catalog, reviews, docs, the index plugin, wrapper plugins and the Earshot launcher) are licensed under [Apache-2.0](LICENSE). Every catalog entry keeps its upstream licence, shown in its review and docs; the Earshot engine is MIT (Leon Lin) and is installed separately, never copied here.

@@ -1,5 +1,15 @@
 # Changes
 
+## Records — 2026-11-01: licence file
+
+Trigger: external review 2026-11-01 found no licence in this repository (Creative Studio and
+Open Assets already carry Apache-2.0).
+
+- Added `LICENSE` (Apache-2.0, the same text as Creative Studio and Open Assets) and a Licence
+  section in the README. It covers FrameCore Works' own files only; catalog entries keep their
+  upstream licences and the Earshot engine stays MIT and outside the repository.
+- No plugin version change: the packaged plugins are unchanged.
+
 ## Toolbox 1.6.1 — 2026-11-01
 
 Trigger: live ChatGPT Work test 2026-11-01 (owner's Chrome, Toolbox 1.6.0): asked to measure
