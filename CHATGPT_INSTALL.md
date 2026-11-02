@@ -1,5 +1,16 @@
 # Install Toolbox in ChatGPT Work
 
+## Before you start: install Plugin Creator (one time)
+
+ChatGPT Work saves plugins only through OpenAI's own **Plugin Creator** plugin, which a new user often does not have yet:
+
+1. Open ChatGPT, open the side menu and tap **Plugins** (Polish: Wtyczki).
+2. Tap **Search plugins** (Wyszukaj wtyczki) and type `Plugin Creator`.
+3. Pick **Plugin Creator** by **OpenAI** (not look-alikes such as "Plugin Creator Plus") and tap **+** or **Install** (Zainstaluj).
+4. In a new Work conversation type `@`, select **Plugin Creator** from the menu (it shows as **@Plugin Creator**), then paste the install request.
+
+Codex needs no installation: Plugin Creator is built in there as `$plugin-creator`. An assistant that does not have Plugin Creator's create and update tools in the conversation saves nothing and gives the user these steps instead of a workaround.
+
 1. Use an authorized GitHub connection to obtain this public repository at one
    resolved full commit. Inspect `plugins/toolbox/`; preserve its identity.
 2. Build from the repository root with Python 3.10+:

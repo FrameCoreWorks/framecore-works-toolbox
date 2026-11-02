@@ -73,6 +73,8 @@ None. Toolbox 1.4.0 removed the four app notes (owner decision 2026-10-31: no se
 | ChatGPT Work | [ChatGPT installation](CHATGPT_INSTALL.md) | Portable single-plugin ZIP through Plugin Creator |
 | Codex | [Codex installation](CODEX_INSTALL.md) | Local plugin or native entry with the complete bundle |
 
+ChatGPT Work needs OpenAI's **Plugin Creator** installed first (side menu > Plugins > search "Plugin Creator" > the one by OpenAI > Install); see [Before you start](CHATGPT_INSTALL.md#before-you-start-install-plugin-creator-one-time).
+
 Host activation and runtime compatibility are recorded separately in
 [verification](docs/verification.md). The shared layout and independence rules
 are in [architecture](docs/architecture.md).
