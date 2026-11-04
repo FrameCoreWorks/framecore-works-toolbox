@@ -53,6 +53,45 @@ class DistributionTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'version'):
             package_plugins.validate_plugin(self.plugin)
 
+    def test_a_skill_description_that_is_not_valid_yaml_is_rejected(self):
+        # 2026-11-04 audit DIST-001: REA's unquoted "6.5.0): Electron" broke a strict YAML loader.
+        skill = self.plugin / 'skills/toolbox/SKILL.md'
+        text = skill.read_text()
+        front = text.split('---\n', 2)[1]
+        line = next(l for l in front.splitlines() if l.startswith('description:'))
+        for bad in ('description: Use it (pinned 1.0): for audio', 'description: notes # a comment',
+                    'description: "unclosed', "description: 'it''s fine' tail"):
+            with self.subTest(bad=bad):
+                skill.write_text(text.replace(line, bad, 1))
+                with self.assertRaisesRegex(ValueError, 'YAML'):
+                    package_plugins.validate_plugin(self.plugin)
+        for good in ('description: "Use it (pinned 1.0): for audio"', "description: 'it''s fine'",
+                     'description: Plain words, a dash - and 1.0 only'):
+            with self.subTest(good=good):
+                skill.write_text(text.replace(line, good, 1))
+                package_plugins.validate_plugin(self.plugin)
+
+    def test_every_local_plugin_validates(self):
+        for name in ('toolbox', 'rea'):
+            with self.subTest(plugin=name):
+                package_plugins.validate_plugin(ROOT / 'plugins' / name)
+
+    def test_a_legacy_mcp_file_needs_the_same_portable_mcp_json(self):
+        # 2026-11-04 audit DIST-002: REA shipped only the legacy .mcp.json.
+        rea = self.repo / 'plugins/rea'
+        shutil.copytree(ROOT / 'plugins/rea', rea)
+        package_plugins.validate_plugin(rea)
+        portable = json.loads((rea / 'mcp.json').read_text())
+        self.assertEqual(portable['$schema'], 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json')
+        self.assertEqual(portable['mcpServers']['rea']['type'], 'stdio')
+        (rea / 'mcp.json').unlink()
+        with self.assertRaisesRegex(ValueError, 'mcp.json'):
+            package_plugins.validate_plugin(rea)
+        portable['mcpServers']['rea']['args'] = ['-y', 'rea-agents@6.4.0', 'mcp']
+        (rea / 'mcp.json').write_text(json.dumps(portable))
+        with self.assertRaisesRegex(ValueError, 'differs'):
+            package_plugins.validate_plugin(rea)
+
     def test_package_rejects_links_and_environment_files(self):
         target = self.base / 'outside'; target.write_text('private')
         link = self.plugin / 'linked'; link.symlink_to(target)

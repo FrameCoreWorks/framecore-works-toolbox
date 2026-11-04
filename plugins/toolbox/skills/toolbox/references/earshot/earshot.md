@@ -161,7 +161,9 @@ For a caller's `framecore-task-request/1`, run each operation through the envelo
 writes: `python3 <plugin>/scripts/envelope.py --result-out <new file> --request <request file> --host <actual host>
 --model <actual model> [--input <file>]... [--output <file>]... -- <runtime arguments>`. The request supplies the task
 id, origin, requester (with its version), owner, host and model; without a request file pass `--task-id <id>
---requester <plugin>@<version>` instead. Flags may repeat the request but never contradict it. It keeps the launcher's exit code, hashes the
+--requester <plugin>@<version>` instead. Flags may repeat the request but never contradict it. The launcher arguments
+must be the requested task: the same operation (or its plan), `run` command, `constraints.runtime_root` and `--input`
+files with the request's SHA-256; anything else is refused before it runs. It keeps the launcher's exit code, hashes the
 declared files, records readiness and warnings, and maps a plan without `--yes` to `needs_consent`.
 
 Return, for each result: the engine (the Toolbox Earshot launcher, its root path and state; label `unlocked_legacy` runs),

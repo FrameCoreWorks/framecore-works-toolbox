@@ -30,8 +30,11 @@ class Envelope(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def run_with(self, launcher_code, launcher_out='', extra=(), outputs=()):
+    def run_with(self, launcher_code, launcher_out='', extra=(), outputs=(), launcher=('run', 'measure', 'a.wav')):
+        self.launched = []
+
         def fake(argv):
+            self.launched.append(argv)
             for path in outputs:
                 Path(path).write_bytes(b'wav')
             return launcher_code, launcher_out + '\n', 'toolbox/earshot: refused\n' if launcher_code == 2 else ''
@@ -39,7 +42,7 @@ class Envelope(unittest.TestCase):
         result.unlink(missing_ok=True)
         with mock.patch.object(envelope, 'launch', side_effect=fake), \
                 mock.patch.object(envelope.runtime, 'status', return_value=self.ready):
-            code, out, err = quiet(['--result-out', str(result), *extra, '--', 'run', 'measure', 'a.wav'])
+            code, out, err = quiet(['--result-out', str(result), *extra, '--', *launcher])
         return code, (json.loads(result.read_text()) if result.exists() else None), err
 
     def test_success_records_outputs_with_hashes_and_validates(self):
@@ -77,6 +80,43 @@ class Envelope(unittest.TestCase):
         self.assertEqual((doc['task_id'], doc['origin'], doc['owner']), ('t-9', 'studio', 'studio'))
         self.assertEqual(doc['requester'], {'plugin': 'framecore-work-creative-studio', 'version': '1.159.0'})
         self.assertEqual((doc['host'], doc['model']), ('codex', 'gpt-6-astra'))
+
+    def test_a_request_binds_the_operation_command_root_and_inputs(self):
+        # 2026-11-04 audit ORCH-01: a status request could run install, on another root, with another input.
+        approved = self.base / 'approved.wav'; approved.write_bytes(b'approved')
+        other = self.base / 'other.wav'; other.write_bytes(b'other')
+        record = {'path': str(approved), 'sha256': hashlib.sha256(b'approved').hexdigest()}
+        status = {'plugin': 'toolbox', 'capability': 'earshot', 'operation': 'status'}
+        cases = [
+            ('operation', self.request(provider=status, inputs=[record]),
+             ['--input', str(approved)], ('install', '--tier', 'light', '--yes')),
+            ('command', self.request(inputs=[record]), ['--input', str(approved)], ('run', 'sfx', 'a.wav')),
+            ('runtime root', self.request(provider=status, constraints={'runtime_root': str(self.base / 'approved-root')}),
+             [], ('--root', str(self.base / 'other-root'), 'status')),
+            ('inputs', self.request(inputs=[record]), ['--input', str(other)], ('run', 'measure', 'a.wav')),
+            ('inputs', self.request(inputs=[record]), [], ('run', 'measure', 'a.wav')),
+        ]
+        for word, request, flags, launcher in cases:
+            with self.subTest(word=word, launcher=launcher):
+                code, doc, err = self.run_with(0, '{}', ['--request', str(request), *flags], launcher=launcher)
+                self.assertEqual((code, doc, self.launched), (2, None, []), err)
+                self.assertIn(word, err)
+        approved.write_bytes(b'changed after the request')
+        code, doc, err = self.run_with(0, '{}', ['--request', str(self.request(inputs=[record])), '--input', str(approved)])
+        self.assertEqual((code, self.launched), (2, []), err)
+        self.assertIn('sha256', err)
+
+    def test_a_matching_request_runs_and_a_plan_may_answer_its_operation(self):
+        approved = self.base / 'approved.wav'; approved.write_bytes(b'approved')
+        record = {'path': str(approved), 'sha256': hashlib.sha256(b'approved').hexdigest()}
+        code, doc, err = self.run_with(0, '{}', ['--request', str(self.request(inputs=[record])), '--input', str(approved)])
+        self.assertEqual(code, 0, err)
+        self.assertEqual(doc['provider']['operation'], 'run')
+        install = self.request(provider={'plugin': 'toolbox', 'capability': 'earshot', 'operation': 'install'},
+                               constraints={'runtime_root': str(self.base / 'rt')})
+        code, doc, err = self.run_with(0, '{"confirm": "install"}', ['--request', str(install)],
+                                       launcher=('--root', str(self.base / 'rt'), 'install', '--tier', 'light'))
+        self.assertEqual((code, doc['status'], doc['provider']['operation']), (0, 'needs_consent', 'plan_install'), err)
 
     def test_host_model_and_requester_version_flags_are_kept(self):
         _, doc, _ = self.run_with(0, extra=['--task-id', 't-2', '--requester', 'framecore-work-creative-studio@1.159.0',

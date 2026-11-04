@@ -33,10 +33,12 @@ Codex needs no installation: Plugin Creator is built in there as `$plugin-creato
    and `skills/toolbox/SKILL.md`. Verify the catalog skill is actually readable
    in a fresh host invocation before claiming activation.
 6. Stop after the readback. Installing Toolbox installs the catalog and its
-   built-in Earshot launcher only. Do not inspect, download, convert or adapt
-   the third-party catalog entries for Work: most are Claude plugins with no
-   reviewed Work package, and Toolbox never rebuilds upstream code. List them
-   as Claude-only when asked.
+   built-in Earshot launcher only. Do not inspect, download or save any
+   third-party catalog entry on your own. When the user picks entries (their
+   numbers from the list count as asking), save each one as its own private
+   plugin by [the entry route](plugins/toolbox/skills/toolbox/references/installation.md#chatgpt-work-an-entry-as-a-private-plugin):
+   only the upstream's unchanged skill folders at the pinned commit, never an
+   adaptation or rewrite. Entries with nothing Work can run stay "(Claude only)".
 
 Ask for "toolbox" or select FrameCore Works Toolbox. The catalog identifies
 tools and installation requirements; it does not install all tools it lists.

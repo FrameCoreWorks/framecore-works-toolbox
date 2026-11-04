@@ -76,6 +76,52 @@ def validate_capabilities(plugin, manifest):
             raise ValueError('capabilities.json: a capability must not have a bin/ folder')
 
 
+MCP_SCHEMA = 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json'
+
+
+def yaml_scalar(value):
+    """The string a one-line YAML scalar holds, or ValueError when a strict YAML parser would reject or change it.
+
+    Covers the forms skill frontmatter uses: double-quoted, single-quoted and plain one-line scalars."""
+    value = value.strip()
+    if value.startswith('"'):
+        match = re.fullmatch(r'"((?:[^"\\]|\\.)*)"', value)
+        if not match:
+            raise ValueError('not a closed double-quoted YAML scalar')
+        return json.loads(value)
+    if value.startswith("'"):
+        match = re.fullmatch(r"'((?:[^']|'')*)'", value)
+        if not match:
+            raise ValueError('not a closed single-quoted YAML scalar')
+        return match.group(1).replace("''", "'")
+    if not value or value[0] in '[]{},&*!|>%@`#\'"' or value.startswith(('- ', '? ', ': ')):
+        raise ValueError('a plain YAML scalar cannot start with ' + repr(value[:1]))
+    if ': ' in value or value.endswith(':') or ' #' in value:
+        raise ValueError('a plain YAML scalar cannot contain ": " or " #"; quote it')
+    return value
+
+
+def validate_mcp(plugin):
+    """A legacy .mcp.json needs the portable mcp.json declaring the same servers as stdio."""
+    legacy = plugin / '.mcp.json'
+    if not legacy.exists():
+        return
+    portable = plugin / 'mcp.json'
+    if not portable.exists():
+        raise ValueError('Legacy .mcp.json without the portable mcp.json')
+    old, new = read_json(legacy).get('mcpServers', {}), read_json(portable)
+    if new.get('$schema') != MCP_SCHEMA or set(new) != {'$schema', 'mcpServers'}:
+        raise ValueError('mcp.json must declare only $schema and mcpServers')
+    servers = new['mcpServers']
+    if set(servers) != set(old):
+        raise ValueError('mcp.json differs from .mcp.json: server names')
+    for name, server in servers.items():
+        if server.get('type') != 'stdio' or not server.get('command'):
+            raise ValueError('mcp.json server ' + name + ' must be stdio with a command')
+        if (server.get('command'), server.get('args', [])) != (old[name].get('command'), old[name].get('args', [])):
+            raise ValueError('mcp.json differs from .mcp.json: ' + name)
+
+
 def validate_plugin(plugin):
     manifest = read_json(plugin / 'plugin.json')
     name, version = manifest.get('name'), manifest.get('version', '')
@@ -110,12 +156,30 @@ def validate_plugin(plugin):
         if not text.startswith('---\n') or '\n---\n' not in text[4:]:
             raise ValueError('Missing skill frontmatter: ' + str(skill))
         front = text.split('---\n', 2)[1]
-        if not re.search(r'^name: ' + re.escape(skill.parent.name) + r'\s*$', front, re.M):
+        fields, lines = {}, front.splitlines()
+        for i, line in enumerate(lines):
+            key, sep, value = line.partition(':')
+            if not sep or key not in ('name', 'description'):
+                continue
+            if re.fullmatch(r'\s*[>|][-+]?\s*', value):   # block scalar: the indented lines that follow
+                block = []
+                for nxt in lines[i + 1:]:
+                    if nxt.strip() and not nxt.startswith((' ', '\t')):
+                        break
+                    block.append(nxt.strip())
+                fields[key] = ' '.join(b for b in block if b)
+                continue
+            try:
+                fields[key] = yaml_scalar(value)
+            except ValueError as error:
+                raise ValueError(f'Skill {key} is not valid YAML in {skill}: {error}') from None
+        if fields.get('name') != skill.parent.name:
             raise ValueError('Skill name differs from directory')
-        if not re.search(r'^description:\s*\S', front, re.M):
+        if not (fields.get('description') or '').strip():
             raise ValueError('Skill description missing')
     if (plugin / 'bin').exists():
         raise ValueError('Top-level bin/ is not portable to Claude apps')
+    validate_mcp(plugin)
     validate_capabilities(plugin, manifest)
     inventory(plugin)
     return manifest

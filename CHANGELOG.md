@@ -1,5 +1,14 @@
 # Changes
 
+## Toolbox 1.6.2 — 2026-11-04
+
+Trigger: GPT Astra external audit 2026-11-04 (Toolbox 1.6.1 at `8652ba3`); every finding below was reproduced in the source first.
+
+- **Earshot task binding (ORCH-01).** With `--request`, `envelope.py` refuses before anything runs when the launcher arguments are not the requested task: another operation (a plan may answer its own operation), another `run` command, a runtime root other than `constraints.runtime_root`, or `--input` files that differ from the request or whose bytes changed since it (SHA-256). Before: a `status` request ran `install --yes` on another root with another file and returned `succeeded`. Standalone use without a request is unchanged.
+- **REA wrapper (DIST-001, DIST-002).** The skill description is a quoted YAML scalar; the wrapper ships the portable `mcp.json` (Agent Plugins 1.0, stdio, `rea-agents@6.5.0`) beside `.mcp.json`. `package_plugins.py` now rejects frontmatter a strict YAML parser would reject and a legacy `.mcp.json` without a matching `mcp.json`; the unit tests validate every local plugin.
+- **One ChatGPT Work route for entries.** `CHATGPT_INSTALL.md` no longer calls every third-party entry Claude-only: after Toolbox is saved, only entries the user picks are saved, each as its own private plugin by the [entry route](plugins/toolbox/skills/toolbox/references/installation.md#chatgpt-work-an-entry-as-a-private-plugin). That route now carries binary files (fonts, images) by their bytes, compares the written set with the upstream tree, and names any file it could not carry instead of saving an incomplete entry as whole (the saved Huashu Art Motion lacked six fonts its renderer loads at start, and Animate lacked the Riso `sample.png`; audit UPSTREAM-01/02). Repairing those two saved Work plugins is a host step: NOT_RUN here.
+- Checks: unit, marketplace, package and Earshot tests pass; host reruns NOT_RUN.
+
 ## Records — 2026-11-01: README quick start
 
 Trigger: Grok external review 2026-11-01 (quick win: say how to start and that Earshot is built in).

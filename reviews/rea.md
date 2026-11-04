@@ -73,5 +73,6 @@ accept with conditions: lawful targets only.
 
 ## History
 
+- 2026-11-04: GPT Astra audit DIST-001/002: the skill description is now a quoted YAML scalar (a strict parser rejected the unquoted `6.5.0): `), and the wrapper ships the portable `mcp.json` (Agent Plugins 1.0, stdio) beside the legacy `.mcp.json`, both with `rea-agents@6.5.0`. `package_plugins.py` now checks both. Version stays 6.5.0 (it names the pinned upstream); a Claude install already read `.mcp.json`. Host activation of `mcp.json`: NOT_RUN.
 - 2026-10-29: code review found the upstream skill calls `rea-agents@latest` and `setup`; changed from a manifest-only entry to our own wrapper that pins 6.5.0.
 - 2026-10-29: added at 5e30969, moved from Creative Studio's recommended extensions.

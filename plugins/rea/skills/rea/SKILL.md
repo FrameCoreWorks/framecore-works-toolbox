@@ -1,6 +1,6 @@
 ---
 name: rea
-description: Reverse engineer software the user owns or may examine with REA (pinned rea-agents 6.5.0): Electron and JavaScript apps or ASAR archives, .NET assemblies, Android packages, firmware, network captures, browser pages already open, and native binaries through Ghidra, IDA or Hopper. Use when a question depends on a shipped app or binary rather than its source, for example how an app builds an effect or what a bundle does. Not for ordinary source repositories, image or prompt reconstruction, or bypassing protection, licences or logins.
+description: "Reverse engineer software the user owns or may examine with REA (pinned rea-agents 6.5.0): Electron and JavaScript apps or ASAR archives, .NET assemblies, Android packages, firmware, network captures, browser pages already open, and native binaries through Ghidra, IDA or Hopper. Use when a question depends on a shipped app or binary rather than its source, for example how an app builds an effect or what a bundle does. Not for ordinary source repositories, image or prompt reconstruction, or bypassing protection, licences or logins."
 ---
 
 # REA (pinned)

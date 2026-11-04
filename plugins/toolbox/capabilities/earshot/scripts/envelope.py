@@ -8,7 +8,9 @@
 The launcher runs unchanged and its own output passes through. The envelope records the operation, the readiness of
 the runtime root, the exit code, SHA-256 of the declared inputs and outputs, warnings and what did not run, and is
 validated against the shared schema before it is written to a new file. A framecore-task-request/1 document
-(--request) supplies the task id, origin, requester, owner, host and model; flags may repeat but not contradict it. `exec` (arbitrary venv Python) is a
+(--request) supplies the task id, origin, requester, owner, host and model; flags may repeat but not contradict it.
+With --request the launcher run must be the requested task: the same operation (or its plan), run command, runtime
+root (`constraints.runtime_root`) and input files with unchanged SHA-256; anything else is refused before it runs. `exec` (arbitrary venv Python) is a
 user-invoked operation, not a task operation, and is refused here. Standard library only; no network of its own.
 """
 import argparse
@@ -72,19 +74,55 @@ def party(text):
     return {'plugin': name, 'version': version or None}
 
 
-def identity(args):
-    """Task id, origin, requester, owner, host and model from --request and the flags."""
-    request = {}
-    if args.request:
+def read_request(path):
+    """The caller's framecore-task-request/1 addressed to Toolbox Earshot, or {} without --request."""
+    if not path:
+        return {}
+    try:
+        request = json.loads(path.read_text(encoding='utf-8'))
+    except (OSError, ValueError) as error:
+        raise ValueError(f'request unreadable ({error})') from error
+    problems = contract.validate(request, 'request')
+    if problems:
+        raise ValueError('request is not a framecore-task-request/1: ' + '; '.join(problems[:3]))
+    if (request['provider'].get('plugin'), request['provider'].get('capability')) != ('toolbox', 'earshot'):
+        raise ValueError('the request is addressed to another provider')
+    return request
+
+
+def bind(request, launcher, input_paths):
+    """Refuse a launcher run that is not the requested task: operation, run command, runtime root and inputs.
+
+    A plan (`plan_install` and the like) may answer a request for its operation: it writes nothing and returns
+    needs_consent. Without --request the run is standalone and nothing is bound."""
+    if not request:
+        return
+    op, command, root = operation(launcher)
+    asked = request['provider']
+    if op not in (asked['operation'], f"plan_{asked['operation']}"):
+        raise ValueError(f"the launcher runs operation {op!r} but the request asks for {asked['operation']!r}")
+    if asked.get('command') is not None and command != asked['command']:
+        raise ValueError(f"the launcher runs command {command!r} but the request asks for {asked['command']!r}")
+    chosen = (request.get('constraints') or {}).get('runtime_root')
+    if chosen is not None and Path(chosen).expanduser().resolve() != Path(root).expanduser().resolve():
+        raise ValueError(f'the launcher uses runtime root {root} but the request constrains it to {chosen}')
+    wanted = {str(Path(i['path']).expanduser().resolve()): i['sha256'] for i in request.get('inputs') or []}
+    given = {str(Path(p).expanduser().resolve()) for p in input_paths}
+    if 'inputs' in request and given != set(wanted):
+        raise ValueError('the --input files differ from the request inputs: '
+                         f'requested {sorted(wanted)}, given {sorted(given)}')
+    for path, digest in wanted.items():
         try:
-            request = json.loads(args.request.read_text(encoding='utf-8'))
-        except (OSError, ValueError) as error:
-            raise ValueError(f'request unreadable ({error})') from error
-        problems = contract.validate(request, 'request')
-        if problems:
-            raise ValueError('request is not a framecore-task-request/1: ' + '; '.join(problems[:3]))
-        if (request['provider'].get('plugin'), request['provider'].get('capability')) != ('toolbox', 'earshot'):
-            raise ValueError('the request is addressed to another provider')
+            actual = hashlib.sha256(Path(path).read_bytes()).hexdigest()
+        except OSError as error:
+            raise ValueError(f'request input unreadable ({error})') from error
+        if actual != digest:
+            raise ValueError(f'{path} changed since the request: sha256 {actual}, requested {digest}')
+
+
+def identity(args, request=None):
+    """Task id, origin, requester, owner, host and model from --request and the flags."""
+    request = read_request(args.request) if request is None else request
     flags = {'task_id': args.task_id, 'owner': args.owner, 'host': args.host, 'model': args.model}
     values = {}
     for key, flag in flags.items():
@@ -185,7 +223,9 @@ def main(argv=None):
         print('toolbox/earshot: name a task operation (exec stays a user-invoked command)', file=sys.stderr)
         return 2
     try:
-        who = identity(args)
+        request = read_request(args.request)
+        who = identity(args, request)
+        bind(request, launcher, args.input)
     except ValueError as error:
         print(f'toolbox/earshot: {error}; nothing was run', file=sys.stderr)
         return 2

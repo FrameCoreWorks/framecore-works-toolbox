@@ -50,8 +50,18 @@ Toolbox are saved and updated separately.
    against its git blob SHA from the GitHub tree, and zip only when every
    file matches (as in Toolbox's "Update without a ZIP"). Do not rewrite,
    translate, shorten or merge the instructions and add no skill text of
-   your own. A binary or oversized file that cannot be carried is reported,
-   never guessed. Include the upstream `LICENSE`.
+   your own. Include the upstream `LICENSE`.
+   **Binary files** (fonts, images, audio) are part of the skill too: when the
+   connector returns a file's bytes as base64, decode them in code execution
+   and check the blob SHA like any other file. List every file of the chosen
+   skill folders from the GitHub tree first and compare the written set with
+   it before zipping. A file that still cannot be carried (binary text only,
+   or too large for the connector) is never guessed: name each missing path
+   in the plugin description ("Incomplete: <paths>") and in the readback, and
+   say what it breaks when known (for example Huashu Art Motion's renderer
+   loads all of its fonts at start, so one missing font stops every render;
+   Animate's gallery skips a style whose `sample.png` is missing). Saving an
+   incomplete entry as if it were whole is a failed install.
 3. **Credit the original author.** Plugin name: the upstream's name.
    Manifest `author.name`: the author as the upstream credits them (for
    example `alchaincyf (花叔)`); `homepage` and `repository`: the upstream
@@ -68,5 +78,6 @@ Toolbox are saved and updated separately.
    ("Installs during work" in the Toolbox skill); nothing installs at save
    time, and a new conversation installs them again.
 5. **Read back** the saved plugin (name, author, licence, version, file
-   list) and say that its skill appears in a new conversation. An update is
+   list compared with the upstream tree of the chosen folders, with any
+   missing path named) and say that its skill appears in a new conversation. An update is
    the same steps at Toolbox's new pin, through `update_plugin`.
