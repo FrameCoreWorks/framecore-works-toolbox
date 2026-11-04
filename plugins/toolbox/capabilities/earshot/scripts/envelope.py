@@ -240,10 +240,20 @@ def main(argv=None):
         return 2
     started = datetime.now(timezone.utc).isoformat(timespec='seconds')
     clock = time.monotonic()
-    code, stdout, stderr = launch(launcher)
+    cancelled = False
+    try:
+        code, stdout, stderr = launch(launcher)
+    except KeyboardInterrupt:   # the launcher process is stopped with us; record what is known, never retry
+        cancelled, code, stdout, stderr = True, 130, '', ''
     sys.stdout.write(stdout)
     sys.stderr.write(stderr)
     document = build(args, launcher, code, stdout, stderr, inputs, started, time.monotonic() - clock, who)
+    if cancelled:
+        document['status'] = 'cancelled'
+        document['errors'] = [e for e in document['errors'] if e['code'] != 'exit_130'] + [{
+            'code': 'interrupted', 'message': 'the run was interrupted before the launcher finished; declared '
+                                              'outputs that exist are recorded as found, not as complete',
+            'next_action': 'check the outputs, then run the operation again if it is needed'}]
     problems = contract.validate(document, 'result')
     if problems:
         print('toolbox/earshot: envelope not written: ' + '; '.join(problems[:5]), file=sys.stderr)

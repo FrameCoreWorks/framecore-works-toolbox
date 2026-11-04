@@ -118,6 +118,24 @@ class Envelope(unittest.TestCase):
                                        launcher=('--root', str(self.base / 'rt'), 'install', '--tier', 'light'))
         self.assertEqual((code, doc['status'], doc['provider']['operation']), (0, 'needs_consent', 'plan_install'), err)
 
+    def test_an_interrupted_run_writes_a_cancelled_result(self):
+        # 2026-11-04 audit ORCH-07: an interrupt left no terminal result.
+        wav = self.base / 'hit.wav'
+        result = self.base / 'result.json'
+
+        def interrupted(argv):
+            wav.write_bytes(b'half')
+            raise KeyboardInterrupt
+        with mock.patch.object(envelope, 'launch', side_effect=interrupted), \
+                mock.patch.object(envelope.runtime, 'status', return_value=self.ready):
+            code, _, err = quiet(['--result-out', str(result), '--task-id', 't-1', '--output', str(wav),
+                                  '--', 'run', 'measure', 'a.wav'])
+        doc = json.loads(result.read_text())
+        self.assertEqual((code, doc['status']), (130, 'cancelled'), err)
+        self.assertEqual(envelope.contract.validate(doc, 'result'), [])
+        self.assertEqual(doc['outputs'][0]['sha256'], hashlib.sha256(b'half').hexdigest())
+        self.assertIn('interrupted', ' '.join(e['message'] for e in doc['errors']))
+
     def test_host_model_and_requester_version_flags_are_kept(self):
         _, doc, _ = self.run_with(0, extra=['--task-id', 't-2', '--requester', 'framecore-work-creative-studio@1.159.0',
                                             '--host', 'claude_code', '--model', 'claude-opus-5-5'])

@@ -1,5 +1,15 @@
 # Changes
 
+## Toolbox 1.6.3 — 2026-11-04
+
+Trigger: GPT Astra external audit 2026-11-04, ORCH-07: an interrupted envelope run (Ctrl-C, a host stopping the
+command) left no `framecore-task-result/1`.
+
+- `envelope.py` now catches the interrupt, lets the launcher process stop with it, and writes a `cancelled` result:
+  the commands that started, declared outputs that exist (hashed as found, not as complete), and an `interrupted`
+  error with the next step. No retry. The exit code is 130.
+- Checks: unit, marketplace, package and Earshot tests pass; host reruns NOT_RUN.
+
 ## Toolbox 1.6.2 — 2026-11-04
 
 Trigger: GPT Astra external audit 2026-11-04 (Toolbox 1.6.1 at `8652ba3`); every finding below was reproduced in the source first.
