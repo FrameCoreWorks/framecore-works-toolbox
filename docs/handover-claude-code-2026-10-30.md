@@ -1,5 +1,7 @@
 # Claude handover — Toolbox 1.3.3 Earshot full fix, 2026-10-30
 
+History: superseded by [the 2026-11-05 handover](handover-claude-code-2026-11-05.md).
+
 Read `CHANGELOG.md` (1.3.3) first; this note only says where the work stands.
 
 ## State
