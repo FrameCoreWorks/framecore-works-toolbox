@@ -212,6 +212,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Adds interactive isometric line figures that match Studio's Hairline motion style on web pages. | ready | Chat: skills. Cowork and Claude Code: skills plus a browser check | Design & web: interactive isometric line figures for web pages |
 | `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Adds 36 art styles and 9 explainer grammars to Studio's animation ideas and shot lists. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node, Chromium); chat: skill only | Video & animation: animation in 36 art styles |
 | `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Explains a technical product in a Studio piece as a detailed isometric figure. | ready | Chat: skill. Cowork and Claude Code: skill plus optional checks (Node, Chromium) | Design & web: interactive isometric figures that explain a product |
+| `pixelfx` | Pixel art effects and sprite animations as code: 244 ready effects (fire, explosions, magic, hits, UI, transitions) acted out with wind-up and hit-stop, sprite sheets for any engine, and a render, look, refine loop for new ones. | Gives Studio's pixel-art pieces and game trailers real pixel effects, sprite sheets and a pixel VFX quality bar. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned pixelfx into the project after your yes (git, Node 18+, ffmpeg for GIF/MP4); chat: skill only | Video & animation: pixel art effects and sprite sheets |
 
 ### Dev tools
 
@@ -332,6 +333,12 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for an isometric technical figure or an interactive explainer of a system.
 - Watch out: Publishing to its public gallery happens only on request; never by default.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/anatomy.md
+
+### pixelfx
+
+- Use: Ask for a pixel art effect, a recolor, a sprite sheet for Godot, Unity or Phaser, or a GIF/MP4 of an effect.
+- Watch out: Our wrapper keeps the checkout on the reviewed commit; the Patch Pixel font in `gallery/fonts` is not MIT, never ship it.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixelfx.md
 
 ### rea
 

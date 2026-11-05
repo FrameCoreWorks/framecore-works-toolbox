@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.6.3"
+      "version": "1.7.0"
     },
     {
       "name": "animate",
@@ -213,6 +213,13 @@
         "./"
       ],
       "strict": false
+    },
+    {
+      "name": "pixelfx",
+      "description": "Pixel art effects and sprite animations as code: 244 ready effects acted out with wind-up and hit-stop, sprite sheets for any engine, and a render, look, refine loop for new ones (pixelfx by Patch, pinned).",
+      "version": "0.3.0",
+      "category": "creative",
+      "source": "./plugins/pixelfx"
     },
     {
       "name": "rea",

@@ -1,0 +1,26 @@
+{
+  "name": "pixelfx",
+  "version": "0.3.0",
+  "description": "pixelfx by Patch, wrapped by FrameCore Works: 244 pixel art effects as code (fire, explosions, magic, hits, UI, transitions) acted out with wind-up, hit-stop and recovery, sprite sheets for any engine, and the draft, render, look, refine method for new ones. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "pixel art",
+    "vfx",
+    "sprite sheet",
+    "animation",
+    "game juice"
+  ],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Pixelfx Pixel Art Effects",
+    "shortDescription": "Pixel art effects as code",
+    "longDescription": "Pixel art effects and sprite animations with pixelfx by Patch (MIT): 244 ready effects to recolor, export as sprite sheets or GIF/MP4, and a draft, render, look, refine loop for new ones. Downloads the pixelfx repository at the reviewed commit into the project after your yes; needs git and Node.js 18+, ffmpeg optional.",
+    "developerName": "FrameCore Works",
+    "category": "Creative",
+    "capabilities": []
+  }
+}

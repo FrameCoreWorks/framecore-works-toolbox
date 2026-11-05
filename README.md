@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.6.3.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.7.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -21,9 +21,9 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-The current marketplace contains **16 tools plus the toolbox index: 17 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
+The current marketplace contains **17 tools plus the toolbox index: 18 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
-**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
+**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `pixelfx` asks once, then clones its pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
@@ -46,6 +46,7 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | hairline | [lucasmarkes/hairline](https://github.com/lucasmarkes/hairline) | `37d2e78` (0.5.1) | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | skills / skills + browser / skills + browser | [docs](docs/hairline.md) | [review](reviews/hairline.md) |
 | huashu-art-motion | [alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) | `8a0d7d7` (1.2.0) | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | skill / skill + render / skill + render | [docs](docs/huashu-art-motion.md) | [review](reviews/huashu-art-motion.md) |
 | anatomy | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | `e948829` (unreleased) | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | skill / skill + scripts / skill + scripts | [docs](docs/anatomy.md) | [review](reviews/anatomy.md) |
+| pixelfx | [patch-gg/pixelfx](https://github.com/patch-gg/pixelfx) | `a841596` (0.3.0; our wrapper `plugins/pixelfx`) | Pixel art effects and sprite animations as code: 244 ready effects, sprite sheets for any engine, and a render, look, refine loop for new ones. | skill / skill + render / skill + render | [docs](docs/pixelfx.md) | [review](reviews/pixelfx.md) |
 
 ### App notes (not plugins)
 

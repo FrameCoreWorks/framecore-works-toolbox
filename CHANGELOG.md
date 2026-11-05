@@ -1,5 +1,18 @@
 # Changes
 
+## Toolbox 1.7.0 — 2026-11-05
+
+Trigger: owner request 2026-11-05 (patch-gg/pixelfx "do toolboxa jako polecane repo"), an explicit exception to
+the stabilisation stage.
+
+- New Creative entry `pixelfx`: Patch's MIT library of 244 pixel art effects as code, with sprite sheet export
+  and the draft, render, look, refine method. Listed through our own wrapper `plugins/pixelfx` at upstream
+  `a841596` (0.3.0): its skill asks once, clones the upstream into the project at that commit and then follows the
+  upstream skill, because the upstream skill first clones the unpinned default branch next to the project.
+  Review, docs, README row and index row added; index version 1.7.0.
+- Checks: unit, marketplace, package (toolbox, pixelfx) and Earshot tests pass, `claude plugin validate` passes
+  for the marketplace and the wrapper; isolated Claude install of `pixelfx` PASS; clone and renders NOT_RUN.
+
 ## Toolbox 1.6.3 — 2026-11-04
 
 Trigger: GPT Astra external audit 2026-11-04, ORCH-07: an interrupted envelope run (Ctrl-C, a host stopping the

@@ -1,5 +1,13 @@
 # Portable catalog verification
 
+## Toolbox 1.7.0, pixelfx wrapper — 2026-11-05
+
+Baseline: GitHub `main` at `e9fe001`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(2 skipped), marketplace check (18 entries), portable package checks for `toolbox` 1.7.0 and `pixelfx` 0.3.0,
+`claude plugin validate .` and `claude plugin validate plugins/pixelfx`. Isolated Claude config: marketplace add,
+`claude plugin install pixelfx@framecore-works-toolbox` PASS, listed enabled at 0.3.0. The wrapper's pinned
+clone, the upstream render tools, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.2.4, ChatGPT Work install route — 2026-10-30
 
 Unit tests, marketplace check, package check for `toolbox` 1.2.4, Earshot tests under

@@ -1,0 +1,17 @@
+{
+  "name": "pixelfx",
+  "version": "0.3.0",
+  "description": "pixelfx by Patch, wrapped by FrameCore Works: 244 pixel art effects as code (fire, explosions, magic, hits, UI, transitions) acted out with wind-up, hit-stop and recovery, sprite sheets for any engine, and the draft, render, look, refine method for new ones. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "pixel art",
+    "vfx",
+    "sprite sheet",
+    "animation",
+    "game juice"
+  ]
+}
