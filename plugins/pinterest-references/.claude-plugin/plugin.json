@@ -1,0 +1,16 @@
+{
+  "name": "pinterest-references",
+  "version": "1.2.0",
+  "description": "Pinterest MCP server by terryso, wrapped by FrameCore Works: search public Pinterest pins by keyword for moodboards and style, typography and composition references, through the pinned pinterest-mcp-server 1.2.0. References only: pins are not licensed assets. Needs Google Chrome and Node.js with npx; no account or API key.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "pinterest",
+    "moodboard",
+    "references",
+    "mcp"
+  ]
+}

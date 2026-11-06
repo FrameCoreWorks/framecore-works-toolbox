@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.9.0"
+      "version": "1.10.0"
     },
     {
       "name": "animate",
@@ -314,6 +314,13 @@
       "version": "0.1.0",
       "category": "creative",
       "source": "./plugins/papercut-explainer"
+    },
+    {
+      "name": "pinterest-references",
+      "description": "Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server (pinterest-mcp-server 1.2.0 by terryso). References only, not licensed assets.",
+      "version": "1.2.0",
+      "category": "creative",
+      "source": "./plugins/pinterest-references"
     },
     {
       "name": "rea",

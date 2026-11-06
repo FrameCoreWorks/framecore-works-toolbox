@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "pinterest": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "pinterest-mcp-server@1.2.0"
+      ],
+      "env": {
+        "MCP_PINTEREST_DOWNLOAD_DIR": "${HOME}/Pictures/pinterest-references"
+      }
+    }
+  }
+}

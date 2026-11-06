@@ -220,6 +220,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | `motion-launch-videos` | Launch and promo videos rendered from HTML: product launches, story pieces, charts, captions, 3D, globes, particles, overlays and cartoon styles, frame-accurate to MP4 or alpha video. | A second launch-video method next to Studio's HyperFrames and Remotion routes, with its own render scripts. | session-install | Claude Code (desktop, cloud, phone) and Cowork install its pinned render package (playwright-core 1.63.0) and a Chromium (Node 20+, ffmpeg); chat: skill only | Video & animation: launch and promo videos from HTML |
 | `manim-skill` | Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local voiceover. | Gives Studio's educational pieces exact animated formulas and graphs, which Remotion and HyperFrames do not draw. | session-install | Claude Code (desktop, cloud, phone) and Cowork install Manim (Python) and LaTeX for renders; chat: skill only | Video & animation: math and science explainers in Manim |
 | `papercut-explainer` | Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | A ready cut-paper style with its own nine-stage pipeline for short explainer reels. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned papercut-explainer into the project after your yes (git, Node 20+, ffmpeg, python3); local voice several GB, asked separately; chat: skill only | Video & animation: cut-paper explainer reels |
+| `pinterest-references` | Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server; each saved image keeps its pin link and author. References only, not licensed assets. | Feeds Studio's reference packs and style research with real-world examples, kept apart from usable assets. | session-install | Claude Code on a computer with Google Chrome in its standard place, and Claude Code cloud (which has it); Node.js with npx fetches the pinned server; Cowork Unknown; Codex through its own `.codex-plugin` package; chat: skill only, no search | Design & web: Pinterest moodboards and style references (not assets) |
 
 ### Dev tools
 
@@ -388,6 +389,12 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for a cut-paper or papercut explainer reel from a link (a repository, product page or announcement).
 - Watch out: Our wrapper keeps the checkout on the reviewed commit and never runs the upstream's unpinned Remotion skills install; Remotion needs a paid company licence above its size threshold, and 16 bundled backdrops are AI-generated.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/papercut-explainer.md
+
+### pinterest-references
+
+- Use: Ask for a moodboard, style research or a reference pack; the skill searches Pinterest and saves picked pins into `references/pinterest/` with a `.reference.json` (pin link, author, query, date).
+- Watch out: References only: Pinterest images belong to their authors and never go into finished work (use Open Assets for usable media). Needs Google Chrome in its standard place; the server sets an ordinary Chrome user agent to read pinterest.com without signing in (owner exception recorded in the review).
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pinterest-references.md
 
 ### rea
 
