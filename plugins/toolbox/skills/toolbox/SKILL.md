@@ -213,6 +213,9 @@ read that file before any Earshot step. Discovery for other plugins is
 | `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Adds 36 art styles and 9 explainer grammars to Studio's animation ideas and shot lists. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node, Chromium); chat: skill only | Video & animation: animation in 36 art styles |
 | `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Explains a technical product in a Studio piece as a detailed isometric figure. | ready | Chat: skill. Cowork and Claude Code: skill plus optional checks (Node, Chromium) | Design & web: interactive isometric figures that explain a product |
 | `pixelfx` | Pixel art effects and sprite animations as code: 244 ready effects (fire, explosions, magic, hits, UI, transitions) acted out with wind-up and hit-stop, sprite sheets for any engine, and a render, look, refine loop for new ones. | Gives Studio's pixel-art pieces and game trailers real pixel effects, sprite sheets and a pixel VFX quality bar. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned pixelfx into the project after your yes (git, Node 18+, ffmpeg for GIF/MP4); chat: skill only | Video & animation: pixel art effects and sprite sheets |
+| `gl-transitions` | Transitions between two images, clips or scenes from the open collection of GLSL shaders (fades, wipes, zooms, glitches, page curls), wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts. | Gives Studio's Remotion and HyperFrames cuts ready, licensed shader transitions with exact wiring. | ready | Chat: skill. Cowork and Claude Code: skill plus your own render tools | Video & animation: shader transitions between clips and scenes |
+| `threejs-skills` | Thirteen three.js r186 skills (scenes, geometry, materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and outdated patterns to avoid. | Keeps Studio's 3D scenes (`@remotion/three`, WebGL pages) on the current three.js API. | ready | Chat, Cowork and Claude Code | Video & animation: current three.js for 3D scenes |
+| `bang-motion` | Browser motion graphics that move like video, not slides: openers, promos, bumpers, kinetic typography, lower thirds and five explainer styles as one autoplaying `index.html`, optional MP4 export. | A second motion method next to Studio's HyperFrames route, used as a complement. | ready | Chat: skill. Cowork and Claude Code: skill plus optional preview and MP4 export (Node, puppeteer) | Video & animation: openers and explainers that move like video (overlaps Studio) |
 
 ### Dev tools
 
@@ -339,6 +342,24 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for a pixel art effect, a recolor, a sprite sheet for Godot, Unity or Phaser, or a GIF/MP4 of an effect.
 - Watch out: Our wrapper keeps the checkout on the reviewed commit; the Patch Pixel font in `gallery/fonts` is not MIT, never ship it.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixelfx.md
+
+### gl-transitions
+
+- Use: Ask for a transition between two images, clips or scenes, or name one (`CrossZoom`, `Cube`).
+- Watch out: The skill links `gl-transitions@2` while npm `latest` is 3.0.0, which removed twelve duplicates; pin one exact version and credit each transition's licence.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/gl-transitions.md
+
+### threejs-skills
+
+- Use: Ask a three.js or React Three Fiber task; the matching `threejs-*` skill loads.
+- Watch out: Written for three.js r186; check the project's installed release.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/threejs-skills.md
+
+### bang-motion
+
+- Use: Ask for an opener, promo, bumper, kinetic typography or an explainer that moves like video.
+- Watch out: Skill text is in Indonesian; it overlaps Studio's motion routes, so pick one route per job. Install an exact puppeteer version before export.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/bang-motion.md
 
 ### rea
 

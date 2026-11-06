@@ -1,5 +1,21 @@
 # Changes
 
+## Toolbox 1.8.0 — 2026-11-06
+
+Trigger: owner request 2026-11-06 after the A-to-Z review of five Deep Research reports ("No to GL Transition
+dodajemy. Ten Cloud AIX też. No i myślę, że Bank Motion też będzie dodany ... może być używany jako
+uzupełnienie"), an explicit exception to the stabilisation stage.
+
+- New Creative entry `gl-transitions`: the official skill of gl-transitions/gl-transitions (MIT) at `c040bdd`,
+  inline manifest declaring `skills/gl-transitions`. Owner test PASS_REPORTED.
+- New Creative entry `threejs-skills`: CloudAI-X/threejs-skills (MIT) at `0e18186`, 13 three.js r186 skills,
+  inline manifest. Headless A/B on one prompt: without the skills `THREE.Clock`, with them the r186 `Timer`.
+- New Creative entry `bang-motion`: the full upstream plugin bangtutorial/bang-motion 1.19.0 (MIT) at `c1aa65e`,
+  added as a complement to Studio's motion routes by owner decision (overlap known; skill text in Indonesian).
+- Reviews, docs, README rows and index rows added; index version 1.8.0.
+- Checks: unit, marketplace, package and Earshot tests pass, `claude plugin validate .` passes; isolated Claude
+  installs of all three PASS with their skills listed; renders, claude.ai, Cowork, Codex and Work NOT_RUN.
+
 ## Toolbox 1.7.0 — 2026-11-05
 
 Trigger: owner request 2026-11-05 (patch-gg/pixelfx "do toolboxa jako polecane repo"), an explicit exception to

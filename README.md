@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.7.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.8.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -47,6 +47,9 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | huashu-art-motion | [alchaincyf/huashu-art-motion](https://github.com/alchaincyf/huashu-art-motion) | `8a0d7d7` (1.2.0) | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | skill / skill + render / skill + render | [docs](docs/huashu-art-motion.md) | [review](reviews/huashu-art-motion.md) |
 | anatomy | [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) | `e948829` (unreleased) | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | skill / skill + scripts / skill + scripts | [docs](docs/anatomy.md) | [review](reviews/anatomy.md) |
 | pixelfx | [patch-gg/pixelfx](https://github.com/patch-gg/pixelfx) | `a841596` (0.3.0; our wrapper `plugins/pixelfx`) | Pixel art effects and sprite animations as code: 244 ready effects, sprite sheets for any engine, and a render, look, refine loop for new ones. | skill / skill + render / skill + render | [docs](docs/pixelfx.md) | [review](reviews/pixelfx.md) |
+| gl-transitions | [gl-transitions/gl-transitions](https://github.com/gl-transitions/gl-transitions) | `c040bdd` (3.0.0) | Transitions between two images, clips or scenes from the open collection of GLSL shaders, wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts. | skill / skill + render / skill + render | [docs](docs/gl-transitions.md) | [review](reviews/gl-transitions.md) |
+| threejs-skills | [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills) | `0e18186` (unreleased, three.js r186) | Thirteen three.js r186 skills (materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and outdated patterns to avoid. | skills / skills / skills | [docs](docs/threejs-skills.md) | [review](reviews/threejs-skills.md) |
+| bang-motion | [bangtutorial/bang-motion](https://github.com/bangtutorial/bang-motion) | `c1aa65e` (1.19.0) | Browser motion graphics that move like video, not slides: openers, promos, kinetic typography and five explainer styles as one autoplaying HTML file, optional MP4 export (skill text in Indonesian). | skill / skill + render / skill + render | [docs](docs/bang-motion.md) | [review](reviews/bang-motion.md) |
 
 ### App notes (not plugins)
 

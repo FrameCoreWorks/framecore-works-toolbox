@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.7.0"
+      "version": "1.8.0"
     },
     {
       "name": "animate",
@@ -220,6 +220,59 @@
       "version": "0.3.0",
       "category": "creative",
       "source": "./plugins/pixelfx"
+    },
+    {
+      "name": "gl-transitions",
+      "description": "Transitions between two images, clips or scenes from the open collection of GLSL shaders (fades, wipes, zooms, glitches, page curls), wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts.",
+      "version": "3.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "gl-transitions/gl-transitions",
+        "sha": "c040bddd7abf5195c0c61942982508ca9ee39287"
+      },
+      "skills": [
+        "./skills/gl-transitions"
+      ],
+      "strict": false
+    },
+    {
+      "name": "threejs-skills",
+      "description": "Thirteen three.js r186 skills (scenes, geometry, materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and a list of outdated patterns to avoid.",
+      "version": "0.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "CloudAI-X/threejs-skills",
+        "sha": "0e181866f095b5f06d005133876e926515390d95"
+      },
+      "skills": [
+        "./skills/threejs-animation",
+        "./skills/threejs-asset-pipeline",
+        "./skills/threejs-fundamentals",
+        "./skills/threejs-geometry",
+        "./skills/threejs-interaction",
+        "./skills/threejs-lighting",
+        "./skills/threejs-loaders",
+        "./skills/threejs-materials",
+        "./skills/threejs-performance",
+        "./skills/threejs-postprocessing",
+        "./skills/threejs-react-three-fiber",
+        "./skills/threejs-shaders",
+        "./skills/threejs-textures"
+      ],
+      "strict": false
+    },
+    {
+      "name": "bang-motion",
+      "description": "Browser motion graphics that move like video, not slides: openers, promos, bumpers, kinetic typography, lower thirds and five explainer styles as one autoplaying index.html, with optional MP4 export (skill text in Indonesian).",
+      "version": "1.19.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "bangtutorial/bang-motion",
+        "sha": "c1aa65e921c970d858705fcb4a53a8294d1a4131"
+      }
     },
     {
       "name": "rea",

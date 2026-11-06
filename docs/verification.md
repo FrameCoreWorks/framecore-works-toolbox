@@ -1,5 +1,14 @@
 # Portable catalog verification
 
+## Toolbox 1.8.0, gl-transitions, threejs-skills, bang-motion — 2026-11-06
+
+Baseline: GitHub `main` at `1234d6f`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(74, 2 skipped), marketplace check (21 entries), portable package check for `toolbox` 1.8.0 and
+`claude plugin validate .`. Isolated Claude config: marketplace add, `claude plugin install` of
+`gl-transitions`, `threejs-skills` and `bang-motion` PASS, all listed enabled; a headless `claude -p` session listed
+`gl-transitions:gl-transitions`, the 13 `threejs-skills:threejs-*` skills and `bang-motion:bang-motion`. Headless
+A/B for threejs-skills: 1 case, 2 runs, about 26 s. Renders, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.7.0, pixelfx wrapper — 2026-11-05
 
 Baseline: GitHub `main` at `e9fe001`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
