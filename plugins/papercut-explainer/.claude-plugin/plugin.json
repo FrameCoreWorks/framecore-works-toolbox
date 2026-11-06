@@ -1,0 +1,17 @@
+{
+  "name": "papercut-explainer",
+  "version": "0.1.0",
+  "description": "papercut-explainer by 0xS4N4TG, wrapped by FrameCore Works: short vertical cut-paper explainers (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, with nine stage skills from strategy and hook to storyboard, voice, build and QA. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "explainer",
+    "papercut",
+    "remotion",
+    "vertical video",
+    "motion graphics"
+  ]
+}

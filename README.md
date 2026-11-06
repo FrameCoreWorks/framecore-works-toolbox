@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.8.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.9.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -23,7 +23,7 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 The current marketplace contains **17 tools plus the toolbox index: 18 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
-**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `pixelfx` asks once, then clones its pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
+**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop` and `rea` start a pinned local MCP server; `pixelfx` and `papercut-explainer` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
@@ -50,6 +50,10 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | gl-transitions | [gl-transitions/gl-transitions](https://github.com/gl-transitions/gl-transitions) | `c040bdd` (3.0.0) | Transitions between two images, clips or scenes from the open collection of GLSL shaders, wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts. | skill / skill + render / skill + render | [docs](docs/gl-transitions.md) | [review](reviews/gl-transitions.md) |
 | threejs-skills | [CloudAI-X/threejs-skills](https://github.com/CloudAI-X/threejs-skills) | `0e18186` (unreleased, three.js r186) | Thirteen three.js r186 skills (materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and outdated patterns to avoid. | skills / skills / skills | [docs](docs/threejs-skills.md) | [review](reviews/threejs-skills.md) |
 | bang-motion | [bangtutorial/bang-motion](https://github.com/bangtutorial/bang-motion) | `c1aa65e` (1.19.0) | Browser motion graphics that move like video, not slides: openers, promos, kinetic typography and five explainer styles as one autoplaying HTML file, optional MP4 export (skill text in Indonesian). | skill / skill + render / skill + render | [docs](docs/bang-motion.md) | [review](reviews/bang-motion.md) |
+| gsap-skills | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | `aed9cfd` (1.0.0) | GreenSock's official GSAP skills: tweens, timelines, ScrollTrigger, SplitText and other plugins, React and frameworks, performance. | skill / skill / skill | [docs](docs/gsap-skills.md) | [review](reviews/gsap-skills.md) |
+| motion-launch-videos | [Kimeur/motion-launch-videos](https://github.com/Kimeur/motion-launch-videos) | `5092579` (2.3.0) | Launch and promo videos rendered from HTML: launches, stories, charts, captions, 3D, globes, particles and cartoon styles, frame-accurate to MP4. | skill / skill + render / skill + render | [docs](docs/motion-launch-videos.md) | [review](reviews/motion-launch-videos.md) |
+| manim-skill | [Yusuke710/manim-skill](https://github.com/Yusuke710/manim-skill) | `a0048d9` (1.0.0) | Math and science explainer videos in Manim: LaTeX formulas, graphs, geometry, subtitles and an optional local voice. | skill / skill + render / skill + render | [docs](docs/manim-skill.md) | [review](reviews/manim-skill.md) |
+| papercut-explainer | [0xS4N4TG/papercut-explainer](https://github.com/0xS4N4TG/papercut-explainer) | `ff8223a` (0.1.0; our wrapper `plugins/papercut-explainer`) | Vertical cut-paper explainer reels from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | skill / skill + render / skill + render | [docs](docs/papercut-explainer.md) | [review](reviews/papercut-explainer.md) |
 
 ### App notes (not plugins)
 

@@ -216,6 +216,10 @@ read that file before any Earshot step. Discovery for other plugins is
 | `gl-transitions` | Transitions between two images, clips or scenes from the open collection of GLSL shaders (fades, wipes, zooms, glitches, page curls), wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts. | Gives Studio's Remotion and HyperFrames cuts ready, licensed shader transitions with exact wiring. | ready | Chat: skill. Cowork and Claude Code: skill plus your own render tools | Video & animation: shader transitions between clips and scenes |
 | `threejs-skills` | Thirteen three.js r186 skills (scenes, geometry, materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and outdated patterns to avoid. | Keeps Studio's 3D scenes (`@remotion/three`, WebGL pages) on the current three.js API. | ready | Chat, Cowork and Claude Code | Video & animation: current three.js for 3D scenes |
 | `bang-motion` | Browser motion graphics that move like video, not slides: openers, promos, bumpers, kinetic typography, lower thirds and five explainer styles as one autoplaying `index.html`, optional MP4 export. | A second motion method next to Studio's HyperFrames route, used as a complement. | ready | Chat: skill. Cowork and Claude Code: skill plus optional preview and MP4 export (Node, puppeteer) | Video & animation: openers and explainers that move like video (overlaps Studio) |
+| `gsap-skills` | GreenSock's official GSAP skills: tweens and easing, timelines, ScrollTrigger, plugins (SplitText, MorphSVG, Flip), React and other frameworks, utilities and performance. | Keeps Studio's GSAP code in HyperFrames compositions and web pages on the current GSAP API and plugin options. | ready | Chat, Cowork and Claude Code | Video & animation: current GSAP for web and HyperFrames animation |
+| `motion-launch-videos` | Launch and promo videos rendered from HTML: product launches, story pieces, charts, captions, 3D, globes, particles, overlays and cartoon styles, frame-accurate to MP4 or alpha video. | A second launch-video method next to Studio's HyperFrames and Remotion routes, with its own render scripts. | session-install | Claude Code (desktop, cloud, phone) and Cowork install its pinned render package (playwright-core 1.63.0) and a Chromium (Node 20+, ffmpeg); chat: skill only | Video & animation: launch and promo videos from HTML |
+| `manim-skill` | Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local voiceover. | Gives Studio's educational pieces exact animated formulas and graphs, which Remotion and HyperFrames do not draw. | session-install | Claude Code (desktop, cloud, phone) and Cowork install Manim (Python) and LaTeX for renders; chat: skill only | Video & animation: math and science explainers in Manim |
+| `papercut-explainer` | Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | A ready cut-paper style with its own nine-stage pipeline for short explainer reels. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned papercut-explainer into the project after your yes (git, Node 20+, ffmpeg, python3); local voice several GB, asked separately; chat: skill only | Video & animation: cut-paper explainer reels |
 
 ### Dev tools
 
@@ -360,6 +364,30 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for an opener, promo, bumper, kinetic typography or an explainer that moves like video.
 - Watch out: Skill text is in Indonesian; it overlaps Studio's motion routes, so pick one route per job. Install an exact puppeteer version before export.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/bang-motion.md
+
+### gsap-skills
+
+- Use: Ask a GSAP task (a timeline, ScrollTrigger, SplitText, a React animation); the matching `gsap-*` skill loads.
+- Watch out: GSAP itself is free under Webflow's own licence, not MIT; the skills are MIT.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/gsap-skills.md
+
+### motion-launch-videos
+
+- Use: Ask for a product launch video, a promo, an animated chart, captions or a 3D or globe shot rendered to MP4.
+- Watch out: Each skill installs its pinned render packages (playwright-core 1.63.0) and a Chromium into its own folder; `motion-story` calls unpinned `npx hyperframes` for voice and transcripts, so pin a version or skip that step.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/motion-launch-videos.md
+
+### manim-skill
+
+- Use: Ask for a math, physics or algorithm explainer, a formula derivation or an animated graph.
+- Watch out: Formulas need a LaTeX install; the voiceover is on whenever Kokoro is installed, so say if you want it silent.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/manim-skill.md
+
+### papercut-explainer
+
+- Use: Ask for a cut-paper or papercut explainer reel from a link (a repository, product page or announcement).
+- Watch out: Our wrapper keeps the checkout on the reviewed commit and never runs the upstream's unpinned Remotion skills install; Remotion needs a paid company licence above its size threshold, and 16 bundled backdrops are AI-generated.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/papercut-explainer.md
 
 ### rea
 

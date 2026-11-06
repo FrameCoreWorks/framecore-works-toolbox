@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.9.0, gsap-skills, motion-launch-videos, manim-skill, papercut-explainer — 2026-11-06
+
+Baseline: GitHub `main` at `cc1b3de`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(2 skipped), marketplace check (25 entries), portable package check for `toolbox` 1.9.0, `claude plugin validate .`
+and `claude plugin validate plugins/papercut-explainer`. Isolated Claude config (Claude Code 2.1.318): marketplace
+add, `claude plugin install` of `gsap-skills`, `motion-launch-videos`, `manim-skill` and `papercut-explainer` PASS,
+all listed enabled; a headless `claude -p` session listed the 8 `gsap-skills:gsap-*` skills, the 13
+`motion-launch-videos:motion-*` skills, `manim-skill:manim-skill` and `papercut-explainer:papercut-explainer`.
+GSAP text A/B: 1 case. Renders, the papercut clone, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.8.0, gl-transitions, threejs-skills, bang-motion — 2026-11-06
 
 Baseline: GitHub `main` at `1234d6f`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12

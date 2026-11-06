@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "papercut-explainer",
+  "version": "0.1.0",
+  "description": "papercut-explainer by 0xS4N4TG, wrapped by FrameCore Works: short vertical cut-paper explainers (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, with nine stage skills from strategy and hook to storyboard, voice, build and QA. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "explainer",
+    "papercut",
+    "remotion",
+    "vertical video",
+    "motion graphics"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Papercut Explainer",
+        "shortDescription": "Cut-paper explainer reels",
+        "longDescription": "Vertical cut-paper explainer reels with papercut-explainer by 0xS4N4TG (MIT): strategy, hook, script, storyboard, Remotion build, voice and QA. Downloads the repository at the reviewed commit into the project after your yes; needs git, Node.js 20+, ffmpeg and python3; local voice optional (several GB).",
+        "developerName": "FrameCore Works",
+        "category": "Creative",
+        "capabilities": []
+      }
+    }
+  }
+}

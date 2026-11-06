@@ -1,5 +1,24 @@
 # Changes
 
+## Toolbox 1.9.0 — 2026-11-06
+
+Trigger: owner request 2026-11-06 after the A-to-Z review of the Gemini Deep Research report on motion graphics
+repositories ("Dodaj oaoercut, manim, kimeur i gsap"), an explicit exception to the stabilisation stage.
+
+- New Creative entry `gsap-skills`: GreenSock's official plugin (MIT) at `aed9cfd`, eight GSAP skills. Text A/B on
+  one case: with the skills, the requested SplitText `mask: "chars"` and MorphSVG `shapeIndex: "log"`.
+- New Creative entry `motion-launch-videos`: the full upstream plugin Kimeur/motion-launch-videos 2.3.0 (MIT) at
+  `5092579`, git-subdir `plugins/motion-launch-videos` (8.6 MB; the 100 MB examples stay out). `motion-story`'s
+  unpinned `npx hyperframes` step is named in the docs.
+- New Creative entry `manim-skill`: the full upstream plugin Yusuke710/manim-skill 1.0.0 (MIT) at `a0048d9`.
+- New Creative entry `papercut-explainer`: 0xS4N4TG/papercut-explainer (MIT) at `ff8223a` through our own wrapper
+  `plugins/papercut-explainer` 0.1.0, which clones the pinned upstream into the project after the user's yes and
+  never runs the upstream's unpinned clone or `npx skills@latest` step.
+- Reviews, docs, README rows and index rows added; index version 1.9.0.
+- Checks: unit, marketplace, package and Earshot tests pass, `claude plugin validate` passes for the marketplace and
+  the wrapper; isolated Claude installs of all four PASS with their skills listed; renders, claude.ai, Cowork,
+  Codex and Work NOT_RUN.
+
 ## Toolbox 1.8.0 — 2026-11-06
 
 Trigger: owner request 2026-11-06 after the A-to-Z review of five Deep Research reports ("No to GL Transition

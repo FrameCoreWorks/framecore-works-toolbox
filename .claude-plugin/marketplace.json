@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.8.0"
+      "version": "1.9.0"
     },
     {
       "name": "animate",
@@ -273,6 +273,47 @@
         "repo": "bangtutorial/bang-motion",
         "sha": "c1aa65e921c970d858705fcb4a53a8294d1a4131"
       }
+    },
+    {
+      "name": "gsap-skills",
+      "description": "GreenSock's official GSAP skills: core tweens and easing, timelines, ScrollTrigger, plugins (SplitText, MorphSVG, Flip and others), React and other frameworks, utilities and performance, so web animation code uses the current GSAP API.",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "greensock/gsap-skills",
+        "sha": "aed9cfd3277740755f6bfc1155c7aa645403b760"
+      }
+    },
+    {
+      "name": "motion-launch-videos",
+      "description": "Launch and promo videos rendered from HTML: product launches, story pieces, charts, captions, 3D, globes, particles, overlays and cartoon styles, frame-accurate to MP4 (or alpha video) with a pinned local Chromium.",
+      "version": "2.3.0",
+      "category": "creative",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/Kimeur/motion-launch-videos.git",
+        "path": "plugins/motion-launch-videos",
+        "sha": "5092579bc9aaeb0e3547ded0980a93404d2dc906"
+      }
+    },
+    {
+      "name": "manim-skill",
+      "description": "Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local Kokoro voiceover, with a local preview player.",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": {
+        "source": "github",
+        "repo": "Yusuke710/manim-skill",
+        "sha": "a0048d9e265499038f34a9aa58ff16d306b5034c"
+      }
+    },
+    {
+      "name": "papercut-explainer",
+      "description": "Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA (papercut-explainer by 0xS4N4TG, pinned).",
+      "version": "0.1.0",
+      "category": "creative",
+      "source": "./plugins/papercut-explainer"
     },
     {
       "name": "rea",
