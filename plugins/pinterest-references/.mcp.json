@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "pinterest": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "pinterest-mcp-server@1.2.0"
+      ],
+      "env": {
+        "MCP_PINTEREST_DOWNLOAD_DIR": "${HOME}/Pictures/pinterest-references"
+      }
+    }
+  }
+}

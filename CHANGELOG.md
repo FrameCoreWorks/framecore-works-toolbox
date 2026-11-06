@@ -1,5 +1,17 @@
 # Changes
 
+## Toolbox 1.10.0 — 2026-11-06
+
+Trigger: owner request 2026-11-06 ("dodaj konektor Pinterest terryso/mcp-pinterest do FrameCore Works Toolbox"),
+an explicit exception to the stabilisation stage, delivered as a pull request at the owner's request.
+
+- New Creative entry `pinterest-references`: terryso/mcp-pinterest (MIT) at `7a6667d` (npm `pinterest-mcp-server@1.2.0`)
+  through our own wrapper `plugins/pinterest-references` 1.2.0, with all three tools (search, image info, search and
+  download into `~/Pictures/pinterest-references`). Our skill keeps it to references: kept pins get a
+  `.reference.json` with pin link and author and never go into finished work. Owner exception to the user-agent
+  rule recorded in the review. Needs Google Chrome and Node.js (npx).
+- Review, docs, README row and index row added; README entry count corrected to 26; index version 1.10.0.
+
 ## Toolbox 1.9.0 — 2026-11-06
 
 Trigger: owner request 2026-11-06 after the A-to-Z review of the Gemini Deep Research report on motion graphics

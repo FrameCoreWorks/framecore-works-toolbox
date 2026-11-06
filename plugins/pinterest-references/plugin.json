@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "pinterest-references",
+  "version": "1.2.0",
+  "description": "Pinterest MCP server by terryso, wrapped by FrameCore Works: search public Pinterest pins by keyword for moodboards and style, typography and composition references, through the pinned pinterest-mcp-server 1.2.0. References only: pins are not licensed assets. Needs Google Chrome and Node.js with npx; no account or API key.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "pinterest",
+    "moodboard",
+    "references",
+    "mcp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Pinterest References",
+        "shortDescription": "Pinterest style references",
+        "longDescription": "Keyword search of public Pinterest pins for moodboards and style, typography and composition references, with the pinned pinterest-mcp-server 1.2.0 by terryso (MIT). Each saved image keeps its pin link and author. References only: Pinterest images belong to their authors and are never used in finished work. Needs Google Chrome in its standard place and Node.js with npx; no account or API key.",
+        "developerName": "FrameCore Works",
+        "category": "Creative",
+        "capabilities": []
+      }
+    }
+  }
+}

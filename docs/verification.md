@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.10.0, pinterest-references — 2026-11-06
+
+Baseline: GitHub `main` at `8c39edc`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(74, 2 skipped), marketplace check (26 entries), portable package checks for `toolbox` 1.10.0 and
+`pinterest-references` 1.2.0, `claude plugin validate .` and `claude plugin validate plugins/pinterest-references`.
+Isolated Claude config (Claude Code 2.1.319): marketplace add and `claude plugin install
+pinterest-references@framecore-works-toolbox` PASS, listed enabled. MCP server start and a live search in this
+session: NOT_RUN (the permission classifier blocked running the external package); owner cloud search
+PASS_REPORTED. claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.9.0, gsap-skills, motion-launch-videos, manim-skill, papercut-explainer — 2026-11-06
 
 Baseline: GitHub `main` at `cc1b3de`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
