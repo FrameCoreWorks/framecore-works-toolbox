@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.11.0"
+      "version": "1.12.0"
     },
     {
       "name": "animate",
@@ -328,6 +328,13 @@
       "version": "1.0.0",
       "category": "creative",
       "source": "./plugins/stickman-kino"
+    },
+    {
+      "name": "cutaway",
+      "description": "Robotic cutaway films from one reference picture: a robotic animal, machine or device rebuilt as a three.js object that takes itself apart part by part, filmed at 60 fps with a procedural score; optional images through your own connector and a local Kokoro narrator; works best with Claude Opus 5.5 (cutaway by Nyxera0x, pinned).",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": "./plugins/cutaway"
     },
     {
       "name": "rea",

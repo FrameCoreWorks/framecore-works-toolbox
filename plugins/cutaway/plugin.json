@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "cutaway",
+  "version": "1.0.0",
+  "description": "cutaway by Nyxera0x, wrapped by FrameCore Works: one reference picture of a robotic animal, machine or device rebuilt as a three.js object in code that takes itself apart part by part, filmed at 60 fps with a synced procedural score. Optional reference images through your own image connector, optional local Kokoro narrator. Works best with Claude Opus 5.5. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "cutaway",
+    "exploded view",
+    "three.js",
+    "3D",
+    "motion graphics",
+    "product film"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Cutaway",
+        "shortDescription": "Robotic exploded-view 3D films",
+        "longDescription": "Turn one picture of a robotic animal, machine or device into a three.js object that takes itself apart on camera, with a page of part buttons and a 60 fps film with a procedural score, using cutaway by Nyxera0x (MIT). Downloads the repository at the reviewed commit into the project after your yes; needs git, Node.js 20+, ffmpeg, Python 3 and Chrome or Chromium. Reference images can come from your own image connector; a local Kokoro narrator is optional and asked separately. Works best with Claude Opus 5.5.",
+        "developerName": "FrameCore Works",
+        "category": "Creative",
+        "capabilities": []
+      }
+    }
+  }
+}

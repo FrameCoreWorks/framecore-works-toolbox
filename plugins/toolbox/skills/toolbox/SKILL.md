@@ -222,6 +222,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | `papercut-explainer` | Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | A ready cut-paper style with its own nine-stage pipeline for short explainer reels. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned papercut-explainer into the project after your yes (git, Node 20+, ffmpeg, python3); local voice several GB, asked separately; chat: skill only | Video & animation: cut-paper explainer reels |
 | `pinterest-references` | Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server; each saved image keeps its pin link and author. References only, not licensed assets. | Feeds Studio's reference packs and style research with real-world examples, kept apart from usable assets. | session-install | Claude Code on a computer with Google Chrome in its standard place, and Claude Code cloud (which has it); Node.js with npx fetches the pinned server; Cowork Unknown; Codex through its own `.codex-plugin` package; chat: skill only, no search | Design & web: Pinterest moodboards and style references (not assets) |
 | `stickman-kino` | Stickman explainer, story and promo films rendered locally as code in HyperFrames: rigged figures with 58 poses, about 190 props, charts, kinetic text, captions, a local voice, procedural music and effects, to MP4 with no video model or API key. | Gives Studio's stickman and faceless explainer briefs a ready stick-figure rig and render on Studio's own HyperFrames route. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned stickman-kino into the project after your yes and install its locked packages (git, Node 18+, Chrome or Chromium); local Kokoro voice about 200 MB, asked separately; chat: skill only | Video & animation: stickman explainer films |
+| `cutaway` | Robotic cutaway films from one reference picture: a robotic animal, machine or device rebuilt as a three.js object that takes itself apart part by part, with a page of part buttons and a 60 fps film with a procedural score. Works best with Claude Opus 5.5. | Gives Studio's product and mechanism films a rendered exploded-view look matched to a picture, next to Anatomy's diagram cutaways. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned cutaway into the project after your yes and install its locked packages (git, Node 20+, ffmpeg, Python 3, Chrome or Chromium; a GPU makes capture fast); images through your own image connector (for example GPT Image 2.5); local Kokoro narrator about 600 MB, asked separately; chat: skill only | Video & animation: robotic exploded-view 3D films |
 
 ### Dev tools
 
@@ -402,6 +403,12 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for a stickman or stick-figure video: an explainer, a short story, a faceless YouTube or Shorts clip or a product promo in that style.
 - Watch out: Our wrapper keeps the checkout on the reviewed commit and never runs the upstream `stickman setup` (unpinned voice install); the Kokoro voice is optional and asked separately, and the sample films' apps and numbers are invented.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/stickman-kino.md
+
+### cutaway
+
+- Use: Give a picture of a robotic animal, machine or device and ask for a 3D object that takes itself apart, an exploded view or a cutaway film.
+- Watch out: Works best with Claude Opus 5.5 and uses many tokens; review after still round 2. Generated reference images or extra graphics go through your own image connector (for example GPT Image 2.5) and may cost credits; the Kokoro narrator is optional, asked separately and does not speak Polish.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/cutaway.md
 
 ### rea
 

@@ -1,5 +1,20 @@
 # Changes
 
+## Toolbox 1.12.0 — 2026-11-07
+
+Trigger: owner request 2026-11-07 ("Dodaj ten kataway do toolboxa, ale z zaznaczeniem, że to najlepiej działa z
+opusem 5,5"), after the review of Nyxera0x/cutaway; an explicit exception to the stabilisation stage.
+
+- New Creative entry `cutaway`: Nyxera0x/cutaway (MIT, built on whaleyxbt/claude-motion) at `5d8f1c6` (1.0.0)
+  through our own wrapper `plugins/cutaway` 1.0.0. The wrapper clones the pinned upstream into the project after the
+  user's yes and runs `npm ci` from its lockfile, never `npx skills add`; Playwright's Chromium only after a yes when
+  no browser is installed. Owner notes: works best with Claude Opus 5.5; reference images and extra graphics go
+  through the user's own image connector (for example GPT Image 2.5); an optional local Kokoro narrator
+  (`kokoro-onnx==0.6.1`, `soundfile==0.14.0`, model files checked by SHA-256), asked separately.
+- Review, docs, README row and index row added; README entry count 28; index version 1.12.0.
+- Checks: unit, marketplace, package (toolbox and wrapper), Earshot tests and `claude plugin validate` pass; isolated
+  Claude install PASS with the skill listed; clone, `npm ci`, builds, films and Kokoro NOT_RUN.
+
 ## Toolbox 1.11.0 — 2026-11-07
 
 Trigger: owner request 2026-11-07 ("Podaj mi ten adres tego repo i wprowadzaj to repo do toolboxa"), after the

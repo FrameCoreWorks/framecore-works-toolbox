@@ -1,5 +1,14 @@
 # Portable catalog verification
 
+## Toolbox 1.12.0, cutaway — 2026-11-07
+
+Baseline: GitHub `main` at `8ab0736`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(74, 2 skipped), marketplace check (28 entries), portable package checks for `toolbox` 1.12.0 and `cutaway` 1.0.0,
+`claude plugin validate .` and `claude plugin validate plugins/cutaway`. Isolated Claude config (Claude Code
+2.1.319): marketplace add and `claude plugin install cutaway@framecore-works-toolbox` PASS, listed 1.0.0 enabled
+(cache 48 KB); a headless `claude -p` session listed `cutaway:cutaway`. The upstream clone, `npm ci`, builds, films,
+Kokoro, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.11.0, stickman-kino — 2026-11-07
 
 Baseline: GitHub `main` at `398ae3d`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
