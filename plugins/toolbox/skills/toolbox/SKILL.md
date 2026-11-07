@@ -221,6 +221,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | `manim-skill` | Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local voiceover. | Gives Studio's educational pieces exact animated formulas and graphs, which Remotion and HyperFrames do not draw. | session-install | Claude Code (desktop, cloud, phone) and Cowork install Manim (Python) and LaTeX for renders; chat: skill only | Video & animation: math and science explainers in Manim |
 | `papercut-explainer` | Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | A ready cut-paper style with its own nine-stage pipeline for short explainer reels. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned papercut-explainer into the project after your yes (git, Node 20+, ffmpeg, python3); local voice several GB, asked separately; chat: skill only | Video & animation: cut-paper explainer reels |
 | `pinterest-references` | Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server; each saved image keeps its pin link and author. References only, not licensed assets. | Feeds Studio's reference packs and style research with real-world examples, kept apart from usable assets. | session-install | Claude Code on a computer with Google Chrome in its standard place, and Claude Code cloud (which has it); Node.js with npx fetches the pinned server; Cowork Unknown; Codex through its own `.codex-plugin` package; chat: skill only, no search | Design & web: Pinterest moodboards and style references (not assets) |
+| `stickman-kino` | Stickman explainer, story and promo films rendered locally as code in HyperFrames: rigged figures with 58 poses, about 190 props, charts, kinetic text, captions, a local voice, procedural music and effects, to MP4 with no video model or API key. | Gives Studio's stickman and faceless explainer briefs a ready stick-figure rig and render on Studio's own HyperFrames route. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned stickman-kino into the project after your yes and install its locked packages (git, Node 18+, Chrome or Chromium); local Kokoro voice about 200 MB, asked separately; chat: skill only | Video & animation: stickman explainer films |
 
 ### Dev tools
 
@@ -395,6 +396,12 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for a moodboard, style research or a reference pack; the skill searches Pinterest and saves picked pins into `references/pinterest/` with a `.reference.json` (pin link, author, query, date).
 - Watch out: References only: Pinterest images belong to their authors and never go into finished work (use Open Assets for usable media). Needs Google Chrome in its standard place; the server sets an ordinary Chrome user agent to read pinterest.com without signing in (owner exception recorded in the review).
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pinterest-references.md
+
+### stickman-kino
+
+- Use: Ask for a stickman or stick-figure video: an explainer, a short story, a faceless YouTube or Shorts clip or a product promo in that style.
+- Watch out: Our wrapper keeps the checkout on the reviewed commit and never runs the upstream `stickman setup` (unpinned voice install); the Kokoro voice is optional and asked separately, and the sample films' apps and numbers are invented.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/stickman-kino.md
 
 ### rea
 

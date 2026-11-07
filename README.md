@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.10.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.11.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -21,9 +21,9 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-The current marketplace contains **25 tools plus the toolbox index: 26 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
+The current marketplace contains **26 tools plus the toolbox index: 27 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
-**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop`, `rea` and `pinterest-references` start a pinned local MCP server (`pinterest-references` opens Google Chrome without a window to search pinterest.com); `pixelfx` and `papercut-explainer` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
+**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop`, `rea` and `pinterest-references` start a pinned local MCP server (`pinterest-references` opens Google Chrome without a window to search pinterest.com); `pixelfx`, `papercut-explainer` and `stickman-kino` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
@@ -55,6 +55,7 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | manim-skill | [Yusuke710/manim-skill](https://github.com/Yusuke710/manim-skill) | `a0048d9` (1.0.0) | Math and science explainer videos in Manim: LaTeX formulas, graphs, geometry, subtitles and an optional local voice. | skill / skill + render / skill + render | [docs](docs/manim-skill.md) | [review](reviews/manim-skill.md) |
 | papercut-explainer | [0xS4N4TG/papercut-explainer](https://github.com/0xS4N4TG/papercut-explainer) | `ff8223a` (0.1.0; our wrapper `plugins/papercut-explainer`) | Vertical cut-paper explainer reels from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | skill / skill + render / skill + render | [docs](docs/papercut-explainer.md) | [review](reviews/papercut-explainer.md) |
 | pinterest-references | [terryso/mcp-pinterest](https://github.com/terryso/mcp-pinterest) | `7a6667d` (1.2.0; our wrapper `plugins/pinterest-references`) | Moodboards and style, typography and composition references from public Pinterest pins, saved with pin link and author. **References only, not assets.** Needs Google Chrome and Node.js (npx). | skill (no search) / Unknown / skill + MCP | [docs](docs/pinterest-references.md) | [review](reviews/pinterest-references.md) |
+| stickman-kino | [dsauce/stickman-kino](https://github.com/dsauce/stickman-kino) | `d3d6653` (1.0.0; our wrapper `plugins/stickman-kino`) | Stickman explainer and promo films rendered locally in HyperFrames: rigged figures, props, charts, captions, local voice, music and effects, no video model or API key. | skill / skill + render / skill + render | [docs](docs/stickman-kino.md) | [review](reviews/stickman-kino.md) |
 
 ### App notes (not plugins)
 

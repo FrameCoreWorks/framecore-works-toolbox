@@ -1,5 +1,19 @@
 # Changes
 
+## Toolbox 1.11.0 — 2026-11-07
+
+Trigger: owner request 2026-11-07 ("Podaj mi ten adres tego repo i wprowadzaj to repo do toolboxa"), after the
+research on stickman repositories for Remotion and HyperFrames; an explicit exception to the stabilisation stage.
+
+- New Creative entry `stickman-kino`: dsauce/stickman-kino (MIT, Prerit Ahuja) at `d3d6653` (npm 1.0.0) through our
+  own wrapper `plugins/stickman-kino` 1.0.0. The wrapper clones the pinned upstream into the project after the
+  user's yes, runs `npm ci` from its lockfile (HyperFrames 0.8.43, GSAP 3.15.0) and never runs `stickman setup`,
+  which installs the voice engine unpinned; the optional Kokoro voice is pinned (`kokoro-onnx==0.6.1`,
+  `soundfile==0.14.0`) and asked separately.
+- Review, docs, README row and index row added; README entry count 27; index version 1.11.0.
+- Checks: unit, marketplace, package (toolbox and wrapper), Earshot tests and `claude plugin validate` pass; isolated
+  Claude install PASS with the skill listed; clone, `npm ci`, Kokoro and renders NOT_RUN.
+
 ## Toolbox 1.10.0 — 2026-11-06
 
 Trigger: owner request 2026-11-06 ("dodaj konektor Pinterest terryso/mcp-pinterest do FrameCore Works Toolbox"),

@@ -1,0 +1,26 @@
+{
+  "name": "stickman-kino",
+  "version": "1.0.0",
+  "description": "stickman-kino by Prerit Ahuja, wrapped by FrameCore Works: stickman explainer and promo films rendered locally as code with HyperFrames and GSAP (rigged figures with 58 poses, about 190 props, charts, kinetic text, captions, camera moves), with director, animator and sound skills, local voice and procedural music and effects. No video model or API key. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "stickman",
+    "stick figure",
+    "explainer",
+    "hyperframes",
+    "motion graphics"
+  ],
+  "skills": "./skills",
+  "interface": {
+    "displayName": "Stickman Kino",
+    "shortDescription": "Stickman films as code",
+    "longDescription": "Stickman explainer and promo films with stickman-kino by Prerit Ahuja (MIT), rendered locally with HyperFrames: script, storyboard, rigged figures, voice, music, effects and MP4, with no video model or API key. Downloads the repository at the reviewed commit into the project after your yes; needs git, Node.js 18+, ffmpeg and Chrome; the local Kokoro voice is optional and asked separately.",
+    "developerName": "FrameCore Works",
+    "category": "Creative",
+    "capabilities": []
+  }
+}

@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.10.0"
+      "version": "1.11.0"
     },
     {
       "name": "animate",
@@ -321,6 +321,13 @@
       "version": "1.2.0",
       "category": "creative",
       "source": "./plugins/pinterest-references"
+    },
+    {
+      "name": "stickman-kino",
+      "description": "Stickman explainer, story and promo films rendered locally as code in HyperFrames: rigged stick figures with 58 poses, about 190 props, charts, kinetic text, captions, local voice, procedural music and effects, to MP4 with no video model or API key (stickman-kino by Prerit Ahuja, pinned).",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": "./plugins/stickman-kino"
     },
     {
       "name": "rea",

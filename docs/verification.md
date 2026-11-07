@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.11.0, stickman-kino — 2026-11-07
+
+Baseline: GitHub `main` at `398ae3d`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
+(74, 2 skipped), marketplace check (27 entries), portable package checks for `toolbox` 1.11.0 and
+`stickman-kino` 1.0.0, `claude plugin validate .` and `claude plugin validate plugins/stickman-kino`.
+Isolated Claude config (Claude Code 2.1.319): marketplace add and `claude plugin install
+stickman-kino@framecore-works-toolbox` PASS, listed 1.0.0 enabled (cache 48 KB); a headless `claude -p` session
+listed `stickman-kino:stickman-kino`. The upstream clone, `npm ci`, Kokoro, renders, claude.ai, Cowork, Codex and
+ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.10.0, pinterest-references — 2026-11-06
 
 Baseline: GitHub `main` at `8c39edc`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
