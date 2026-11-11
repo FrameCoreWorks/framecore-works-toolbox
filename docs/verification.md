@@ -1,5 +1,9 @@
 # Portable catalog verification
 
+## Toolbox 1.13.0, taste-skill 2.5.1 — 2026-11-11
+
+Baseline: GitHub `main` at `adc8094`. Source checks: see the commit (unit tests, marketplace check, portable package check, Earshot tests, `claude plugin validate .`). Isolated Claude config (Claude Code 2.1.318): marketplace add and `claude plugin install taste-skill@framecore-works-toolbox` PASS, listed 2.5.1 enabled (cache 40 MB). The Stop hook, a headless session, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.12.0, cutaway — 2026-11-07
 
 Baseline: GitHub `main` at `8ab0736`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12

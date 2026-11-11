@@ -323,7 +323,7 @@ read that file before any Earshot step. Discovery for other plugins is
 ### taste-skill
 
 - Use: Ask for a landing page, a product page or an app screen with a strong art direction.
-- Watch out: Found pictures keep their own licences; check each before client use.
+- Watch out: Found pictures keep their own licences; check each before client use. Its finish gate runs as a Stop hook while the skill is loaded (local, writes `.taste-skill/` in the project).
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/taste-skill.md
 
 ### hairline

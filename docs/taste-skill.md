@@ -1,7 +1,7 @@
 # taste-skill: install notes
 
 - Upstream: https://github.com/Leonxlnx/taste-skill
-- Pinned commit: 12af471f627f866411b4bd785b19646d3672784c (version 2.1.5)
+- Pinned commit: f6b76575f949707b4e3c37cd86cb44b0b98643e8 (version 2.5.1)
 - Review: [reviews/taste-skill.md](../reviews/taste-skill.md)
 
 ## Install
@@ -10,7 +10,7 @@ See [install.md](install.md). Plugin id: `taste-skill@framecore-works-toolbox`.
 
 ## Setup after install
 
-A browser for its inspector (Node or Python per its scripts).
+Node 22 or newer and Chrome, Edge or Chromium for its checker and finish gate (ffmpeg optional).
 
 ## What works where
 
@@ -22,7 +22,7 @@ Ask for a landing page, a product page or an app screen with a strong art direct
 
 ## Watch out
 
-Found pictures keep their own licences; check each before client use.
+Found pictures keep their own licences; check each before client use. Since 2.5.1 the skill carries a Stop hook: while the skill is loaded in Claude Code, its finish gate (`gate.mjs`, up to 600 s) runs locally when Claude stops and writes its results to `.taste-skill/` in the project.
 
 ## Full removal
 

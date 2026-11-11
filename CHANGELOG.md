@@ -1,5 +1,13 @@
 # Changes
 
+## Toolbox 1.13.0 — 2026-11-11
+
+Trigger: owner decisions 2026-11-11 on the research intake (Studio implementation handover, Phase C): "TasteSkill: update to 2.5.1, Stop hook approved, still run the Toolbox review and isolated install test"; Cinecode and Vork recorded as rejected.
+
+- `taste-skill` updated from 2.1.5 (`12af471`) to 2.5.1 (`f6b7657`): professional company websites with a real-browser checker and a finish gate that runs as a Stop hook while the skill is loaded (local Chrome, writes `.taste-skill/` in the project, timeout 600 s). Review, docs, README note and index note updated.
+- New rejected reviews: `lemo-opuscar` (its setup clones and updates the unpinned main branch into `~/lemo-opuscar`), `cinecode` (unpinned git-clone install into `~/.claude/skills`, hooks on every prompt and tool call) and `vork` (no skill or plugin manifest, non-open licence, separate GPU runtime). Not listed.
+- Checks: see docs/verification.md. Isolated Claude install of `taste-skill` 2.5.1 PASS; the Stop hook, a headless session, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.12.0 — 2026-11-07
 
 Trigger: owner request 2026-11-07 ("Dodaj ten kataway do toolboxa, ale z zaznaczeniem, że to najlepiej działa z

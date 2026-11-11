@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.12.0"
+      "version": "1.13.0"
     },
     {
       "name": "animate",
@@ -155,13 +155,13 @@
     },
     {
       "name": "taste-skill",
-      "description": "Art direction for landing pages, product pages, dashboards and app screens, with researched directions, openly licensed pictures and a real-browser check.",
-      "version": "2.1.5",
+      "description": "Professional company websites with researched art direction, openly licensed pictures, a real-browser checker and a finish gate.",
+      "version": "2.5.1",
       "category": "creative",
       "source": {
         "source": "github",
         "repo": "Leonxlnx/taste-skill",
-        "sha": "12af471f627f866411b4bd785b19646d3672784c"
+        "sha": "f6b76575f949707b4e3c37cd86cb44b0b98643e8"
       },
       "skills": [
         "./skills/taste-skill"

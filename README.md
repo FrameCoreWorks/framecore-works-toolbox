@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.12.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.13.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -23,7 +23,7 @@ compatibility notes describe Claude and must be verified separately elsewhere.
 
 The current marketplace contains **27 tools plus the toolbox index: 28 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
-**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop`, `rea` and `pinterest-references` start a pinned local MCP server (`pinterest-references` opens Google Chrome without a window to search pinterest.com); `pixelfx`, `papercut-explainer`, `stickman-kino` and `cutaway` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser; `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
+**What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop`, `rea` and `pinterest-references` start a pinned local MCP server (`pinterest-references` opens Google Chrome without a window to search pinterest.com); `pixelfx`, `papercut-explainer`, `stickman-kino` and `cutaway` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser (`taste-skill` also runs its finish gate as a Stop hook while the skill is loaded); `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
 Type `toolbox` in the host where the catalog is installed to see this list, grouped by category. The index
 itself: `toolbox` (first-party, this repo, skill everywhere,
