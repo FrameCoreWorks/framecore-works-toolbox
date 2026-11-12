@@ -1,5 +1,9 @@
 # Portable catalog verification
 
+## Toolbox 1.14.0, reel style packs — 2026-11-12
+
+Baseline: GitHub `main` at `298e957`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12 (74, 2 skipped), marketplace check (28 entries), portable package check for `toolbox` 1.14.0, `claude plugin validate .`. Every copied file compared by SHA-256 with the upstream clone at its pinned commit (only rename: `SKILL.md` to `SKILL.source.md`): PASS. Isolated Claude config: marketplace add and `claude plugin install toolbox@framecore-works-toolbox` PASS, listed 1.14.0, all four packs present in the installed copy. Test reel: an 8 s 9:16 composition built from `claude-video-styles` swiss-grid `STYLE.md` and the copied `studio.js`, rendered with `hyperframes@0.8.34` (240 frames, 14.8 s), frames checked every 0.5 s (text readable, in the safe area, holds over 1 s): PASS. Engine renders of `animation-skills-styles`: NOT_RUN (the cloud session blocked running downloaded upstream code). varg and iart preset renders, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.13.0, taste-skill 2.5.1 — 2026-11-11
 
 Baseline: GitHub `main` at `adc8094`. Source checks: see the commit (unit tests, marketplace check, portable package check, Earshot tests, `claude plugin validate .`). Isolated Claude config (Claude Code 2.1.318): marketplace add and `claude plugin install taste-skill@framecore-works-toolbox` PASS, listed 2.5.1 enabled (cache 40 MB). The Stop hook, a headless session, claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.

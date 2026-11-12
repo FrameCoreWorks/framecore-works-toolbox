@@ -2,7 +2,7 @@
   "schema": "framecore-capabilities/1",
   "plugin": {
     "name": "toolbox",
-    "version": "1.13.0"
+    "version": "1.14.0"
   },
   "entry_skill": "skills/toolbox/SKILL.md",
   "contract_versions": [
@@ -98,6 +98,98 @@
       },
       "separate_tools": {
         "import_source_record": "capabilities/earshot/scripts/import_source_record.py"
+      }
+    },
+    {
+      "id": "varg-motion-styles",
+      "kind": "built-in",
+      "catalog_name": "varg-motion-styles",
+      "category": "creative",
+      "path": "capabilities/reel-styles/varg-motion-styles",
+      "instructions": "skills/toolbox/references/reel-styles.md",
+      "type": "style-pack",
+      "license": "MIT",
+      "author": "vargai Inc.",
+      "upstream": {
+        "repository": "https://github.com/vargHQ/skills",
+        "commit": "ff940b67bc03a85d03f0fe33591ac59239eb8b84"
+      },
+      "integrity": "capabilities/reel-styles/varg-motion-styles/SHA256SUMS",
+      "requirements": {
+        "api_keys": "none"
+      },
+      "network": {
+        "status": "none",
+        "runs": "knowledge files; renders use the host's own route"
+      }
+    },
+    {
+      "id": "claude-video-styles",
+      "kind": "built-in",
+      "catalog_name": "claude-video-styles",
+      "category": "creative",
+      "path": "capabilities/reel-styles/claude-video-styles",
+      "instructions": "skills/toolbox/references/reel-styles.md",
+      "type": "style-pack",
+      "license": "MIT",
+      "author": "Claude Video Studio contributors",
+      "upstream": {
+        "repository": "https://github.com/ItsssssJack/claude-video-2",
+        "commit": "18891e4996abb7ccc0085f2d43cef2fd7eff1dc8"
+      },
+      "integrity": "capabilities/reel-styles/claude-video-styles/SHA256SUMS",
+      "requirements": {
+        "api_keys": "none"
+      },
+      "network": {
+        "status": "none",
+        "runs": "knowledge files; renders use the host's own route"
+      }
+    },
+    {
+      "id": "animation-skills-styles",
+      "kind": "built-in",
+      "catalog_name": "animation-skills-styles",
+      "category": "creative",
+      "path": "capabilities/reel-styles/animation-skills-styles",
+      "instructions": "skills/toolbox/references/reel-styles.md",
+      "type": "style-pack",
+      "license": "MIT",
+      "author": "Artem Novitckii",
+      "upstream": {
+        "repository": "https://github.com/artemnovitckii/claude-animation-skills",
+        "commit": "5dbea55c23aa6a5c93dc3cfb5583840513b56b94"
+      },
+      "integrity": "capabilities/reel-styles/animation-skills-styles/SHA256SUMS",
+      "requirements": {
+        "api_keys": "none"
+      },
+      "network": {
+        "status": "none",
+        "runs": "knowledge files; renders use the host's own route"
+      }
+    },
+    {
+      "id": "iart-explainer-styles",
+      "kind": "built-in",
+      "catalog_name": "iart-explainer-styles",
+      "category": "creative",
+      "path": "capabilities/reel-styles/iart-explainer-styles",
+      "instructions": "skills/toolbox/references/reel-styles.md",
+      "type": "style-pack",
+      "license": "MIT",
+      "author": "iart.ai",
+      "upstream": {
+        "repository": "https://github.com/iart-ai/explainer-video-skills",
+        "commit": "3c13a1bc360c08503f24f9c9a99fda6d3d35de56"
+      },
+      "integrity": "capabilities/reel-styles/iart-explainer-styles/SHA256SUMS",
+      "requirements": {
+        "api_keys": "none"
+      },
+      "network": {
+        "status": "none",
+        "runs": "knowledge files; renders use the host's own route"
       }
     }
   ]

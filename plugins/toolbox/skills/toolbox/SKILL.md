@@ -193,6 +193,13 @@ read that file before any Earshot step. Discovery for other plugins is
 - Toolbox does not call Creative Studio, Open Assets or any catalog entry.
   The caller keeps the brief, the master timeline and the final review.
 
+## Built-in reel styles
+
+Four MIT style packs ship inside Toolbox (`capabilities/reel-styles/`): about 90 named
+looks, presets and reel engines. When a user or Creative Studio asks for a reel style,
+a look, titles, transitions or captions, read [reel styles](references/reel-styles.md)
+and offer two or three fitting styles. They are files, not a production pipeline.
+
 ## Catalog
 
 ### Creative
@@ -200,6 +207,10 @@ read that file before any Earshot step. Discovery for other plugins is
 | Plugin | What it is for | How it helps Studio | Runs | Works in | Menu |
 | ------ | -------------- | ------------------- | ---- | -------- | ---- |
 | `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Gives Studio's films sound effects placed on the right frame and a loudness check before delivery. | session-install | Built into Toolbox. Installs its Python 3.12 engine (light about 470 MB) for the conversation after your yes; the full tier also downloads models (PyTorch, Hugging Face) and needs those hosts allowed. Claude Code (desktop, cloud, phone), Cowork, Codex and ChatGPT Work with public internet access on; fresh host activation NOT_RUN | Sound: loudness, sound effects and sync for your video |
+| `varg-motion-styles` | Built into Toolbox: 56 reel styles with exact presets (kinetic type, VHS and analog-horror formats, titles and lower thirds, beat transitions, animated captions), MIT copy of vargHQ/skills. | Gives Studio's motion pieces ready, numbered style presets to build on its HyperFrames or Remotion route. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: 56 reel styles, titles, transitions and captions |
+| `claude-video-styles` | Built into Toolbox: 21 motion looks (swiss-grid, risograph, paper-cut, blueprint, poster-pop and more), each with palette, type, easing, motion rules and a ban list, MIT copy of claude-video-2. | Gives Studio's reels a named look with exact numbers before the build. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: 21 ready motion looks for reels |
+| `animation-skills-styles` | Built into Toolbox: five 9:16 reel engines from a JSON spec (line graph, minimal line art, 3D map route, phone exploded view, 3D cartoon "what if" explainer), MIT copy of claude-animation-skills. | Turns a Studio stat, route or "what if" idea into a ready reel in one of five looks. | session-install | Built into Toolbox; copy the pack into the project, then its locked packages, Chromium and HyperFrames install after your yes (Node, ffmpeg, python3); chat: styles only | Video & animation: five ready reel engines (graph, map, 3D) |
+| `iart-explainer-styles` | Built into Toolbox: explainer methods and recipes (whiteboard draw-on, isometric 2.5D, animated diagrams, year-in-review recaps, narrated explainers), MIT copy of iart-ai/explainer-video-skills. | Adds whiteboard, isometric and diagram explainer recipes to Studio's explainer work. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: whiteboard, isometric and diagram explainers |
 | `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Turns a Studio script and storyboard into a rendered explainer or animated video. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node 18+, Playwright Chromium, ffmpeg); claude.ai chat: skill loads, rendering Unknown | Video & animation: animated explainers rendered to MP4 |
 | `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Renders Studio's app-launch and promo concepts as finished MP4 films cut to music. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node 22+, Chromium, ffmpeg, python3; Linux works); claude.ai chat: skill loads, rendering Unknown | Video & animation: app launch films with real UI, cut to music |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Gives Studio's brand and campaign work a real logo with construction and usage rules. | ready | Chat, Cowork and Claude Code (scripts need python3, which sessions have) | Design & web: logos with brand rules and SVG files |
@@ -250,6 +261,39 @@ read that file before any Earshot step. Discovery for other plugins is
   picked for you. It works without Studio or other catalog entries. Full-tier
   inference and fresh host activation remain NOT_RUN.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/earshot-audio.md
+
+### varg-motion-styles
+
+- Use: built into Toolbox; ask for a style by name or effect ("CRT decrypt title",
+  "karaoke captions", "VHS bouncing logo"). Read [reel styles](references/reel-styles.md),
+  then the style's reference file and preset JSON, and build on the host's route.
+- Watch out: its links to varg.ai skills and `examples/` point outside the copy; never
+  call varg.ai. Fonts are named, not bundled.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/varg-motion-styles.md
+
+### claude-video-styles
+
+- Use: built into Toolbox; pick a look from [reel styles](references/reel-styles.md)
+  and read its `STYLE.md` before building. Reference pieces are 16:9; rework for 9:16.
+- Watch out: reference pieces load GSAP and Google Fonts at render time. The upstream
+  Higgsfield (paid) script is not included.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/claude-video-styles.md
+
+### animation-skills-styles
+
+- Use: built into Toolbox; copy the pack folder into the project, write the style's JSON
+  spec and run its build script (see [reel styles](references/reel-styles.md)).
+- Watch out: `kit/setup.sh` installs locked npm packages, Chromium, GSAP and HyperFrames
+  only after your yes; the voice option adds about 1 GB and is asked separately.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/animation-skills-styles.md
+
+### iart-explainer-styles
+
+- Use: built into Toolbox; read the matching skill and its recipes from
+  [reel styles](references/reel-styles.md) for whiteboard, isometric, diagram or recap work.
+- Watch out: pin `gsap@3.14.2` where a recipe imports GSAP without a version; no iart.ai
+  account is needed.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/iart-explainer-styles.md
 
 ### animate
 

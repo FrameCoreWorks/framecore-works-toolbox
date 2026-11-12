@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.13.0.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.14.0.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -14,14 +14,14 @@ loudness, sound effects, sync) is built in, so it needs no separate install;
 ask for it by name, for example "check the loudness of this file with Earshot".
 
 Every third-party entry is pinned to a full upstream commit and has a review in
-`reviews/` and notes in `docs/`. This repo holds no upstream code. Adapted entries
+`reviews/` and notes in `docs/`. This repo holds no upstream code, except the MIT reel style packs built into the index since 1.14.0 (byte-identical copies under `plugins/toolbox/capabilities/reel-styles/`, each pinned with `UPSTREAM.md` and `SHA256SUMS`). Adapted entries
 can have a thin wrapper in `plugins/<name>/` pointing to the reviewed upstream.
 Installing the catalog does not install these entries; their existing host
 compatibility notes describe Claude and must be verified separately elsewhere.
 
 ## Plugins
 
-The current marketplace contains **27 tools plus the toolbox index: 28 entries**. The index also lists the built-in Earshot capability. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
+The current marketplace contains **27 tools plus the toolbox index: 28 entries**. The index also lists the built-in Earshot capability and, since 1.14.0, four built-in reel style packs. Since 1.4.0 Toolbox lists only tools that install without accounts, API keys or separate desktop apps, so there are no app notes (`plugins/toolbox/apps.json` is empty). Since 1.2.0 Toolbox is the single place for the tools Creative Studio recommends.
 
 **What an entry can reach.** Most entries are instructions plus local scripts. Read the review before installing these: `antislop`, `rea` and `pinterest-references` start a pinned local MCP server (`pinterest-references` opens Google Chrome without a window to search pinterest.com); `pixelfx`, `papercut-explainer`, `stickman-kino` and `cutaway` ask once, then clone their pinned upstream into the project; `hairline` and `taste-skill` check their pages in a local browser (`taste-skill` also runs its finish gate as a Stop hook while the skill is loaded); `nateherk-design` can call kie.ai for images, only when you give it your own key. The "Chat / Cowork / Claude Code" column shows the same per host. Installing the catalog installs none of them; each one is installed separately and only when you choose it.
 
@@ -34,6 +34,10 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | Name | Upstream | Commit (version) | What it is for | Chat / Cowork / Claude Code | Notes | Review |
 | ---- | -------- | ---------------- | -------------- | --------------------------- | ----- | ------ |
 | earshot-audio | [Leonxlnx/earshot](https://github.com/Leonxlnx/earshot) | `591fa3e` (engine 0.4.0; built into Toolbox 1.1.0) | Local audio measurements, sound kits and soundtracks from supplied recordings. Built into the `toolbox` plugin; no separate install. | built in; fresh host activation NOT_RUN | [docs](docs/earshot-audio.md) | [review](reviews/earshot-audio.md) |
+| varg-motion-styles | [vargHQ/skills](https://github.com/vargHQ/skills) | `ff940b6` (2.17.0; 5 skills built into Toolbox 1.14.0) | 56 reel styles with exact presets: kinetic type, motion formats (VHS, analog horror, pixel CRT, lyric video), titles and lower thirds, beat transitions, animated captions. MIT copy, no varg.ai service. | built in | [docs](docs/varg-motion-styles.md) | [review](reviews/varg-motion-styles.md) |
+| claude-video-styles | [ItsssssJack/claude-video-2](https://github.com/ItsssssJack/claude-video-2) | `18891e4` (built into Toolbox 1.14.0) | 21 motion looks (swiss-grid, risograph, paper-cut, blueprint, poster-pop...), each a STYLE.md with palette, type, easing and ban list, plus reference pieces. MIT copy. | built in | [docs](docs/claude-video-styles.md) | [review](reviews/claude-video-styles.md) |
+| animation-skills-styles | [artemnovitckii/claude-animation-skills](https://github.com/artemnovitckii/claude-animation-skills) | `5dbea55` (1.0.0; built into Toolbox 1.14.0) | Five 9:16 reel engines from a JSON spec: line graph, minimal line art, 3D map route, phone exploded view, 3D cartoon "what if" explainer. MIT copy; tools install after your yes. | built in | [docs](docs/animation-skills-styles.md) | [review](reviews/animation-skills-styles.md) |
+| iart-explainer-styles | [iart-ai/explainer-video-skills](https://github.com/iart-ai/explainer-video-skills) | `3c13a1b` (0.1.0; built into Toolbox 1.14.0) | Explainer methods and recipes: whiteboard draw-on, isometric 2.5D, animated diagrams, year-in-review recaps, narrated explainers. MIT copy, no iart.ai account. | built in | [docs](docs/iart-explainer-styles.md) | [review](reviews/iart-explainer-styles.md) |
 | animate | [cth9191/animate](https://github.com/cth9191/animate) | `7e5eb56` (0.4.0) | animated explainers and reels in code, rendered to MP4 | skill (render Unknown) / skill + render / skill + render | [docs](docs/animate.md) | [review](reviews/animate.md) |
 | motion-designer | [kaventro/motion-designer](https://github.com/kaventro/motion-designer) | `7d0b8bb` (1.2.0) | app launch films and short code videos cut to music, MP4/loop/poster | skill (render Unknown) / skill + render / skill + render | [docs](docs/motion-designer.md) | [review](reviews/motion-designer.md) |
 | logo-design | [kaankiziltug/logo-design-skill](https://github.com/kaankiziltug/logo-design-skill) | `7340903` (1.4.5) | logo design from brief to SVG and brand guidelines | skill / skill + scripts / skill + scripts | [docs](docs/logo-design.md) | [review](reviews/logo-design.md) |

@@ -1,5 +1,18 @@
 # Changes
 
+## Toolbox 1.14.0 — 2026-11-12
+
+Trigger: owner request 2026-11-12 ("To weź się wgraj jako do toolboxa. To będą takie już dodatkowe asety."), after the research "FrameMotion – research gotowych stylów rolek" (first four candidates).
+
+- Four built-in reel style packs in `plugins/toolbox/capabilities/reel-styles/`, byte-identical MIT copies with `UPSTREAM.md` and `SHA256SUMS`, listed in `capabilities.json`, the index and README:
+  - `varg-motion-styles`: vargHQ/skills `ff940b6`, five local skills (kinetic-type-art, motion-formats, title-design, transition-craft, caption-styles); the 73 other skills and the two hosted varg.ai MCP servers are left out.
+  - `claude-video-styles`: ItsssssJack/claude-video-2 `18891e4`, 21 looks (`STYLE.md` and reference pieces), references and the motion starter; gallery videos and the Higgsfield client left out.
+  - `animation-skills-styles`: artemnovitckii/claude-animation-skills `5dbea55`, five 9:16 reel engines with `kit/`; `stick-figure` and `install.sh` left out; setup only after the user's yes.
+  - `iart-explainer-styles`: iart-ai/explainer-video-skills `3c13a1b`, five explainer method skills.
+- New reference `skills/toolbox/references/reel-styles.md` (how to pick and use a style, full style list) and a "Built-in reel styles" section in the Toolbox skill.
+- CLAUDE.md: bounded owner exception "Reel style packs" to the no-upstream-copy rule.
+- Checks: see docs/verification.md. Test reel (swiss-grid, 9:16, 8 s) rendered with HyperFrames 0.8.34 and frame-checked every 0.5 s: PASS. Engine renders of animation-skills-styles NOT_RUN (the session blocked running downloaded upstream code). claude.ai, Cowork, Codex and ChatGPT Work activation NOT_RUN.
+
 ## Toolbox 1.13.0 — 2026-11-11
 
 Trigger: owner decisions 2026-11-11 on the research intake (Studio implementation handover, Phase C): "TasteSkill: update to 2.5.1, Stop hook approved, still run the Toolbox review and isolated install test"; Cinecode and Vork recorded as rejected.

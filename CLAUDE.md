@@ -130,6 +130,19 @@ keeps the verified source outside it, installs hash-locked wheels only after
 consent, and preserves existing runtimes. Do not generalize this exception to
 other catalog entries. Studio remains the owner of cross-plugin orchestration.
 
+## Reel style packs (owner request, 2026-11-12)
+
+The owner asked to load ready reel styles into Toolbox as extra assets ("To weź się
+wgraj jako do toolboxa. To będą takie już dodatkowe asety."). Since Toolbox 1.14.0
+four built-in packs under `plugins/toolbox/capabilities/reel-styles/` hold
+byte-identical copies of selected MIT upstream files, each pack with `UPSTREAM.md`
+(repo, author, full commit, what was copied and left out), `SHA256SUMS`, a
+`Kind: built-in` review and docs. This is a bounded exception to "never copy
+upstream code": it covers only MIT/Apache/BSD style knowledge, presets and
+templates that need no account or key, copied unedited at a reviewed commit. Do not
+copy installers into use, hosted MCP servers or paid-service clients. Adding another
+pack needs a new owner request and the same review.
+
 ## Built-in capabilities (owner decisions D-1..D-8, 2026-10-29)
 
 Since Toolbox 1.1.0 Earshot is a capability built into the `toolbox` plugin, not
