@@ -1,5 +1,13 @@
 # Changes
 
+## Toolbox 1.15.0 — 2026-11-13
+
+Trigger: owner request 2026-11-13 ("Dodaj też to jako dodatek do toolboxa. No i też do motion video."), with the link to JuneYaooo/rea-video.
+
+- New Creative entry `rea-video`: JuneYaooo/rea-video (Apache-2.0) at `ab8580e` (0.1.0) through our own wrapper `plugins/rea-video` 1.0.0. Shot-by-shot reverse engineering of a reference video (how each picture was made, editing package, voice, music and sound effects, footage to collect, remake plan). The wrapper clones the pinned upstream into the project after the user's yes without its third-party sample videos, installs 27 exact dependency versions in `rea-video/.venv` (Python 3.13 or 3.14, wheels only, no build isolation) and keeps the tool's preferences and hash-checked models in the project; never the upstream `install_skill.sh`, an unpinned git install or the `[asr]` extra. External vision model only with the user's own key and yes; capsule-cinema and ChatCut remakes are not the default.
+- Review, docs, README row and note, index row and details added; README entry count 29; index version 1.15.0.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.14.0 — 2026-11-12
 
 Trigger: owner request 2026-11-12 ("To weź się wgraj jako do toolboxa. To będą takie już dodatkowe asety."), after the research "FrameMotion – research gotowych stylów rolek" (first four candidates).

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rea-video",
+  "version": "1.0.0",
+  "description": "rea-video by JuneYaooo, wrapped by FrameCore Works: reverse engineers a reference video shot by shot (live action, AI video, 3D, 2D animation, code render, screen recording, still), its editing package (subtitle timing and style, titles, stickers), voice, music and sound effects, real footage to collect, and a remake plan per shot, as VIDEO.md, an HTML report, storyboard and stems. Local Python and ffmpeg, no account or key; an external vision model only with your own key. Checkout pinned to the reviewed commit.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "rea-video",
+    "video breakdown",
+    "reverse engineering",
+    "reference video",
+    "shot analysis",
+    "remake plan",
+    "motion graphics"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Rea Video",
+        "shortDescription": "Reference video breakdown",
+        "longDescription": "Find out how a reference video was made, shot by shot: live action, AI video, 3D, animation, code render or screen recording, with its subtitles and titles, voice, music and sound effects, the real footage to collect and a remake plan, using rea-video by JuneYaooo (Apache-2.0). Downloads the repository at the reviewed commit into the project after your yes and installs exact Python packages in its own environment; needs git, Python 3.13 or 3.14 and ffmpeg. An external vision model is optional and only with your own key.",
+        "developerName": "FrameCore Works",
+        "category": "Creative",
+        "capabilities": []
+      }
+    }
+  }
+}

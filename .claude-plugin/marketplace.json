@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.14.0"
+      "version": "1.15.0"
     },
     {
       "name": "animate",
@@ -335,6 +335,13 @@
       "version": "1.0.0",
       "category": "creative",
       "source": "./plugins/cutaway"
+    },
+    {
+      "name": "rea-video",
+      "description": "Reverse engineering of a reference video shot by shot: how each picture was made (live action, AI, 3D, animation, code render, screen recording), subtitles and titles, voice, music and sound effects, footage to collect and a remake plan; local, no account or key (rea-video by JuneYaooo, pinned).",
+      "version": "1.0.0",
+      "category": "creative",
+      "source": "./plugins/rea-video"
     },
     {
       "name": "rea",
