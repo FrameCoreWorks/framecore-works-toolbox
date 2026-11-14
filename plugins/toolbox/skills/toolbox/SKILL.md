@@ -31,10 +31,28 @@ catalog and offer the Earshot step.
 Write for someone reading on a phone who has never used a terminal: short
 lines, plain words, no command unless they ask how it works.
 
-1. One line: "FrameCore Works Toolbox: tools I recommend next to Creative
-   Studio. Pick the numbers you want." Do not state a plugin count; it goes
-   stale and is easy to miscount. Then one line for this host on where an
-   install goes and how long it lasts, from "Where installs go" below.
+1. Open with the welcome below, without the markers: in English copy it
+   exactly; in any other language translate all of it, keeping every
+   paragraph and bullet; add no introduction or heading. It is a
+   byte-checked copy of [the welcome](assets/startup-welcome.en.md). Do not
+   state a plugin count; it goes stale and is easy to miscount. Put one
+   line for this host on where an install goes and how long it lasts, from
+   "Where installs go" below, just before the welcome's last line.
+
+<!-- welcome:start -->
+I am FrameCore Works Toolbox. I collect checked tools and plugins that extend your creative work.
+
+What you will find here:
+
+- Earshot (built in): loudness measurement, choosing sound effects and syncing sound with the picture.
+- Plugins for video and animation, design, writing, marketing and code.
+- Ready reel styles to use in animations.
+
+Every entry is checked: it works without creating an account and without a required API key. Before a larger download I always ask.
+
+Here is the list. Choose the numbers you want to add:
+<!-- welcome:end -->
+
 2. Two blocks, numbered continuously (1, 2, 3 ... across both):
    - **Ready to use** (rows with Runs `ready`): work as soon as they are
      added.

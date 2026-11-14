@@ -1,5 +1,13 @@
 # Changes
 
+## Toolbox 1.15.1 — 2026-11-14
+
+Trigger: owner request 2026-11-14 ("Toolbox powitanie też popraw", no link to Creative Studio) and approval ("Tak") of the welcome text.
+
+- The catalog reply opens with a fixed welcome, `skills/toolbox/assets/startup-welcome.en.md`, embedded byte-identically in the skill's "Reply format" step 1: what Toolbox is, Earshot, plugin groups and reel styles, the no-account rule and the lead-in to the numbered list. It replaces the line "tools I recommend next to Creative Studio". English in the repository; translated in full into the user's language.
+- New `tests/test_welcome.py` checks the embedded copy against the asset.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.15.0 — 2026-11-13
 
 Trigger: owner request 2026-11-13 ("Dodaj też to jako dodatek do toolboxa. No i też do motion video."), with the link to JuneYaooo/rea-video.

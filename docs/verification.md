@@ -1,5 +1,13 @@
 # Portable catalog verification
 
+## Toolbox 1.15.1, catalog welcome — 2026-11-14
+
+Baseline: GitHub `main` at `97570b7`. Source checks PASS in a Claude Code cloud container: 76 repository tests
+(including `test_welcome.py`), Earshot tests on Python 3.12 (2 skipped), marketplace check (29 entries), portable
+package check for `toolbox` 1.15.1 and `claude plugin validate .`. Isolated Claude config (Claude Code 2.1.325):
+marketplace add and `claude plugin install toolbox@framecore-works-toolbox` PASS, listed 1.15.1. The welcome as
+answered in claude.ai, Cowork, Codex and ChatGPT Work: NOT_RUN.
+
 ## Toolbox 1.15.0, rea-video — 2026-11-13
 
 Baseline: GitHub `main` at `4e2f06f`. Source checks PASS: 73 repository tests, Earshot tests on Python 3.12
