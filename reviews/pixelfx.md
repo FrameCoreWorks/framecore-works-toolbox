@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: pixelfx
-- Status: active
+- Status: removed
 - Upstream: https://github.com/patch-gg/pixelfx
 - Author: Patch (patch-gg; commits by rehan-remade), with parts adapted from Hugo Duprez (Sprite Fusion) and Hollow Crown
 - License: MIT
@@ -74,3 +74,4 @@ accept with conditions: listed only through our pinned wrapper; renders and engi
 ## History
 
 - 2026-11-05: added at a841596 as wrapper `plugins/pixelfx` (Toolbox 1.7.0).
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

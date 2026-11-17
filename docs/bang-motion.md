@@ -22,7 +22,7 @@ Ask for an opener, promo, bumper, kinetic typography or an explainer in one of i
 
 ## Watch out
 
-Skill text is in Indonesian. It overlaps Studio's HyperFrames route, `animate` and `motion-designer`: use it as a complement and pick one route per job. Pages load GSAP and fonts from CDNs.
+Skill text is in Indonesian. It overlaps FrameMotion's HyperFrames route and engines: use it as a complement and pick one route per job. Pages load GSAP and fonts from CDNs.
 
 ## Full removal
 

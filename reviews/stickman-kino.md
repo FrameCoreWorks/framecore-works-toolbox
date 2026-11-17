@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: stickman-kino
-- Status: active
+- Status: removed
 - Upstream: https://github.com/dsauce/stickman-kino
 - Author: Prerit Ahuja (dsauce)
 - License: MIT (code, engine, generated music and effects); fonts SIL OFL 1.1; GSAP GreenSock no-charge standard licence; HyperFrames Apache-2.0
@@ -74,3 +74,4 @@ accept with conditions: listed only through our pinned wrapper; renders NOT_RUN.
 ## History
 
 - 2026-11-07: added at d3d6653 (Toolbox 1.11.0).
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

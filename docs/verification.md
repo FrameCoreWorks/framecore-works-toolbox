@@ -1,5 +1,13 @@
 # Portable catalog verification
 
+## Toolbox 1.16.0, engines that FrameMotion bundles removed — 2026-11-17
+
+Baseline: GitHub `main` at `1e82404`. Source checks PASS in a Claude Code cloud container: 76 repository tests,
+Earshot tests on Python 3.12 (74, 2 skipped), marketplace check (18 entries), portable package check for `toolbox`
+1.16.0 and `claude plugin validate .`. Isolated Claude config (Claude Code 2.1.326): marketplace add and
+`claude plugin install toolbox@framecore-works-toolbox` PASS, listed 1.16.0. Not tested in claude.ai, Cowork, Codex
+or ChatGPT Work (owner rule 2026-11-16: Claude sandbox only).
+
 ## Toolbox 1.15.1, catalog welcome — 2026-11-14
 
 Baseline: GitHub `main` at `97570b7`. Source checks PASS in a Claude Code cloud container: 76 repository tests

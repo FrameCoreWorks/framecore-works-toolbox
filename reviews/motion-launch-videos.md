@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: motion-launch-videos
-- Status: active
+- Status: removed
 - Upstream: https://github.com/Kimeur/motion-launch-videos
 - Author: Marouane Gazouzi (Kimeur)
 - License: MIT
@@ -72,3 +72,4 @@ accept with conditions: full upstream plugin, pinned; the unpinned `motion-story
 ## History
 
 - 2026-11-06: added at 5092579 (Toolbox 1.9.0).
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

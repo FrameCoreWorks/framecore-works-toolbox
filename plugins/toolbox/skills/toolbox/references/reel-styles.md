@@ -1,6 +1,6 @@
 # Reel styles built into Toolbox
 
-Four style packs ship inside the Toolbox plugin, so they work as soon as Toolbox is
+Three style packs ship inside the Toolbox plugin (the fourth, animation-skills-styles, left in 1.16.0: FrameMotion bundles its five reel engines as its Reels engine), so they work as soon as Toolbox is
 installed, also in ChatGPT Work and Codex, with nothing downloaded from GitHub. Each
 pack is a byte-identical MIT copy of an upstream repository at a reviewed commit,
 under `capabilities/reel-styles/<pack>/upstream/`, with `UPSTREAM.md` (source,
@@ -18,7 +18,7 @@ route. Toolbox never starts a production on its own.
    Offer two or three that fit when the user has none in mind.
 2. Read the style's file in full before building: `STYLE.md` (claude-video-styles),
    the reference file plus its preset JSON (varg-motion-styles), or the `SKILL.source.md`
-   and its references (animation-skills-styles, iart-explainer-styles). Paths are
+   and its references (iart-explainer-styles). Paths are
    relative to `capabilities/reel-styles/`.
 3. Build a new composition in the user's project with those numbers (palette, type,
    easing, timing, motion rules, ban list). Rework sizes for 9:16 when the source is
@@ -29,14 +29,6 @@ route. Toolbox never starts a production on its own.
 5. Render on the host's own route and check frames across the whole timeline before
    delivery. Note the pack and upstream in the project notes (see "Attribution" in
    the pack's `UPSTREAM.md`).
-
-Runnable engines (animation-skills-styles): copy the whole pack folder
-(`upstream/kit` and `upstream/skills/<style>`) into the project first, because the
-scripts write `node_modules`, renders and frames next to themselves. Then, after the
-user's yes, run `bash kit/setup.sh` in the copy: it installs the locked npm packages
-(three 0.169.0, Playwright 1.49.1, Montserrat 5.1.0), Playwright's Chromium, GSAP
-3.12.5 from cdnjs, and warms up `hyperframes@0.8.34`. `--voice` adds about 1 GB of
-voice models; ask separately. In ChatGPT Work this needs public internet access on.
 
 No pack needs an account or API key. Never call varg.ai, iart.ai or Higgsfield from
 these packs; their paid services are not part of Toolbox.
@@ -87,18 +79,6 @@ starter `upstream/templates/motion/` (one clock in `studio.js`, seek-safe).
 | design-app-ui | design tool demos, layout explainers |
 | motion-app-ui | motion tool demos, keyframe and easing explainers |
 | audio-app-ui | music and audio tool launches, beat-sync explainers |
-
-## animation-skills-styles (artemnovitckii/claude-animation-skills, `5dbea55`)
-
-Ready 9:16 reel engines driven by a small JSON spec; see each `SKILL.source.md`.
-
-| Style | Look |
-| --- | --- |
-| `graph` | one black line draws itself while one big number counts up |
-| `minimalistic-graphics` | black-and-white line art, steps and orbit, one lowercase line |
-| `map-route` | 3D white city, route draws itself, pin drop, ETA card |
-| `breakdown` | phone exploded view with leader lines and labels (`cutaway` covers other objects) |
-| `zach-d-films` | 3D cartoon "what if" explainer in three.js (generic look; never claim the creator's name) |
 
 ## iart-explainer-styles (iart-ai/explainer-video-skills, `3c13a1b`)
 

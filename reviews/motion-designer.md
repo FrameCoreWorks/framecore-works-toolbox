@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: motion-designer
-- Status: active
+- Status: removed
 - Upstream: https://github.com/kaventro/motion-designer
 - Author: kaventro (GitHub user)
 - License: MIT
@@ -74,3 +74,4 @@ Accept with conditions: approve each setup install deliberately; keep the remote
 ## History
 
 - 2026-10-26: added at 7d0b8bb (version 1.2.0) under the owner's blanket approval for the shortlist.
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

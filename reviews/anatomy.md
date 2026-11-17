@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: anatomy
-- Status: active
+- Status: removed
 - Upstream: https://github.com/wheresryan22/anatomy
 - Author: Ryan (wheresryan22)
 - License: MIT
@@ -72,3 +72,4 @@ accept.
 ## History
 
 - 2026-10-29: added at e948829, moved from Creative Studio's recommended extensions.
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

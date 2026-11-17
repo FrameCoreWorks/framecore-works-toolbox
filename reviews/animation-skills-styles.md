@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: animation-skills-styles
-- Status: active
+- Status: removed
 - Upstream: https://github.com/artemnovitckii/claude-animation-skills
 - Author: Artem Novitckii
 - License: MIT
@@ -82,3 +82,4 @@ Accepted as a built-in style pack (MIT, pinned, no account or API key).
 ## History
 
 - 2026-11-12: added to Toolbox 1.14.0 at `5dbea55`.
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

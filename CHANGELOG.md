@@ -1,5 +1,15 @@
 # Changes
 
+## Toolbox 1.16.0 — 2026-11-17
+
+Trigger: owner decision 2026-11-17 ("Usuń 12 silników z toolbox"), after the FrameMotion, Studio and FrameCut cooperation test of the same day: FrameMotion 0.3.0 bundles these tools as its own engines, so Toolbox listed them twice.
+
+- Removed 11 catalog entries: `animate`, `anatomy`, `motion-designer`, `gl-transitions`, `brag`, `stickman-kino`, `cutaway`, `motion-launch-videos`, `huashu-art-motion`, `pixelfx`, `rea-video` (manifest, README rows, index rows and details, their docs, and the wrappers `plugins/stickman-kino`, `plugins/cutaway`, `plugins/pixelfx`, `plugins/rea-video`). Their reviews stay with `Status: removed` and a History line.
+- Removed the built-in reel style pack `animation-skills-styles` (FrameMotion's Reels engine carries the same five engines): its folder, `capabilities.json` entry, index row and reel-styles section. Three packs remain.
+- Kept: Earshot (Creative Studio and FrameCut use it when FrameMotion is not installed; both share one engine), `hairline`, `gsap-skills`, `threejs-skills`, `manim-skill`, `papercut-explainer`, `bang-motion` and every non-motion entry.
+- README entry count 18; index version 1.16.0.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.15.1 — 2026-11-14
 
 Trigger: owner request 2026-11-14 ("Toolbox powitanie też popraw", no link to Creative Studio) and approval ("Tak") of the welcome text.

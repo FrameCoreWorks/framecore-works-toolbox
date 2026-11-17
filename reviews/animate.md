@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: animate
-- Status: active
+- Status: removed
 - Upstream: https://github.com/cth9191/animate
 - Author: cth9191 (GitHub user)
 - License: MIT
@@ -112,3 +112,4 @@ external service of its own.
 
 - 2026-10-26: reviewed at 7e5eb56 (version 0.4.0).
 - 2026-10-26: added after the owner's "Tak, dodaj animate".
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

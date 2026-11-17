@@ -213,8 +213,8 @@ read that file before any Earshot step. Discovery for other plugins is
 
 ## Built-in reel styles
 
-Four MIT style packs ship inside Toolbox (`capabilities/reel-styles/`): about 90 named
-looks, presets and reel engines. When a user or Creative Studio asks for a reel style,
+Three MIT style packs ship inside Toolbox (`capabilities/reel-styles/`): about 85 named
+looks and presets. When a user or Creative Studio asks for a reel style,
 a look, titles, transitions or captions, read [reel styles](references/reel-styles.md)
 and offer two or three fitting styles. They are files, not a production pipeline.
 
@@ -227,32 +227,20 @@ and offer two or three fitting styles. They are files, not a production pipeline
 | `earshot-audio` | Built into Toolbox: measures, selects and synthesizes audio, builds sound kits and assembles supplied recordings with cue and source evidence. | Gives Studio's films sound effects placed on the right frame and a loudness check before delivery. | session-install | Built into Toolbox. Installs its Python 3.12 engine (light about 470 MB) for the conversation after your yes; the full tier also downloads models (PyTorch, Hugging Face) and needs those hosts allowed. Claude Code (desktop, cloud, phone), Cowork, Codex and ChatGPT Work with public internet access on; fresh host activation NOT_RUN | Sound: loudness, sound effects and sync for your video |
 | `varg-motion-styles` | Built into Toolbox: 56 reel styles with exact presets (kinetic type, VHS and analog-horror formats, titles and lower thirds, beat transitions, animated captions), MIT copy of vargHQ/skills. | Gives Studio's motion pieces ready, numbered style presets to build on its HyperFrames or Remotion route. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: 56 reel styles, titles, transitions and captions |
 | `claude-video-styles` | Built into Toolbox: 21 motion looks (swiss-grid, risograph, paper-cut, blueprint, poster-pop and more), each with palette, type, easing, motion rules and a ban list, MIT copy of claude-video-2. | Gives Studio's reels a named look with exact numbers before the build. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: 21 ready motion looks for reels |
-| `animation-skills-styles` | Built into Toolbox: five 9:16 reel engines from a JSON spec (line graph, minimal line art, 3D map route, phone exploded view, 3D cartoon "what if" explainer), MIT copy of claude-animation-skills. | Turns a Studio stat, route or "what if" idea into a ready reel in one of five looks. | session-install | Built into Toolbox; copy the pack into the project, then its locked packages, Chromium and HyperFrames install after your yes (Node, ffmpeg, python3); chat: styles only | Video & animation: five ready reel engines (graph, map, 3D) |
 | `iart-explainer-styles` | Built into Toolbox: explainer methods and recipes (whiteboard draw-on, isometric 2.5D, animated diagrams, year-in-review recaps, narrated explainers), MIT copy of iart-ai/explainer-video-skills. | Adds whiteboard, isometric and diagram explainer recipes to Studio's explainer work. | ready | Built into Toolbox in every host; renders use the host's own route | Video & animation: whiteboard, isometric and diagram explainers |
-| `animate` | Short animated videos in code (explainers, histories, product reels) in seven built-in styles or one from your references, rendered to MP4 after story, look and storyboard check-ins. | Turns a Studio script and storyboard into a rendered explainer or animated video. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node 18+, Playwright Chromium, ffmpeg); claude.ai chat: skill loads, rendering Unknown | Video & animation: animated explainers rendered to MP4 |
-| `motion-designer` | Launch films of your app (real UI in a phone or laptop frame) and other short videos from code, cut to music and rendered to MP4, loop, poster and HTML. | Renders Studio's app-launch and promo concepts as finished MP4 films cut to music. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node 22+, Chromium, ffmpeg, python3; Linux works); claude.ai chat: skill loads, rendering Unknown | Video & animation: app launch films with real UI, cut to music |
 | `logo-design` | Designs, critiques and delivers logos (brief, concepts, SVG construction, testing, brand guidelines) with a library of 1,400+ reference logos. | Gives Studio's brand and campaign work a real logo with construction and usage rules. | ready | Chat, Cowork and Claude Code (scripts need python3, which sessions have) | Design & web: logos with brand rules and SVG files |
 | `hallmark` | Designs web pages and app UIs that do not look AI-generated, with themes, a slop linter and optional generated images (Together AI). | Builds the landing page or app screen that a Studio campaign points to, without the AI look. | ready | Chat: skill. Cowork and Claude Code: skill plus optional screenshot scripts (Node, Chromium) | Design & web: pages and app screens that do not look AI-made |
-| `brag` | Turns the project you just built into a short launch video with one command. | Makes a quick launch video of a finished project when a full Studio production is not needed. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node, HyperFrames tooling); claude.ai chat: skill loads, rendering Unknown | Video & animation: quick launch video of a finished project |
 | `nateherk-design` | Builds premium scroll-driven websites (scrollytelling, motion, typography), optional kie.ai images. | Builds the scroll-driven website for a Studio campaign or brand story. | ready | Chat, Cowork and Claude Code | Design & web: premium scroll-driven websites |
 | `sepia` | Removes AI patterns from fiction and professional prose without changing what it says. | Gives Studio's scripts and copy a second pass that removes AI-sounding prose. | ready | Chat, Cowork and Claude Code | Writing: removes the AI tone from text (overlaps with Studio's Humanizer) |
 | `wondelai-ux-design` | UX and UI design skills. | Adds UX and UI design method when a Studio project includes an app or site screen. | ready | Chat, Cowork and Claude Code | Design & web: UX and UI method for app and site screens |
 | `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Gives Studio's web and screen work a researched art direction and a browser check. | ready | Chat: skill. Cowork and Claude Code: skill plus a browser check that installs for the conversation | Design & web: art direction for landing pages and screens |
 | `hairline` | Isometric line figures that answer the pointer on a web page, drawn as one HTML file or added to a project as a library. | Adds interactive isometric line figures that match Studio's Hairline motion style on web pages. | ready | Chat: skills. Cowork and Claude Code: skills plus a browser check | Design & web: interactive isometric line figures for web pages |
-| `huashu-art-motion` | Art-style animation in 36 styles from cave painting to Ghibli and 9 explainer grammars, with reference breakdown and shot-list checks. | Adds 36 art styles and 9 explainer grammars to Studio's animation ideas and shot lists. | session-install | Claude Code (desktop, cloud, phone) and Cowork install the tools for the conversation (Node, Chromium); chat: skill only | Video & animation: animation in 36 art styles |
-| `anatomy` | Detailed interactive isometric SVG figures that explain a technical idea as a physical object, with optional WebGL shaders. | Explains a technical product in a Studio piece as a detailed isometric figure. | ready | Chat: skill. Cowork and Claude Code: skill plus optional checks (Node, Chromium) | Design & web: interactive isometric figures that explain a product |
-| `pixelfx` | Pixel art effects and sprite animations as code: 244 ready effects (fire, explosions, magic, hits, UI, transitions) acted out with wind-up and hit-stop, sprite sheets for any engine, and a render, look, refine loop for new ones. | Gives Studio's pixel-art pieces and game trailers real pixel effects, sprite sheets and a pixel VFX quality bar. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned pixelfx into the project after your yes (git, Node 18+, ffmpeg for GIF/MP4); chat: skill only | Video & animation: pixel art effects and sprite sheets |
-| `gl-transitions` | Transitions between two images, clips or scenes from the open collection of GLSL shaders (fades, wipes, zooms, glitches, page curls), wired into WebGL, Remotion, editly, Skia, FFmpeg and native hosts. | Gives Studio's Remotion and HyperFrames cuts ready, licensed shader transitions with exact wiring. | ready | Chat: skill. Cowork and Claude Code: skill plus your own render tools | Video & animation: shader transitions between clips and scenes |
 | `threejs-skills` | Thirteen three.js r186 skills (scenes, geometry, materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and outdated patterns to avoid. | Keeps Studio's 3D scenes (`@remotion/three`, WebGL pages) on the current three.js API. | ready | Chat, Cowork and Claude Code | Video & animation: current three.js for 3D scenes |
 | `bang-motion` | Browser motion graphics that move like video, not slides: openers, promos, bumpers, kinetic typography, lower thirds and five explainer styles as one autoplaying `index.html`, optional MP4 export. | A second motion method next to Studio's HyperFrames route, used as a complement. | ready | Chat: skill. Cowork and Claude Code: skill plus optional preview and MP4 export (Node, puppeteer) | Video & animation: openers and explainers that move like video (overlaps Studio) |
 | `gsap-skills` | GreenSock's official GSAP skills: tweens and easing, timelines, ScrollTrigger, plugins (SplitText, MorphSVG, Flip), React and other frameworks, utilities and performance. | Keeps Studio's GSAP code in HyperFrames compositions and web pages on the current GSAP API and plugin options. | ready | Chat, Cowork and Claude Code | Video & animation: current GSAP for web and HyperFrames animation |
-| `motion-launch-videos` | Launch and promo videos rendered from HTML: product launches, story pieces, charts, captions, 3D, globes, particles, overlays and cartoon styles, frame-accurate to MP4 or alpha video. | A second launch-video method next to Studio's HyperFrames and Remotion routes, with its own render scripts. | session-install | Claude Code (desktop, cloud, phone) and Cowork install its pinned render package (playwright-core 1.63.0) and a Chromium (Node 20+, ffmpeg); chat: skill only | Video & animation: launch and promo videos from HTML |
 | `manim-skill` | Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local voiceover. | Gives Studio's educational pieces exact animated formulas and graphs, which Remotion and HyperFrames do not draw. | session-install | Claude Code (desktop, cloud, phone) and Cowork install Manim (Python) and LaTeX for renders; chat: skill only | Video & animation: math and science explainers in Manim |
 | `papercut-explainer` | Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA. | A ready cut-paper style with its own nine-stage pipeline for short explainer reels. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned papercut-explainer into the project after your yes (git, Node 20+, ffmpeg, python3); local voice several GB, asked separately; chat: skill only | Video & animation: cut-paper explainer reels |
 | `pinterest-references` | Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server; each saved image keeps its pin link and author. References only, not licensed assets. | Feeds Studio's reference packs and style research with real-world examples, kept apart from usable assets. | session-install | Claude Code on a computer with Google Chrome in its standard place, and Claude Code cloud (which has it); Node.js with npx fetches the pinned server; Cowork Unknown; Codex through its own `.codex-plugin` package; chat: skill only, no search | Design & web: Pinterest moodboards and style references (not assets) |
-| `stickman-kino` | Stickman explainer, story and promo films rendered locally as code in HyperFrames: rigged figures with 58 poses, about 190 props, charts, kinetic text, captions, a local voice, procedural music and effects, to MP4 with no video model or API key. | Gives Studio's stickman and faceless explainer briefs a ready stick-figure rig and render on Studio's own HyperFrames route. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned stickman-kino into the project after your yes and install its locked packages (git, Node 18+, Chrome or Chromium); local Kokoro voice about 200 MB, asked separately; chat: skill only | Video & animation: stickman explainer films |
-| `cutaway` | Robotic cutaway films from one reference picture: a robotic animal, machine or device rebuilt as a three.js object that takes itself apart part by part, with a page of part buttons and a 60 fps film with a procedural score. Works best with Claude Opus 5.5. | Gives Studio's product and mechanism films a rendered exploded-view look matched to a picture, next to Anatomy's diagram cutaways. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned cutaway into the project after your yes and install its locked packages (git, Node 20+, ffmpeg, Python 3, Chrome or Chromium; a GPU makes capture fast); images through your own image connector (for example GPT Image 2.5); local Kokoro narrator about 600 MB, asked separately; chat: skill only | Video & animation: robotic exploded-view 3D films |
-| `rea-video` | Reverse engineering of a reference video shot by shot: how each picture was made (live action, AI video, 3D, animation, code render, screen recording, still), AI edits, subtitle timing and style, titles and stickers, voice, music and sound effects, cutting rhythm, lighting and grade, real footage to collect and a remake plan, as VIDEO.md, an HTML report, a storyboard and audio stems. | Turns a client's reference reel into a shot list, style notes and remake plan that Studio's brief and FrameMotion or FrameCut builds start from. | session-install | Claude Code (desktop, cloud, phone) and Cowork clone the pinned rea-video into the project after your yes and install exact Python packages there (git, Python 3.13 or 3.14, ffmpeg; about 410 MB plus about 220 MB of checked models); an external vision model only with your own key; chat: skill only | Video & animation: reference video breakdown and remake plan |
 
 ### Dev tools
 
@@ -298,14 +286,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
   Higgsfield (paid) script is not included.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/claude-video-styles.md
 
-### animation-skills-styles
-
-- Use: built into Toolbox; copy the pack folder into the project, write the style's JSON
-  spec and run its build script (see [reel styles](references/reel-styles.md)).
-- Watch out: `kit/setup.sh` installs locked npm packages, Chromium, GSAP and HyperFrames
-  only after your yes; the voice option adds about 1 GB and is asked separately.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/animation-skills-styles.md
-
 ### iart-explainer-styles
 
 - Use: built into Toolbox; read the matching skill and its recipes from
@@ -313,21 +293,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
 - Watch out: pin `gsap@3.14.2` where a recipe imports GSAP without a version; no iart.ai
   account is needed.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/iart-explainer-styles.md
-
-### animate
-
-- Use: describe the video ("a 45s explainer of how DNS works, math style,
-  16:9") or `/animate:animate`; it asks questions first, then shows story,
-  look and storyboard before rendering.
-- Watch out: Node 18+, Playwright Chromium and ffmpeg install for the conversation on first use; a
-  voice-over uses your ElevenLabs connector or the system voice.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/animate.md
-
-### motion-designer
-
-- Use: describe the film ("a 20s launch film of my app, upbeat") or `/motion-designer:motion-designer`; it plans, asks for music and materials, then builds and renders.
-- Watch out: setup may install system packages and voice or music engines; say yes only to what you need.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/motion-designer.md
 
 ### logo-design
 
@@ -346,12 +311,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
 - Use: describe the page or redesign, or `/hallmark:hallmark`.
 - Watch out: generated images go to Together AI only with `TOGETHER_API_KEY`; do not run `install-hook.mjs` unless you want a lint hook.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/hallmark.md
-
-### brag
-
-- Use: in a finished project, ask for a launch video or `/brag:brag`.
-- Watch out: overlaps with motion-designer; pick one per job.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/brag.md
 
 ### nateherk-design
 
@@ -395,30 +354,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
 - Watch out: Interactive pages, not seekable video; for video use Studio's Hairline kit.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/hairline.md
 
-### huashu-art-motion
-
-- Use: Ask for an animation in an art style or an explainer grammar (Kurzgesagt-like, whiteboard).
-- Watch out: Skill text is in Chinese; do not reuse its showcase characters or likenesses.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/huashu-art-motion.md
-
-### anatomy
-
-- Use: Ask for an isometric technical figure or an interactive explainer of a system.
-- Watch out: Publishing to its public gallery happens only on request; never by default.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/anatomy.md
-
-### pixelfx
-
-- Use: Ask for a pixel art effect, a recolor, a sprite sheet for Godot, Unity or Phaser, or a GIF/MP4 of an effect.
-- Watch out: Our wrapper keeps the checkout on the reviewed commit; the Patch Pixel font in `gallery/fonts` is not MIT, never ship it.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pixelfx.md
-
-### gl-transitions
-
-- Use: Ask for a transition between two images, clips or scenes, or name one (`CrossZoom`, `Cube`).
-- Watch out: The skill links `gl-transitions@2` while npm `latest` is 3.0.0, which removed twelve duplicates; pin one exact version and credit each transition's licence.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/gl-transitions.md
-
 ### threejs-skills
 
 - Use: Ask a three.js or React Three Fiber task; the matching `threejs-*` skill loads.
@@ -437,12 +372,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
 - Watch out: GSAP itself is free under Webflow's own licence, not MIT; the skills are MIT.
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/gsap-skills.md
 
-### motion-launch-videos
-
-- Use: Ask for a product launch video, a promo, an animated chart, captions or a 3D or globe shot rendered to MP4.
-- Watch out: Each skill installs its pinned render packages (playwright-core 1.63.0) and a Chromium into its own folder; `motion-story` calls unpinned `npx hyperframes` for voice and transcripts, so pin a version or skip that step.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/motion-launch-videos.md
-
 ### manim-skill
 
 - Use: Ask for a math, physics or algorithm explainer, a formula derivation or an animated graph.
@@ -460,24 +389,6 @@ and offer two or three fitting styles. They are files, not a production pipeline
 - Use: Ask for a moodboard, style research or a reference pack; the skill searches Pinterest and saves picked pins into `references/pinterest/` with a `.reference.json` (pin link, author, query, date).
 - Watch out: References only: Pinterest images belong to their authors and never go into finished work (use Open Assets for usable media). Needs Google Chrome in its standard place; the server sets an ordinary Chrome user agent to read pinterest.com without signing in (owner exception recorded in the review).
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pinterest-references.md
-
-### stickman-kino
-
-- Use: Ask for a stickman or stick-figure video: an explainer, a short story, a faceless YouTube or Shorts clip or a product promo in that style.
-- Watch out: Our wrapper keeps the checkout on the reviewed commit and never runs the upstream `stickman setup` (unpinned voice install); the Kokoro voice is optional and asked separately, and the sample films' apps and numbers are invented.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/stickman-kino.md
-
-### cutaway
-
-- Use: Give a picture of a robotic animal, machine or device and ask for a 3D object that takes itself apart, an exploded view or a cutaway film.
-- Watch out: Works best with Claude Opus 5.5 and uses many tokens; review after still round 2. Generated reference images or extra graphics go through your own image connector (for example GPT Image 2.5) and may cost credits; the Kokoro narrator is optional, asked separately and does not speak Polish.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/cutaway.md
-
-### rea-video
-
-- Use: Give a reference reel, ad or clip and ask how it was made, whether it is AI, what footage it uses or how to make one like it.
-- Watch out: Our wrapper keeps the checkout on the reviewed commit, installs exact package versions and keeps models and preferences in the project; speech recognition (the unpinned `[asr]` extra) is off. The upstream skill text is in Chinese. Sending frames to an external vision model needs your own key and your yes; capsule-cinema and ChatCut remakes cost money and are never the default.
-- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/rea-video.md
 
 ### rea
 

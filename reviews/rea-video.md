@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: rea-video
-- Status: active
+- Status: removed
 - Upstream: https://github.com/JuneYaooo/rea-video
 - Author: JuneYaooo (June)
 - License: Apache-2.0 (code, skill and docs; NOTICE: Copyright 2026 JuneYaooo). Downloaded models keep their own projects' licences (UVR MDX-Net, BandIt v2, OpenCV YuNet, RapidOCR); the sample videos in `docs/cases/` are third-party clips (TikTok, Douyin and AI remakes) not covered by the repository licence
@@ -77,3 +77,4 @@ accept with conditions: listed only through our pinned wrapper with exact packag
 ## History
 
 - 2026-11-13: added at ab8580e (Toolbox 1.15.0).
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

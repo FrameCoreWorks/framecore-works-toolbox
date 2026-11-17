@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: brag
-- Status: active
+- Status: removed
 - Upstream: https://github.com/latent-spaces/brag
 - Author: GitHub owner `latent-spaces`
 - License: MIT
@@ -67,3 +67,4 @@ Accept: Turns the project you just built into a short launch video with one comm
 ## History
 
 - 2026-10-26: added at 669ab92 (version 0.5.0) from the researched shortlist.
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

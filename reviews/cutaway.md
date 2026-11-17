@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: cutaway
-- Status: active
+- Status: removed
 - Upstream: https://github.com/Nyxera0x/cutaway
 - Author: Nyxera0x (with whaleyxbt, author of the claude-motion base)
 - License: MIT (code); recorded samples CC0 1.0 (Freesound, via Barty-Bart/motion-graphics, MIT); fonts Inter and JetBrains Mono SIL OFL 1.1 (npm)
@@ -75,3 +75,4 @@ accept with conditions: listed only through our pinned wrapper; renders NOT_RUN.
 ## History
 
 - 2026-11-07: added at 5d8f1c6 (Toolbox 1.12.0).
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.

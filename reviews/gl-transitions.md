@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: gl-transitions
-- Status: active
+- Status: removed
 - Upstream: https://github.com/gl-transitions/gl-transitions
 - Author: gl-transitions contributors (organization gl-transitions, maintainer Gaëtan Renaudeau, gre)
 - License: MIT
@@ -70,3 +70,4 @@ accept.
 ## History
 
 - 2026-11-06: added at c040bdd.
+- 2026-11-17: removed by owner decision ("Usuń 12 silników z toolbox"): FrameMotion 0.3.0 bundles this as one of its own engines, so the Toolbox entry duplicated it.
