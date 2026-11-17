@@ -1,5 +1,16 @@
 # Changes
 
+## Toolbox 1.17.0 — 2026-11-17
+
+Trigger: owner request 2026-11-17 ("przeniósł wszystkie skille lub paczki lub repo, które odpowiadają za motion graphics 1 do 1"), after Toolbox 1.16.0: every motion graphics source moves to FrameMotion, which bundles it in full (FrameMotion 0.4.0) with its own layer on top.
+
+- Removed 6 catalog entries: `hairline`, `threejs-skills`, `bang-motion`, `gsap-skills`, `manim-skill`, `papercut-explainer` (manifest, README rows, index rows and details, their docs, and the wrapper `plugins/papercut-explainer`). Their reviews stay with `Status: removed` and a History line.
+- Removed the three built-in reel style packs (`varg-motion-styles`, `claude-video-styles`, `iart-explainer-styles`): their folders, `capabilities.json` entries, index rows and details, the reel-styles section and `references/reel-styles.md`. The 2026-11-12 pack exception in `CLAUDE.md` is closed; motion tools go to FrameMotion.
+- The welcome drops "Ready reel styles" and video and animation from the plugin groups (changed welcome text; it still opens the catalog).
+- Kept: Earshot and the non-motion entries (`logo-design`, `hallmark`, `nateherk-design`, `sepia`, `wondelai-ux-design`, `taste-skill`, `pinterest-references`, `antislop`, `web-quality-skills`, `rea`, `marketing-skills`).
+- README entry count 12; index version 1.17.0.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.16.0 — 2026-11-17
 
 Trigger: owner decision 2026-11-17 ("Usuń 12 silników z toolbox"), after the FrameMotion, Studio and FrameCut cooperation test of the same day: FrameMotion 0.3.0 bundles these tools as its own engines, so Toolbox listed them twice.

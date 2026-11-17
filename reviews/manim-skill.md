@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: manim-skill
-- Status: active
+- Status: removed
 - Upstream: https://github.com/Yusuke710/manim-skill
 - Author: Yusuke710
 - License: MIT
@@ -72,3 +72,4 @@ accept: full upstream plugin, pinned.
 ## History
 
 - 2026-11-06: added at a0048d9 (Toolbox 1.9.0).
+- 2026-11-17: removed in Toolbox 1.17.0 (owner request 2026-11-17: every motion graphics skill, pack and repository moves to FrameMotion 1:1). FrameMotion 0.4.0 bundles it in full in `skills/framemotion/assets/library/`.

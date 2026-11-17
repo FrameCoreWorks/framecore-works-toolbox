@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: bang-motion
-- Status: active
+- Status: removed
 - Upstream: https://github.com/bangtutorial/bang-motion
 - Author: Bang Tutorial (bangtutorial)
 - License: MIT
@@ -70,3 +70,4 @@ accept (owner decision, as a complement to Studio's motion routes).
 ## History
 
 - 2026-11-06: added at c1aa65e.
+- 2026-11-17: removed in Toolbox 1.17.0 (owner request 2026-11-17: every motion graphics skill, pack and repository moves to FrameMotion 1:1). FrameMotion 0.4.0 bundles it in full in `skills/framemotion/assets/library/`.

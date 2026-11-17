@@ -18,7 +18,7 @@ class WelcomeTest(unittest.TestCase):
         asset = (SKILL / 'assets' / 'startup-welcome.en.md').read_text(encoding='utf-8')
         self.assertTrue(asset.startswith('I am FrameCore Works Toolbox.'))
         self.assertIn('Earshot (built in)', asset)
-        self.assertEqual(len(re.findall(r'^- ', asset, re.M)), 3)
+        self.assertEqual(len(re.findall(r'^- ', asset, re.M)), 2)   # Earshot and plugin groups; reel styles moved to FrameMotion in 1.17.0
         self.assertTrue(asset.rstrip().endswith('Choose the numbers you want to add:'))
         self.assertNotIn('Creative Studio', asset)
 

@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.16.0"
+      "version": "1.17.0"
     },
     {
       "name": "logo-design",
@@ -133,89 +133,6 @@
         "./skills/taste-skill"
       ],
       "strict": false
-    },
-    {
-      "name": "hairline",
-      "description": "Isometric line figures that answer the mouse pointer on a web page: draw a new figure as one HTML file or adopt the Hairline library in a project.",
-      "version": "0.5.1",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "lucasmarkes/hairline",
-        "sha": "37d2e78dcb333ab30c3338e28ed4a690364ea014"
-      },
-      "skills": [
-        "./skills/hairline-create",
-        "./skills/hairline-adopt"
-      ],
-      "strict": false
-    },
-    {
-      "name": "threejs-skills",
-      "description": "Thirteen three.js r186 skills (scenes, geometry, materials, lighting, shaders, animation, post-processing, React Three Fiber, performance) with current APIs and a list of outdated patterns to avoid.",
-      "version": "0.0.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "CloudAI-X/threejs-skills",
-        "sha": "0e181866f095b5f06d005133876e926515390d95"
-      },
-      "skills": [
-        "./skills/threejs-animation",
-        "./skills/threejs-asset-pipeline",
-        "./skills/threejs-fundamentals",
-        "./skills/threejs-geometry",
-        "./skills/threejs-interaction",
-        "./skills/threejs-lighting",
-        "./skills/threejs-loaders",
-        "./skills/threejs-materials",
-        "./skills/threejs-performance",
-        "./skills/threejs-postprocessing",
-        "./skills/threejs-react-three-fiber",
-        "./skills/threejs-shaders",
-        "./skills/threejs-textures"
-      ],
-      "strict": false
-    },
-    {
-      "name": "bang-motion",
-      "description": "Browser motion graphics that move like video, not slides: openers, promos, bumpers, kinetic typography, lower thirds and five explainer styles as one autoplaying index.html, with optional MP4 export (skill text in Indonesian).",
-      "version": "1.19.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "bangtutorial/bang-motion",
-        "sha": "c1aa65e921c970d858705fcb4a53a8294d1a4131"
-      }
-    },
-    {
-      "name": "gsap-skills",
-      "description": "GreenSock's official GSAP skills: core tweens and easing, timelines, ScrollTrigger, plugins (SplitText, MorphSVG, Flip and others), React and other frameworks, utilities and performance, so web animation code uses the current GSAP API.",
-      "version": "1.0.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "greensock/gsap-skills",
-        "sha": "aed9cfd3277740755f6bfc1155c7aa645403b760"
-      }
-    },
-    {
-      "name": "manim-skill",
-      "description": "Math and science explainer videos in Manim (3Blue1Brown style): scene planning, LaTeX formulas, graphs and geometry, subtitles and an optional local Kokoro voiceover, with a local preview player.",
-      "version": "1.0.0",
-      "category": "creative",
-      "source": {
-        "source": "github",
-        "repo": "Yusuke710/manim-skill",
-        "sha": "a0048d9e265499038f34a9aa58ff16d306b5034c"
-      }
-    },
-    {
-      "name": "papercut-explainer",
-      "description": "Vertical cut-paper explainer reels (layered paper props, taped banners, stop-motion boil) from a link to MP4 in Remotion, through strategy, hook, script, storyboard, build, voice and QA (papercut-explainer by 0xS4N4TG, pinned).",
-      "version": "0.1.0",
-      "category": "creative",
-      "source": "./plugins/papercut-explainer"
     },
     {
       "name": "pinterest-references",

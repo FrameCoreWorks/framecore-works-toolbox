@@ -3,7 +3,7 @@
 ## Entry
 
 - Name: iart-explainer-styles
-- Status: active
+- Status: removed
 - Upstream: https://github.com/iart-ai/explainer-video-skills
 - Author: iart.ai
 - License: MIT
@@ -82,3 +82,4 @@ Accepted as a built-in style pack (MIT, pinned, no account or API key).
 ## History
 
 - 2026-11-12: added to Toolbox 1.14.0 at `3c13a1b`.
+- 2026-11-17: removed in Toolbox 1.17.0 (owner request 2026-11-17: every motion graphics skill, pack and repository moves to FrameMotion 1:1). FrameMotion 0.4.0 bundles it in full in `skills/framemotion/assets/library/`.
