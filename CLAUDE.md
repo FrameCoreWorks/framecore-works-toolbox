@@ -307,5 +307,5 @@ Keep these work rules independently of optional catalog tools:
   Wrapper files in `plugins/<name>/` are our own work, not upstream copies.
 - No secrets, tokens, client data or ZIP files anywhere in the repo.
 - Files in the repo are written in English.
-- Work on `main` and push only `main`. No force-push. Commit messages state
+- Work on a branch, open a PR, merge on green CI (owner 2026-11-18). No direct push to `main`, no force-push. Commit messages state
   the reason for the change.
