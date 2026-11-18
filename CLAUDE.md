@@ -278,7 +278,7 @@ them as follows:
   or first-party plugins; the `plugin-validator` agent on them;
   `skill-reviewer` on any `SKILL.md` written here.
 - pr-review-toolkit: the `code-reviewer` agent on non-trivial diffs before
-  pushing (work goes straight to `main`, so this replaces PR review);
+  opening a pull request (every change goes through a PR to `main`);
   `silent-failure-hunter` on check-script changes.
 - claude-md-management: `revise-claude-md` at the end of a session that
   changed how the repo works.
