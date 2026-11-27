@@ -47,6 +47,18 @@ class RifeLauncherTest(unittest.TestCase):
         self.assertEqual(rife.target_frames(10, Fraction(24), factor=4), 40)
         self.assertEqual(rife.target_frames(10, Fraction(24)), 20)
 
+    def test_only_power_of_two_multiples_work_without_v4(self):
+        self.assertTrue(rife.ratio_needs_v4(Fraction(24), 60))
+        self.assertTrue(rife.ratio_needs_v4(Fraction(30), 90))
+        self.assertFalse(rife.ratio_needs_v4(Fraction(30), 60))
+        self.assertFalse(rife.ratio_needs_v4(Fraction(15), 60))
+        self.assertFalse(rife.ratio_needs_v4(Fraction(24)))
+
+    def test_never_uses_the_broken_cpu_switch(self):
+        source = (PLUGIN / 'skills/rife-interpolate/scripts/rife.py').read_text()
+        self.assertNotIn('"-g", "-1"', source)
+        self.assertEqual(source.count('["ffmpeg", "-nostdin"'), source.count('["ffmpeg"'))
+
     def test_model_names_cannot_escape_the_cache(self):
         with self.assertRaises(SystemExit), redirect_stdout(io.StringIO()):
             rife.parse_models('../etc')

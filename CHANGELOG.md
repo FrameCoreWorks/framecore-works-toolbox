@@ -1,5 +1,13 @@
 # Changes
 
+## Toolbox 1.18.1 — 2026-11-27
+
+Trigger: the owner's handover of 2026-11-27 from a cloud project ("interpolacja 60 fps przez RIFE w chmurze": nihui 20221029, rife-v4.6, Mesa llvmpipe, 24 to 60 fps), checked on the pinned TNTwise fork.
+
+- `rife-interpolate` 1.1.0: on Linux the launcher reports `vulkan` in `status` and refuses `run` until a Vulkan driver exists (Mesa's `mesa-vulkan-drivers` and `libvulkan1`, installed after the user's yes); it never uses the program's own `-g -1` CPU switch, which wrote garbage in-between frames in our test. Every ffmpeg call uses `-nostdin`; Linux runs use `-j 1:4:2`; a rate that is not a power-of-two multiple (24 to 60) needs a rife-v4 model; new `--max-height` for previews; the encode writes exactly the planned frame count; `--cpu` removed.
+- The skill adds the cloud path with timings, one shot per run, captions and watermarks after interpolation, the original sound, and `minterpolate` as the weaker fallback. Index row, docs and review updated; index version 1.18.1.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.18.0 — 2026-11-27
 
 Trigger: owner request 2026-11-27 (link to nihui/rife-ncnn-vulkan: "kandydat do Toolboxa ... jako interpolator do upłynnienia nagrań"), then the owner's choice of the TNTwise fork on the decision card.

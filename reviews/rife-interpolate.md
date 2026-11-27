@@ -53,13 +53,13 @@ None.
 
 ## Requirements
 
-Python 3, ffmpeg and ffprobe; macOS (Apple Silicon or Intel) or Linux x86_64. A Vulkan GPU for speed (macOS uses Metal through the bundled MoltenVK); without a driver the launcher uses the CPU.
+Python 3, ffmpeg and ffprobe; macOS (Apple Silicon or Intel) or Linux x86_64. A Vulkan GPU for speed (macOS uses Metal through the bundled MoltenVK). Linux without a GPU needs Mesa's llvmpipe Vulkan driver (`mesa-vulkan-drivers`, `libvulkan1`), installed after the user's yes.
 
 ## Install tests
 
 - Launcher `plan` and `install --yes` (cloud, Linux x86_64): PASS 2026-11-27, SHA-256 matched, receipt written.
 - Isolated Claude Code install: see docs/verification.md.
-- Fork binary run in the cloud: NOT_RUN (blocked by the session's safety check). Mac run with GPU: NOT_RUN until recorded in docs/verification.md.
+- Fork binary run in the cloud (Linux x86_64, 4 cores, Mesa 25.2.8 llvmpipe): PASS 2026-11-27 after the owner's cloud handover. 12 frames at 24 fps, 540x960, to 30 frames at 60 fps: rife-v4.26 56 s, rife-v4.6 41 s; launcher `run --fps 60 --max-height 960` from a 1080x1920 clip with sound: 30 frames at 60 fps, sound copied, clean in-between frames on the strip. The program's own CPU switch `-g -1` wrote garbage in-between frames (PSNR about 3 dB against the llvmpipe result, for both models), so the launcher never uses it. Mac run with GPU: NOT_RUN until recorded in docs/verification.md.
 - claude.ai / Cowork (Customize > Plugins): NOT_RUN until the owner reports the result.
 
 ## Risks
@@ -71,5 +71,7 @@ Python 3, ffmpeg and ffprobe; macOS (Apple Silicon or Intel) or Linux x86_64. A 
 accept with conditions: download only after the user's yes, frame check before delivery, one shot per run.
 
 ## History
+
+- 2026-11-27: wrapper 1.1.0 after the owner's cloud handover (nihui 20221029 + rife-v4.6 on Mesa llvmpipe, 24 to 60 fps): Linux needs a Vulkan driver (Mesa after the user's yes) and never `-g -1`; ffmpeg calls use `-nostdin`; rates that are not a power-of-two multiple need a rife-v4 model; `--max-height` previews; captions, watermarks after interpolation; cloud timings.
 
 - 2026-11-27: added at 5eea93c (release 20250112) as an adapted wrapper; nihui/rife-ncnn-vulkan (a7532fc, release 20221029) reviewed first and kept as the fallback.

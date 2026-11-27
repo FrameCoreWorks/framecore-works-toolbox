@@ -24,7 +24,10 @@ Python 3, ffmpeg and ffprobe. macOS (Apple Silicon or Intel) or Linux x86_64.
 ## What works where
 
 Claude Code on a Mac (graphics card through Metal) and Linux; Claude Code
-cloud on the CPU (short previews only); Cowork Unknown; chat: skill only, no run.
+cloud after installing Mesa's software Vulkan driver (`mesa-vulkan-drivers`,
+`libvulkan1`, after your yes), on the CPU: about 1.4 s (rife-v4.6) to 1.9 s
+(rife-v4.26) per output frame at 540x960 on 4 cores, four times that at full
+HD. Cowork Unknown; chat: skill only, no run.
 
 ## Use
 
@@ -35,7 +38,9 @@ checks status, shows the download plan, installs after your yes, runs
 ## Watch out
 
 Interpolation invents frames: check fast motion, text and edges. Cut to one
-shot per run. Motion rendered from code is better rendered again at the
+shot per run; captions and watermarks go on after it; the sound stays the
+original's. Never use the program's `-g -1` CPU switch (garbage frames in our
+test); the launcher does not. Motion rendered from code is better rendered again at the
 target frame rate.
 
 ## Full removal

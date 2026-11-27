@@ -36,8 +36,19 @@ plus ffmpeg and ffprobe for video). Every command prints one JSON object.
 
 Supported hosts: macOS (universal binary) and Linux x86_64. Other hosts get
 `unsupported_host`; say so and offer ffmpeg's `minterpolate` as a weaker
-fallback. Without a Vulkan driver (for example a cloud container) the
-launcher uses the CPU: correct but slow, so keep cloud runs to short previews.
+fallback (faster, but edges tear on fast motion).
+
+**Cloud or Linux without a graphics card.** `status` shows `vulkan`. When it
+is `missing`, RIFE cannot start: ask the user, then install Mesa's software
+Vulkan driver, `apt-get install -y mesa-vulkan-drivers libvulkan1` (with
+`sudo` when not root; in a cloud session it lasts for that session). Vulkan
+then runs on the CPU (llvmpipe). Never use the program's own CPU switch
+`-g -1`: in our test it wrote garbage in-between frames. CPU time, 4 cores,
+540x960: about 1.4 s per output frame with `rife-v4.6`, about 1.9 s with
+`rife-v4.26`; 1080x1920 about four times that, so a 23 s clip at 60 fps takes
+about 35 minutes at 540x960 and about 2 hours at full HD. Before a long cloud
+run, say how long it will take and offer the Mac (much faster on Apple
+Silicon), a preview at `--max-height 960`, or `rife-v4.6`.
 
 ## 3. Run
 
@@ -47,17 +58,24 @@ launcher uses the CPU: correct but slow, so keep cloud runs to short previews.
 - Slow motion: `python3 scripts/rife.py run IN.mp4 OUT.mp4 --factor 4 --slowmo`
   keeps the frame rate, so the clip plays four times slower. The original
   sound is dropped; plan new sound.
-- Options: `--model rife-v4.6` (lighter), `--uhd` (forced on above 2000 px),
-  `--cpu`, `--keep-frames`, `--crf 16`.
+- 24 or 25 to 60 fps is not a whole multiple: only `rife-v4*` models make
+  frames at any time step; the launcher refuses an older model there.
+- Options: `--model rife-v4.6` (lighter, faster), `--max-height 960`
+  (preview), `--uhd` (forced on above 2000 px), `--keep-frames`, `--crf 16`.
 
-Cut the clip to the shot first: interpolation across a scene cut makes a
-ghost frame. One shot per run.
+Cut the clip to the shot first: interpolation across a scene cut mixes the
+two pictures. One shot per run, never a whole edit; put the shots back
+together afterwards. Add captions, titles and watermarks after
+interpolation, never before. The sound stays the original's, unchanged.
+When you script several shots, give every ffmpeg call `-nostdin`: in a
+`while read` loop ffmpeg otherwise reads the list and every second shot
+breaks.
 
 ## 4. Check the frames before you hand it over
 
-Make a strip for a 2x run with
-`python3 scripts/rife.py sheet OUT.mp4 SHEET.png --at SECONDS` (source,
-new frame, source) at the fastest moment, at text and at edges. Look at it.
+Make a strip with
+`python3 scripts/rife.py sheet OUT.mp4 SHEET.png --at SECONDS` (three
+consecutive output frames; in a 2x run source, new, source) at the fastest moment, at text and at edges. Look at it.
 Report what you checked and any warping, ghosting or broken text. If a
 part is bad, use the original frames there or a lower factor.
 
