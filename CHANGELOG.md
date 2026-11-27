@@ -1,5 +1,13 @@
 # Changes
 
+## Toolbox 1.18.0 — 2026-11-27
+
+Trigger: owner request 2026-11-27 (link to nihui/rife-ncnn-vulkan: "kandydat do Toolboxa ... jako interpolator do upłynnienia nagrań"), then the owner's choice of the TNTwise fork on the decision card.
+
+- New Creative entry `rife-interpolate`: TNTwise/rife-ncnn-vulkan (MIT) at `5eea93c` (release 20250112) through our own wrapper `plugins/rife-interpolate` 1.0.0. Smoother footage, slow motion and filled-in low-frame-rate renders with RIFE (default model rife-v4.26) on the graphics card. The launcher `scripts/rife.py` downloads the pinned macOS or Linux asset only after the user's yes, checks SHA-256, keeps the program and chosen models in `~/.cache/framecore/rife/20250112` and runs through ffmpeg; `sheet` makes a source/new/source strip for the frame check.
+- Review, docs, README row and note, index row and details added; new `tests/test_rife_launcher.py`; README entry count 13; index version 1.18.0.
+- Checks: see docs/verification.md.
+
 ## Toolbox 1.17.0 — 2026-11-17
 
 Trigger: owner request 2026-11-17 ("przeniósł wszystkie skille lub paczki lub repo, które odpowiadają za motion graphics 1 do 1"), after Toolbox 1.16.0: every motion graphics source moves to FrameMotion, which bundles it in full (FrameMotion 0.4.0) with its own layer on top.

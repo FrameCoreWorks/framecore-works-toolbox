@@ -224,6 +224,7 @@ read that file before any Earshot step. Discovery for other plugins is
 | `wondelai-ux-design` | UX and UI design skills. | Adds UX and UI design method when a Studio project includes an app or site screen. | ready | Chat, Cowork and Claude Code | Design & web: UX and UI method for app and site screens |
 | `taste-skill` | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | Gives Studio's web and screen work a researched art direction and a browser check. | ready | Chat: skill. Cowork and Claude Code: skill plus a browser check that installs for the conversation | Design & web: art direction for landing pages and screens |
 | `pinterest-references` | Moodboards and style, typography and composition references from public Pinterest pins, searched by keyword through a pinned local MCP server; each saved image keeps its pin link and author. References only, not licensed assets. | Feeds Studio's reference packs and style research with real-world examples, kept apart from usable assets. | session-install | Claude Code on a computer with Google Chrome in its standard place, and Claude Code cloud (which has it); Node.js with npx fetches the pinned server; Cowork Unknown; Codex through its own `.codex-plugin` package; chat: skill only, no search | Design & web: Pinterest moodboards and style references (not assets) |
+| `rife-interpolate` | Smooths footage (24 or 30 to 60 fps), makes slow motion and fills in low-frame-rate renders with RIFE frame interpolation on the graphics card. | Gives Studio's edits smooth slow motion and higher frame rates from the footage it already has. | session-install | Claude Code on a Mac (Apple Silicon or Intel) or Linux; downloads the pinned program (about 830 MB once, about 45 MB kept) after your yes; needs ffmpeg; cloud runs on the CPU (short previews); Cowork Unknown; chat: skill only | Video & animation: smoother footage and slow motion |
 
 ### Dev tools
 
@@ -311,6 +312,12 @@ read that file before any Earshot step. Discovery for other plugins is
 - Use: Ask for a moodboard, style research or a reference pack; the skill searches Pinterest and saves picked pins into `references/pinterest/` with a `.reference.json` (pin link, author, query, date).
 - Watch out: References only: Pinterest images belong to their authors and never go into finished work (use Open Assets for usable media). Needs Google Chrome in its standard place; the server sets an ordinary Chrome user agent to read pinterest.com without signing in (owner exception recorded in the review).
 - Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/pinterest-references.md
+
+### rife-interpolate
+
+- Use: ask to smooth a clip, raise its frame rate or make slow motion; the skill shows the download plan, installs after your yes and checks the frames.
+- Watch out: interpolation invents frames, so fast motion, text and edges need a look; one shot per run. Motion rendered from code is better rendered again at the target frame rate.
+- Review: https://github.com/FrameCoreWorks/framecore-works-toolbox/blob/main/reviews/rife-interpolate.md
 
 ### rea
 
