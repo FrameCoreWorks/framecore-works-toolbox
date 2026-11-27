@@ -1,5 +1,16 @@
 # Portable catalog verification
 
+## Toolbox 1.18.1, rife-interpolate 1.1.0 cloud path — 2026-11-27
+
+Baseline: GitHub `main` at `cefba99`. Source checks PASS in a Claude Code cloud container: repository tests
+(including the new launcher checks), marketplace check (13 entries), portable package checks for `toolbox` 1.18.1 and
+`rife-interpolate` 1.1.0, `claude plugin validate` of the repository and the wrapper. Real run (Linux x86_64, 4 cores,
+Mesa 25.2.8 llvmpipe after `apt-get install -y mesa-vulkan-drivers libvulkan1`): launcher `run --fps 60 --max-height 960`
+on a 0.5 s 1080x1920 24 fps clip with sound gave 30 frames at 60 fps with the sound copied and clean in-between frames
+on the strip; rife-v4.26 about 1.9 s and rife-v4.6 about 1.4 s per output frame at 540x960. The release's `-g -1` CPU
+path wrote garbage frames (PSNR about 3 dB) and is not used. Mac GPU run: NOT_RUN. Not tested in claude.ai, Cowork,
+Codex or ChatGPT Work.
+
 ## Toolbox 1.18.0, rife-interpolate — 2026-11-27
 
 Baseline: GitHub `main` at `48560e9`. Source checks PASS in a Claude Code cloud container: 80 repository tests
