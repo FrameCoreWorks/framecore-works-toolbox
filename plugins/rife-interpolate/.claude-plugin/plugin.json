@@ -1,0 +1,16 @@
+{
+  "name": "rife-interpolate",
+  "version": "1.0.0",
+  "description": "RIFE frame interpolation by TNTwise (fork of nihui/rife-ncnn-vulkan), wrapped by FrameCore Works: smoother footage (24/30 to 60 fps), slow motion and filled-in low-frame-rate renders, run locally on the graphics card. Downloads the pinned release 20250112 only after your yes, with a SHA-256 check.",
+  "author": {
+    "name": "FrameCore Works",
+    "url": "https://github.com/FrameCoreWorks"
+  },
+  "repository": "https://github.com/FrameCoreWorks/framecore-works-toolbox",
+  "keywords": [
+    "frame interpolation",
+    "slow motion",
+    "rife",
+    "video"
+  ]
+}

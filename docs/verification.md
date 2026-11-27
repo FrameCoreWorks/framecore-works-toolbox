@@ -1,5 +1,15 @@
 # Portable catalog verification
 
+## Toolbox 1.18.0, rife-interpolate — 2026-11-27
+
+Baseline: GitHub `main` at `48560e9`. Source checks PASS in a Claude Code cloud container: 80 repository tests
+(including `test_rife_launcher.py`), Earshot tests on Python 3.12 (2 skipped), marketplace check (13 entries),
+portable package checks for `toolbox` 1.18.0 and `rife-interpolate` 1.0.0 and `claude plugin validate` of the
+repository and the wrapper. Isolated Claude config (Claude Code 2.1.332): marketplace add and install of
+`rife-interpolate` and `toolbox` PASS, listed 1.0.0 and 1.18.0. Launcher `install --yes` in the cloud (Linux x86_64):
+PASS, SHA-256 matched, rife-v4.26 and rife-v4.6 kept (32 MB). Running the fork binary in the cloud: NOT_RUN (blocked by
+the session's safety check). Mac run: NOT_RUN at merge time. Not tested in claude.ai, Cowork, Codex or ChatGPT Work.
+
 ## Toolbox 1.17.0, motion entries and reel style packs moved to FrameMotion — 2026-11-17
 
 Baseline: GitHub `main` at `9dd7f8b`. Source checks PASS in a Claude Code cloud container: 76 repository tests,

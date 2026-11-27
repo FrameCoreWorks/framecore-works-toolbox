@@ -72,7 +72,7 @@ class DistributionTest(unittest.TestCase):
                 package_plugins.validate_plugin(self.plugin)
 
     def test_every_local_plugin_validates(self):
-        for name in ('toolbox', 'rea'):
+        for name in ('toolbox', 'rea', 'rife-interpolate'):
             with self.subTest(plugin=name):
                 package_plugins.validate_plugin(ROOT / 'plugins' / name)
 
