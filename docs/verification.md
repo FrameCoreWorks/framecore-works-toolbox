@@ -1,5 +1,17 @@
 # Portable catalog verification
 
+## Toolbox 1.18.2, rife-interpolate 1.1.1 Mac run — 2026-11-27
+
+Owner's Mac mini (Apple Silicon, Metal through MoltenVK), through the owner's render queue, launcher `install --yes`
+(release 20250112, SHA-256 matched, rife-v4.26 and rife-v4.6, 46 MB kept). The first run stopped at the frame extract:
+the Mac's ffmpeg rejected `-vsync 0`; fixed in 1.1.1 (`-fps_mode passthrough`) and re-run with the fixed launcher: PASS.
+576x576 screen recording, 30 to 60 fps, 120 frames: rife-v4.26 4 s, rife-v4.6 1 s, sound copied, strips clean.
+Ground-truth test: 2 s of a 1080x1920 60 fps render, every other frame dropped (30 fps), brought back to 60 fps and
+compared with the real frames (PSNR over 118 frames): RIFE v4.26 41.6 dB in 10 s, ffmpeg `minterpolate` (mci, aobmc)
+37.6 dB in 8 s; strips of truth / RIFE / minterpolate looked at, RIFE in-between frames match the truth, text intact.
+Repository checks: unit tests, `check_marketplace.py`, `package_plugins.py --check`, `claude plugin validate`.
+Not tested in claude.ai, Cowork, Codex or ChatGPT Work.
+
 ## Toolbox 1.18.1, rife-interpolate 1.1.0 cloud path — 2026-11-27
 
 Baseline: GitHub `main` at `cefba99`. Source checks PASS in a Claude Code cloud container: repository tests
