@@ -4,7 +4,7 @@ FrameCore Works tool catalog for **Claude, ChatGPT Work and Codex**, maintained
 in a public GitHub repository. The repository remains a Claude marketplace;
 its `toolbox` catalog is also an independently installable portable plugin.
 
-**Catalog plugin version: 1.18.1.** One source directory, `plugins/toolbox/`,
+**Catalog plugin version: 1.18.2.** One source directory, `plugins/toolbox/`,
 contains the portable manifest, Codex and Claude compatibility manifests, and
 shared host-aware instructions. [Choose an installation route](INSTALL.md).
 
@@ -41,7 +41,7 @@ itself: `toolbox` (first-party, this repo, skill everywhere,
 | wondelai-ux-design | [wondelai/skills](https://github.com/wondelai/skills) | `c172996` (1.8.0) | UX and UI design skills. | skills / skills / skills | [docs](docs/wondelai-ux-design.md) | [review](reviews/wondelai-ux-design.md) |
 | taste-skill | [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `12af471` (2.1.5) | Art direction for landing pages, product pages, dashboards and app screens, with openly licensed pictures and a real-browser check. | skill / skill + scripts / skill + scripts | [docs](docs/taste-skill.md) | [review](reviews/taste-skill.md) |
 | pinterest-references | [terryso/mcp-pinterest](https://github.com/terryso/mcp-pinterest) | `7a6667d` (1.2.0; our wrapper `plugins/pinterest-references`) | Moodboards and style, typography and composition references from public Pinterest pins, saved with pin link and author. **References only, not assets.** Needs Google Chrome and Node.js (npx). | skill (no search) / Unknown / skill + MCP | [docs](docs/pinterest-references.md) | [review](reviews/pinterest-references.md) |
-| rife-interpolate | [TNTwise/rife-ncnn-vulkan](https://github.com/TNTwise/rife-ncnn-vulkan) | `5eea93c` (20250112; our wrapper `plugins/rife-interpolate` 1.1.0) | Smoother video (24/30 to 60 fps), slow motion and filled-in low-frame-rate renders with RIFE on your graphics card. Downloads the pinned program once after your yes. | skill (no run) / Unknown / skill + script | [docs](docs/rife-interpolate.md) | [review](reviews/rife-interpolate.md) |
+| rife-interpolate | [TNTwise/rife-ncnn-vulkan](https://github.com/TNTwise/rife-ncnn-vulkan) | `5eea93c` (20250112; our wrapper `plugins/rife-interpolate` 1.1.1) | Smoother video (24/30 to 60 fps), slow motion and filled-in low-frame-rate renders with RIFE on your graphics card. Downloads the pinned program once after your yes. | skill (no run) / Unknown / skill + script | [docs](docs/rife-interpolate.md) | [review](reviews/rife-interpolate.md) |
 
 ### App notes (not plugins)
 

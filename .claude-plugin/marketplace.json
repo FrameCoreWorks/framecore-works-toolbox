@@ -14,7 +14,7 @@
       "metadata": {
         "firstParty": true
       },
-      "version": "1.18.1"
+      "version": "1.18.2"
     },
     {
       "name": "logo-design",
@@ -144,7 +144,7 @@
     {
       "name": "rife-interpolate",
       "description": "Smoother video and slow motion with RIFE frame interpolation on your graphics card; the pinned program downloads once after your yes.",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "category": "creative",
       "source": "./plugins/rife-interpolate"
     },

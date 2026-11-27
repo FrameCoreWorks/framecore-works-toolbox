@@ -59,6 +59,12 @@ class RifeLauncherTest(unittest.TestCase):
         self.assertNotIn('"-g", "-1"', source)
         self.assertEqual(source.count('["ffmpeg", "-nostdin"'), source.count('["ffmpeg"'))
 
+    def test_extract_works_with_current_ffmpeg(self):
+        # ffmpeg 8 and later reject -vsync; -fps_mode exists since 5.1.
+        source = (PLUGIN / 'skills/rife-interpolate/scripts/rife.py').read_text()
+        self.assertNotIn('"-vsync"', source)
+        self.assertIn('"-fps_mode", "passthrough"', source)
+
     def test_model_names_cannot_escape_the_cache(self):
         with self.assertRaises(SystemExit), redirect_stdout(io.StringIO()):
             rife.parse_models('../etc')

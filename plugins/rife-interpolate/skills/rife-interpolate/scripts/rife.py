@@ -230,7 +230,7 @@ def cmd_run(args):
     frames_in, frames_out = work / "in", work / "out"
     frames_in.mkdir()
     frames_out.mkdir()
-    extract = ["ffmpeg", "-nostdin", "-v", "error", "-i", str(src), "-vsync", "0"]
+    extract = ["ffmpeg", "-nostdin", "-v", "error", "-i", str(src), "-fps_mode", "passthrough"]
     if args.max_height and height > args.max_height:
         extract += ["-vf", f"scale=-2:{args.max_height}:flags=lanczos"]
         width, height = round(width * args.max_height / height), args.max_height

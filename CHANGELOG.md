@@ -1,5 +1,12 @@
 # Changes
 
+## Toolbox 1.18.2 — 2026-11-27
+
+Trigger: defect seen in real use, the first run on the owner's Mac (2026-11-27): the Mac's ffmpeg rejected `-vsync 0` in the frame extract, so `run` stopped before RIFE started.
+
+- `rife-interpolate` 1.1.1: the extract uses `-fps_mode passthrough` (ffmpeg 5.1 and later) instead of `-vsync 0`; new test. Index version 1.18.2.
+- Mac GPU run recorded: see docs/verification.md.
+
 ## Toolbox 1.18.1 — 2026-11-27
 
 Trigger: the owner's handover of 2026-11-27 from a cloud project ("interpolacja 60 fps przez RIFE w chmurze": nihui 20221029, rife-v4.6, Mesa llvmpipe, 24 to 60 fps), checked on the pinned TNTwise fork.
